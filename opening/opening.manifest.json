@@ -1,8 +1,8 @@
 {
-    "schema":  1,
-    "abi":  1,
-    "version":  "3.21.0",
-    "script":  "opening.js",
-    "sha256":  "f51c9fc7a27bdc38800e5d39e911f551701685234a9a20626c3b600685c23d84",
-    "updatedAt":  "2026-11-14T11:09:33Z"
+  "schema": 1,
+  "abi": 1,
+  "version": "3.21.0",
+  "script": "opening.js",
+  "sha256": "de9f5f384f7661794829e786e70e5b8718ca04285cceb00eaf9b9045dc0c70da",
+  "updatedAt": "2026-11-14T12:29:08Z"
 }
