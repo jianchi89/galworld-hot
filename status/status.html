@@ -4074,7 +4074,7 @@
       if (themeBtn) {
         const isDark = root.classList.toggle('krs-dark');
         themeBtn.querySelector('.theme-icon').textContent = isDark ? '☀️' : '🌙';
-        themeBtn.querySelector('.theme-text').textContent = isDark ? '明' : '暗';
+        themeBtn.querySelector('.theme-text').textContent = isDark ? '亮' : '暗';
         try { localStorage.setItem('KRS_STATUS_DARK', isDark ? '1' : '0'); } catch (_) {}
         return;
       }
