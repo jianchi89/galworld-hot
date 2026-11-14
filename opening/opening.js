@@ -3,7 +3,7 @@
 
   const MARKER = '[[GAL_OPENING]]';
   const SLOT = '__GALWORLD_TAVERN__';
-  const SCRIPT_VERSION = '3.22.0';
+  const SCRIPT_VERSION = '3.23.0';
   const WORK_TAGS = {
     fly: '[飞翔心]',
     sakura: '[樱之诗]',
@@ -446,8 +446,10 @@
     'https://cdn.jsdelivr.net/gh/jianchi89/galworld-hot@main/opening/gequ1.mp3',
     'https://raw.githubusercontent.com/jianchi89/galworld-hot/main/opening/gequ1.mp3'
   ];
+  const BGM_MUTE_KEY = 'galworld.tavern.bgmMuted.v1';
   const bgm = {
     audio: null,
+    mount: null,
     urlIndex: 0,
     closed: false,
     mutedByUser: false,
@@ -455,6 +457,54 @@
     gestureBound: false,
     onUiSync: null
   };
+
+  function readBgmMutedPref() {
+    try { return (HW.localStorage || window.localStorage).getItem(BGM_MUTE_KEY) === '1'; } catch (_) { return false; }
+  }
+
+  function writeBgmMutedPref(muted) {
+    try {
+      const s = HW.localStorage || window.localStorage;
+      if (muted) s.setItem(BGM_MUTE_KEY, '1');
+      else s.removeItem(BGM_MUTE_KEY);
+    } catch (_) {}
+  }
+
+  function clearHostBgmGuard() {
+    try {
+      if (typeof HW.__GALWORLD_BGM_STOP__ === 'function') HW.__GALWORLD_BGM_STOP__();
+    } catch (_) {}
+  }
+
+  function registerHostBgmGuard(audio, mountNode) {
+    clearHostBgmGuard();
+    const stopHostAudio = () => {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.removeAttribute('src');
+        audio.load();
+      } catch (_) {}
+    };
+    let timerId = 0;
+    const cleanup = () => {
+      if (timerId) {
+        try { (HW.clearInterval || clearInterval)(timerId); } catch (_) {}
+        timerId = 0;
+      }
+      stopHostAudio();
+      try { if (HW.__GALWORLD_BGM_STOP__ === cleanup) delete HW.__GALWORLD_BGM_STOP__; } catch (_) {}
+    };
+    // 即使关闭聊天时脚本 iframe 被直接销毁，父窗口定时器也能在 300ms 内发现挂载点已移除并立刻停歌
+    if (mountNode) {
+      try {
+        timerId = (HW.setInterval || setInterval)(() => {
+          if (!mountNode.isConnected) cleanup();
+        }, 300);
+      } catch (_) {}
+    }
+    try { HW.__GALWORLD_BGM_STOP__ = cleanup; } catch (_) {}
+  }
 
   function syncBgmUi() {
     if (typeof bgm.onUiSync === 'function') {
@@ -478,7 +528,7 @@
   }
 
   function bindBgmGestureFallback() {
-    if (bgm.gestureBound || bgm.closed) return;
+    if (bgm.gestureBound || bgm.closed || bgm.mutedByUser) return;
     bgm.gestureBound = true;
     try { HD.addEventListener('pointerdown', resumeBgmFromGesture, true); } catch (_) {}
     try { HD.addEventListener('keydown', resumeBgmFromGesture, true); } catch (_) {}
@@ -510,6 +560,7 @@
         syncBgmUi();
       });
       bgm.audio = audio;
+      registerHostBgmGuard(audio, bgm.mount);
     }
     try {
       const p = bgm.audio.play();
@@ -534,20 +585,24 @@
 
   function startOpeningBgm() {
     bgm.closed = false;
-    bgm.mutedByUser = false;
+    bgm.mutedByUser = readBgmMutedPref();
+    bgm.blocked = false;
     bgm.urlIndex = 0;
-    tryPlayOpeningBgm();
+    if (!bgm.mutedByUser) tryPlayOpeningBgm();
+    else syncBgmUi();
   }
 
   function toggleOpeningBgm() {
     if (bgm.closed) return;
     if (bgm.audio && !bgm.audio.paused && !bgm.mutedByUser) {
       bgm.mutedByUser = true;
+      writeBgmMutedPref(true);
       try { bgm.audio.pause(); } catch (_) {}
       clearBgmGestureFallback();
     } else {
       bgm.mutedByUser = false;
       bgm.blocked = false;
+      writeBgmMutedPref(false);
       clearBgmGestureFallback();
       tryPlayOpeningBgm();
     }
@@ -558,6 +613,7 @@
     bgm.closed = true;
     bgm.blocked = false;
     clearBgmGestureFallback();
+    clearHostBgmGuard();
     if (!bgm.audio) { syncBgmUi(); return; }
     try {
       bgm.audio.pause();
@@ -7177,6 +7233,7 @@ function renderConsoleV2() {
 
 
   function renderApp(mountPoint, mesId) {
+    bgm.mount = mountPoint;
     mountPoint.setAttribute('data-gal-shadow', '1');
     mountPoint.style.cssText = 'width:100%;display:block;margin:0;padding:0;';
     const shadow = mountPoint.attachShadow({ mode: 'open' });
@@ -7256,9 +7313,12 @@ function renderConsoleV2() {
   const eventOn = fn('eventOn');
   const eventRemove = fn('eventRemove');
   if (typeof eventOn === 'function') {
-    const names = ['chat_changed', 'message_updated', 'message_swiped', 'message_received', 'message_rendered', 'generation_ended'];
+    const names = ['chat_changed', 'chat_id_changed', 'message_updated', 'message_swiped', 'message_received', 'message_rendered', 'generation_ended'];
     names.forEach((name) => {
-      const handler = () => scheduleScan(80);
+      const handler = () => {
+        if (name === 'chat_changed' || name === 'chat_id_changed') stopOpeningBgm();
+        scheduleScan(80);
+      };
       try {
         eventOn(name, handler);
         activeListeners.push(() => { try { eventRemove(name, handler); } catch (_) {} });
@@ -7268,11 +7328,26 @@ function renderConsoleV2() {
 
   const MO = HW.MutationObserver || window.MutationObserver;
   if (MO) {
-    const observer = new MO(() => scheduleScan(180));
+    const observer = new MO(() => {
+      for (const m of activeMounts) {
+        if (m && !m.isConnected) activeMounts.delete(m);
+      }
+      if (!activeMounts.size) stopOpeningBgm();
+      scheduleScan(180);
+    });
     try { observer.observe(HD.getElementById('chat') || HD.body, { childList: true, subtree: true }); } catch (_) {}
     activeListeners.push(() => { clearTimeout(scanTimer); try { observer.disconnect(); } catch (_) {} });
   }
-  try { HW.addEventListener('beforeunload', destroy); } catch (_) {}
+
+  const wins = window === HW ? [window] : [window, HW];
+  wins.forEach((win) => {
+    ['pagehide', 'unload', 'beforeunload'].forEach((evt) => {
+      try {
+        win.addEventListener(evt, destroy);
+        activeListeners.push(() => { try { win.removeEventListener(evt, destroy); } catch (_) {} });
+      } catch (_) {}
+    });
+  });
 
   setTimeout(scanAndMount, 250);
   setTimeout(scanAndMount, 1000);
