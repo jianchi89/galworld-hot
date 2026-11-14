@@ -5343,8 +5343,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   }
 
   function apply(theme, force) {
-    if (!Object.prototype.hasOwnProperty.call(CSS, theme)) theme = 'light';
-    if (!force && theme === current && styleEl && styleEl.isConnected) return;
+    if (!Object.prototype.hasOwnProperty.call(CSS, theme)) theme = 'dark';    if (!force && theme === current && styleEl && styleEl.isConnected) return;
 
     HD = getHostDoc();
     const chatBox = HD.getElementById ? HD.getElementById('chat') : null;
@@ -5394,8 +5393,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   function ensureStyleOnly() {
     try {
       if (styleEl && styleEl.isConnected) return;
-      const t = userTheme || current || themeFromDom() || themeFromConfig()
-        || ((HD.body && /(^|\s)(dark|theme-dark)($|\s)/.test(String(HD.body.className || ''))) ? 'dark' : 'light');
+      const t = userTheme || current || 'dark';
       apply(t, true);
     } catch (_) {}
   }
@@ -5415,8 +5413,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
     isMutating = true;
     try {
-      const t = userTheme || current || themeFromDom() || themeFromConfig()
-        || ((HD.body && /(^|\s)(dark|theme-dark)($|\s)/.test(String(HD.body.className || ''))) ? 'dark' : 'light');
+      const t = userTheme || current || 'dark';
       apply(t, false);
       if (!styleEl || !styleEl.isConnected) apply(t, true);
       injectToggles();
@@ -5500,7 +5497,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       const t = el && el.getAttribute('data-nvn-theme');
       if (t === 'light' || t === 'dark') return t;
     } catch (_) {}
-    return (current === 'dark' ? 'dark' : 'light');
+    return (current === 'light' ? 'light' : 'dark');
   }
 
   function syncToggles() {
@@ -5967,7 +5964,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     try { if (HW[SLOT] && typeof HW[SLOT].destroy === 'function') HW[SLOT].destroy(); } catch (_) {}
     try { HW.addEventListener('beforeunload', destroy); HW.addEventListener('pagehide', destroy); } catch (_) {}
 
-    apply(userTheme || themeFromDom() || themeFromConfig() || 'light', true);
+    apply(userTheme || 'dark', true);
     injectToggles();
     wireObserver();
     wireEvents();
