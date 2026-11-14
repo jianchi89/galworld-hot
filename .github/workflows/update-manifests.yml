@@ -1,0 +1,65 @@
+# 放到 .github/workflows/update-manifests.yml
+# 作用：push opening/opening.js、dialogue/dialogue.js、status/status.html 中任意一个，
+#       自动重算对应 manifest 的 sha256 和 updatedAt，并提交回来。
+# 前提：Settings → Actions → General → Workflow permissions 选 “Read and write permissions”
+name: update-manifests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'opening/opening.js'
+      - 'dialogue/dialogue.js'
+      - 'status/status.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync all manifests
+        run: |
+          set -euo pipefail
+          sync_one() {
+            file="$1"
+            manifest="$2"
+            if [ ! -f "$file" ] || [ ! -f "$manifest" ]; then
+              echo "skip: missing $file or $manifest"
+              return 0
+            fi
+            sha=$(sha256sum "$file" | cut -d' ' -f1)
+            old=$(jq -r '.sha256 // empty' "$manifest")
+            if [ "$sha" = "$old" ]; then
+              echo "$manifest already up to date"
+              return 0
+            fi
+            now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            tmp=$(mktemp)
+            jq --arg sha "$sha" --arg now "$now" \
+               '.sha256 = $sha | .updatedAt = $now' \
+               "$manifest" > "$tmp"
+            mv "$tmp" "$manifest"
+            echo "$file -> $sha"
+          }
+          sync_one opening/opening.js opening/opening.manifest.json
+          sync_one dialogue/dialogue.js dialogue/dialogue.manifest.json
+          sync_one status/status.html status/status.manifest.json
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet; then
+            echo "no manifest changes"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add opening/opening.manifest.json dialogue/dialogue.manifest.json status/status.manifest.json
+          git commit -m "chore: sync manifests sha256"
+          git push
