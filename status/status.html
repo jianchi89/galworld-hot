@@ -2586,7 +2586,7 @@
             </div>
 
             <div class="krs-goal-box" data-krs-edit="角色.${activeCharName}.近期目标" data-krs-label="近期思索" data-krs-type="textarea">
-              <span class="krs-goal-tag">💭 近期思索</span>
+              <span class="krs-goal-tag">💭 近期动向</span>
               <span class="krs-goal-text">${escHtml(recentThought)}</span>
             </div>
 
@@ -2596,15 +2596,15 @@
                 <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.地点" data-krs-label="角色地点">${escHtml(curC['地点'] || '未知地点')}</div>
               </div>
               <div class="krs-hm-card">
-                <span class="krs-meta-lbl">👔 身着服装（最高权重常服标签）</span>
+                <span class="krs-meta-lbl">👔 身着服装</span>
                 <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.服装" data-krs-label="角色服装" data-krs-type="textarea">${formatDressHtml(curC['服装'])}</div>
               </div>
             </div>
 
             <div class="krs-tri-state-grid" data-krs-edit="角色.${activeCharName}.身体状态" data-krs-label="身体状态（体貌｜躯体｜性格）" data-krs-type="textarea">
-              <div class="krs-tri-card"><b>👁️ 体貌基线</b><p>${escHtml(triAppear)}</p></div>
-              <div class="krs-tri-card"><b>💓 当下躯体状态</b><p>${escHtml(triBody)}</p></div>
-              <div class="krs-tri-card"><b>✨ 性格基线</b><p>${escHtml(triPers)}</p></div>
+              <div class="krs-tri-card"><b>👁️ 体貌</b><p>${escHtml(triAppear)}</p></div>
+              <div class="krs-tri-card"><b>💓 当下身体状态</b><p>${escHtml(triBody)}</p></div>
+              <div class="krs-tri-card"><b>✨ 性格</b><p>${escHtml(triPers)}</p></div>
             </div>
 
             ${(curC['身体'] || isEditMode) ? `
