@@ -1956,9 +1956,9 @@
     const n = parseInt(v) || 0;
     if (n >= 190) return '灵魂共鸣';
     if (n >= 160) return '深刻羁绊';
-    if (n >= 120) return '情感依赖';
-    if (n >= 80)  return '确认心动';
-    if (n >= 40)  return '隐约在意';
+    if (n >= 120) return '确认心动';
+    if (n >= 80)  return '隐约在意';
+    if (n >= 40)  return '开始接近';
     return '无感';
   }
 
@@ -2603,9 +2603,9 @@
                 </div>
                 <div class="gw-axis-ticks">
                   <span class="${iStage==='无感'?'on':''}">无感</span>
-                  <span class="${iStage==='隐约在意'?'on':''}">接近</span>
-                  <span class="${iStage==='确认心动'?'on':''}">在意</span>
-                  <span class="${iStage==='情感依赖'?'on':''}">心动</span>
+                  <span class="${iStage==='开始接近'?'on':''}">接近</span>
+                  <span class="${iStage==='隐约在意'?'on':''}">在意</span>
+                  <span class="${iStage==='确认心动'?'on':''}">心动</span>
                   <span class="${iStage==='深刻羁绊'?'on':''}">羁绊</span>
                   <span class="${iStage==='灵魂共鸣'?'on':''}">共鸣</span>
                 </div>
