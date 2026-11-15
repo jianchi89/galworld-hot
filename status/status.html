@@ -1199,18 +1199,71 @@
   .gw-corner-bubble, .krs-sc-info, .krs-asc-info { display: none !important; }
   .krs-sc-avatar, .krs-asc-icon-box { width: 38px !important; height: 38px !important; }
 
-  .krs-heroine-card {
-    display: flex !important; flex-direction: column !important;
-    height: auto !important; min-height: 0 !important; padding: 10px !important; gap: 10px !important;
+  .gw-main-stage {
+    flex: 1 1 0 !important; min-height: 0 !important; height: auto !important; overflow-y: auto !important;
   }
-  .krs-heroine-avatar-box {
-    width: 150px !important; height: 285px !important; min-height: 285px !important; max-height: 285px !important;
-    margin: 0 auto !important; border-radius: 12px 24px 12px 12px !important;
+  .krs-heroine-card {
+    display: grid !important; grid-template-columns: clamp(88px, 34%, 138px) minmax(0, 1fr) !important;
+    height: auto !important; min-height: 100% !important; padding: 8px !important; gap: 6px 8px !important;
+    align-items: start !important; align-content: start !important;
+  }
+  .krs-heroine-card.no-sprite {
+    grid-template-columns: 1fr !important;
+  }
+  .krs-heroine-right-col {
+    display: contents !important;
+  }
+  .krs-heroine-card:not(.no-sprite) .krs-heroine-avatar-box {
+    grid-column: 1 !important; grid-row: 1 / span 3 !important;
+    width: 100% !important; height: auto !important; min-height: 196px !important; max-height: none !important;
+    aspect-ratio: auto !important; align-self: stretch !important;
+    position: relative !important; top: auto !important; overflow: hidden !important;
+    margin: 0 !important; border-radius: 8px 18px 8px 8px !important;
   }
   .krs-heroine-avatar-box img {
-    transform: translate(calc(var(--sp-x, 0px) * 0.65), calc(var(--sp-y, 0px) * 0.65)) scale(var(--sp-scale, 1)) !important;
+    position: absolute !important; inset: 0 !important; z-index: 1 !important;
+    width: 100% !important; height: 100% !important;
+    transform: translate(calc(var(--sp-x, 0px) * 0.56), calc(var(--sp-y, 0px) * 0.56)) scale(var(--sp-scale, 1)) !important;
   }
-  .krs-heroine-right-col { height: auto !important; overflow: visible !important; width: 100% !important; }
+  .krs-h-badge-stack { left: 4px !important; right: 4px !important; bottom: 4px !important; gap: 3px !important; }
+  .krs-h-state-tag { font-size: 8.5px !important; padding: 1px 5px !important; }
+  .gw-tuner-open-btn { top: 4px !important; left: 4px !important; padding: 2px 5px !important; font-size: 8px !important; }
+  .gw-sprite-tuner { padding: 4px !important; font-size: 8.5px !important; }
+
+  .krs-heroine-card:not(.no-sprite) .krs-heroine-header { grid-column: 2 !important; grid-row: 1 !important; }
+  .krs-heroine-card:not(.no-sprite) .krs-heroine-bars { grid-column: 2 !important; grid-row: 2 !important; }
+  .krs-heroine-card:not(.no-sprite) .krs-quote-box { grid-column: 2 !important; grid-row: 3 !important; align-self: start !important; }
+
+  .krs-heroine-card .krs-goal-box,
+  .krs-heroine-card .krs-heroine-meta-grid,
+  .krs-heroine-card .krs-tri-state-grid,
+  .krs-heroine-right-col > .krs-hm-card {
+    grid-column: 1 / -1 !important;
+  }
+
+  .krs-heroine-header { padding-bottom: 4px !important; gap: 4px !important; }
+  .krs-heroine-title-left { gap: 4px !important; }
+  .krs-heroine-name { font-size: 15.5px !important; line-height: 1.2 !important; }
+  .krs-heroine-card .krs-u-badge { font-size: 9.5px !important; padding: 1px 5px !important; }
+  .krs-heroine-badges { gap: 3px !important; }
+  .krs-heroine-badges .krs-pill { font-size: 9.5px !important; padding: 2px 6px !important; white-space: normal !important; line-height: 1.25 !important; text-align: left !important; }
+  .krs-heroine-header, .krs-heroine-bars, .krs-quote-box { min-width: 0 !important; max-width: 100% !important; }
+  .krs-heroine-bars { grid-template-columns: minmax(0, 1fr) !important; width: 100% !important; gap: 4px !important; }
+  .krs-hbar-card { min-width: 0 !important; width: 100% !important; overflow: hidden !important; padding: 4px 6px !important; gap: 3px !important; border-radius: 7px !important; }
+  .krs-hbar-top { font-size: 9.5px !important; gap: 1px 4px !important; flex-wrap: wrap !important; align-items: baseline !important; }
+  .krs-hbar-top > span:first-child { white-space: nowrap !important; flex-shrink: 0 !important; }
+  .krs-hbar-stage { font-size: 9px !important; white-space: normal !important; word-break: keep-all !important; }
+  .krs-hbar-track { height: 4px !important; }
+  .gw-axis-ticks { display: none !important; }
+  .krs-quote-box { font-size: 10.5px !important; padding: 4px 8px !important; line-height: 1.42 !important; }
+
+  .krs-goal-box { padding: 6px 9px !important; gap: 3px !important; border-radius: 8px !important; }
+  .krs-goal-tag { font-size: 10px !important; }
+  .krs-goal-text { font-size: 11.5px !important; line-height: 1.5 !important; }
+  .krs-heroine-card .krs-hm-card, .krs-tri-card { padding: 6px 9px !important; gap: 3px !important; border-radius: 8px !important; }
+  .krs-heroine-card .krs-meta-lbl, .krs-tri-card b { font-size: 10px !important; }
+  .krs-heroine-card .krs-meta-val, .krs-tri-card p { font-size: 11.5px !important; line-height: 1.5 !important; word-break: break-word !important; }
+  .krs-heroine-card .krs-dress-tag { font-size: 10px !important; padding: 1px 5px !important; margin-right: 4px !important; }
   .krs-goal-box, .krs-heroine-bars, .krs-heroine-meta-grid, .krs-tri-state-grid, .krs-u-meta-grid {
     grid-template-columns: 1fr !important; min-width: 0 !important;
   }
