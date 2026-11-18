@@ -2193,21 +2193,22 @@
   /* 双轴语义分档 */
   function getIntimacyStage(v) {
     const n = parseInt(v) || 0;
-    if (n >= 190) return '灵魂共鸣';
-    if (n >= 160) return '深刻羁绊';
-    if (n >= 120) return '确认心动';
-    if (n >= 80)  return '隐约在意';
-    if (n >= 40)  return '开始接近';
+    if (n >= 390) return '灵魂共鸣';
+    if (n >= 360) return '深刻羁绊';
+    if (n >= 300) return '情感依赖';
+    if (n >= 200) return '确认心动';
+    if (n >= 100) return '主动接近';
+    if (n >= 50)  return '隐约在意';
     return '无感';
   }
 
   function getAttractStage(v) {
     const n = parseInt(v) || 0;
-    if (n >= 190) return '极强吸引';
-    if (n >= 160) return '强烈吸引';
-    if (n >= 120) return '明显吸引';
-    if (n >= 80)  return '持续在意';
-    if (n >= 40)  return '偶尔意识到';
+    if (n >= 360) return '极强吸引';
+    if (n >= 300) return '强烈吸引';
+    if (n >= 200) return '明显吸引';
+    if (n >= 100) return '持续在意';
+    if (n >= 50)  return '偶尔意识到';
     return '无明显吸引';
   }
 
@@ -2743,10 +2744,10 @@
         const c = chars[cName] || {};
         const isActive = (cName === activeCharName);
         const isPresent = !!c['在场'];
-        const intim = Math.min(200, Math.max(0, parseInt(c['亲密程度']) || 0));
+        const intim = Math.min(400, Math.max(0, parseInt(c['亲密程度']) || 0));
         const firstId = String(c['关系'] || c['身份'] || '').split('、')[0];
-        const bubbleIcon = intim >= 80 ? '♡' : (isPresent ? '✦' : '♪');
-        const bubbleCls = intim >= 80 ? 'love' : (isPresent ? 'on' : '');
+        const bubbleIcon = intim >= 200 ? '♡' : (isPresent ? '✦' : '♪');
+        const bubbleCls = intim >= 200 ? 'love' : (isPresent ? 'on' : '');
         const hasArt = !!findCastEntry(cName);
 
         return `
@@ -2775,8 +2776,8 @@
       const isPresent = !!curC['在场'];
       const isCross = !!curC['女装'];
       const isFuta = !!curC['futa模式'];
-      const intimacy = Math.min(200, Math.max(0, parseInt(curC['亲密程度']) || 0));
-      const attract = Math.min(200, Math.max(0, parseInt(curC['性吸引力']) || 0));
+      const intimacy = Math.min(400, Math.max(0, parseInt(curC['亲密程度']) || 0));
+      const attract = Math.min(400, Math.max(0, parseInt(curC['性吸引力']) || 0));
       const cWallet = curC['钱包'] !== undefined ? curC['钱包'] : (curC['金币'] || 0);
 
       const recentThought = String(curC['近期目标'] || '').trim() || '暂无近期思索记录。';
@@ -2836,31 +2837,32 @@
             </div>
 
             <div class="krs-heroine-bars">
-              <div class="krs-hbar-card" data-krs-edit="角色.${activeCharName}.亲密程度" data-krs-label="亲密程度 (0-200)" data-krs-type="number">
+              <div class="krs-hbar-card" data-krs-edit="角色.${activeCharName}.亲密程度" data-krs-label="亲密程度 (0-400)" data-krs-type="number">
                 <div class="krs-hbar-top">
                   <span>💗 亲密程度</span>
-                  <span class="krs-hbar-stage">${intimacy}/200 · ${iStage}</span>
+                  <span class="krs-hbar-stage">${intimacy}/400 · ${iStage}</span>
                 </div>
                 <div class="krs-hbar-track">
-                  <div class="krs-hbar-fill" style="width:${(intimacy / 200) * 100}%; background:linear-gradient(90deg, #d88c9a, var(--rose));"></div>
+                  <div class="krs-hbar-fill" style="width:${(intimacy / 400) * 100}%; background:linear-gradient(90deg, #d88c9a, var(--rose));"></div>
                 </div>
                 <div class="gw-axis-ticks">
                   <span class="${iStage==='无感'?'on':''}">无感</span>
-                  <span class="${iStage==='开始接近'?'on':''}">接近</span>
                   <span class="${iStage==='隐约在意'?'on':''}">在意</span>
+                  <span class="${iStage==='主动接近'?'on':''}">接近</span>
                   <span class="${iStage==='确认心动'?'on':''}">心动</span>
+                  <span class="${iStage==='情感依赖'?'on':''}">依赖</span>
                   <span class="${iStage==='深刻羁绊'?'on':''}">羁绊</span>
                   <span class="${iStage==='灵魂共鸣'?'on':''}">共鸣</span>
                 </div>
               </div>
 
-              <div class="krs-hbar-card" data-krs-edit="角色.${activeCharName}.性吸引力" data-krs-label="性吸引力 (0-200)" data-krs-type="number">
+              <div class="krs-hbar-card" data-krs-edit="角色.${activeCharName}.性吸引力" data-krs-label="性吸引力 (0-400)" data-krs-type="number">
                 <div class="krs-hbar-top">
                   <span>🔥 性吸引力</span>
-                  <span class="krs-hbar-stage" style="color:var(--violet);">${attract}/200 · ${aStageName}</span>
+                  <span class="krs-hbar-stage" style="color:var(--violet);">${attract}/400 · ${aStageName}</span>
                 </div>
                 <div class="krs-hbar-track">
-                  <div class="krs-hbar-fill" style="width:${(attract / 200) * 100}%; background:linear-gradient(90deg, #b39ddb, var(--violet));"></div>
+                  <div class="krs-hbar-fill" style="width:${(attract / 400) * 100}%; background:linear-gradient(90deg, #b39ddb, var(--violet));"></div>
                 </div>
                 <div class="gw-axis-ticks">
                   <span class="${aStageName==='无明显吸引'?'on':''}">无感</span>
