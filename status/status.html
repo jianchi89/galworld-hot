@@ -525,6 +525,20 @@
 .gw-master-detail.is-sorting:not(.is-slim) .gw-sort-controls { display: inline-flex; }
 .gw-master-detail.is-sorting:not(.is-slim) .krs-slider-card,
 .gw-master-detail.is-sorting:not(.is-slim) .krs-asset-slider-card { cursor: grab !important; border-style: dashed !important; }
+.gw-drag-grip {
+  display: none; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 13px; padding: 0 3px; flex-shrink: 0;
+  cursor: grab; touch-action: none; user-select: none;
+}
+.gw-master-detail.is-sorting:not(.is-slim) .gw-drag-grip { display: inline-flex; }
+.gw-master-detail.is-sorting:not(.is-slim) .krs-sc-avatar,
+.gw-master-detail.is-sorting:not(.is-slim) .krs-asc-icon-box { touch-action: none; }
+.krs-slider-card.is-touch-dragging, .krs-asset-slider-card.is-touch-dragging {
+  opacity: .55 !important; border-color: var(--rose) !important; background: rgba(166,79,104,.18) !important;
+}
+.krs-slider-card.is-drag-over, .krs-asset-slider-card.is-drag-over {
+  border: 1.5px solid var(--rose) !important; box-shadow: 0 0 0 2px rgba(166,79,104,.28) !important;
+}
 .gw-sort-arr {
   width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--line-strong);
   background: var(--surface-1); color: var(--paper-soft); font-size: 9px;
@@ -1178,35 +1192,53 @@
   .gw-master-detail, .gw-master-detail.is-slim {
     display: flex !important; flex-direction: column !important; gap: 8px !important; height: 100% !important;
   }
-  .gw-side-list {
-    height: auto !important; flex-shrink: 0 !important; padding: 6px 8px !important;
-    display: flex !important; flex-direction: row !important; align-items: center !important; gap: 8px !important;
+  .gw-master-detail.is-slim .gw-side-list {
+    height: auto !important; flex-shrink: 0 !important; padding: 5px 6px !important;
+    display: flex !important; flex-direction: row !important; align-items: center !important; gap: 6px !important;
   }
-  .gw-slim-toggle {
+  .gw-master-detail.is-slim .gw-slim-toggle {
     order: 2 !important;
     display: flex !important; width: 22px !important; height: 40px !important;
     padding: 2px 0 !important; border-radius: 7px !important;
     flex-shrink: 0 !important; overflow: hidden !important;
   }
-  .gw-st-mini { writing-mode: vertical-rl; font-size: 9px; line-height: 1; letter-spacing: 0; white-space: nowrap; }
-  .gw-st-full { display: none !important; }
-  .krs-asset-cat-nav, .gw-sort-btn { display: none !important; }
-  .gw-vertical-track,
+  .gw-master-detail.is-slim .gw-st-mini {
+    writing-mode: vertical-rl; font-size: 9px; line-height: 1; letter-spacing: 0; white-space: nowrap;
+  }
+  .gw-master-detail.is-slim .krs-asset-cat-nav,
+  .gw-master-detail.is-slim .gw-sort-btn { display: none !important; }
   .gw-master-detail.is-slim .gw-vertical-track {
     order: 1 !important;
     display: flex !important; flex-direction: row !important; align-items: center !important;
     overflow-x: auto !important; overflow-y: hidden !important; gap: 8px !important;
-    padding: 2px 0 !important; flex: 1 1 auto !important; min-width: 0 !important;
+    padding: 3px 2px !important; flex: 1 1 auto !important; min-width: 0 !important;
   }
-  .krs-slider-card, .krs-asset-slider-card,
   .gw-master-detail.is-slim .krs-slider-card,
   .gw-master-detail.is-slim .krs-asset-slider-card {
     width: 40px !important; height: 40px !important; min-width: 40px !important;
     padding: 0 !important; flex: 0 0 40px !important; border-radius: 50% !important;
     background: transparent !important; border: 0 !important;
   }
-  .gw-corner-bubble, .krs-sc-info, .krs-asc-info { display: none !important; }
-  .krs-sc-avatar, .krs-asc-icon-box { width: 38px !important; height: 38px !important; }
+  .gw-master-detail.is-slim .gw-corner-bubble,
+  .gw-master-detail.is-slim .krs-sc-info,
+  .gw-master-detail.is-slim .krs-asc-info { display: none !important; }
+  .gw-master-detail.is-slim .krs-sc-avatar,
+  .gw-master-detail.is-slim .krs-asc-icon-box { width: 38px !important; height: 38px !important; }
+
+  .gw-master-detail:not(.is-slim) .gw-side-list {
+    height: auto !important; flex-shrink: 0 !important; padding: 7px 8px !important;
+    display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 6px !important;
+  }
+  .gw-master-detail:not(.is-slim) .gw-slim-toggle { height: 28px !important; padding: 0 8px !important; }
+  .gw-master-detail:not(.is-slim) .krs-asset-cat-nav { flex-shrink: 0 !important; }
+  .gw-master-detail:not(.is-slim) .gw-vertical-track {
+    display: flex !important; flex-direction: column !important; align-items: stretch !important;
+    overflow-y: auto !important; overflow-x: hidden !important; gap: 5px !important;
+    padding: 2px 1px !important; flex: 0 1 auto !important; min-height: 0 !important; max-height: 180px !important;
+  }
+  .gw-master-detail.is-sorting:not(.is-slim) .gw-vertical-track { max-height: 270px !important; }
+  .gw-master-detail:not(.is-slim) .gw-sort-btn { height: 30px !important; font-size: 11px !important; }
+  .gw-master-detail:not(.is-slim) .gw-sort-arr { width: 26px !important; height: 24px !important; font-size: 11px !important; }
 
   .gw-main-stage {
     flex: 1 1 0 !important; min-height: 0 !important; height: auto !important; overflow-y: auto !important;
@@ -1959,9 +1991,11 @@
   function stageChainOf(name, dressRaw) {
     const entry = findCastEntry(name);
     if (!entry) return [];
-    const base = [];
     const matched = matchOutfitUrl(entry, dressRaw);
-    [matched, getDefaultStage(entry), entry.normal, entry.stage].forEach((u) => {
+    const defStage = getDefaultStage(entry);
+    if (!matched && !defStage && !entry.stage) return [];
+    const base = [];
+    [matched, defStage, entry.stage].forEach((u) => {
       if (u && u !== FALLBACK_IMG && base.indexOf(u) < 0) base.push(u);
     });
     const out = [];
@@ -1974,7 +2008,7 @@
   }
   window.__krsStageFb = function (img) {
     let list = [];
-    try { list = JSON.parse(img.getAttribute('data-fb') || '[]'); } catch (_) {}
+    try { list = JSON.parse(img.getAttribute('data-fb') || '[]').filter(Boolean); } catch (_) {}
     if (list.length) {
       img.setAttribute('data-fb', JSON.stringify(list.slice(1)));
       img.src = list[0];
@@ -1987,7 +2021,7 @@
   };
   window.__krsImgFb = function (img) {
     let list = [];
-    try { list = JSON.parse(img.getAttribute('data-fb') || '[]'); } catch (_) {}
+    try { list = JSON.parse(img.getAttribute('data-fb') || '[]').filter(Boolean); } catch (_) {}
     if (list.length) {
       img.setAttribute('data-fb', JSON.stringify(list.slice(1)));
       img.src = list[0];
@@ -2161,9 +2195,9 @@
     const n = parseInt(v) || 0;
     if (n >= 190) return '灵魂共鸣';
     if (n >= 160) return '深刻羁绊';
-    if (n >= 120) return '情感依赖';
-    if (n >= 80)  return '确认心动';
-    if (n >= 40)  return '隐约在意';
+    if (n >= 120) return '确认心动';
+    if (n >= 80)  return '隐约在意';
+    if (n >= 40)  return '开始接近';
     return '无感';
   }
 
@@ -2569,6 +2603,7 @@
           return `
             <div class="krs-asset-slider-card ${isActive ? 'active' : ''}" data-select-asset="${escHtml(aName)}" draggable="${isSortMode}" data-drag-kind="career" data-drag-key="${escHtml(aName)}" title="${escHtml(aName)}">
               <span class="gw-corner-bubble">${a['规模'] || '✦'}</span>
+              <span class="gw-drag-grip" title="按住拖动排序">⠿</span>
               <div class="krs-asc-icon-box">${icon}</div>
               <div class="krs-asc-info">
                 <span class="krs-asc-name">${escHtml(aName)}</span>
@@ -2717,6 +2752,7 @@
         return `
           <div class="krs-slider-card ${isActive ? 'active' : ''}" data-select-char="${escHtml(cName)}" draggable="${isSortMode}" data-drag-kind="char" data-drag-key="${escHtml(cName)}" title="${escHtml(cName)} (${escHtml(firstId)})">
             <span class="gw-corner-bubble ${bubbleCls}">${bubbleIcon}</span>
+            <span class="gw-drag-grip" title="按住拖动排序">⠿</span>
             <div class="krs-sc-avatar">
               ${hasArt
                 ? `<img src="${escHtml(getAvatar(cName))}" alt="${escHtml(cName)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(getAvatar(cName))]))}" onerror="window.__krsImgFb(this)">`
@@ -2725,7 +2761,7 @@
             </div>
             <div class="krs-sc-info">
               <span class="krs-sc-name">${escHtml(cName)}</span>
-              <span class="krs-sc-sub">${escHtml(firstId)} · 💗${intim}</span>
+              <span class="krs-sc-sub">💗${intim}${firstId ? ' · ' + escHtml(firstId) : ''}</span>
             </div>
             <div class="gw-sort-controls">
               <span class="gw-sort-arr" data-move-char="${escHtml(cName)}" data-dir="-1" title="上移">▲</span>
@@ -2810,9 +2846,9 @@
                 </div>
                 <div class="gw-axis-ticks">
                   <span class="${iStage==='无感'?'on':''}">无感</span>
-                  <span class="${iStage==='隐约在意'?'on':''}">接近</span>
-                  <span class="${iStage==='确认心动'?'on':''}">在意</span>
-                  <span class="${iStage==='情感依赖'?'on':''}">心动</span>
+                  <span class="${iStage==='开始接近'?'on':''}">接近</span>
+                  <span class="${iStage==='隐约在意'?'on':''}">在意</span>
+                  <span class="${iStage==='确认心动'?'on':''}">心动</span>
                   <span class="${iStage==='深刻羁绊'?'on':''}">羁绊</span>
                   <span class="${iStage==='灵魂共鸣'?'on':''}">共鸣</span>
                 </div>
@@ -4623,7 +4659,17 @@
       }
     } catch (_) {}
 
+    try {
+      const savedSlim = localStorage.getItem('KRS_SIDE_SLIM');
+      if (savedSlim === '1' || savedSlim === '0') {
+        isSideSlim = (savedSlim === '1');
+        root.querySelectorAll('.gw-master-detail').forEach(el => el.classList.toggle('is-slim', isSideSlim));
+      }
+    } catch (_) {}
+
+    let suppressTouchClick = false;
     root.addEventListener('click', async (e) => {
+      if (suppressTouchClick) return;
       const themeBtn = e.target.closest('#krs-btn-theme');
       if (themeBtn) {
         const isDark = root.classList.toggle('krs-dark');
@@ -4641,12 +4687,7 @@
         return;
       }
 
-      try {
-        if (localStorage.getItem('KRS_SIDE_SLIM') === '1' && !isSideSlim) {
-          isSideSlim = true;
-          root.querySelectorAll('.gw-master-detail').forEach(el => el.classList.add('is-slim'));
-        }
-      } catch (_) {}
+      
 
       if (e.target.closest('[data-open-tuner]')) { e.stopPropagation(); isTunerOpen = true; renderAll(); return; }
       if (e.target.closest('[data-close-tuner]')) { e.stopPropagation(); isTunerOpen = false; renderAll(); return; }
@@ -4863,6 +4904,112 @@
       dragSrcKey = '';
       renderAll();
     });
+
+    /* 手机端触摸拖动排序（支持按住 ⠿ / 头像直接拖，或长按卡片拖动） */
+    let touchDragTimer = null;
+    let touchDragging = false;
+    let touchSrcKey = '';
+    let touchKind = '';
+    let touchDestKey = '';
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchSrcCard = null;
+
+    function clearTouchDragState() {
+      if (touchDragTimer) { clearTimeout(touchDragTimer); touchDragTimer = null; }
+      root.querySelectorAll('.is-touch-dragging, .is-drag-over').forEach(el => {
+        el.classList.remove('is-touch-dragging', 'is-drag-over');
+      });
+      touchDragging = false;
+      touchSrcKey = '';
+      touchKind = '';
+      touchDestKey = '';
+      touchSrcCard = null;
+    }
+
+    function beginTouchDrag(card) {
+      touchDragging = true;
+      touchSrcCard = card;
+      touchSrcKey = card.getAttribute('data-drag-key') || '';
+      touchKind = card.getAttribute('data-drag-kind') || '';
+      touchDestKey = '';
+      card.classList.add('is-touch-dragging');
+      try { if (navigator.vibrate) navigator.vibrate(12); } catch (_) {}
+    }
+
+    root.addEventListener('touchstart', (e) => {
+      if (!isSortMode || isSideSlim || e.touches.length !== 1) return;
+      if (e.target.closest('.gw-sort-arr')) return;
+      const card = e.target.closest('[data-drag-key]');
+      if (!card) return;
+      clearTouchDragState();
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      if (e.target.closest('.gw-drag-grip, .krs-sc-avatar, .krs-asc-icon-box')) {
+        beginTouchDrag(card);
+      } else {
+        touchDragTimer = setTimeout(() => {
+          touchDragTimer = null;
+          beginTouchDrag(card);
+        }, 180);
+      }
+    }, { passive: true });
+
+    root.addEventListener('touchmove', (e) => {
+      if (!touchDragging && !touchDragTimer) return;
+      const t = e.touches[0];
+      if (!t) return;
+      if (!touchDragging) {
+        if (Math.abs(t.clientX - touchStartX) > 8 || Math.abs(t.clientY - touchStartY) > 8) {
+          clearTouchDragState();
+        }
+        return;
+      }
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+
+      const track = touchSrcCard && touchSrcCard.closest('.gw-vertical-track');
+      if (track) {
+        const tr = track.getBoundingClientRect();
+        if (t.clientY < tr.top + 26) track.scrollTop -= 8;
+        else if (t.clientY > tr.bottom - 26) track.scrollTop += 8;
+      }
+
+      const hit = document.elementFromPoint(t.clientX, t.clientY);
+      const destCard = hit ? hit.closest('[data-drag-key]') : null;
+      root.querySelectorAll('.is-drag-over').forEach(el => el.classList.remove('is-drag-over'));
+      if (destCard && destCard.getAttribute('data-drag-kind') === touchKind) {
+        const dk = destCard.getAttribute('data-drag-key') || '';
+        touchDestKey = dk;
+        if (dk && dk !== touchSrcKey) destCard.classList.add('is-drag-over');
+      } else {
+        touchDestKey = '';
+      }
+    }, { passive: false });
+
+    const finishTouchDrag = () => {
+      const wasDragging = touchDragging;
+      const src = touchSrcKey;
+      const dest = touchDestKey;
+      const kind = touchKind;
+      clearTouchDragState();
+      if (!wasDragging) return;
+      suppressTouchClick = true;
+      setTimeout(() => { suppressTouchClick = false; }, 350);
+      if (src && dest && dest !== src) {
+        const sd = rs() || {};
+        if (kind === 'char') {
+          moveKeyInOrder(Object.keys(safeGet(sd, '角色', {}) || {}), 'KRS_CHAR_ORDER', src, dest);
+        } else {
+          const cObj = safeGet(sd, 'user.生涯', null) || safeGet(sd, 'user.资产', {}) || {};
+          moveKeyInOrder(Object.keys(cObj), 'KRS_CAREER_ORDER', src, dest);
+        }
+        renderAll();
+      }
+    };
+
+    root.addEventListener('touchend', finishTouchDrag, { passive: true });
+    root.addEventListener('touchcancel', () => clearTouchDragState(), { passive: true });
 
     root.addEventListener('scroll', () => recordScrolls(root), { capture: true, passive: true });
   }
