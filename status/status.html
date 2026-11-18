@@ -525,20 +525,6 @@
 .gw-master-detail.is-sorting:not(.is-slim) .gw-sort-controls { display: inline-flex; }
 .gw-master-detail.is-sorting:not(.is-slim) .krs-slider-card,
 .gw-master-detail.is-sorting:not(.is-slim) .krs-asset-slider-card { cursor: grab !important; border-style: dashed !important; }
-.gw-drag-grip {
-  display: none; align-items: center; justify-content: center;
-  color: var(--muted); font-size: 13px; padding: 0 3px; flex-shrink: 0;
-  cursor: grab; touch-action: none; user-select: none;
-}
-.gw-master-detail.is-sorting:not(.is-slim) .gw-drag-grip { display: inline-flex; }
-.gw-master-detail.is-sorting:not(.is-slim) .krs-sc-avatar,
-.gw-master-detail.is-sorting:not(.is-slim) .krs-asc-icon-box { touch-action: none; }
-.krs-slider-card.is-touch-dragging, .krs-asset-slider-card.is-touch-dragging {
-  opacity: .55 !important; border-color: var(--rose) !important; background: rgba(166,79,104,.18) !important;
-}
-.krs-slider-card.is-drag-over, .krs-asset-slider-card.is-drag-over {
-  border: 1.5px solid var(--rose) !important; box-shadow: 0 0 0 2px rgba(166,79,104,.28) !important;
-}
 .gw-sort-arr {
   width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--line-strong);
   background: var(--surface-1); color: var(--paper-soft); font-size: 9px;
@@ -574,9 +560,8 @@
 .gw-axis-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted-2); }
 .gw-axis-ticks span.on { color: var(--rose-deep); font-weight: 700; }
 .krs-heroine-meta-grid { display: grid; grid-template-columns: .75fr 1.65fr; gap: 7px; }
-.krs-hm-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; }
+.krs-hm-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 9px; padding: 7px 10px; display: flex; flex-direction: column; gap: 3px; }
 .krs-tri-state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
-.krs-pair-state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
 .krs-tri-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; display: flex; flex-direction: column; gap: 3px; }
 .krs-tri-card b { font-size: 11px; color: var(--rose-deep); }
 .krs-tri-card p { font-size: 12px; color: var(--paper); line-height: 1.48; }
@@ -1192,61 +1177,41 @@
   .gw-master-detail, .gw-master-detail.is-slim {
     display: flex !important; flex-direction: column !important; gap: 8px !important; height: 100% !important;
   }
-  .gw-master-detail.is-slim .gw-side-list {
-    height: auto !important; flex-shrink: 0 !important; padding: 5px 6px !important;
-    display: flex !important; flex-direction: row !important; align-items: center !important; gap: 6px !important;
+  .gw-side-list {
+    height: auto !important; flex-shrink: 0 !important; padding: 6px 8px !important;
+    display: flex !important; flex-direction: row !important; align-items: center !important; gap: 8px !important;
   }
-  .gw-master-detail.is-slim .gw-slim-toggle {
-    order: 2 !important;
-    display: flex !important; width: 22px !important; height: 40px !important;
-    padding: 2px 0 !important; border-radius: 7px !important;
-    flex-shrink: 0 !important; overflow: hidden !important;
-  }
-  .gw-master-detail.is-slim .gw-st-mini {
-    writing-mode: vertical-rl; font-size: 9px; line-height: 1; letter-spacing: 0; white-space: nowrap;
-  }
-  .gw-master-detail.is-slim .krs-asset-cat-nav,
-  .gw-master-detail.is-slim .gw-sort-btn { display: none !important; }
+  .gw-slim-toggle { display: none !important; }
+  .krs-asset-cat-nav, .gw-sort-btn { display: none !important; }
+  .gw-vertical-track,
   .gw-master-detail.is-slim .gw-vertical-track {
-    order: 1 !important;
     display: flex !important; flex-direction: row !important; align-items: center !important;
     overflow-x: auto !important; overflow-y: hidden !important; gap: 8px !important;
-    padding: 3px 2px !important; flex: 1 1 auto !important; min-width: 0 !important;
+    padding: 2px 0 !important; flex: 1 1 auto !important; min-width: 0 !important;
   }
+  .krs-slider-card, .krs-asset-slider-card,
   .gw-master-detail.is-slim .krs-slider-card,
   .gw-master-detail.is-slim .krs-asset-slider-card {
     width: 40px !important; height: 40px !important; min-width: 40px !important;
     padding: 0 !important; flex: 0 0 40px !important; border-radius: 50% !important;
     background: transparent !important; border: 0 !important;
   }
-  .gw-master-detail.is-slim .gw-corner-bubble,
-  .gw-master-detail.is-slim .krs-sc-info,
-  .gw-master-detail.is-slim .krs-asc-info { display: none !important; }
-  .gw-master-detail.is-slim .krs-sc-avatar,
-  .gw-master-detail.is-slim .krs-asc-icon-box { width: 38px !important; height: 38px !important; }
+  .gw-corner-bubble, .krs-sc-info, .krs-asc-info { display: none !important; }
+  .krs-sc-avatar, .krs-asc-icon-box { width: 38px !important; height: 38px !important; }
 
-  .gw-master-detail:not(.is-slim) .gw-side-list {
-    height: auto !important; flex-shrink: 0 !important; padding: 7px 8px !important;
-    display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 6px !important;
+  .krs-heroine-card {
+    display: flex !important; flex-direction: column !important;
+    height: auto !important; min-height: 0 !important; padding: 10px !important; gap: 10px !important;
   }
-  .gw-master-detail:not(.is-slim) .gw-slim-toggle { height: 28px !important; padding: 0 8px !important; }
-  .gw-master-detail:not(.is-slim) .krs-asset-cat-nav { flex-shrink: 0 !important; }
-  .gw-master-detail:not(.is-slim) .gw-vertical-track {
-    display: flex !important; flex-direction: column !important; align-items: stretch !important;
-    overflow-y: auto !important; overflow-x: hidden !important; gap: 5px !important;
-    padding: 2px 1px !important; flex: 0 1 auto !important; min-height: 0 !important; max-height: 180px !important;
+  .krs-heroine-avatar-box {
+    width: 150px !important; height: 285px !important; min-height: 285px !important; max-height: 285px !important;
+    margin: 0 auto !important; border-radius: 12px 24px 12px 12px !important;
   }
-  .gw-master-detail.is-sorting:not(.is-slim) .gw-vertical-track { max-height: 270px !important; }
-  .gw-master-detail:not(.is-slim) .gw-sort-btn { height: 30px !important; font-size: 11px !important; }
-  .gw-master-detail:not(.is-slim) .gw-sort-arr { width: 26px !important; height: 24px !important; font-size: 11px !important; }
-
-  .gw-main-stage {
-    flex: 1 1 0 !important; min-height: 0 !important; height: auto !important; overflow-y: auto !important;
+  .krs-heroine-avatar-box img {
+    transform: translate(calc(var(--sp-x, 0px) * 0.65), calc(var(--sp-y, 0px) * 0.65)) scale(var(--sp-scale, 1)) !important;
   }
-  .krs-heroine-card.no-sprite {
-    grid-template-columns: 1fr !important;
-  }
-  .krs-goal-box, .krs-heroine-bars, .krs-heroine-meta-grid, .krs-tri-state-grid, .krs-pair-state-grid, .krs-u-meta-grid {
+  .krs-heroine-right-col { height: auto !important; overflow: visible !important; width: 100% !important; }
+  .krs-goal-box, .krs-heroine-bars, .krs-heroine-meta-grid, .krs-tri-state-grid, .krs-u-meta-grid {
     grid-template-columns: 1fr !important; min-width: 0 !important;
   }
   .gw-goal-arrow { display: none !important; }
@@ -1272,118 +1237,11 @@
   .gw-cal-left, .gw-cal-right { height: auto !important; overflow: visible !important; flex-shrink: 0 !important; }
   .gw-cal-grid { grid-auto-rows: minmax(42px, auto) !important; }
 }
-
-/* ═══ 📱 平板端（521px ~ 780px）：两行紧凑顶栏 + 左侧全高立绘 + 右侧满排信息 ═══ */
-@media (min-width: 521px) and (max-width: 780px) {
-  .krs-top-nav-bar { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; align-items: center !important; justify-content: space-between !important; gap: 6px !important; }
-  .krs-nav-tabs { width: auto !important; display: flex !important; gap: 4px !important; }
-  .krs-nav-tab { padding: 4px 10px !important; }
-  .krs-datetime { width: auto !important; flex: 0 1 auto !important; }
-  .krs-nav-actions { width: 100% !important; display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
-  .krs-status-root.krs-collapsed .krs-nav-actions { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
-
-  .krs-stage-container, .krs-pane-scroll-inner { height: 492px !important; max-height: 492px !important; }
-  .krs-heroine-card {
-    display: grid !important; grid-template-columns: 162px minmax(0, 1fr) !important;
-    gap: 10px !important; padding: 10px !important;
-    height: 100% !important; min-height: 410px !important; align-items: stretch !important;
-  }
-  .krs-heroine-card.no-sprite {
-    grid-template-columns: 1fr !important;
-  }
-  .krs-heroine-avatar-box {
-    width: 162px !important; height: 100% !important; min-height: 368px !important; max-height: 410px !important;
-    border-radius: 10px 22px 10px 10px !important;
-  }
-  .krs-heroine-avatar-box img {
-    transform: translate(calc(var(--sp-x, 0px) * 0.84), calc(var(--sp-y, 0px) * 0.84)) scale(var(--sp-scale, 1)) !important;
-  }
-  .krs-heroine-right-col {
-    display: flex !important; flex-direction: column !important; justify-content: space-between !important;
-    gap: 5px !important; height: 100% !important; overflow-y: auto !important; padding-right: 2px !important; min-width: 0 !important;
-  }
-  .krs-heroine-name { font-size: 18px !important; }
-  .krs-heroine-badges .krs-pill { font-size: 10.5px !important; padding: 3px 8px !important; white-space: normal !important; }
-  .krs-pair-state-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
-  .krs-u-meta-grid { grid-template-columns: 1fr 1fr !important; }
-}
-
-/* ═══ 📱 手机端（<= 520px）：L 型布局（左上立绘+右上核心数据，下方满宽卡片） ═══ */
-@media (max-width: 520px) {
-  .krs-heroine-card {
-    display: grid !important; grid-template-columns: clamp(88px, 34%, 138px) minmax(0, 1fr) !important;
-    height: auto !important; min-height: 0 !important; padding: 8px !important; gap: 6px 8px !important;
-    align-items: start !important; align-content: start !important;
-  }
-  .krs-heroine-card.no-sprite {
-    grid-template-columns: 1fr !important;
-  }
-  .krs-heroine-right-col {
-    display: contents !important;
-  }
-  .krs-heroine-card:not(.no-sprite) .krs-heroine-avatar-box {
-    grid-column: 1 !important; grid-row: 1 / span 3 !important;
-    width: 100% !important; height: auto !important; min-height: 150px !important; max-height: none !important;
-    aspect-ratio: auto !important; align-self: stretch !important;
-    position: relative !important; top: auto !important; overflow: hidden !important;
-    margin: 0 !important; border-radius: 8px 18px 8px 8px !important;
-  }
-  .krs-heroine-avatar-box img {
-    position: absolute !important; inset: 0 !important; z-index: 1 !important;
-    width: 100% !important; height: 100% !important;
-    transform: translate(calc(var(--sp-x, 0px) * 0.56), calc(var(--sp-y, 0px) * 0.56)) scale(var(--sp-scale, 1)) !important;
-  }
-  .krs-h-badge-stack { left: 4px !important; right: 4px !important; bottom: 4px !important; gap: 3px !important; }
-  .krs-h-state-tag { font-size: 8.5px !important; padding: 1px 5px !important; }
-  .gw-tuner-open-btn { top: 4px !important; left: 4px !important; padding: 2px 5px !important; font-size: 8px !important; }
-  .gw-sprite-tuner { padding: 4px !important; font-size: 8.5px !important; }
-
-  .krs-heroine-card:not(.no-sprite) .krs-heroine-header { grid-column: 2 !important; grid-row: 1 !important; }
-  .krs-heroine-card:not(.no-sprite) .krs-heroine-bars { grid-column: 2 !important; grid-row: 2 !important; }
-  .krs-heroine-card:not(.no-sprite) .krs-quote-box { grid-column: 2 !important; grid-row: 3 !important; align-self: start !important; }
-
-  .krs-heroine-card .krs-dress-card,
-  .krs-heroine-card .krs-body-state-card,
-  .krs-heroine-card .krs-pair-state-grid,
-  .krs-heroine-card .krs-body-record-card,
-  .krs-heroine-card .krs-goal-box,
-  .krs-heroine-card .krs-loc-card,
-  .krs-heroine-card .krs-heroine-meta-grid,
-  .krs-heroine-card .krs-tri-state-grid,
-  .krs-heroine-right-col > .krs-hm-card {
-    grid-column: 1 / -1 !important;
-  }
-  .krs-pair-state-grid { grid-template-columns: 1fr !important; gap: 5px !important; }
-
-  .krs-heroine-header { padding-bottom: 4px !important; gap: 4px !important; }
-  .krs-heroine-title-left { gap: 4px !important; }
-  .krs-heroine-name { font-size: 15.5px !important; line-height: 1.2 !important; }
-  .krs-heroine-card .krs-u-badge { font-size: 9.5px !important; padding: 1px 5px !important; }
-  .krs-heroine-badges { gap: 3px !important; }
-  .krs-heroine-badges .krs-pill { font-size: 9.5px !important; padding: 2px 6px !important; white-space: normal !important; line-height: 1.25 !important; text-align: left !important; }
-  .krs-heroine-header, .krs-heroine-bars, .krs-quote-box { min-width: 0 !important; max-width: 100% !important; }
-  .krs-heroine-bars { grid-template-columns: minmax(0, 1fr) !important; width: 100% !important; gap: 4px !important; }
-  .krs-hbar-card { min-width: 0 !important; width: 100% !important; overflow: hidden !important; padding: 4px 6px !important; gap: 3px !important; border-radius: 7px !important; }
-  .krs-hbar-top { font-size: 9.5px !important; gap: 1px 4px !important; flex-wrap: wrap !important; align-items: baseline !important; }
-  .krs-hbar-top > span:first-child { white-space: nowrap !important; flex-shrink: 0 !important; }
-  .krs-hbar-stage { font-size: 9px !important; white-space: normal !important; word-break: keep-all !important; }
-  .krs-hbar-track { height: 4px !important; }
-  .gw-axis-ticks { display: none !important; }
-  .krs-quote-box { font-size: 10.5px !important; padding: 4px 8px !important; line-height: 1.42 !important; }
-
-  .krs-goal-box { padding: 6px 9px !important; gap: 3px !important; border-radius: 8px !important; }
-  .krs-goal-tag { font-size: 10px !important; }
-  .krs-goal-text { font-size: 11.5px !important; line-height: 1.5 !important; }
-  .krs-heroine-card .krs-hm-card, .krs-tri-card { padding: 6px 9px !important; gap: 3px !important; border-radius: 8px !important; }
-  .krs-heroine-card .krs-meta-lbl, .krs-tri-card b { font-size: 10px !important; }
-  .krs-heroine-card .krs-meta-val, .krs-tri-card p { font-size: 11.5px !important; line-height: 1.5 !important; word-break: break-word !important; }
-  .krs-heroine-card .krs-dress-tag { font-size: 10px !important; padding: 1px 5px !important; margin-right: 4px !important; }
-}
 </style>
 
 <script>
 (function () {
-  const FALLBACK_IMG = "https://dummyimage.com/120x160/e9dac9/8c3e55&text=GALWORLD";
+  const FALLBACK_IMG = "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ui/fallback.webp";
 
   /* ═══ 🌟 按聊天存档 (chatId) 独立隔离：同存档长线驻留，跨存档互不串台 ═══ */
   const HOST_W = (function () {
@@ -1501,196 +1359,332 @@
   }
 
   /* ═══ GALWORLD 作品封面与全量 136 位角色立绘库（含多服装切换映射） ═══ */
-  const GAL_COVERS = {
-    tsuki: "https://origin.picgo.net/2026/11/11/2032b282131e6bef9976f9db0b49822afd06356522c47d4c.png",
-    theo: "https://origin.picgo.net/2026/11/11/14e01ffe579f7e3d3119a3da3208870b632e3f32c9ef72e8.png",
-    waltz: "https://origin.picgo.net/2026/11/11/4e249a645aebfc6bbd530365f48f491a435f701c4f549bc3.png",
-    canvas: "https://origin.picgo.net/2026/11/11/67123afd3f2d0823a4c358345d462a65b306b41eea487400.png",
-    kaoru: "https://origin.picgo.net/2026/11/11/623379bcebf45832e4a696c59b61ef22fb30f578c352d909.png",
-    sakura: "https://origin.picgo.net/2026/11/11/fb2dde1aecba8b675410919db7cd00e39859e7ee73ed1ad2.png",
-    tsumi: "https://origin.picgo.net/2026/11/11/f7d117fbd1e081d9ec3659aef41ba82ea2e72829315a7835.png",
-    fly: "https://origin.picgo.net/2026/11/11/06c454b18f398ca7245e25bf5f9e53c1fc223cbb54e559f1.png",
-    lemon: "https://origin.picgo.net/2026/11/11/80b1485a54ea65e1ac49771c3e12b30ee9132accee003b42.png"
+    const GAL_COVERS = {
+    tsuki: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/tsuki.webp",
+    theo: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/theo.webp",
+    waltz: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/waltz.webp",
+    canvas: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/canvas.webp",
+    kaoru: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/kaoru.webp",
+    sakura: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/sakura.webp",
+    tsumi: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/tsumi.webp",
+    fly: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/fly.webp",
+    lemon: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/lemon.webp",
+    nine: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/nine.webp",
+    hanako: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/hanako.webp",
+    shoujo: "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/covers/shoujo.webp"
   };
 
-  const _P10 = "https://origin.picgo.net/2026/11/10/--";
-  const _P13 = "https://origin.picgo.net/2026/11/13/";
+  /* 图源：GitHub 图库（galworld-assets），下面所有地址都是 jsDelivr 直链 */
+  const _GH = "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets";
   function _u(s) {
     if (!s) return "";
-    if (s.startsWith("http")) return s;
-    if (s.startsWith("13/")) return _P13 + s.slice(3);
-    return _P10 + s;
+    if (s.indexOf("http") === 0) return s;
+    return _GH + "/" + s;      /* 兜底：万一还留着相对路径 */
   }
 
   const _W = [
     "Flyable Heart", "有少女涂彩的爱之芬芳", "少女编织爱的画布", "近月少女的礼仪",
-    "少女理论及其周边", "轮舞曲", "橘光柠水随想曲", "美少女万华镜4", "樱之诗", "9nine", "花子", "少女领域"
+    "少女理论及其周边", "轮舞曲", "橘光柠水随想曲", "美少女万华镜4",
+    "樱之诗", "9nine", "花子", "少女领域",
+    "Summer Pockets REFLECTION BLUE", "恋爱？我就借走了哦！", "水葬银币的伊斯特里亚", "灵感满溢的甜蜜创想",
+    "甜蜜女友2", "甜蜜女友2.5", "甜蜜女友3", "纯白交响曲",
+    "纸上魔法使", "缘起甜韵趣恋丛生！"
   ];
 
-  const _CAST_ROWS = [
+    const _CAST_ROWS = [
+
     /* 0 · Flyable Heart */
-    ["MAXX", 0, "https://origin.picgo.net/2026/11/10/-MAXX-76d9f7f42a7dbcf7.png", { "校园制服": "https://origin.picgo.net/2026/11/10/-MAXX-dde77116815f4792.png" }],
-    ["八重野萤", 0, "81747ef3c1267501.png", { "校园制服": "5c4b9c74318ff3a3.png" }],
-    ["白鹭茉百合", 0, "a27b92f0a5bd4aba.png", { "校园制服": "14b337cfc4a7dca9.png", "衣装①": "a4e44e1e64b2b092.png", "衣装②": "dc69dfa38e9ff004.png" }],
-    ["冰川京一郎", 0, "8cead9d7ab5551e5.png", {}],
-    ["稻羽结衣", 0, "6c5493a013652a6f.png", { "校园制服": "4fcc1c039adffec9.png", "衣装①": "32557ff671cb4165.png" }],
-    ["电堂明", 0, "75e3afb5ee80d256.png", { "校园制服": "5faa4e295c8ddaba.png" }],
-    ["抚子", 0, "be781711019dc991.png", { "校园制服": "640342f3c772050b.png" }],
-    ["光", 0, "c657d513459fd3be.png", { "校园制服": "55b779d9737219e6.png" }],
-    ["皇千羽耶", 0, "3860c953b54f0a34.png", { "校园制服": "5a0c07566af3c0f7.png" }],
-    ["皇天音", 0, "aae5980bde7c50d1.png", { "校园制服": "1154d53ba280985f.png", "衣装①": "2417ec9d6603f6c1.png", "衣装②": "6bfbf831844d53af.png" }],
-    ["皇奏龙", 0, "0fb3fd8019ef9e05.png", { "校园制服": "e8c05d085d837df1.png" }],
-    ["九条玖琉璃", 0, "69f500047ee50659.png", { "校园制服": "010c4e51c894e031.png" }],
-    ["水无濑樱子", 0, "cbe9719abaee30c4.png", { "校园制服": "4650c012d35106af.png", "衣装①": "ba4ab67b3d443f59.png", "衣装②": "9ceb538c5ed33140.png" }],
-    ["丝茉茉", 0, "f035f45f46079fcb.png", { "校园制服": "860c70a1f6162739.png" }],
-    ["死神老师", 0, "19ff3e3c0ffb11d1.png", { "校园制服": "881e041503a294a9.png" }],
-    ["小雪", 0, "9db67e88eba351d6.png", { "校园制服": "6c093e6fed749bdf.png" }],
-    ["雪代铃乃", 0, "d9f51c9b83025311.png", { "校园制服": "22341338598a048f.png", "衣装①": "cb7ed8e45b70bea4.png" }],
-    ["早河惠", 0, "e99e811ca6c3bd0b.png", { "校园制服": "3c7c371ef0932efb.png" }],
+    ["MAXX", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/uniform.webp" }],
+    ["八重野萤", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/uniform.webp" }],
+    ["白鹭茉百合", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/outfit2.webp" }],
+    ["冰川京一郎", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bingchuanjingyilang/normal.webp", {}],
+    ["稻羽结衣", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/outfit1.webp" }],
+    ["电堂明", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/uniform.webp" }],
+    ["抚子", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/uniform.webp" }],
+    ["光", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/uniform.webp" }],
+    ["皇千羽耶", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/uniform.webp" }],
+    ["皇天音", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/outfit2.webp" }],
+    ["皇奏龙", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/uniform.webp" }],
+    ["九条玖琉璃", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/uniform.webp" }],
+    ["水无濑樱子", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/outfit2.webp" }],
+    ["丝茉茉", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/uniform.webp" }],
+    ["死神老师", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/uniform.webp" }],
+    ["小雪", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/uniform.webp" }],
+    ["雪代铃乃", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/outfit1.webp" }],
+    ["早河惠", 0, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/uniform.webp" }],
 
     /* 1 · 有少女涂彩的爱之芬芳 */
-    ["冰堂芹香", 1, "df4f5b7f9d43180d.png", { "衣装①": "95178cbf5b25349f.png", "衣装②": "8d794003ae193305.png", "衣装③": "bb72a716b0489246.png" }],
-    ["朝仓千弘", 1, "7dd11b16024f5f30.png", { "校园制服": "bf36df2a3f822f44.png", "衣装①": "d5868738d6f58725.png", "衣装②": "1077db470dac78f5.png", "衣装③": "720a3c39e9533a26.png" }],
-    ["菱川琴枝", 1, "dd2befb1b87fde4a.png", { "衣装①": "ab6a4a39d2c65234.png" }],
-    ["牧濑皋月", 1, "8012393a4d343e0f.png", { "校园制服": "e95e68291330ae72.png", "衣装①": "72be9f88174ba20e.png", "衣装②": "83561811e607714a.png" }],
-    ["千原乃亚", 1, "4da5388be869ddcb.png", { "校园制服": "eb2795948548570a.png", "衣装①": "03c18ea2594acc9a.png", "衣装②": "3ff4647794775cd7.png" }],
-    ["天城咲夜", 1, "8a27d536a7089457.png", { "校园制服": "501c662b8d22b3ca.png", "衣装①": "5f9de9b749870ef1.png", "衣装②": "8ebd2c933d20d160.png" }],
-    ["天道八云", 1, "a953b676b5dd2a97.png", { "衣装①": "d274a21a19485d46.png" }],
-    ["夏目朱里", 1, "895e3e04c5b496f9.png", { "校园制服": "a3a5ba6d03a90837.png", "衣装①": "00aedc7f10f85916.png", "衣装②": "db1c5d73522cac04.png" }],
-    ["一之濑舞织", 1, "921511b16c4df204.png", { "衣装①": "982bca7f2f51ef09.png" }],
+    ["冰堂芹香", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/outfit3.webp" }],
+    ["朝仓千弘", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/outfit3.webp" }],
+    ["菱川琴枝", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/outfit1.webp" }],
+    ["牧濑皋月", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/outfit2.webp" }],
+    ["千原乃亚", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/outfit2.webp" }],
+    ["天城咲夜", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/outfit2.webp" }],
+    ["天道八云", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/outfit1.webp" }],
+    ["夏目朱里", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/outfit2.webp" }],
+    ["一之濑舞织", 1, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/outfit1.webp" }],
 
     /* 2 · 少女编织爱的画布 */
-    ["安娜塔西亚", 2, "9cec81ebcb330f91.png", { "校园制服": "a43e8e086e84ee4f.png", "衣装①": "280754714d520fe8.png", "衣装②": "e14e0ec55a8c6d38.png", "衣装③": "4dccf200e0ebcd1a.png" }],
-    ["凤怜奈", 2, "8cfd64c920a42a7e.png", { "校园制服": "e5848274209dafb8.png", "衣装①": "843259036da2fe3a.png", "衣装②": "b749503c7b0f7fe9.png", "衣装③": "2b3a9a5071aad3b1.png" }],
-    ["凤一朗", 2, "db1a0e7eb6ade387.png", { "衣装①": "ea92c8caddc9b16f.png" }],
-    ["猫西昭江", 2, "1ae124b758a26580.png", { "衣装①": "f13a7437b6e83ae7.png" }],
-    ["乾幸", 2, "2e61f764be0e941a.png", { "校园制服": "b1f2c005b7e1ed52.png", "衣装①": "1b2738b586db464b.png", "衣装②": "5e2a9e9bb9e7092a.png" }],
-    ["瑞木杷虎", 2, "8bdcd76dfb146555.png", { "衣装①": "61bf3676689443f1.png" }],
-    ["深山瑞希", 2, "021a34721bcb1f68.png", { "校园制服": "b5fa2f5f33909cde.png", "衣装①": "9909e187c83d552a.png", "衣装②": "84564c7de6d4ed08.png" }],
-    ["狮子堂千晴", 2, "73f1c8e7892a743e.png", { "校园制服": "09a96134a2092c21.png", "衣装①": "4ee3db23104113a6.png", "衣装②": "d17d4a4c254897e8.png" }],
-    ["沃尔夫冈", 2, "d6b66412fb80634f.png", {}],
-    ["乌丸铁子", 2, "578c196434d05dd4.png", { "衣装①": "ba375b59efdd9642.png" }],
-    ["乌丸紫月", 2, "d10b82a7e44a3bea.png", { "校园制服": "f28b96fa50fbfbed.png", "衣装①": "fda142a9aaea5738.png", "衣装②": "f87b8a4973dd67fc.png", "衣装③": "39d0bfee2dfec8ec.png" }],
-    ["佐藤洋", 2, "3feeb8c01fe5d5e5.png", { "衣装①": "36645f8b8db67739.png" }],
+    ["安娜塔西亚", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/outfit3.webp" }],
+    ["凤怜奈", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/outfit3.webp" }],
+    ["凤一朗", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/outfit1.webp" }],
+    ["猫西昭江", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/outfit1.webp" }],
+    ["乾幸", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/outfit2.webp" }],
+    ["瑞木杷虎", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/outfit1.webp" }],
+    ["深山瑞希", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/outfit2.webp" }],
+    ["狮子堂千晴", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/outfit2.webp" }],
+    ["沃尔夫冈", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/woerfugang/normal.webp", {}],
+    ["乌丸铁子", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/outfit1.webp" }],
+    ["乌丸紫月", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/outfit3.webp" }],
+    ["佐藤洋", 2, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/outfit1.webp" }],
 
-    /* 3 · 近月少女的礼仪 & 4 · 少女理论及其周边 */
-    ["八十岛壹与", 3, "a88b63a721e3f142.png", {}],
-    ["布琉艾特·妮科莱特·普朗凯特", 4, "ca927c2e7784f7f4.png", { "校园制服": "3af331839ab2ffd5.png", "衣装①": "2b17ff3140882cd4.png", "衣装②": "0fd9b09334eec40a.png", "衣装③": "00f552ec99aab295.png", "衣装④": "f769b3b58c1f609a.png" }],
-    ["枞山红叶", 3, "bebdc4e4c89363d5.png", { "大立绘": "1e54b00b3168c363.png" }],
-    ["大藏安东尼", 3, "72dcdd77dc7167f9.png", {}],
-    ["大藏骏我", 4, "36a501901d4c8282.png", {}],
-    ["大藏里想奈", 4, "4c47fbb3c9254fa5.png", { "校园制服": "534b9c191a34b8e4.png", "衣装①": "f4ec827c88e9bcfa.png", "衣装②": "cea9f3d784117315.png", "衣装③": "8a4541de90bd2e34.png" }],
-    ["大藏衣远", 3, "d7ed59b49f330af9.png", { "大立绘": "68d7cc69d088b726.png" }],
-    ["迪特琳德·茨威格特", 4, "de762f2d755cad71.png", { "大立绘": "47456b299fda69ac.png" }],
-    ["花之宫瑞穗", 3, "098fd0f2c7b14b24.png", { "衣装①": "efe9cce668b2f59b.png", "衣装②": "1005ede6db451433.png", "衣装③": "029225fda4c6f059.png" }],
-    ["华花", 3, "37ab1f99bbd4759e.png", { "大立绘": "0aa1444efe4e5405.png" }],
-    ["莉莉安奴·赛丽娅·拉格朗日", 4, "8bdaa9c52399c31e.png", { "大立绘": "5e820ffaae34df92.png" }],
-    ["柳之濑凑", 3, "2fb6c225e40826d6.png", { "校园制服": "a9b97af1ce89c818.png", "衣装①": "e0a853a99dc6dfb8.png", "衣装②": "b3740de9cef1e7c0.png", "衣装③": "65638ad89f05a805.png" }],
-    ["梅丽尔·琳琪", 4, "2f090a5934dc1242.png", { "校园制服": "48c5466aff37cfa5.png", "衣装①": "76da765013c8d4e2.png", "衣装②": "34cae61ca01ce5c2.png", "衣装③": "4596a3c497c638ff.png" }],
-    ["名波七爱", 3, "d7da97b877c3a1b2.png", { "大立绘": "16326501810c467c.png" }],
-    ["让·皮埃尔·史丹利", 3, "3deb8e14d2382498.png", {}],
-    ["萨莎·比凯·雅内坎", 4, "a9c0672534db4435.png", { "大立绘": "9e53c48116c0a3fc.png" }],
-    ["山吹八千代", 3, "003b9a21123530f7.png", { "大立绘": "34313893262729e5.png" }],
-    ["杉村北斗", 3, "42bf9e6a83b9466d.png", { "大立绘": "b6f25f7de803ac05.png" }],
-    ["瓦莲莉娅·特莲切维娜·布特尔斯卡娅", 4, "60ecbd7fd8a1a88f.png", { "大立绘": "d20dd80cee7cc62c.png" }],
-    ["小仓朝日", 3, "85d3177552e21c35.png", { "大藏游星装": "6f487aa673c819cb.png", "校园制服": "8afce5d44077b05f.png", "衣装①": "242ccc06619af5e0.png", "衣装②": "88ca03e0d2c68eae.png" }],
-    ["樱小路露娜", 3, "f33b36910183ef0a.png", { "校园制服": "7368fa3bcf2fa32a.png", "衣装①": "5e8eaf4e2dfa2c06.png", "衣装②": "9ddf8457dea116bc.png" }],
-    ["尤希尔·弗露露·让梅尔", 3, "d2a805366492526b.png", { "校园制服": "0aecfc4d88982244.png", "衣装①": "6b2233d58468cd02.png", "衣装②": "47bce14a872ac706.png" }],
+    /* 3 · 近月少女的礼仪 */
+    ["八十岛壹与", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/bashidaoyiyu/normal.webp", {}],
+
+    /* 4 · 少女理论及其周边 */
+    ["布琉艾特·妮科莱特·普朗凯特", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/outfit4.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["枞山红叶", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/full.webp" }],
+    ["大藏安东尼", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangandongni/normal.webp", {}],
+
+    /* 4 · 少女理论及其周边 */
+    ["大藏骏我", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangjunwo/normal.webp", {}],
+    ["大藏里想奈", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/outfit3.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["大藏衣远", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/full.webp" }],
+
+    /* 4 · 少女理论及其周边 */
+    ["迪特琳德·茨威格特", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/full.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["花之宫瑞穗", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/outfit3.webp" }],
+    ["华花", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/full.webp" }],
+
+    /* 4 · 少女理论及其周边 */
+    ["莉莉安奴·赛丽娅·拉格朗日", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/full.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["柳之濑凑", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/outfit3.webp" }],
+
+    /* 4 · 少女理论及其周边 */
+    ["梅丽尔·琳琪", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/outfit3.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["名波七爱", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/full.webp" }],
+    ["让·皮埃尔·史丹利", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/rang-piaier-shidanli/normal.webp", {}],
+
+    /* 4 · 少女理论及其周边 */
+    ["萨莎·比凯·雅内坎", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/full.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["山吹八千代", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/full.webp" }],
+    ["杉村北斗", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/full.webp" }],
+
+    /* 4 · 少女理论及其周边 */
+    ["瓦莲莉娅·特莲切维娜·布特尔斯卡娅", 4, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/full.webp" }],
+
+    /* 3 · 近月少女的礼仪 */
+    ["小仓朝日", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/normal.webp", { "大藏游星装": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/yosuga-suit.webp", "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/outfit2.webp" }],
+    ["樱小路露娜", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/outfit2.webp" }],
+    ["尤希尔·弗露露·让梅尔", 3, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/outfit2.webp" }],
 
     /* 5 · 轮舞曲 */
-    ["不知火怜", 5, "3fd5ee830f49591f.png", {}],
-    ["江利原美月", 5, "1e2c3f9a49cfad5d.png", { "校园制服": "cef2aad6499ca465.png", "衣装①": "12b468ec2a5c9274.png", "衣装②": "6c1c24300550a055.png" }],
-    ["堺浩一", 5, "86bba89cbc2217ea.png", {}],
-    ["门胁樱", 5, "ce417cd3bac90f54.png", { "校园制服": "d004b44dfc873f71.png", "衣装①": "8a9f0c067443ef90.png", "衣装②": "e6ec0fd55be18937.png" }],
-    ["双叶沙那子", 5, "3a1cbf810704689d.png", { "衣装①": "890638ec4bb4561d.png" }],
-    ["天司凉香", 5, "2ca24b939ce3147b.png", { "校园制服": "726f125dd09ba1a8.png", "衣装①": "afea90ae1ae2e9b9.png", "衣装②": "626abca668bffe3c.png" }],
-    ["小峰真奈美", 5, "24d0cb08475393f3.png", { "校园制服": "e6f94ce1ee49f326.png", "衣装①": "612d5aedcf859023.png", "衣装②": "2c200f44fdbc364e.png" }],
-    ["小石川珠音", 5, "07b4b150a8ff4094.png", { "衣装①": "71605b036d1f706d.png" }],
-    ["新垣若菜", 5, "bdd4578cca495812.png", { "校园制服": "68708fd4bb5cf3df.png", "衣装①": "da58575507bb658e.png", "衣装②": "12d4242eddd4d0b7.png" }],
-    ["真原葵", 5, "492a55e82a412ae9.png", { "衣装①": "e9db54583a5d023d.png" }],
-    ["真原祐里", 5, "23ec968a2eabbdfd.png", { "校园制服": "ae667f59f3f3dcb2.png", "衣装①": "11191e46d9b9d052.png", "衣装②": "25021178924cce93.png" }],
-    ["佐佐原亮子", 5, "77a96e1085df6d2f.png", { "衣装①": "9599d8eec278cb5f.png" }],
+    ["不知火怜", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/buzhihuolian/normal.webp", {}],
+    ["江利原美月", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/outfit2.webp" }],
+    ["堺浩一", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiehaoyi/normal.webp", {}],
+    ["门胁樱", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/outfit2.webp" }],
+    ["双叶沙那子", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/outfit1.webp" }],
+    ["天司凉香", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/outfit2.webp" }],
+    ["小峰真奈美", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/outfit2.webp" }],
+    ["小石川珠音", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/outfit1.webp" }],
+    ["新垣若菜", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/outfit2.webp" }],
+    ["真原葵", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/outfit1.webp" }],
+    ["真原祐里", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/outfit2.webp" }],
+    ["佐佐原亮子", 5, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/outfit1.webp" }],
 
     /* 6 · 橘光柠水随想曲 */
-    ["不二卫哉", 6, "bd19bb94342e7161.png", {}],
-    ["茶园那优花", 6, "e1e92048c9563987.png", { "衣装①": "5ccfa48cd9d4d3ab.png", "衣装②": "bc3aafb22bad3113.png", "衣装③": "b403a5dea18d0fd9.png" }],
-    ["岛越月望", 6, "66cd1a7b49851997.png", { "校园制服": "dc0cc720524462d5.png", "衣装①": "049d206bc1ad30b1.png", "衣装②": "78b53b538c3e746a.png", "衣装③": "c6c90476607ff9ff.png", "衣装④": "f020698dd62dbe06.png" }],
-    ["二见原莉莉子", 6, "a4dcefed03ba40b5.png", { "校园制服": "45d6b7af98087092.png", "衣装①": "28a60c10da01637b.png", "衣装②": "3127b61ce6e301fd.png" }],
-    ["砾川杰", 6, "b067843043fc1fc6.png", {}],
-    ["砾川美玖", 6, "286edf32e8db6a61.png", { "衣装①": "5dbf9001228f02bf.png", "衣装②": "f848626a44e70c88.png", "衣装③": "c7819cd8a69ab4d3.png" }],
-    ["砾川雄真", 6, "a5d64df580095ac2.png", {}],
-    ["阳见惠凪", 6, "f18a3bc312267368.png", { "校园制服": "9b3ec8837691c1cd.png", "衣装①": "7d260199d974acc1.png", "衣装②": "e6bb92efb119746c.png", "衣装③": "a8dcd5b58e5e8407.png" }],
-    ["隐杏珠", 6, "d1d88f3507010700.png", { "校园制服": "b3e3a4d156248c91.png", "衣装①": "3027f8896f270618.png", "衣装②": "47dac3b83681c2c9.png", "衣装③": "deec274690435880.png", "衣装④": "f4e9377e6b407913.png" }],
-    ["仲原大梦", 6, "d15b0a002510bd96.png", {}],
+    ["不二卫哉", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/buerweizai/normal.webp", {}],
+    ["茶园那优花", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/outfit3.webp" }],
+    ["岛越月望", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/outfit4.webp" }],
+    ["二见原莉莉子", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/outfit2.webp" }],
+    ["砾川杰", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanjie/normal.webp", {}],
+    ["砾川美玖", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/outfit3.webp" }],
+    ["砾川雄真", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanxiongzhen/normal.webp", {}],
+    ["阳见惠凪", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/outfit3.webp" }],
+    ["隐杏珠", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/outfit4.webp" }],
+    ["仲原大梦", 6, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/zhongyuandameng/normal.webp", {}],
 
     /* 7 · 美少女万华镜4 */
-    ["莲华", 7, "03a246ddb10517f8.png", { "衣装①": "5950e7f860429458.png" }],
-    ["铃森伊千果", 7, "bbefaa813a59241f.png", { "校园制服": "a28b799007f5a35a.png" }],
-    ["藤堂咲", 7, "928fb3031dc70b9e.png", { "衣装①": "df149f61aa45a905.png" }],
-    ["觋礼次郎", 7, "e06c3858ea39b8ca.png", {}],
-    ["觋夕莉", 7, "cfcbd58db3f96a60.png", { "校园制服": "80b8216824a9f5d4.png", "衣装①": "7c9e723f7b7c9c5b.png", "衣装②": "dcb7ac904a0dc88d.png" }],
-    ["觋夕摩", 7, "d8e9f756dab64ef1.png", { "校园制服": "https://origin.picgo.net/2026/11/14/___1_02-198e01e43020b217d.png", "衣装①": "https://origin.picgo.net/2026/11/14/___1_05f9d72762a0d5bd97.png", "衣装②": "https://origin.picgo.net/2026/11/14/___1_022889913cf318fcd2.png" }],
-    ["御殿场镜子", 7, "3659841d09174d71.png", { "校园制服": "a8adb2d4acf8c140.png", "衣装①": "a095f74060a82eae.png" }],
+    ["莲华", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/outfit1.webp" }],
+    ["铃森伊千果", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/uniform.webp" }],
+    ["藤堂咲", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/outfit1.webp" }],
+    ["觋礼次郎", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xilicilang/normal.webp", {}],
+    ["觋夕莉", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/outfit2.webp" }],
+    ["觋夕摩", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/uniform-2.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/outfit1-2.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/outfit2-2.webp" }],
+    ["御殿场镜子", 7, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/outfit1.webp" }],
 
     /* 8 · 樱之诗 */
-    ["本间丽华", 8, "f82b7bc3c3191c15.png", { "大立绘": "2be4614914d07a71.png" }],
-    ["冰川里奈", 8, "ffe908a4554c8903.png", { "童年里奈": "96b0180bbe59449c.png", "校园制服": "f2255e79670b6e6f.png", "衣装①": "64aa9e1af9056c0f.png", "衣装②": "332c518ce0e58c19.png" }],
-    ["冰川露莉莴", 8, "f62bad390ef20357.png", { "大立绘": "76667a482926454b.png" }],
-    ["伯奇", 8, "376ec5a47fb39f29.png", { "大立绘": "cc27cd0250b1853b.png" }],
-    ["草薙健一郎", 8, "48e2b10639040406.png", {}],
-    ["草薙直绪", 8, "13/-593ffa9a7cd24bb7.png", {}],
-    ["草薙直哉", 8, "13/c3180da89e62f2278b1dd0ff5912e3742aa694adaf5a4ab4.png", {}],
-    ["川内野铃菜", 8, "68a1f0be41ce9f73.png", { "大立绘": "90b07adb77b006e4.png" }],
-    ["川内野优美", 8, "3397e5253ea4d089.png", { "校园制服": "0c7225b1d6d3f2b3.png", "衣装①": "31cc399fdfa1bb72.png", "衣装②": "562e7533580f19e5.png", "衣装③": "7a4db6c805a9ea22.png" }],
-    ["吹", 8, "04c022404d102d0c.png", { "大立绘": "5b7ab4b3d3b40efd.png" }],
-    ["东浪见", 8, "d0c02f8aa9629c9a.png", {}],
-    ["恩田宁", 8, "55785aab403c9446.png", { "大立绘": "adc5ad12cffd35c6.png" }],
-    ["栗山奈津子", 8, "37796b18b948d46f.png", { "大立绘": "2624104eae73372a.png" }],
-    ["泷泽托马斯", 8, "f97383e04729dcce.png", {}],
-    ["麦提弗里曼", 8, "403403f707328d34.png", {}],
-    ["明石亘", 8, "8d80bde2d7894d4a.png", { "大立绘": "d5392f3fe1ee1745.png" }],
-    ["明石小牧", 8, "6af96e23d0091621.png", { "衣装①": "8aab97613ee90c83.png" }],
-    ["明石小沙智", 8, "321901ffd86ad740.png", { "衣装①": "c4a2ba33ad3201d7.png" }],
-    ["鸟谷纱希", 8, "0ffee73fc2816a0d.png", { "大立绘": "32a4ed523f9f2bb6.png" }],
-    ["鸟谷真琴", 8, "8d8c8db832d09cc9.png", { "校园制服": "209e975a8c3b2499.png", "衣装①": "a0be5267595fde38.png", "衣装②": "bf1e767ca911107f.png", "衣装③": "26a551cb6bb87e68.png" }],
-    ["片贝巧实", 8, "c87b2fe2770f54bb.png", {}],
-    ["若田清二郎", 8, "6102d8ce40c1ba75.png", {}],
-    ["夏目圭", 8, "f31f0380248839ca.png", { "大立绘": "6ab8231aa7fe1509.png" }],
-    ["夏目蓝", 8, "71bdf6952ba35608.png", { "衣装①": "f2dde0704970c7fe.png", "衣装②": "0509e832404d4573.png", "衣装③": "fb4fa97911287905.png" }],
-    ["夏目雫", 8, "81ea234c315fe848.png", { "校园制服": "53e06023349a686b.png", "衣装①": "a74a396a3d593f13.png", "衣装②": "4f0824527daa2709.png" }],
-    ["咲崎樱子", 8, "6313a183ad941670.png", { "大立绘": "ad57ae2c680f34fa.png" }],
-    ["一宫", 8, "699ce4aa42062891.png", {}],
-    ["御樱稟", 8, "54f5072aaf8eb4cd.png", { "童年禀": "de45f1e8d874fb61.png", "校园制服": "8f5763e09606369a.png", "衣装①": "d406b44b5ffab2e0.png", "衣装②": "60a939a9d1db2068.png", "衣装③": "75135317e154afde.png" }],
-    ["御樱雄三", 8, "2f4be6fa068afc5d.png", {}],
-    ["长山香奈", 8, "39004e100809d5ef.png", { "大立绘": "ae6907e93a8272e6.png" }],
-    ["中村水菜", 8, "2ec668fe44f8a84c.png", { "大立绘": "288d5082706b58ff.png" }],
-    ["中村义贞", 8, "2a90a3418ba79eec.png", {}],
-    ["中村章一", 8, "5c73081c244c4917.png", {}],
-    ["柊乃乃未", 8, "aa7f44567b915017.png", { "大立绘": "c7b5a426ff89b24c.png" }],
+    ["本间丽华", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/full.webp" }],
+    ["冰川里奈", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/normal.webp", { "童年里奈": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/child-rina.webp", "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/outfit2.webp" }],
+    ["冰川露莉莴", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/full.webp" }],
+    ["伯奇", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/full.webp" }],
+    ["草薙健一郎", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotijianyilang/normal.webp", {}],
+    ["草薙直绪", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhixu/normal.webp", {}],
+    ["草薙直哉", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhizai/normal.webp", {}],
+    ["川内野铃菜", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/full.webp" }],
+    ["川内野优美", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/outfit3.webp" }],
+    ["吹", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/full.webp" }],
+    ["东浪见", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/donglangjian/normal.webp", {}],
+    ["恩田宁", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/full.webp" }],
+    ["栗山奈津子", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/full.webp" }],
+    ["泷泽托马斯", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/longzetuomasi/normal.webp", {}],
+    ["麦提弗里曼", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/maitifuliman/normal.webp", {}],
+    ["明石亘", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/full.webp" }],
+    ["明石小牧", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/outfit1.webp" }],
+    ["明石小沙智", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/outfit1.webp" }],
+    ["鸟谷纱希", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/full.webp" }],
+    ["鸟谷真琴", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/outfit3.webp" }],
+    ["片贝巧实", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/pianbeiqiaoshi/normal.webp", {}],
+    ["若田清二郎", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/ruotianqingerlang/normal.webp", {}],
+    ["夏目圭", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/full.webp" }],
+    ["夏目蓝", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/outfit3.webp" }],
+    ["夏目雫", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/outfit2.webp" }],
+    ["咲崎樱子", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/full.webp" }],
+    ["一宫", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yigong/normal.webp", {}],
+    ["御樱稟", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/normal.webp", { "童年禀": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/child-rin.webp", "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/outfit3.webp" }],
+    ["御樱雄三", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingxiongsan/normal.webp", {}],
+    ["长山香奈", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/full.webp" }],
+    ["中村水菜", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/full.webp" }],
+    ["中村义贞", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunyizhen/normal.webp", {}],
+    ["中村章一", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunzhangyi/normal.webp", {}],
+    ["柊乃乃未", 8, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/full.webp" }],
 
     /* 9 · 9nine */
-    ["成濑沙月", 9, "13/9nine--1c09ee8d9d4135f9.png", {}],
-    ["九条都", 9, "13/9nine--dd04dc09ffa93abe.png", { "校园制服": "13/9nine--b551af98d82b8785.png", "衣装①": "13/9nine--6fd4ad54d1584c67.png", "衣装②校园制服带上粉色连帽衫": "13/9nine--d3e1a6a69ab6f730.png", "衣装③": "13/9nine--ed161a7cb7cbe9b4.png" }],
-    ["高峰莲夜", 9, "13/9nine--2968e5d6bc31a6d6.png", {}],
-    ["苏菲缇雅", 9, "13/9nine--7c5bfe1e8b17138c.png", {}],
-    ["结城希亚", 9, "13/9nine--5b04b43746bb590f.png", { "校园制服": "13/9nine--89445fcc32a2743c.png", "衣装①": "13/9nine--e6fde89a690291a6.png", "衣装②": "13/9nine--e7b154336d985b93.png" }],
-    ["香坂春风", 9, "13/9nine--2b4f0417d2413490.png", { "校园制服": "13/9nine--edd8d0987197930d.png", "衣装①": "13/9nine--60544700b3756f57.png" }],
-    ["新海天", 9, "13/9nine--3631f76f77f67946.png", { "校园制服": "13/9nine--a78b4a39491377d8.png", "衣装①": "13/9nine--c8f5ede371b988fd.png", "衣装②散发睡衣": "13/9nine--fd55fff1108b34ac.png" }],
-    ["新海霞", 9, "13/-bf18ec2611d45652.png", { "校园制服": "13/9nine--4d3211356a286721.png" }],
-    ["新海翔", 9, "13/9nine--2345425a242b24c6.png", {}],
-    ["幽灵", 9, "13/9nine--17108378886aab77.png", {}],
-    ["深泽与一", 9, "13/9nine--b4f97811312c1ea6.png", {}],
+    ["成濑沙月", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/normal.webp", {}],
+    ["九条都", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/full.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/outfit1.webp", "衣装②校园制服带上粉色连帽衫": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/outfit2-xiaoyuanzhif.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/outfit3.webp" }],
+    ["高峰莲夜", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/gaofenglianye/normal.webp", {}],
+    ["苏菲缇雅", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp", {}],
+    ["结城希亚", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/full.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/outfit2.webp" }],
+    ["香坂春风", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/full.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/outfit1.webp" }],
+    ["新海天", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/full.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/outfit1.webp", "衣装②散发睡衣": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/outfit2-sanfashuiyi.webp" }],
+    ["新海霞", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/full.webp" }],
+    ["新海翔", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixiang/normal.webp", {}],
+    ["幽灵", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/youling/normal.webp", {}],
+    ["深泽与一", 9, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/shenzeyuyi/normal.webp", {}],
 
     /* 10 · 花子 */
-    ["花子", 10, "13/--f37feb32b757c189.png", { "衣装①": "13/--3400219468506b6a.png", "衣装②": "13/--6e5a4708212ed073.png", "衣装③": "13/--01c35ca15ea74c1b.png", "衣装④": "13/--68503418ca14b043.png" }],
+    ["花子", 10, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/full.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/outfit4.webp" }],
 
     /* 11 · 少女领域 */
-    ["大垣日向", 11, "https://origin.picgo.net/2026/11/14/--96aa4e71003773d2.png", { "校园制服": "https://origin.picgo.net/2026/11/14/--6d02b26185dd69fe.png", "衣装①便服": "https://origin.picgo.net/2026/11/14/--44c1e80f4390cf32.png", "衣装②体操服": "https://origin.picgo.net/2026/11/14/--29fc75b0f0afedaf.png", "衣装③睡衣": "https://origin.picgo.net/2026/11/14/--d8027fed9d82fe09.png" }],
-    ["飞鸟凑", 11, "https://origin.picgo.net/2026/11/14/--4b669db2bc7ccd64.png", { "校园制服": "https://origin.picgo.net/2026/11/14/--53434e0e7fb2e28d.png", "衣装①常服": "https://origin.picgo.net/2026/11/14/--9bd5429d6108320b.png", "衣装②体操服": "https://origin.picgo.net/2026/11/14/--28e2b05ef918cd3e.png" }],
-    ["贵船柚子", 11, "https://origin.picgo.net/2026/11/14/--58ba66fa6ab85b67.png", { "校园制服": "https://origin.picgo.net/2026/11/14/--74f43ccf68584ebc.png", "衣装①体操服": "https://origin.picgo.net/2026/11/14/--4542069669ec1b89.png", "衣装②常服": "https://origin.picgo.net/2026/11/14/--d76178d85cbeb01d.png", "衣装③睡衣": "https://origin.picgo.net/2026/11/14/--20983804c4be7241.png" }],
-    ["皆见美结", 11, "https://origin.picgo.net/2026/11/14/--5e649b16d21a802a.png", { "校园制服": "https://origin.picgo.net/2026/11/14/--aa49c63f8b4a3229.png" }],
-    ["那波七海", 11, "https://origin.picgo.net/2026/11/14/--0f7b23716f746540.png", { "衣装①老师制服": "https://origin.picgo.net/2026/11/14/--07b695b0c3d54b3a.png" }],
-    ["西园寺风莉", 11, "https://origin.picgo.net/2026/11/14/--e1042745e3c0a593.png", { "校园制服": "https://origin.picgo.net/2026/11/14/--42cfd74bd9ebf68e.png", "衣装①常服": "https://origin.picgo.net/2026/11/14/--76655d229536e2fd.png", "衣装②体操服": "https://origin.picgo.net/2026/11/14/--c53be6678c599825.png", "衣装③睡衣": "https://origin.picgo.net/2026/11/14/--eb2456cb30d0552d.png" }]
+    ["大垣日向", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/full.webp", "衣装①便服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/outfit1-bianfu.webp", "衣装②体操服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/outfit2-ticaofu.webp", "衣装③睡衣": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/outfit3-shuiyi.webp" }],
+    ["飞鸟凑", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/full.webp", "衣装①常服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/outfit1-changfu.webp", "衣装②体操服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/outfit2-ticaofu.webp" }],
+    ["贵船柚子", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/full.webp", "衣装①体操服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/outfit1-ticaofu.webp", "衣装②常服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/outfit2-changfu.webp", "衣装③睡衣": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/outfit3-shuiyi.webp" }],
+    ["皆见美结", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/full.webp" }],
+    ["那波七海", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/normal.webp", { "衣装①老师制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/full.webp" }],
+    ["西园寺风莉", 11, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/full.webp", "衣装①常服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/outfit1-changfu.webp", "衣装②体操服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/outfit2-ticaofu.webp", "衣装③睡衣": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/outfit3-shuiyi.webp" }],
+
+    /* 12 · Summer Pockets REFLECTION BLUE */
+    ["䌷·文德斯", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/outfit3.webp" }],
+    ["七海", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/nanami/normal.webp", {}],
+    ["三谷良一", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ryoichi/normal.webp", {}],
+    ["久岛鸥", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/outfit2.webp" }],
+    ["加纳天善", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tenzen/normal.webp", {}],
+    ["加藤羽未", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/outfit2.webp" }],
+    ["岬镜子", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kyoko/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kyoko/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kyoko/outfit2.webp" }],
+    ["水织静久", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/outfit3.webp" }],
+    ["神山识", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/outfit1.webp" }],
+    ["稻荷", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/inari/normal.webp", { "大立绘": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/inari/full.webp" }],
+    ["空门苍", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/outfit2.webp" }],
+    ["空门蓝", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ai/normal.webp", {}],
+    ["野村美希", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/outfit2.webp" }],
+    ["鸣濑小鸠", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kobato/normal.webp", {}],
+    ["鸣濑白羽", 12, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/outfit3.webp" }],
+
+    /* 13 · 恋爱？我就借走了哦！ */
+    ["天满八纯", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/outfit3.webp" }],
+    ["小关桃子", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/outfit2.webp" }],
+    ["新海月", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/outfit2.webp" }],
+    ["泉千夏", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/outfit2.webp" }],
+    ["泉子夏", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/outfit3.webp" }],
+    ["濑川绘未", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/outfit4.webp" }],
+    ["空路椿", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/outfit4.webp" }],
+    ["美滨咲希", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/saki/normal.webp", {}],
+    ["远山爱季", 13, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/aiki/normal.webp", {}],
+
+    /* 14 · 水葬银币的伊斯特里亚 */
+    ["久末紫乃", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/outfit1.webp" }],
+    ["久末紫子", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/outfit1.webp" }],
+    ["井土谷祈吏", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kiri/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kiri/outfit1.webp" }],
+    ["八椚红叶", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/outfit2.webp" }],
+    ["安针冢逸美", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/itsumi/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/itsumi/outfit1.webp" }],
+    ["小不动摇", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/outfit3.webp" }],
+    ["汐入玖玖里", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/outfit3.webp" }],
+    ["煤谷小夜", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/outfit2.webp" }],
+    ["神峰灯", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/outfit1.webp" }],
+    ["茅崎夕樱", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/outfit2.webp" }],
+    ["茅崎征士", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/seiji/normal.webp", {}],
+    ["进藤和奏", 14, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/outfit1.webp" }],
+
+    /* 15 · 灵感满溢的甜蜜创想 */
+    ["和泉妃爱", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/outfit2.webp" }],
+    ["和泉里", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/sato/normal.webp", {}],
+    ["圣莉莉子", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/uniform.webp" }],
+    ["常磐华乃", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/outfit2.webp" }],
+    ["新川广梦", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/outfit2.webp" }],
+    ["锦明日海", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/outfit2.webp" }],
+    ["镰仓诗樱", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/outfit3.webp" }],
+    ["雪景四季", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/outfit1.webp" }],
+    ["龙闲天梨", 15, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/outfit2.webp" }],
+
+    /* 16 · 甜蜜女友2 */
+    ["冰见山玲", 16, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/outfit3.webp" }],
+    ["茑町千岁", 16, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/outfit4.webp" }],
+    ["黑姬结灯", 16, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/outfit4.webp" }],
+
+    /* 17 · 甜蜜女友2.5 */
+    ["一之濑穗波", 17, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/outfit3.webp" }],
+    ["沓野奏", 17, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/outfit4.webp" }],
+    ["砚川·优芙拉希·泪香", 17, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/outfit4.webp" }],
+    ["高社雪静", 17, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/outfit3.webp" }],
+
+    /* 18 · 甜蜜女友3 */
+    ["御所院冬桦", 18, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/outfit3.webp" }],
+    ["斯卡蕾特·斑鸠·维斯塔莉娅", 18, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/outfit3.webp" }],
+    ["柳木叶梦", 18, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/outfit3.webp" }],
+    ["柳木诗梦", 18, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/outfit3.webp" }],
+    ["鸿纱由美", 18, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/outfit4.webp", "衣装⑤": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/outfit5.webp" }],
+
+    /* 19 · 纯白交响曲 */
+    ["乾纱凪", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/outfit3.webp" }],
+    ["八冢万智", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/machi/normal.webp", {}],
+    ["天羽结子", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/yuiko/normal.webp", {}],
+    ["天羽美羽", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/outfit3.webp" }],
+    ["安洁莉娜·菜夏·史威尔", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/outfit3.webp" }],
+    ["椋梨隼太", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/hayata/normal.webp", {}],
+    ["濑名兰华", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/ranka/normal.webp", {}],
+    ["濑名爱理", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/outfit3.webp" }],
+    ["瓜生樱乃", 19, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit4.webp", "衣装⑤": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit5.webp", "衣装⑥": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit6.webp", "衣装⑦": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit7.webp", "衣装⑧": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit8.webp", "衣装⑨": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/outfit9.webp" }],
+
+    /* 20 · 纸上魔法使 */
+    ["伏见理央", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/outfit1.webp" }],
+    ["克丽索贝莉露", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/outfit1.webp" }],
+    ["日向彼方", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/outfit1.webp" }],
+    ["月社妃", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/outfit1.webp" }],
+    ["本城奏", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanade/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanade/outfit1.webp" }],
+    ["本城岬", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/uniform.webp" }],
+    ["游行寺夜子", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/outfit1.webp" }],
+    ["游行寺暗子", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yamiko/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yamiko/outfit1.webp" }],
+    ["游行寺汀", 20, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/migiwa/normal.webp", {}],
+
+    /* 21 · 缘起甜韵趣恋丛生！ */
+    ["八乙女凉花", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/outfit3.webp" }],
+    ["冈井蒲公英", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/outfit4.webp" }],
+    ["寿珠祈", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/outfit3.webp" }],
+    ["漆原绫子", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/normal.webp", { "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/outfit3.webp", "衣装④": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/outfit4.webp" }],
+    ["衣川美卯", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/outfit2.webp", "衣装③": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/outfit3.webp" }],
+    ["近江希未", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/outfit2.webp" }],
   ];
 
   const CAST_ART = {};
@@ -1718,9 +1712,10 @@
     "萨莎": "萨莎·比凯·雅内坎",
     "瓦莲莉娅": "瓦莲莉娅·特莲切维娜·布特尔斯卡娅",
     "尤希尔": "尤希尔·弗露露·让梅尔",
-    "嶌越月望": "岛越月望",
-    "島越月望": "岛越月望",
-    "嶋越月望": "岛越月望"
+    "䌷": "䌷·文德斯",
+    "砚川": "砚川·优芙拉希·泪香",
+    "斯卡蕾特": "斯卡蕾特·斑鸠·维斯塔莉娅",
+    "安洁莉娜": "安洁莉娜·菜夏·史威尔"
   };
 
   /* 姓名精确匹配：仅匹配完整姓名或 CAST_ALIASES 中显式登记的别名 */
@@ -1751,7 +1746,17 @@
     "美少女万华镜4":          { scale: 1.18, x: 0, y: -28 },
     "橘光柠水随想曲":         { scale: 1.08, x: 0, y: -12 },
     "9nine":                  { scale: 1.04, x: 0, y: -8  },
-    "花子":                   { scale: 1.04, x: 0, y: -8  }
+    "花子":                   { scale: 1.04, x: 0, y: -8  },
+    "Summer Pockets REFLECTION BLUE": { scale: 1.04, x: 0, y: -8 },
+    "恋爱？我就借走了哦！": { scale: 1.04, x: 0, y: -8 },
+    "水葬银币的伊斯特里亚": { scale: 1.04, x: 0, y: -8 },
+    "灵感满溢的甜蜜创想": { scale: 1.04, x: 0, y: -8 },
+    "甜蜜女友2": { scale: 1.04, x: 0, y: -8 },
+    "甜蜜女友2.5": { scale: 1.04, x: 0, y: -8 },
+    "甜蜜女友3": { scale: 1.04, x: 0, y: -8 },
+    "纯白交响曲": { scale: 1.04, x: 0, y: -8 },
+    "纸上魔法使": { scale: 1.04, x: 0, y: -8 },
+    "缘起甜韵趣恋丛生！": { scale: 1.04, x: 0, y: -8 }
   };
 
   const CHAR_FRAMES = {
@@ -1830,6 +1835,56 @@
     const matched = matchOutfitUrl(entry, dressRaw);
     return matched || getDefaultStage(entry) || FALLBACK_IMG;
   }
+
+  /* ═══ 图片兜底链：jsDelivr 抽风 / 新图没传时，换 raw.githubusercontent 或换一套衣服，绝不空白 ═══ */
+  const GH_RAW = 'https://raw.githubusercontent.com/jianchi89/galworld-assets/main/assets';
+  function rawUrlOf(u) {
+    if (!u) return '';
+    const idx = u.indexOf('/assets/');
+    return idx < 0 ? '' : GH_RAW + u.slice(idx + '/assets'.length);
+  }
+  function stageChainOf(name, dressRaw) {
+    const entry = findCastEntry(name);
+    if (!entry) return [];
+    const base = [];
+    const matched = matchOutfitUrl(entry, dressRaw);
+    const queue = [matched, getDefaultStage(entry)];
+    Object.values(entry.outfits || {}).forEach((u) => queue.push(u));
+    queue.push(entry.normal, entry.stage);
+    queue.forEach((u) => {
+      if (u && u !== FALLBACK_IMG && base.indexOf(u) < 0) base.push(u);
+    });
+    const out = [];
+    base.forEach((u) => {
+      out.push(u);
+      const r = rawUrlOf(u);
+      if (r && out.indexOf(r) < 0) out.push(r);
+    });
+    return out;
+  }
+  window.__krsStageFb = function (img) {
+    let list = [];
+    try { list = JSON.parse(img.getAttribute('data-fb') || '[]'); } catch (_) {}
+    if (list.length) {
+      img.setAttribute('data-fb', JSON.stringify(list.slice(1)));
+      img.src = list[0];
+      return;
+    }
+    const card = img.closest('.krs-heroine-card');
+    const box = img.closest('.krs-heroine-avatar-box');
+    if (card) card.classList.add('no-sprite');
+    if (box) box.remove();
+  };
+  window.__krsImgFb = function (img) {
+    let list = [];
+    try { list = JSON.parse(img.getAttribute('data-fb') || '[]'); } catch (_) {}
+    if (list.length) {
+      img.setAttribute('data-fb', JSON.stringify(list.slice(1)));
+      img.src = list[0];
+      return;
+    }
+    img.style.visibility = 'hidden';
+  };
 
   function getSpriteCrop(name) {
     const n = String(name || '').trim();
@@ -1996,9 +2051,9 @@
     const n = parseInt(v) || 0;
     if (n >= 190) return '灵魂共鸣';
     if (n >= 160) return '深刻羁绊';
-    if (n >= 120) return '确认心动';
-    if (n >= 80)  return '隐约在意';
-    if (n >= 40)  return '开始接近';
+    if (n >= 120) return '情感依赖';
+    if (n >= 80)  return '确认心动';
+    if (n >= 40)  return '隐约在意';
     return '无感';
   }
 
@@ -2404,7 +2459,6 @@
           return `
             <div class="krs-asset-slider-card ${isActive ? 'active' : ''}" data-select-asset="${escHtml(aName)}" draggable="${isSortMode}" data-drag-kind="career" data-drag-key="${escHtml(aName)}" title="${escHtml(aName)}">
               <span class="gw-corner-bubble">${a['规模'] || '✦'}</span>
-              <span class="gw-drag-grip" title="按住拖动排序">⠿</span>
               <div class="krs-asc-icon-box">${icon}</div>
               <div class="krs-asc-info">
                 <span class="krs-asc-name">${escHtml(aName)}</span>
@@ -2553,16 +2607,15 @@
         return `
           <div class="krs-slider-card ${isActive ? 'active' : ''}" data-select-char="${escHtml(cName)}" draggable="${isSortMode}" data-drag-kind="char" data-drag-key="${escHtml(cName)}" title="${escHtml(cName)} (${escHtml(firstId)})">
             <span class="gw-corner-bubble ${bubbleCls}">${bubbleIcon}</span>
-            <span class="gw-drag-grip" title="按住拖动排序">⠿</span>
             <div class="krs-sc-avatar">
               ${hasArt
-                ? `<img src="${escHtml(getAvatar(cName))}" alt="${escHtml(cName)}">`
+                ? `<img src="${escHtml(getAvatar(cName))}" alt="${escHtml(cName)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(getAvatar(cName))]))}" onerror="window.__krsImgFb(this)">`
                 : `<span class="krs-sc-monogram">${escHtml(cName[0] || '角')}</span>`
               }
             </div>
             <div class="krs-sc-info">
               <span class="krs-sc-name">${escHtml(cName)}</span>
-              <span class="krs-sc-sub">💗${intim}${firstId ? ' · ' + escHtml(firstId) : ''}</span>
+              <span class="krs-sc-sub">${escHtml(firstId)} · 💗${intim}</span>
             </div>
             <div class="gw-sort-controls">
               <span class="gw-sort-arr" data-move-char="${escHtml(cName)}" data-dir="-1" title="上移">▲</span>
@@ -2591,7 +2644,9 @@
       const iStage = getIntimacyStage(intimacy);
       const aStageName = getAttractStage(attract);
       const entryInfo = findCastEntry(activeCharName);
-      const stageUrl = getStageArt(activeCharName, curC['服装']);
+      const stageChainList = stageChainOf(activeCharName, curC['服装']);
+      const stageUrl = stageChainList[0] || FALLBACK_IMG;
+      const stageFb = JSON.stringify(stageChainList.slice(1));
       const hasSprite = !!(entryInfo && stageUrl && stageUrl !== FALLBACK_IMG);
 
       const stateBadgesHtml = `
@@ -2612,7 +2667,7 @@
                 <div class="gw-st-row"><span>左右</span><input type="range" min="-100" max="100" step="2" value="${getSpriteCrop(activeCharName).x}" oninput="window.__krsTuneSprite(this,'x',this.value)"><b data-tune-lbl="x">${getSpriteCrop(activeCharName).x}</b></div>
                 <div class="gw-st-copy" onclick="window.__krsCopyTune(this)">📋 复制此角色微调代码</div>
               </div>
-              <img src="${escHtml(stageUrl)}" alt="${escHtml(activeCharName)}" onerror="this.closest('.krs-heroine-card')?.classList.add('no-sprite');this.closest('.krs-heroine-avatar-box')?.remove();">
+              <img src="${escHtml(stageUrl)}" alt="${escHtml(activeCharName)}" data-fb="${escHtml(stageFb)}" onerror="window.__krsStageFb(this)">
               <div class="krs-h-badge-stack">${stateBadgesHtml}</div>
             </div>
           ` : ''}
@@ -2645,9 +2700,9 @@
                 </div>
                 <div class="gw-axis-ticks">
                   <span class="${iStage==='无感'?'on':''}">无感</span>
-                  <span class="${iStage==='开始接近'?'on':''}">接近</span>
                   <span class="${iStage==='隐约在意'?'on':''}">在意</span>
                   <span class="${iStage==='确认心动'?'on':''}">心动</span>
+                  <span class="${iStage==='情感依赖'?'on':''}">依赖</span>
                   <span class="${iStage==='深刻羁绊'?'on':''}">羁绊</span>
                   <span class="${iStage==='灵魂共鸣'?'on':''}">共鸣</span>
                 </div>
@@ -2676,37 +2731,34 @@
               “${escHtml(curC['动向'] || '暂无特别动向记录。')}”
             </div>
 
-            <div class="krs-hm-card krs-dress-card">
-              <span class="krs-meta-lbl">👔 身着服装</span>
-              <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.服装" data-krs-label="角色服装" data-krs-type="textarea">${formatDressHtml(curC['服装'])}</div>
-            </div>
-
-            <div class="krs-hm-card krs-body-state-card" data-krs-edit="角色.${activeCharName}.身体状态" data-krs-label="身体状态（体貌｜躯体｜性格）" data-krs-type="textarea">
-              <span class="krs-meta-lbl" style="color:var(--rose-deep);">💓 当下身体状态</span>
-              <div class="krs-meta-val">${escHtml(triBody)}</div>
-            </div>
-
-            <div class="krs-pair-state-grid" data-krs-edit="角色.${activeCharName}.身体状态" data-krs-label="身体状态（体貌｜躯体｜性格）" data-krs-type="textarea">
-              <div class="krs-tri-card"><b>👁️ 体貌</b><p>${escHtml(triAppear)}</p></div>
-              <div class="krs-tri-card"><b>✨ 性格</b><p>${escHtml(triPers)}</p></div>
-            </div>
-
-            ${(curC['身体'] || isEditMode) ? `
-              <div class="krs-hm-card krs-body-record-card" style="border-color:rgba(166,79,104,.35);background:rgba(166,79,104,.06);">
-                <span class="krs-meta-lbl" style="color:var(--rose-deep);">💮 不可逆身体记录 / 特殊属性</span>
-                <div class="krs-meta-val rose" data-krs-edit="角色.${activeCharName}.身体" data-krs-label="角色身体记录" data-krs-type="textarea">${escHtml(curC['身体'] || '无特殊身体记录')}</div>
-              </div>
-            ` : ''}
-
             <div class="krs-goal-box" data-krs-edit="角色.${activeCharName}.近期目标" data-krs-label="近期思索" data-krs-type="textarea">
               <span class="krs-goal-tag">💭 近期思索</span>
               <span class="krs-goal-text">${escHtml(recentThought)}</span>
             </div>
 
-            <div class="krs-hm-card krs-loc-card">
-              <span class="krs-meta-lbl">📍 当前地点</span>
-              <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.地点" data-krs-label="角色地点">${escHtml(curC['地点'] || '未知地点')}</div>
+            <div class="krs-heroine-meta-grid">
+              <div class="krs-hm-card">
+                <span class="krs-meta-lbl">📍 当前地点</span>
+                <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.地点" data-krs-label="角色地点">${escHtml(curC['地点'] || '未知地点')}</div>
+              </div>
+              <div class="krs-hm-card">
+                <span class="krs-meta-lbl">👔 身着服装（最高权重常服标签）</span>
+                <div class="krs-meta-val" data-krs-edit="角色.${activeCharName}.服装" data-krs-label="角色服装" data-krs-type="textarea">${formatDressHtml(curC['服装'])}</div>
+              </div>
             </div>
+
+            <div class="krs-tri-state-grid" data-krs-edit="角色.${activeCharName}.身体状态" data-krs-label="身体状态（体貌｜躯体｜性格）" data-krs-type="textarea">
+              <div class="krs-tri-card"><b>👁️ 体貌基线</b><p>${escHtml(triAppear)}</p></div>
+              <div class="krs-tri-card"><b>💓 当下躯体状态</b><p>${escHtml(triBody)}</p></div>
+              <div class="krs-tri-card"><b>✨ 性格基线</b><p>${escHtml(triPers)}</p></div>
+            </div>
+
+            ${(curC['身体'] || isEditMode) ? `
+              <div class="krs-hm-card" style="border-color:rgba(166,79,104,.35);background:rgba(166,79,104,.06);">
+                <span class="krs-meta-lbl" style="color:var(--rose-deep);">💮 不可逆身体记录 / 特殊属性</span>
+                <div class="krs-meta-val rose" data-krs-edit="角色.${activeCharName}.身体" data-krs-label="角色身体记录" data-krs-type="textarea">${escHtml(curC['身体'] || '无特殊身体记录')}</div>
+              </div>
+            ` : ''}
           </div>
         </div>
       `;
@@ -2998,7 +3050,7 @@
           const coverUrl = getDefaultStage(item) || item.normal || FALLBACK_IMG;
           return `
             <div class="krs-cg-album-card" data-cg-char="${escHtml(n)}">
-              <img class="krs-cg-album-cover" src="${escHtml(coverUrl)}" alt="${escHtml(n)}">
+              <img class="krs-cg-album-cover" src="${escHtml(coverUrl)}" alt="${escHtml(n)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(coverUrl)]))}" onerror="window.__krsImgFb(this)">
               <div class="krs-cg-album-info">
                 <span>${escHtml(n)}</span>
                 <span style="color:var(--rose-deep);font-size:10px;">${escHtml(item.work || '')}</span>
@@ -3034,7 +3086,7 @@
             <div class="krs-cg-body" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;align-items:center;">
               ${galleryCards.map(g => `
                 <div style="background:#221d24;border-radius:14px;padding:14px;text-align:center;">
-                  <img src="${escHtml(g.url)}" style="max-height:54vh;max-width:100%;object-fit:contain;margin:0 auto;">
+                  <img src="${escHtml(g.url)}" style="max-height:54vh;max-width:100%;object-fit:contain;margin:0 auto;" data-fb="${escHtml(JSON.stringify([rawUrlOf(g.url)]))}" onerror="window.__krsImgFb(this)">
                   <div style="color:#f5ebe1;font-size:12px;margin-top:8px;">${escHtml(g.label)}</div>
                 </div>
               `).join('')}
@@ -3245,7 +3297,7 @@
       ])
     },
     {
-      key: 'nine', label: '9-nine EP2 · 天色天歌天籁音', cover: 'https://origin.picgo.net/2026/11/13/9nine--3631f76f77f67946.png',
+      key: 'nine', label: '9-nine EP2 · 天色天歌天籁音', cover: GAL_COVERS.nine,
       desc: '白巳津川 · 新海翔与妹妹天追查魔眼与梨俱吠陀，序章～第十二章。',
       prefixes: ['[9-nine]'], story: '事件', event: '世界.事件.9-nine-主线',
       outline: '[9-nine][大纲]9nine_主线大纲', detail: '[9-nine][剧情细纲]',
@@ -3309,14 +3361,253 @@
       prefixes: ['[轮舞曲]'], story: 'none'
     },
     {
-      key: 'hanako', label: '花子', cover: 'https://origin.picgo.net/2026/11/13/--f37feb32b757c189.png',
+      key: 'hanako', label: '花子', cover: GAL_COVERS.hanako,
       desc: '乡间学园 · 三楼女厕所第三个隔间的花子，仅有角色与世界书扩展。',
       prefixes: ['[花子]'], story: 'none'
     },
     {
-      key: 'shoujo', label: '少女领域', cover: 'https://origin.picgo.net/2026/11/14/--4b669db2bc7ccd64.png',
+      key: 'shoujo', label: '少女领域', cover: GAL_COVERS.shoujo,
       desc: '白铃女子学园与第二宿舍 · 少女领域线的角色与日常，仅有角色与世界书扩展。',
       prefixes: ['[少女领域]'], story: 'none'
+    },
+
+    /* ================= 十部新作品（2026-11-18 补） ================= */
+    {
+      key: 'summerpockets', label: '夏日口袋', cover: 'https://origin.picgo.net/2026/11/18/2932bd86c77f1fda93ae0303a02cb6526a5bfb37e3e8089b.png',
+      desc: '鸟白岛，一个夏天就能走遍的小岛：你以上岛整理外婆遗物的名义住下，撞见岛上那些不肯说出口的秘密。',
+      prefixes: ['[SummerPockets]', '[夏日口袋]'],
+      story: '事件', event: '世界.事件.SummerPockets-主线',
+      outline: '[SummerPockets][大纲]SummerPockets_主线大纲', detail: '[SummerPockets][剧情细纲]',
+      role: 'SummerPockets-主线：在鸟白岛的暑假里，与岛上少女们一起找回被夏天藏起来的东西',
+      chapters: krsPlotChapters([
+        ['序章', '序章：渡轮与泳池'],
+        ['第一章', '第一章：冰棒与灵弹'],
+        ['第二章', '第二章：鸣濑家的柜子'],
+        ['第三章', '第三章：神堂的两扇门'],
+        ['第四章', '第四章：没有妈妈的孩子'],
+        ['第五章', '第五章：带她回家'],
+        ['第六章', '第六章：蝴蝶与记忆'],
+      ])
+    },
+    {
+      key: 'tiannv2', label: '甜蜜女友2', cover: 'https://origin.picgo.net/2026/11/18/c081d7ca6a566a3c585c43f05f5c6e9ce31e98f5bf929bde.png',
+      desc: '白鹭市的四月，邻座空了一整个春天；旧茶屋、吧台与茶屋街的灯火，把一段没人认领的日常慢慢煨热。',
+      prefixes: ['[甜蜜女友2]', '[甜友2]'],
+      story: '事件', event: '世界.事件.甜蜜女友2-主线',
+      outline: '[甜蜜女友2][大纲]甜蜜女友2_主线大纲', detail: '[甜蜜女友2][剧情细纲]',
+      role: '甜蜜女友2-主线：在白鹭市的老茶屋与学校之间，把四个人的日常一点点煮成恋爱',
+      chapters: krsPlotChapters([
+        ['序章', '序章：新干线上的邻座'],
+        ['第一章', '第一章：空着的课桌'],
+        ['第二章', '第二章：没有宝物的少女'],
+        ['第三章', '第三章：城白祭之前'],
+        ['第四章', '第四章：城白祭'],
+        ['第五章', '第五章：放学后的教室'],
+        ['第六章', '第六章：恋人'],
+        ['第七章', '第七章：雪与第一次'],
+        ['第八章', '第八章：两个人的冬天'],
+        ['第九章', '第九章：平安夜与圣诞节'],
+        ['第十章', '第十章：鼓门前的父亲'],
+        ['第十一章', '第十一章：生日、节分与樱花'],
+      ])
+    },
+    {
+      key: 'tiannv25', label: '甜蜜女友2.5', cover: 'https://origin.picgo.net/2026/11/18/3cf1b4296a5c84e50c7129ad5b613254b8bd7d45a4703c5f.png',
+      desc: '雪国的冬天：候车室、轮椅、跨年的一吻，还有一间要除雪的旅馆。',
+      prefixes: ['[甜蜜女友2.5]', '[甜友25]'],
+      story: '事件', event: '世界.事件.甜蜜女友2.5-主线',
+      outline: '[甜蜜女友2.5][大纲]甜蜜女友2.5_主线大纲', detail: '[甜蜜女友2.5][剧情细纲]',
+      role: '甜蜜女友2.5-主线：在夜间濑町的雪与旅馆之间，陪她走过一个冬天',
+      chapters: krsPlotChapters([
+        ['序章', '序章：雪国的候车室'],
+        ['第一章', '第一章：轮椅与雪'],
+        ['第二章', '第二章：雪屋里的电话'],
+        ['第三章', '第三章：暴风雪中的小木屋'],
+        ['第四章', '第四章：晚霞下的告白'],
+        ['第五章', '第五章：跨年夜的一吻'],
+        ['第六章', '第六章：午休的广播告白'],
+        ['第七章', '第七章：重做的二年参'],
+        ['第八章', '第八章：同一屋檐下'],
+        ['第九章', '第九章：说出恋人的那天'],
+      ])
+    },
+    {
+      key: 'tiannv3', label: '甜蜜女友3', cover: 'https://origin.picgo.net/2026/11/18/8af4b0a6fd6fac485a8d4a906508f15a36583c35fdd40f78.png',
+      desc: '日和山温泉的旅馆街：你替住院的祖母看管女生宿舍，成了这栋楼里唯一的男人。',
+      prefixes: ['[甜蜜女友3]', '[甜友3]'],
+      story: '事件', event: '世界.事件.甜蜜女友3-主线',
+      outline: '[甜蜜女友3][大纲]甜蜜女友3_主线大纲', detail: '[甜蜜女友3][剧情细纲]',
+      role: '甜蜜女友3-主线：在日和山温泉的女生宿舍里，把三餐与心事一起做完',
+      chapters: krsPlotChapters([
+        ['序章', '序章：乐乐浦寮的委托'],
+        ['第一章', '第一章：海豹公主转学来了'],
+        ['第二章', '第二章：主人大人与冰山姐姐'],
+        ['第三章', '第三章：傍晚的直播'],
+        ['第四章', '第四章：两个秘密与名人税'],
+        ['第五章', '第五章：姐妹之间'],
+        ['第六章', '第六章：由语与大福'],
+        ['第七章', '第七章：期末考与违和感'],
+        ['第八章', '第八章：只属于两人的祭典'],
+        ['第九章', '第九章：第一次约会'],
+        ['第十章', '第十章：摄影会'],
+        ['第十一章', '第十一章：夏日课题'],
+        ['第十二章', '第十二章：十年前的那场祭典'],
+        ['第十三章', '第十三章：宇宙第一'],
+      ])
+    },
+    {
+      key: 'yuanqi', label: '缘起甜韵趣恋丛生！', cover: 'https://origin.picgo.net/2026/11/18/f84565d8ab7c7ad276f490ea5bffca3def6e2b895136d9fe.png',
+      desc: '东陆区的学生宿舍：你从黑心企业辞职，成了六个女孩的「楼妈」。',
+      prefixes: ['[缘起]', '[缘起]'],
+      story: '事件', event: '世界.事件.缘起-主线',
+      outline: '[缘起][大纲]缘起_主线大纲', detail: '[缘起][剧情细纲]',
+      role: '缘起-主线：在星九头学生宿舍里，把一群女孩的日子过成家',
+      chapters: krsPlotChapters([
+        ['序章', '序章：宿舍的面试'],
+        ['第一章', '第一章：楼妈的第一天'],
+        ['第二章', '第二章：休息日与长颈鹿布偶'],
+        ['第三章', '第三章：期末考试周'],
+        ['第四章', '第四章：街道运动大会'],
+        ['第五章', '第五章：夏日庆典的餐车'],
+        ['第六章', '第六章：庆典当天的餐车'],
+        ['第七章', '第七章：还清的债务'],
+        ['第八章', '第八章：水上乐园'],
+        ['第九章', '第九章：假面与告白'],
+        ['第十章', '第十章：当着十万人的宣告'],
+        ['第十一章', '第十一章：周末的约会'],
+        ['第十二章', '第十二章：每天都要见'],
+        ['第十三章', '第十三章：删不掉的视频'],
+        ['第十四章', '第十四章：哥特萝莉与二人世界'],
+        ['第十五章', '第十五章：流星雨与那个名字'],
+      ])
+    },
+    {
+      key: 'chunbai', label: '纯白交响曲', cover: 'https://origin.picgo.net/2026/11/18/e9c54d42152857c19821f182bde149bf02c8ad5de8f74b9d.png',
+      desc: '两校合并的试验班：你和一个把「第一」当盔甲的女生，被推成一对班长。',
+      prefixes: ['[纯白]', '[纯白]'],
+      story: '事件', event: '世界.事件.纯白-主线',
+      outline: '[纯白][大纲]纯白_主线大纲', detail: '[纯白][剧情细纲]',
+      role: '纯白-主线：在合并试验班里，陪濑名爱理把「第一」这件盔甲卸下来',
+      chapters: krsPlotChapters([
+        ['序章', '序章：结女的第一周'],
+        ['第一章', '第一章：两个人的班长'],
+        ['第二章', '第二章：直呼其名'],
+        ['第三章', '第三章：相合伞'],
+        ['第四章', '第四章：请和我交往'],
+        ['第五章', '第五章：请愿签名'],
+        ['第六章', '第六章：雪白的前方'],
+      ])
+    },
+    {
+      key: 'shuizang', label: '水葬银币的伊斯特里亚', cover: 'https://origin.picgo.net/2026/11/18/28a58ae2609e1d5bd8e3c50ef92a2c6e2ae33c2036c9a30f.png',
+      desc: '艾美马德伊的地下赌场：筹码、人鱼与不肯认输的少女，白天是学生，夜里是赌桌上的「C·A」。',
+      prefixes: ['[水葬]', '[水葬]'],
+      story: '事件', event: '世界.事件.水葬-主线',
+      outline: '[水葬][大纲]水葬_主线大纲', detail: '[水葬][剧情细纲]',
+      role: '水葬-主线：在赌桌与海水之间，替妹妹和自己赌一个能上岸的明天',
+      chapters: krsPlotChapters([
+        ['序章', '序章：赌场的梦与沙坑的少女'],
+        ['第一章', '第一章：神经衰弱'],
+        ['第二章', '第二章：垃圾场里的少女'],
+        ['第三章', '第三章：人鱼的水葬银货'],
+        ['第四章', '第四章：未明与烟火'],
+        ['第五章', '第五章：大富豪'],
+        ['第六章', '第六章：鸟笼'],
+        ['第七章', '第七章：留宿会'],
+        ['第八章', '第八章：快递员'],
+        ['第九章', '第九章：眼泪与生日'],
+        ['第十章', '第十章：夕樱的舞台'],
+        ['第十一章', '第十一章：临死前的款待'],
+        ['第十二章', '第十二章：毒苹果'],
+        ['第十三章', '第十三章：选择夕樱'],
+        ['第十四章', '第十四章：情人节'],
+        ['第十五章', '第十五章：最后一局'],
+      ])
+    },
+    {
+      key: 'linggan', label: '灵感满溢的甜蜜创想', cover: 'https://origin.picgo.net/2026/11/18/4615f918f5035f57f010ef7bc2283effdd6dc1ef08032975.png',
+      desc: '千玉市：一枚骰子把你推上学生会长的位子，也把「天使」推到你面前。',
+      prefixes: ['[甜蜜创想]', '[灵感满溢]'],
+      story: '事件', event: '世界.事件.甜蜜创想-主线',
+      outline: '[甜蜜创想][大纲]甜蜜创想_主线大纲', detail: '[甜蜜创想][剧情细纲]',
+      role: '甜蜜创想-主线：在快要撑不下去的社团与学生会之间，把「灵感」做成能留下来的东西',
+      chapters: krsPlotChapters([
+        ['序章', '序章：抽签将军'],
+        ['第一章', '第一章：天使降临'],
+        ['第二章', '第二章：小田原评定'],
+        ['第三章', '第三章：时薪一千日元'],
+        ['第四章', '第四章：天使的休息'],
+        ['第五章', '第五章：风纪委员'],
+        ['第六章', '第六章：挑战者现身'],
+        ['第七章', '第七章：温泉关战役'],
+        ['第八章', '第八章：活动也是有起有落'],
+        ['第九章', '第九章：约定之海'],
+        ['第十章', '第十章：大地之子'],
+        ['第十一章', '第十一章：睡颜'],
+        ['第十二章', '第十二章：初次活动是什么时候'],
+        ['第十三章', '第十三章：皮焦柔嫩'],
+        ['第十四章', '第十四章：恋爱童贞综合症'],
+        ['第十五章', '第十五章：家庭游戏'],
+        ['第十六章', '第十六章：擅长绘画的人简直是妙手丹青'],
+        ['第十七章', '第十七章：还不至于留下心理创伤'],
+        ['第十八章', '第十八章：艰难困苦的御宅恋爱'],
+        ['第十九章', '第十九章：第2学期出道大作战'],
+        ['第二十章', '第二十章：千玉学园学生会企划会议'],
+        ['第二十一章', '第二十一章：准备起飞'],
+        ['第二十二章', '第二十二章：灵感满溢者的诗篇'],
+        ['第二十三章', '第二十三章：怎么可能不喜欢你啊'],
+      ])
+    },
+    {
+      key: 'zhishang', label: '纸上魔法使', cover: 'https://origin.picgo.net/2026/11/18/5050e54dd2133fffd2a80b41de1a96eed8f37f324dcf8b11.png',
+      desc: '森林深处的幻想图书馆：一本本以宝石命名的书被打开，角色被派到各人身上。',
+      prefixes: ['[纸上]', '[纸上]'],
+      story: '事件', event: '世界.事件.纸上-主线',
+      outline: '[纸上][大纲]纸上_主线大纲', detail: '[纸上][剧情细纲]',
+      role: '纸上-主线：在图书馆的书页之间，找出那个不肯被世界记住的少女',
+      chapters: krsPlotChapters([
+        ['序章', '序章：图书馆的第一夜'],
+        ['第一章', '第一章：翡翠的排挤原理'],
+        ['第二章', '第二章：天使的红线'],
+        ['第三章', '第三章：白纸与蓝宝石'],
+        ['第四章', '第四章：被世界遗忘的那十天'],
+        ['第五章', '第五章：观星少女的幽灵'],
+        ['第六章', '第六章：磷灰石的怠惰现象'],
+        ['第七章', '第七章：黑榴石的死神花样'],
+        ['第八章', '第八章：芙蓉石的长年隔绝'],
+        ['第九章', '第九章：黑珍珠的求爱信号'],
+        ['第十章', '第十章：回来的妹妹'],
+        ['第十一章', '第十一章：白珍珠的泡沫爱慕'],
+        ['第十二章', '第十二章：编造的幸福'],
+        ['第十三章', '第十三章：黑曜石的因果目录'],
+        ['第十四章', '第十四章：青金石的幻想图书馆'],
+        ['第十五章', '第十五章：可喜可贺'],
+      ])
+    },
+    {
+      key: 'lianai', label: '恋爱？我就借走了哦！', cover: 'https://origin.picgo.net/2026/11/18/18e01c495f01b01960a793d5d6071ee707086541dbef8231.png',
+      desc: '东京：一份「假恋人」的兼职，把四个人的夏天连同补习班的粉笔灰一起搅在一起。',
+      prefixes: ['[恋借]', '[恋爱借走]'],
+      story: '事件', event: '世界.事件.恋借-主线',
+      outline: '[恋借][大纲]恋借_主线大纲', detail: '[恋借][剧情细纲]',
+      role: '恋借-主线：在一份假恋人的契约里，把四个人的真心一件件借回来',
+      chapters: krsPlotChapters([
+        ['序章', '序章：假男友的第一单'],
+        ['第一章', '第一章：恋人契约'],
+        ['第二章', '第二章：第一次过夜'],
+        ['第三章', '第三章：学习会与爱面子'],
+        ['第四章', '第四章：两位同班同学'],
+        ['第五章', '第五章：夏天的分岔口'],
+        ['第六章', '第六章：小坏的约会'],
+        ['第七章', '第七章：休战与发烧'],
+        ['第八章', '第八章：进击的哟呼呼'],
+        ['第九章', '第九章：坦诚这件事'],
+        ['第十章', '第十章：河岸边的答复'],
+        ['第十一章', '第十一章：第二次初次约会'],
+        ['第十二章', '第十二章：爱面子的过去'],
+        ['第十三章', '第十三章：与绘未的未来'],
+        ['第十四章', '第十四章：约定之夏与海'],
+      ])
     }
   ];
 
@@ -4219,9 +4510,7 @@
       }
     } catch (_) {}
 
-    let suppressTouchClick = false;
     root.addEventListener('click', async (e) => {
-      if (suppressTouchClick) return;
       const themeBtn = e.target.closest('#krs-btn-theme');
       if (themeBtn) {
         const isDark = root.classList.toggle('krs-dark');
@@ -4461,112 +4750,6 @@
       dragSrcKey = '';
       renderAll();
     });
-
-    /* 手机端触摸拖动排序（支持按住 ⠿ / 头像直接拖，或长按卡片拖动） */
-    let touchDragTimer = null;
-    let touchDragging = false;
-    let touchSrcKey = '';
-    let touchKind = '';
-    let touchDestKey = '';
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchSrcCard = null;
-
-    function clearTouchDragState() {
-      if (touchDragTimer) { clearTimeout(touchDragTimer); touchDragTimer = null; }
-      root.querySelectorAll('.is-touch-dragging, .is-drag-over').forEach(el => {
-        el.classList.remove('is-touch-dragging', 'is-drag-over');
-      });
-      touchDragging = false;
-      touchSrcKey = '';
-      touchKind = '';
-      touchDestKey = '';
-      touchSrcCard = null;
-    }
-
-    function beginTouchDrag(card) {
-      touchDragging = true;
-      touchSrcCard = card;
-      touchSrcKey = card.getAttribute('data-drag-key') || '';
-      touchKind = card.getAttribute('data-drag-kind') || '';
-      touchDestKey = '';
-      card.classList.add('is-touch-dragging');
-      try { if (navigator.vibrate) navigator.vibrate(12); } catch (_) {}
-    }
-
-    root.addEventListener('touchstart', (e) => {
-      if (!isSortMode || isSideSlim || e.touches.length !== 1) return;
-      if (e.target.closest('.gw-sort-arr')) return;
-      const card = e.target.closest('[data-drag-key]');
-      if (!card) return;
-      clearTouchDragState();
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      if (e.target.closest('.gw-drag-grip, .krs-sc-avatar, .krs-asc-icon-box')) {
-        beginTouchDrag(card);
-      } else {
-        touchDragTimer = setTimeout(() => {
-          touchDragTimer = null;
-          beginTouchDrag(card);
-        }, 180);
-      }
-    }, { passive: true });
-
-    root.addEventListener('touchmove', (e) => {
-      if (!touchDragging && !touchDragTimer) return;
-      const t = e.touches[0];
-      if (!t) return;
-      if (!touchDragging) {
-        if (Math.abs(t.clientX - touchStartX) > 8 || Math.abs(t.clientY - touchStartY) > 8) {
-          clearTouchDragState();
-        }
-        return;
-      }
-      if (e.cancelable) e.preventDefault();
-      e.stopPropagation();
-
-      const track = touchSrcCard && touchSrcCard.closest('.gw-vertical-track');
-      if (track) {
-        const tr = track.getBoundingClientRect();
-        if (t.clientY < tr.top + 26) track.scrollTop -= 8;
-        else if (t.clientY > tr.bottom - 26) track.scrollTop += 8;
-      }
-
-      const hit = document.elementFromPoint(t.clientX, t.clientY);
-      const destCard = hit ? hit.closest('[data-drag-key]') : null;
-      root.querySelectorAll('.is-drag-over').forEach(el => el.classList.remove('is-drag-over'));
-      if (destCard && destCard.getAttribute('data-drag-kind') === touchKind) {
-        const dk = destCard.getAttribute('data-drag-key') || '';
-        touchDestKey = dk;
-        if (dk && dk !== touchSrcKey) destCard.classList.add('is-drag-over');
-      } else {
-        touchDestKey = '';
-      }
-    }, { passive: false });
-
-    const finishTouchDrag = () => {
-      const wasDragging = touchDragging;
-      const src = touchSrcKey;
-      const dest = touchDestKey;
-      const kind = touchKind;
-      clearTouchDragState();
-      if (!wasDragging) return;
-      suppressTouchClick = true;
-      setTimeout(() => { suppressTouchClick = false; }, 350);
-      if (src && dest && dest !== src) {
-        const sd = rs() || {};
-        if (kind === 'char') {
-          moveKeyInOrder(Object.keys(safeGet(sd, '角色', {}) || {}), 'KRS_CHAR_ORDER', src, dest);
-        } else {
-          const cObj = safeGet(sd, 'user.生涯', null) || safeGet(sd, 'user.资产', {}) || {};
-          moveKeyInOrder(Object.keys(cObj), 'KRS_CAREER_ORDER', src, dest);
-        }
-        renderAll();
-      }
-    };
-
-    root.addEventListener('touchend', finishTouchDrag, { passive: true });
-    root.addEventListener('touchcancel', () => clearTouchDragState(), { passive: true });
 
     root.addEventListener('scroll', () => recordScrolls(root), { capture: true, passive: true });
   }
