@@ -285,7 +285,8 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.4.18';
+  const VERSION  = '2.4.23';
+  /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
   const STYLE_ID = 'nvn-dialogue-theme-modern';
@@ -308,15 +309,1193 @@
    * 示例（把 // 去掉即可）：
    *   { chars: ['新角色', '新角色·全名'], main: '#c9a227', sub: '#fffdf5',
    *     rgb: '201, 162, 39', motion: '#e0c060', rose: true, big: true,
-   *     avatar:   'https://origin.picgo.net/2026/10/09/xxxx.png',
-   *     portrait: 'https://origin.picgo.net/2026/10/09/yyyy.png' },
+   *     avatar:   'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/normal.webp',
+   *     portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/uniform.webp' },
    * ========================================================================= */
-  const NEW_CHARACTERS = [];
+  const NEW_CHARACTERS = [
+
+    /* ============================== Summer Pockets REFLECTION BLUE ============================== */
+    { chars: ['䌷·文德斯', '䌷'],
+      main: '#eeb369',
+      sub: '#f6d5ac',
+      rgb: '238, 179, 105',
+      motion: '#d6a15e',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tsumugi/uniform.webp',
+      big: true },
+    { chars: ['七海'],
+      main: '#a564db',
+      sub: '#ceaaeb',
+      rgb: '165, 100, 219',
+      motion: '#9e60d2',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/nanami/normal.webp' },
+    { chars: ['三谷良一'],
+      main: '#da7f61',
+      sub: '#ebb9a8',
+      rgb: '218, 127, 97',
+      motion: '#c47257',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ryoichi/normal.webp' },
+    { chars: ['久岛鸥'],
+      main: '#737ade',
+      sub: '#b2b6ed',
+      rgb: '115, 122, 222',
+      motion: '#6e75d5',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/normal.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/puzzled.webp',
+        '脸红通常': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/normal-blush.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/happy.webp',
+        '脸红得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/smug-blush.webp',
+        '脸红惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/surprised-blush.webp',
+        '脸红生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/angry-blush.webp',
+        '脸红疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/puzzled-blush.webp',
+        '脸红难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/sad-blush.webp',
+        '脸红高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/happy-blush.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kamome/outfit1.webp',
+      big: true },
+    { chars: ['加纳天善'],
+      main: '#9582e2',
+      sub: '#c5baef',
+      rgb: '149, 130, 226',
+      motion: '#8675cb',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/tenzen/normal.webp' },
+    { chars: ['加藤羽未'],
+      main: '#e995d8',
+      sub: '#f3c5ea',
+      rgb: '233, 149, 216',
+      motion: '#d286c2',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/umi/outfit1.webp',
+      big: true },
+    { chars: ['岬镜子'],
+      main: '#da9462',
+      sub: '#ebc4a9',
+      rgb: '218, 148, 98',
+      motion: '#c48558',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kyoko/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kyoko/outfit1.webp',
+      big: true },
+    { chars: ['水织静久'],
+      main: '#baa4ea',
+      sub: '#d9cdf3',
+      rgb: '186, 164, 234',
+      motion: '#a794d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shizuku/uniform.webp',
+      big: true },
+    { chars: ['神山识'],
+      main: '#e85489',
+      sub: '#f2a1be',
+      rgb: '232, 84, 137',
+      motion: '#df5184',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiki/uniform.webp',
+      big: true },
+    { chars: ['稻荷'],
+      main: '#8dd5e4',
+      sub: '#c0e8f0',
+      rgb: '141, 213, 228',
+      motion: '#7fc0cd',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/inari/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/inari/full.webp',
+      big: true },
+    { chars: ['空门苍'],
+      main: '#c5a2e9',
+      sub: '#dfccf3',
+      rgb: '197, 162, 233',
+      motion: '#b192d2',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/normal.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/puzzled.webp',
+        '脸红通常': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/normal-blush.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/happy.webp',
+        '脸红得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/smug-blush.webp',
+        '脸红惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/surprised-blush.webp',
+        '脸红生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/angry-blush.webp',
+        '脸红疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/puzzled-blush.webp',
+        '脸红腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/smirk-blush.webp',
+        '脸红难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/sad-blush.webp',
+        '脸红高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/happy-blush.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ao/uniform.webp',
+      big: true },
+    { chars: ['空门蓝'],
+      main: '#b49be8',
+      sub: '#d6c8f2',
+      rgb: '180, 155, 232',
+      motion: '#a28cd1',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/ai/normal.webp' },
+    { chars: ['野村美希'],
+      main: '#6ddd84',
+      sub: '#afecbb',
+      rgb: '109, 221, 132',
+      motion: '#62c777',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/miki/outfit1.webp',
+      big: true },
+    { chars: ['鸣濑小鸠'],
+      main: '#a4caea',
+      sub: '#cde2f3',
+      rgb: '164, 202, 234',
+      motion: '#94b6d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/kobato/normal.webp' },
+    { chars: ['鸣濑白羽'],
+      main: '#a4d2ea',
+      sub: '#cde6f3',
+      rgb: '164, 210, 234',
+      motion: '#94bdd3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/summerpockets/shiroha/uniform.webp',
+      big: true },
+
+    /* ============================== 恋爱？我就借走了哦！ ============================== */
+    { chars: ['天满八纯'],
+      main: '#e86562',
+      sub: '#f2aaa9',
+      rgb: '232, 101, 98',
+      motion: '#d15b58',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/hasumi/uniform.webp',
+      big: true },
+    { chars: ['小关桃子'],
+      main: '#7ea0e1',
+      sub: '#b8cbee',
+      rgb: '126, 160, 225',
+      motion: '#7190ca',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/momoko/uniform.webp',
+      big: true },
+    { chars: ['新海月'],
+      main: '#67db94',
+      sub: '#abebc4',
+      rgb: '103, 219, 148',
+      motion: '#5dc585',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsuki/outfit1.webp',
+      big: true },
+    { chars: ['泉千夏'],
+      main: '#c596e6',
+      sub: '#dfc5f1',
+      rgb: '197, 150, 230',
+      motion: '#b187cf',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/chinatsu/uniform.webp',
+      big: true },
+    { chars: ['泉子夏'],
+      main: '#b98ce4',
+      sub: '#d8c0f0',
+      rgb: '185, 140, 228',
+      motion: '#a67ecd',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/konatsu/uniform.webp',
+      big: true },
+    { chars: ['濑川绘未'],
+      main: '#f4ba4d',
+      sub: '#f9d99d',
+      rgb: '244, 186, 77',
+      motion: '#dca745',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/emi/uniform.webp',
+      big: true },
+    { chars: ['空路椿'],
+      main: '#bc99e7',
+      sub: '#dac7f2',
+      rgb: '188, 153, 231',
+      motion: '#a98ad0',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/tsubaki/outfit1.webp',
+      big: true },
+    { chars: ['美滨咲希'],
+      main: '#e2a681',
+      sub: '#efceba',
+      rgb: '226, 166, 129',
+      motion: '#cb9574',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/saki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/saki/blush.webp' },
+    { chars: ['远山爱季'],
+      main: '#e87fa2',
+      sub: '#f2b9cc',
+      rgb: '232, 127, 162',
+      motion: '#d17292',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lianai/aiki/normal.webp' },
+
+    /* ============================== 水葬银币的伊斯特里亚 ============================== */
+    { chars: ['久末紫乃'],
+      main: '#cba4ea',
+      sub: '#e2cdf3',
+      rgb: '203, 164, 234',
+      motion: '#b794d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/blush.webp',
+      actions: {
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shino/outfit1.webp',
+      big: true },
+    { chars: ['久末紫子'],
+      main: '#c0a4ea',
+      sub: '#dccdf3',
+      rgb: '192, 164, 234',
+      motion: '#ad94d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/shiko/outfit1.webp',
+      big: true },
+    { chars: ['井土谷祈吏'],
+      main: '#e1bb80',
+      sub: '#eedab9',
+      rgb: '225, 187, 128',
+      motion: '#caa873',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kiri/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kiri/outfit1.webp',
+      big: true },
+    { chars: ['八椚红叶'],
+      main: '#a4ceea',
+      sub: '#cde4f3',
+      rgb: '164, 206, 234',
+      motion: '#94b9d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/sad.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/momiji/outfit1.webp',
+      big: true },
+    { chars: ['安针冢逸美'],
+      main: '#85b4e2',
+      sub: '#bcd6ef',
+      rgb: '133, 180, 226',
+      motion: '#78a2cb',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/itsumi/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/itsumi/outfit1.webp',
+      big: true },
+    { chars: ['小不动摇'],
+      main: '#f1c871',
+      sub: '#f7e1b1',
+      rgb: '241, 200, 113',
+      motion: '#d9b466',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yura/uniform.webp',
+      big: true },
+    { chars: ['汐入玖玖里'],
+      main: '#9fc3e9',
+      sub: '#cadef3',
+      rgb: '159, 195, 233',
+      motion: '#8fb0d2',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/kukuri/uniform.webp',
+      big: true },
+    { chars: ['煤谷小夜'],
+      main: '#8488e2',
+      sub: '#bbbeef',
+      rgb: '132, 136, 226',
+      motion: '#777acb',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/sayo/uniform.webp',
+      big: true },
+    { chars: ['神峰灯'],
+      main: '#eda1c3',
+      sub: '#f5cbde',
+      rgb: '237, 161, 195',
+      motion: '#d591b0',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/akari/outfit1.webp',
+      big: true },
+    { chars: ['茅崎夕樱'],
+      main: '#ec8bb5',
+      sub: '#f5bfd6',
+      rgb: '236, 139, 181',
+      motion: '#d47da3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/yuuka/uniform.webp',
+      big: true },
+    { chars: ['茅崎征士'],
+      main: '#8687e3',
+      sub: '#bcbdf0',
+      rgb: '134, 135, 227',
+      motion: '#797acc',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/seiji/normal.webp' },
+    { chars: ['进藤和奏'],
+      main: '#92e6c2',
+      sub: '#c3f1dd',
+      rgb: '146, 230, 194',
+      motion: '#83cfaf',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shuizang/waka/outfit1.webp',
+      big: true },
+
+    /* ============================== 灵感满溢的甜蜜创想 ============================== */
+    { chars: ['和泉妃爱'],
+      main: '#f1e26d',
+      sub: '#f7efaf',
+      rgb: '241, 226, 109',
+      motion: '#d9cb62',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hina/uniform.webp',
+      big: true },
+    { chars: ['和泉里'],
+      main: '#e67d7a',
+      sub: '#f1b8b6',
+      rgb: '230, 125, 122',
+      motion: '#cf706e',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/sato/normal.webp' },
+    { chars: ['圣莉莉子'],
+      main: '#a4d4ea',
+      sub: '#cde7f3',
+      rgb: '164, 212, 234',
+      motion: '#94bfd3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/ririko/uniform.webp',
+      big: true },
+    { chars: ['常磐华乃'],
+      main: '#f286c0',
+      sub: '#f8bcdc',
+      rgb: '242, 134, 192',
+      motion: '#da79ad',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/smug.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/kano/uniform.webp',
+      big: true },
+    { chars: ['新川广梦'],
+      main: '#717cde',
+      sub: '#b1b7ed',
+      rgb: '113, 124, 222',
+      motion: '#6c77d5',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/hiromu/uniform.webp',
+      big: true },
+    { chars: ['锦明日海'],
+      main: '#9ad5e7',
+      sub: '#c7e8f2',
+      rgb: '154, 213, 231',
+      motion: '#8bc0d0',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/asumi/uniform.webp',
+      big: true },
+    { chars: ['镰仓诗樱'],
+      main: '#8e88e3',
+      sub: '#c1bef0',
+      rgb: '142, 136, 227',
+      motion: '#807acc',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/thinking.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shion/uniform.webp',
+      big: true },
+    { chars: ['雪景四季'],
+      main: '#a4ceea',
+      sub: '#cde4f3',
+      rgb: '164, 206, 234',
+      motion: '#94b9d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/shiki/outfit1.webp',
+      big: true },
+    { chars: ['龙闲天梨'],
+      main: '#f09265',
+      sub: '#f7c3aa',
+      rgb: '240, 146, 101',
+      motion: '#d8835b',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/linggan/tenri/uniform.webp',
+      big: true },
+
+    /* ============================== 甜蜜女友2 ============================== */
+    { chars: ['冰见山玲'],
+      main: '#8b77df',
+      sub: '#bfb4ed',
+      rgb: '139, 119, 223',
+      motion: '#8572d6',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/rei/uniform.webp',
+      big: true },
+    { chars: ['茑町千岁'],
+      main: '#e0c579',
+      sub: '#eedfb5',
+      rgb: '224, 197, 121',
+      motion: '#cab16d',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/chitose/uniform.webp',
+      big: true },
+    { chars: ['黑姬结灯'],
+      main: '#9185e2',
+      sub: '#c2bcef',
+      rgb: '145, 133, 226',
+      motion: '#8278cb',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv2/yuhi/uniform.webp',
+      big: true },
+
+    /* ============================== 甜蜜女友2.5 ============================== */
+    { chars: ['一之濑穗波'],
+      main: '#d9765d',
+      sub: '#eab4a6',
+      rgb: '217, 118, 93',
+      motion: '#c36a54',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/honami/uniform.webp',
+      big: true },
+    { chars: ['沓野奏'],
+      main: '#c5a4ea',
+      sub: '#dfcdf3',
+      rgb: '197, 164, 234',
+      motion: '#b194d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/kanade/uniform.webp',
+      big: true },
+    { chars: ['砚川·优芙拉希·泪香', '砚川'],
+      main: '#a4d1ea',
+      sub: '#cde6f3',
+      rgb: '164, 209, 234',
+      motion: '#94bcd3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/blush.webp',
+      actions: {
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/ruika/outfit1.webp',
+      big: true },
+    { chars: ['高社雪静'],
+      main: '#998ae4',
+      sub: '#c7bff0',
+      rgb: '153, 138, 228',
+      motion: '#8a7ccd',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv25/yukishizu/uniform.webp',
+      big: true },
+
+    /* ============================== 甜蜜女友3 ============================== */
+    { chars: ['御所院冬桦'],
+      main: '#a4cbea',
+      sub: '#cde2f3',
+      rgb: '164, 203, 234',
+      motion: '#94b7d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/touka/uniform.webp',
+      big: true },
+    { chars: ['斯卡蕾特·斑鸠·维斯塔莉娅', '斯卡蕾特'],
+      main: '#f2dd5f',
+      sub: '#f8eca7',
+      rgb: '242, 221, 95',
+      motion: '#dac756',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/scarlet/uniform.webp',
+      big: true },
+    { chars: ['柳木叶梦'],
+      main: '#f29359',
+      sub: '#f8c4a4',
+      rgb: '242, 147, 89',
+      motion: '#da8450',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/hazuki/uniform.webp',
+      big: true },
+    { chars: ['柳木诗梦'],
+      main: '#e1b680',
+      sub: '#eed7b9',
+      rgb: '225, 182, 128',
+      motion: '#caa473',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/shimu/uniform.webp',
+      big: true },
+    { chars: ['鸿纱由美'],
+      main: '#8f7ee1',
+      sub: '#c1b8ee',
+      rgb: '143, 126, 225',
+      motion: '#8979d8',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/tiannv3/sayumi/uniform.webp',
+      big: true },
+
+    /* ============================== 纯白交响曲 ============================== */
+    { chars: ['乾纱凪'],
+      main: '#e47a71',
+      sub: '#f0b6b1',
+      rgb: '228, 122, 113',
+      motion: '#cd6e66',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sana/uniform.webp',
+      big: true },
+    { chars: ['八冢万智'],
+      main: '#e3c589',
+      sub: '#f0dfbe',
+      rgb: '227, 197, 137',
+      motion: '#ccb17b',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/machi/normal.webp' },
+    { chars: ['天羽结子'],
+      main: '#d99ee8',
+      sub: '#eacaf2',
+      rgb: '217, 158, 232',
+      motion: '#c38ed1',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/yuiko/normal.webp' },
+    { chars: ['天羽美羽'],
+      main: '#c19ce8',
+      sub: '#ddc9f2',
+      rgb: '193, 156, 232',
+      motion: '#ae8cd1',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/miu/uniform.webp',
+      big: true },
+    { chars: ['安洁莉娜·菜夏·史威尔', '安洁莉娜'],
+      main: '#93e6c0',
+      sub: '#c4f1dc',
+      rgb: '147, 230, 192',
+      motion: '#84cfad',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/angelina/outfit1.webp',
+      big: true },
+    { chars: ['椋梨隼太'],
+      main: '#e3be86',
+      sub: '#f0dbbc',
+      rgb: '227, 190, 134',
+      motion: '#ccab79',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/hayata/normal.webp' },
+    { chars: ['濑名兰华'],
+      main: '#dea674',
+      sub: '#edceb3',
+      rgb: '222, 166, 116',
+      motion: '#c89568',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/ranka/normal.webp' },
+    { chars: ['濑名爱理'],
+      main: '#edab61',
+      sub: '#f5d1a8',
+      rgb: '237, 171, 97',
+      motion: '#d59a57',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/blush.webp',
+      actions: {
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/airi/uniform.webp',
+      big: true },
+    { chars: ['瓜生樱乃'],
+      main: '#96c6e6',
+      sub: '#c5e0f1',
+      rgb: '150, 198, 230',
+      motion: '#87b2cf',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/blush.webp',
+      actions: {
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/chunbai/sakuno/uniform.webp',
+      big: true },
+
+    /* ============================== 纸上魔法使 ============================== */
+    { chars: ['伏见理央'],
+      main: '#e48e9d',
+      sub: '#f0c1c9',
+      rgb: '228, 142, 157',
+      motion: '#cd808d',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/blush.webp',
+      actions: {
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/rio/uniform.webp',
+      big: true },
+    { chars: ['克丽索贝莉露'],
+      main: '#a4d7ea',
+      sub: '#cde9f3',
+      rgb: '164, 215, 234',
+      motion: '#94c2d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/chryso/outfit1.webp',
+      big: true },
+    { chars: ['日向彼方'],
+      main: '#ee8db6',
+      sub: '#f6c0d7',
+      rgb: '238, 141, 182',
+      motion: '#d67fa4',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/puzzled.webp',
+        '腹黑笑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/smirk.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanata/uniform.webp',
+      big: true },
+    { chars: ['月社妃'],
+      main: '#f2e562',
+      sub: '#f8f1a9',
+      rgb: '242, 229, 98',
+      motion: '#dace58',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kisaki/uniform.webp',
+      big: true },
+    { chars: ['本城奏'],
+      main: '#967ce0',
+      sub: '#c5b7ee',
+      rgb: '150, 124, 224',
+      motion: '#8770ca',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanade/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/kanade/outfit1.webp',
+      big: true },
+    { chars: ['本城岬'],
+      main: '#9689e3',
+      sub: '#c5bef0',
+      rgb: '150, 137, 227',
+      motion: '#877bcc',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/misaki/uniform.webp',
+      big: true },
+    { chars: ['游行寺夜子'],
+      main: '#a4caea',
+      sub: '#cde2f3',
+      rgb: '164, 202, 234',
+      motion: '#94b6d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/smug.webp',
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yoruko/uniform.webp',
+      big: true },
+    { chars: ['游行寺暗子'],
+      main: '#de9371',
+      sub: '#edc4b1',
+      rgb: '222, 147, 113',
+      motion: '#c88466',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yamiko/normal.webp',
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/yamiko/outfit1.webp',
+      big: true },
+    { chars: ['游行寺汀'],
+      main: '#eec066',
+      sub: '#f6dcab',
+      rgb: '238, 192, 102',
+      motion: '#d6ad5c',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/zhishang/migiwa/normal.webp' },
+
+    /* ============================== 缘起甜韵趣恋丛生！ ============================== */
+    { chars: ['八乙女凉花'],
+      main: '#b2a4ea',
+      sub: '#d5cdf3',
+      rgb: '178, 164, 234',
+      motion: '#a094d3',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ryouka/uniform.webp',
+      big: true },
+    { chars: ['冈井蒲公英'],
+      main: '#af96e6',
+      sub: '#d3c5f1',
+      rgb: '175, 150, 230',
+      motion: '#9e87cf',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/blush.webp',
+      actions: {
+        '得意': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/smug.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tanpopo/uniform.webp',
+      big: true },
+    { chars: ['寿珠祈'],
+      main: '#f0d969',
+      sub: '#f7eaac',
+      rgb: '240, 217, 105',
+      motion: '#d8c35e',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/tamaki/uniform.webp',
+      big: true },
+    { chars: ['漆原绫子'],
+      main: '#94dfe6',
+      sub: '#c4edf1',
+      rgb: '148, 223, 230',
+      motion: '#85c9cf',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/ayako/outfit1.webp',
+      big: true },
+    { chars: ['衣川美卯'],
+      main: '#c36bdc',
+      sub: '#deaeec',
+      rgb: '195, 107, 220',
+      motion: '#b060c6',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/miu/uniform.webp',
+      big: true },
+    { chars: ['近江希未'],
+      main: '#ed93ab',
+      sub: '#f5c4d1',
+      rgb: '237, 147, 171',
+      motion: '#d5849a',
+      avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/normal.webp',
+      blush: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/blush.webp',
+      actions: {
+        '思考': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/thinking.webp',
+        '惊讶': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/surprised.webp',
+        '生气': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/angry.webp',
+        '疑惑': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/puzzled.webp',
+        '难过': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/sad.webp',
+        '高兴': 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/happy.webp' },
+      portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/uniform.webp',
+      big: true },
+  ];
   /* ↑ 2026-11-09 现代世界观新坑：原表里 197 条旧角色（西幻 / 勇战·MGQ / 黑魂系）已全部清空。
      以后加人照上面「★★★ 新增角色 ★★★」的示例往数组里追加一条就行：
        { chars: ['角色名', '角色名·全名'], main: '#c9a227', sub: '#fffdf5',
          rgb: '201, 162, 39', motion: '#e0c060', rose: true, big: true,
-         avatar: 'https://图床/xxx.png', portrait: 'https://图床/yyy.png' },
+         avatar: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/<作品拼音>/<角色拼音>/normal.webp', portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/<作品拼音>/<角色拼音>/uniform.webp' },
      想直接抄现成的格式，看下面 CSS 里保留的「克蕾雅 / 玛丽·安」两套规则。 */
 
   /* 由 NEW_CHARACTERS 生成 CSS：放在基础 CSS 之后，同优先级下后者胜。
@@ -329,6 +1508,16 @@
    * 由 _build_cast.py 生成，勿手改。
    * ========================================================================= */
   const CAST_IS = '[data-char="MAXX"], [data-char="八重野萤"], [data-char="白鹭茉百合"], [data-char="茉百合"], [data-char="冰川京一郎"], [data-char="稻羽结衣"], [data-char="结衣"], [data-char="电堂明"], [data-char="抚子"], [data-char="光"], [data-char="皇千羽耶"], [data-char="皇天音"], [data-char="天音"], [data-char="皇奏龙"], [data-char="九条玖琉璃"], [data-char="玖琉璃"], [data-char="水无濑樱子"], [data-char="丝茉茉"], [data-char="死神老师"], [data-char="小雪"], [data-char="雪代铃乃"], [data-char="铃乃"], [data-char="早河惠"], [data-char="冰堂芹香"], [data-char="朝仓千弘"], [data-char="菱川琴枝"], [data-char="牧濑皋月"], [data-char="千原乃亚"], [data-char="天城咲夜"], [data-char="天道八云"], [data-char="夏目朱里"], [data-char="一之濑舞织"], [data-char="安娜塔西亚"], [data-char="凤怜奈"], [data-char="凤一朗"], [data-char="猫西昭江"], [data-char="乾幸"], [data-char="瑞木杷虎"], [data-char="深山瑞希"], [data-char="狮子堂千晴"], [data-char="沃尔夫冈"], [data-char="乌丸铁子"], [data-char="乌丸紫月"], [data-char="佐藤洋"], [data-char="八十岛壹与"], [data-char="布琉艾特"], [data-char="枞山红叶"], [data-char="大藏安东尼"], [data-char="大藏骏我"], [data-char="大藏里想奈"], [data-char="大藏衣远"], [data-char="迪特琳德"], [data-char="花之宫瑞穗"], [data-char="华花"], [data-char="莉莉安奴"], [data-char="柳之濑凑"], [data-char="梅丽尔"], [data-char="名波七爱"], [data-char="让·皮埃尔"], [data-char="萨莎"], [data-char="山吹八千代"], [data-char="杉村北斗"], [data-char="瓦莲莉娅"], [data-char="小仓朝日"], [data-char="樱小路露娜"], [data-char="尤希尔"], [data-char="不知火怜"], [data-char="江利原美月"], [data-char="堺浩一"], [data-char="门胁樱"], [data-char="双叶沙那子"], [data-char="天司凉香"], [data-char="小峰真奈美"], [data-char="小石川珠音"], [data-char="新垣若菜"], [data-char="真原葵"], [data-char="真原祐里"], [data-char="佐佐原亮子"], [data-char="不二卫哉"], [data-char="茶园那优花"], [data-char="岛越月望"], [data-char="二见原莉莉子"], [data-char="砾川杰"], [data-char="砾川美玖"], [data-char="砾川雄真"], [data-char="阳见惠凪"], [data-char="隐杏珠"], [data-char="仲原大梦"], [data-char="莲华"], [data-char="铃森伊千果"], [data-char="藤堂咲"], [data-char="觋礼次郎"], [data-char="觋夕莉"], [data-char="觋夕摩"], [data-char="御殿场镜子"], [data-char="本间丽华"], [data-char="冰川里奈"], [data-char="冰川露莉莴"], [data-char="伯奇"], [data-char="草薙健一郎"], [data-char="草薙直哉"], [data-char="川内野铃菜"], [data-char="川内野优美"], [data-char="吹"], [data-char="东浪见"], [data-char="恩田宁"], [data-char="栗山奈津子"], [data-char="泷泽托马斯"], [data-char="麦提弗里曼"], [data-char="明石亘"], [data-char="明石小牧"], [data-char="明石小沙智"], [data-char="鸟谷纱希"], [data-char="鸟谷真琴"], [data-char="片贝巧实"], [data-char="若田清二郎"], [data-char="夏目圭"], [data-char="夏目蓝"], [data-char="夏目雫"], [data-char="咲崎樱子"], [data-char="一宫"], [data-char="御樱稟"], [data-char="御樱雄三"], [data-char="长山香奈"], [data-char="中村水菜"], [data-char="中村义贞"], [data-char="中村章一"], [data-char="柊乃乃未"], [data-char="克蕾雅"], [data-char="卢克蕾齐雅"], [data-char="玛丽·安"], [data-char="成濑沙月"], [data-char="九条都"], [data-char="高峰莲夜"], [data-char="苏菲缇雅"], [data-char="结城希亚"], [data-char="香坂春风"], [data-char="新海天"], [data-char="新海霞"], [data-char="新海翔"], [data-char="幽灵"], [data-char="深泽与一"], [data-char="草薙直绪"], [data-char="花子"], [data-char="大垣日向"], [data-char="飞鸟凑"], [data-char="贵船柚子"], [data-char="皆见美结"], [data-char="那波七海"], [data-char="西园寺风莉"]';
+  /* =========================================================================
+   * 图片源：GitHub 图库（直接写死绝对链接，不做任何运行时探测）
+   * -------------------------------------------------------------------------
+   *   仓库：https://github.com/jianchi89/galworld-assets
+   *   前缀：https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets
+   *
+   * 所以「图还没传上去」的时候头像当然是空的 —— 传完就有了。
+   * 换图（同名覆盖）后 jsDelivr 会缓存约 12 小时；想立刻生效就把前缀里的
+   * @main 换成新 tag（如 @v4），或者在网址后面加 ?v=2。
+   * ========================================================================= */
   const CAST_CSS = `
 
 
@@ -341,2858 +1530,2858 @@
 
 /* MAXX（飞翔心） */
 [data-char="MAXX"] {
-  --main: #83cfb4 !important;
-  --sub: #aee0ce !important;
-  --rgb: 131, 207, 180 !important;
-  --motion-color: #73b69e !important;}
+  --main: #92e8bf !important;
+  --sub: #c0f2da !important;
+  --rgb: 146, 232, 191 !important;
+  --motion-color: #83d1ac !important;}
 [data-char="MAXX"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/-MAXX-76d9f7f42a7dbcf7.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="MAXX"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="MAXX"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="MAXX"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/-MAXX-76d9f7f42a7dbcf7.png") !important;}
-[data-char="MAXX"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/-MAXX-76d9f7f42a7dbcf7.png") !important;}
+[data-char="MAXX"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/normal.webp") !important;}
+[data-char="MAXX"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/normal.webp") !important;}
 [data-char="MAXX"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/-MAXX-dde77116815f4792.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/maxx/uniform.webp") !important;}
 
 /* 八重野萤（飞翔心） */
 [data-char="八重野萤"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #93e0b5 !important;
+  --sub: #c0edd4 !important;
+  --rgb: 147, 224, 181 !important;
+  --motion-color: #84caa3 !important;}
 [data-char="八重野萤"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--81747ef3c1267501.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="八重野萤"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="八重野萤"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="八重野萤"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81747ef3c1267501.png") !important;}
-[data-char="八重野萤"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81747ef3c1267501.png") !important;}
+[data-char="八重野萤"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/normal.webp") !important;}
+[data-char="八重野萤"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/normal.webp") !important;}
 [data-char="八重野萤"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5c4b9c74318ff3a3.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bazhongyeying/uniform.webp") !important;}
 
 /* 白鹭茉百合（飞翔心） */
 [data-char="白鹭茉百合"], [data-char="茉百合"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #c2d6cf !important;
+  --sub: #dce7e3 !important;
+  --rgb: 194, 214, 207 !important;
+  --motion-color: #afc1ba !important;}
 [data-char="白鹭茉百合"] .custom-nvn-avatar-img, [data-char="茉百合"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a27b92f0a5bd4aba.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="白鹭茉百合"] .custom-nvn-avatar-popover, [data-char="茉百合"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="白鹭茉百合"] .custom-nvn-avatar-img::after, [data-char="茉百合"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="白鹭茉百合"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5d68ac3bf15e7362.png") !important;}
-[data-char="白鹭茉百合"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f1d6128b793d2d8f.png") !important;}
-[data-char="白鹭茉百合"][data-action="害羞"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8157282087351610.png") !important;}
-[data-char="白鹭茉百合"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1c47a8019066ba29.png") !important;}
-[data-char="白鹭茉百合"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--25b52212ec842bfc.png") !important;}
-[data-char="白鹭茉百合"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--dd0ddf2501851ac2.png") !important;}
-[data-char="白鹭茉百合"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5e7badf7b8f5126e.png") !important;}
-[data-char="白鹭茉百合"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5d68ac3bf15e7362.png") !important;}
-[data-char="白鹭茉百合"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b71d927b620d0e74.png") !important;}
-[data-char="白鹭茉百合"][data-action="难过"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e929682797968132.png") !important;}
-[data-char="白鹭茉百合"][data-action="生气"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f789286039744e3f.png") !important;}
-[data-char="白鹭茉百合"][data-action="通常"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a27b92f0a5bd4aba.png") !important;}
-[data-char="白鹭茉百合"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ff009efa71fa00c2.png") !important;}
+[data-char="白鹭茉百合"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/normal-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/happy.webp") !important;}
+[data-char="白鹭茉百合"][data-action="害羞"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/shy.webp") !important;}
+[data-char="白鹭茉百合"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/surprised.webp") !important;}
+[data-char="白鹭茉百合"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/happy-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/surprised-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/angry-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/normal-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/puzzled-blush.webp") !important;}
+[data-char="白鹭茉百合"][data-action="难过"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/sad.webp") !important;}
+[data-char="白鹭茉百合"][data-action="生气"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/angry.webp") !important;}
+[data-char="白鹭茉百合"][data-action="通常"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/normal.webp") !important;}
+[data-char="白鹭茉百合"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="茉百合"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/puzzled.webp") !important;}
 [data-char="白鹭茉百合"] .custom-nvn-portrait-full, [data-char="茉百合"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--14b337cfc4a7dca9.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bailumobaihe/uniform.webp") !important;}
 
 /* 冰川京一郎（飞翔心） */
 [data-char="冰川京一郎"] {
-  --main: #69717c !important;
-  --sub: #9ea3aa !important;
-  --rgb: 105, 113, 124 !important;
-  --motion-color: #5c636d !important;}
+  --main: #cbc2d6 !important;
+  --sub: #e1dce7 !important;
+  --rgb: 203, 194, 214 !important;
+  --motion-color: #b7afc1 !important;}
 [data-char="冰川京一郎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8cead9d7ab5551e5.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bingchuanjingyilang/normal.webp") !important;}
 [data-char="冰川京一郎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="冰川京一郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8cead9d7ab5551e5.png") !important;}
-[data-char="冰川京一郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8cead9d7ab5551e5.png") !important;}
+[data-char="冰川京一郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bingchuanjingyilang/normal.webp") !important;}
+[data-char="冰川京一郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/bingchuanjingyilang/normal.webp") !important;}
 
 /* 稻羽结衣（飞翔心） */
 [data-char="稻羽结衣"], [data-char="结衣"] {
-  --main: #b89271 !important;
-  --sub: #d1b8a3 !important;
-  --rgb: 184, 146, 113 !important;
-  --motion-color: #a28063 !important;}
+  --main: #e6b488 !important;
+  --sub: #f0d4ba !important;
+  --rgb: 230, 180, 136 !important;
+  --motion-color: #cfa27a !important;}
 [data-char="稻羽结衣"] .custom-nvn-avatar-img, [data-char="结衣"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--6c5493a013652a6f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="稻羽结衣"] .custom-nvn-avatar-popover, [data-char="结衣"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="稻羽结衣"] .custom-nvn-avatar-img::after, [data-char="结衣"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="稻羽结衣"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="结衣"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc5f50a524f65ac0.png") !important;}
-[data-char="稻羽结衣"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f7f970f509901fb0.png") !important;}
-[data-char="稻羽结衣"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5d2b5557a519fab4.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--26881b8bd4a6e468.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c29e0eb9715ecfba.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07d49639df181b3c.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--183477cbab6bf87b.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc5f50a524f65ac0.png") !important;}
-[data-char="稻羽结衣"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--22de4ff9a880ff8d.png") !important;}
-[data-char="稻羽结衣"][data-action="难过"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bd1f87841b0236d1.png") !important;}
-[data-char="稻羽结衣"][data-action="生气"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3d5ce9b43823718d.png") !important;}
-[data-char="稻羽结衣"][data-action="通常"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6c5493a013652a6f.png") !important;}
-[data-char="稻羽结衣"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1e0fe30ed747131c.png") !important;}
+[data-char="稻羽结衣"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="结衣"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/normal-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/happy.webp") !important;}
+[data-char="稻羽结衣"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/surprised.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/happy-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/surprised-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/sad-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/angry-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/normal-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/puzzled-blush.webp") !important;}
+[data-char="稻羽结衣"][data-action="难过"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/sad.webp") !important;}
+[data-char="稻羽结衣"][data-action="生气"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/angry.webp") !important;}
+[data-char="稻羽结衣"][data-action="通常"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/normal.webp") !important;}
+[data-char="稻羽结衣"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="结衣"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/puzzled.webp") !important;}
 [data-char="稻羽结衣"] .custom-nvn-portrait-full, [data-char="结衣"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--4fcc1c039adffec9.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/daoyujieyi/uniform.webp") !important;}
 
 /* 电堂明（飞翔心） */
 [data-char="电堂明"] {
-  --main: #83cfb4 !important;
-  --sub: #aee0ce !important;
-  --rgb: 131, 207, 180 !important;
-  --motion-color: #73b69e !important;}
+  --main: #92e8c6 !important;
+  --sub: #c0f2de !important;
+  --rgb: 146, 232, 198 !important;
+  --motion-color: #83d1b2 !important;}
 [data-char="电堂明"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--75e3afb5ee80d256.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="电堂明"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="电堂明"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="电堂明"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--75e3afb5ee80d256.png") !important;}
-[data-char="电堂明"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--75e3afb5ee80d256.png") !important;}
+[data-char="电堂明"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/normal.webp") !important;}
+[data-char="电堂明"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/normal.webp") !important;}
 [data-char="电堂明"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5faa4e295c8ddaba.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/diantangming/uniform.webp") !important;}
 
 /* 抚子（飞翔心） */
 [data-char="抚子"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #92b1e8 !important;
+  --sub: #c0d2f2 !important;
+  --rgb: 146, 177, 232 !important;
+  --motion-color: #839fd1 !important;}
 [data-char="抚子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--be781711019dc991.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="抚子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="抚子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="抚子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--be781711019dc991.png") !important;}
-[data-char="抚子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--be781711019dc991.png") !important;}
+[data-char="抚子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/normal.webp") !important;}
+[data-char="抚子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/normal.webp") !important;}
 [data-char="抚子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--640342f3c772050b.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/fuzi/uniform.webp") !important;}
 
 /* 光（飞翔心） */
 [data-char="光"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #92bde8 !important;
+  --sub: #c0d9f2 !important;
+  --rgb: 146, 189, 232 !important;
+  --motion-color: #83aad1 !important;}
 [data-char="光"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--c657d513459fd3be.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="光"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="光"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="光"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c657d513459fd3be.png") !important;}
-[data-char="光"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c657d513459fd3be.png") !important;}
+[data-char="光"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/normal.webp") !important;}
+[data-char="光"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/normal.webp") !important;}
 [data-char="光"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--55b779d9737219e6.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/guang/uniform.webp") !important;}
 
 /* 皇千羽耶（飞翔心） */
 [data-char="皇千羽耶"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2d087 !important;
+  --sub: #f7e4b9 !important;
+  --rgb: 242, 208, 135 !important;
+  --motion-color: #dabb7a !important;}
 [data-char="皇千羽耶"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3860c953b54f0a34.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="皇千羽耶"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="皇千羽耶"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="皇千羽耶"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3860c953b54f0a34.png") !important;}
-[data-char="皇千羽耶"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3860c953b54f0a34.png") !important;}
+[data-char="皇千羽耶"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/normal.webp") !important;}
+[data-char="皇千羽耶"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/normal.webp") !important;}
 [data-char="皇千羽耶"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5a0c07566af3c0f7.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangqianyuye/uniform.webp") !important;}
 
 /* 皇天音（飞翔心） */
 [data-char="皇天音"], [data-char="天音"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2da87 !important;
+  --sub: #f7eab9 !important;
+  --rgb: 242, 218, 135 !important;
+  --motion-color: #dac47a !important;}
 [data-char="皇天音"] .custom-nvn-avatar-img, [data-char="天音"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--aae5980bde7c50d1.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="皇天音"] .custom-nvn-avatar-popover, [data-char="天音"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="皇天音"] .custom-nvn-avatar-img::after, [data-char="天音"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="皇天音"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="天音"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f5ca8bf1430d6147.png") !important;}
-[data-char="皇天音"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="天音"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce9fd9dd44821062.png") !important;}
-[data-char="皇天音"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="天音"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--54d6aa51b9451e85.png") !important;}
-[data-char="皇天音"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--eb25e30ef38d2883.png") !important;}
-[data-char="皇天音"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0fff87060e884cae.png") !important;}
-[data-char="皇天音"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bbf9de6fb9e1935a.png") !important;}
-[data-char="皇天音"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9b0db7c9fe5ddad1.png") !important;}
-[data-char="皇天音"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f5ca8bf1430d6147.png") !important;}
-[data-char="皇天音"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--368f6d306f893882.png") !important;}
-[data-char="皇天音"][data-action="难过"] .custom-nvn-avatar-img, [data-char="天音"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07e14a389628abbd.png") !important;}
-[data-char="皇天音"][data-action="生气"] .custom-nvn-avatar-img, [data-char="天音"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0feb2290ef442668.png") !important;}
-[data-char="皇天音"][data-action="通常"] .custom-nvn-avatar-img, [data-char="天音"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aae5980bde7c50d1.png") !important;}
-[data-char="皇天音"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="天音"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--dcbbc01ad533ceb6.png") !important;}
+[data-char="皇天音"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="天音"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/normal-blush.webp") !important;}
+[data-char="皇天音"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="天音"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/happy.webp") !important;}
+[data-char="皇天音"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="天音"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/surprised.webp") !important;}
+[data-char="皇天音"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/happy-blush.webp") !important;}
+[data-char="皇天音"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/surprised-blush.webp") !important;}
+[data-char="皇天音"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/sad-blush.webp") !important;}
+[data-char="皇天音"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/angry-blush.webp") !important;}
+[data-char="皇天音"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/normal-blush.webp") !important;}
+[data-char="皇天音"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="天音"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/puzzled-blush.webp") !important;}
+[data-char="皇天音"][data-action="难过"] .custom-nvn-avatar-img, [data-char="天音"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/sad.webp") !important;}
+[data-char="皇天音"][data-action="生气"] .custom-nvn-avatar-img, [data-char="天音"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/angry.webp") !important;}
+[data-char="皇天音"][data-action="通常"] .custom-nvn-avatar-img, [data-char="天音"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/normal.webp") !important;}
+[data-char="皇天音"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="天音"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/puzzled.webp") !important;}
 [data-char="皇天音"] .custom-nvn-portrait-full, [data-char="天音"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--1154d53ba280985f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangtianyin/uniform.webp") !important;}
 
 /* 皇奏龙（飞翔心） */
 [data-char="皇奏龙"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2c887 !important;
+  --sub: #f7dfb9 !important;
+  --rgb: 242, 200, 135 !important;
+  --motion-color: #dab47a !important;}
 [data-char="皇奏龙"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--0fb3fd8019ef9e05.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="皇奏龙"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="皇奏龙"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="皇奏龙"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0fb3fd8019ef9e05.png") !important;}
-[data-char="皇奏龙"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0fb3fd8019ef9e05.png") !important;}
+[data-char="皇奏龙"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/normal.webp") !important;}
+[data-char="皇奏龙"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/normal.webp") !important;}
 [data-char="皇奏龙"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--e8c05d085d837df1.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/huangzoulong/uniform.webp") !important;}
 
 /* 九条玖琉璃（飞翔心） */
 [data-char="九条玖琉璃"], [data-char="玖琉璃"] {
-  --main: #7ca3d8 !important;
-  --sub: #aac3e6 !important;
-  --rgb: 124, 163, 216 !important;
-  --motion-color: #6d8fbe !important;}
+  --main: #89b6f1 !important;
+  --sub: #bbd5f7 !important;
+  --rgb: 137, 182, 241 !important;
+  --motion-color: #7ba4d9 !important;}
 [data-char="九条玖琉璃"] .custom-nvn-avatar-img, [data-char="玖琉璃"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--69f500047ee50659.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="九条玖琉璃"] .custom-nvn-avatar-popover, [data-char="玖琉璃"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="九条玖琉璃"] .custom-nvn-avatar-img::after, [data-char="玖琉璃"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="九条玖琉璃"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="玖琉璃"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--69f500047ee50659.png") !important;}
-[data-char="九条玖琉璃"][data-action="通常"] .custom-nvn-avatar-img, [data-char="玖琉璃"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--69f500047ee50659.png") !important;}
+[data-char="九条玖琉璃"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="玖琉璃"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/normal.webp") !important;}
+[data-char="九条玖琉璃"][data-action="通常"] .custom-nvn-avatar-img, [data-char="玖琉璃"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/normal.webp") !important;}
 [data-char="九条玖琉璃"] .custom-nvn-portrait-full, [data-char="玖琉璃"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--010c4e51c894e031.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/jiutiaojiuliuli/uniform.webp") !important;}
 
 /* 水无濑樱子（飞翔心） */
 [data-char="水无濑樱子"] {
-  --main: #dd88a4 !important;
-  --sub: #e9b2c4 !important;
-  --rgb: 221, 136, 164 !important;
-  --motion-color: #c27890 !important;}
+  --main: #f287a1 !important;
+  --sub: #f7b9c8 !important;
+  --rgb: 242, 135, 161 !important;
+  --motion-color: #da7a91 !important;}
 [data-char="水无濑樱子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--cbe9719abaee30c4.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="水无濑樱子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="水无濑樱子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="水无濑樱子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6c35a387de06cd6f.png") !important;}
-[data-char="水无濑樱子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cdfc0c3f0f260608.png") !important;}
-[data-char="水无濑樱子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--911d76c11e670b82.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1c05c29da7362613.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7c8042775752243e.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3cf066e7dde8d509.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--06afaf0c8aec1611.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6c35a387de06cd6f.png") !important;}
-[data-char="水无濑樱子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c677e02e053e6a38.png") !important;}
-[data-char="水无濑樱子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6fcd0544841a543f.png") !important;}
-[data-char="水无濑樱子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--44fb251516592af5.png") !important;}
-[data-char="水无濑樱子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cbe9719abaee30c4.png") !important;}
-[data-char="水无濑樱子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4f3030955cd23be3.png") !important;}
+[data-char="水无濑樱子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/normal-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/happy.webp") !important;}
+[data-char="水无濑樱子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/surprised.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/happy-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/surprised-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/sad-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/angry-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/normal-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/puzzled-blush.webp") !important;}
+[data-char="水无濑樱子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/sad.webp") !important;}
+[data-char="水无濑樱子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/angry.webp") !important;}
+[data-char="水无濑樱子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/normal.webp") !important;}
+[data-char="水无濑樱子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/puzzled.webp") !important;}
 [data-char="水无濑樱子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--4650c012d35106af.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/shuiwulaiyingzi/uniform.webp") !important;}
 
 /* 丝茉茉（飞翔心） */
 [data-char="丝茉茉"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #91b9e8 !important;
+  --sub: #bfd6f2 !important;
+  --rgb: 145, 185, 232 !important;
+  --motion-color: #82a6d1 !important;}
 [data-char="丝茉茉"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f035f45f46079fcb.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="丝茉茉"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="丝茉茉"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="丝茉茉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f035f45f46079fcb.png") !important;}
-[data-char="丝茉茉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f035f45f46079fcb.png") !important;}
+[data-char="丝茉茉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/normal.webp") !important;}
+[data-char="丝茉茉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/normal.webp") !important;}
 [data-char="丝茉茉"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--860c70a1f6162739.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/simomo/uniform.webp") !important;}
 
 /* 死神老师（飞翔心） */
 [data-char="死神老师"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #89bfe6 !important;
+  --sub: #bbdaf0 !important;
+  --rgb: 137, 191, 230 !important;
+  --motion-color: #7baccf !important;}
 [data-char="死神老师"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--19ff3e3c0ffb11d1.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="死神老师"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="死神老师"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="死神老师"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--19ff3e3c0ffb11d1.png") !important;}
-[data-char="死神老师"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--19ff3e3c0ffb11d1.png") !important;}
+[data-char="死神老师"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/normal.webp") !important;}
+[data-char="死神老师"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/normal.webp") !important;}
 [data-char="死神老师"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--881e041503a294a9.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/sishenlaoshi/uniform.webp") !important;}
 
 /* 小雪（飞翔心） */
 [data-char="小雪"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #8cb4e7 !important;
+  --sub: #bcd4f1 !important;
+  --rgb: 140, 180, 231 !important;
+  --motion-color: #7ea2d0 !important;}
 [data-char="小雪"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--9db67e88eba351d6.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="小雪"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="小雪"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="小雪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9db67e88eba351d6.png") !important;}
-[data-char="小雪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9db67e88eba351d6.png") !important;}
+[data-char="小雪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/normal.webp") !important;}
+[data-char="小雪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/normal.webp") !important;}
 [data-char="小雪"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--6c093e6fed749bdf.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xiaoxue/uniform.webp") !important;}
 
 /* 雪代铃乃（飞翔心） */
 [data-char="雪代铃乃"], [data-char="铃乃"] {
-  --main: #acacb9 !important;
-  --sub: #c9c9d2 !important;
-  --rgb: 172, 172, 185 !important;
-  --motion-color: #9797a3 !important;}
+  --main: #c1cbd7 !important;
+  --sub: #dbe1e8 !important;
+  --rgb: 193, 203, 215 !important;
+  --motion-color: #aeb7c2 !important;}
 [data-char="雪代铃乃"] .custom-nvn-avatar-img, [data-char="铃乃"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d9f51c9b83025311.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="雪代铃乃"] .custom-nvn-avatar-popover, [data-char="铃乃"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="雪代铃乃"] .custom-nvn-avatar-img::after, [data-char="铃乃"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="雪代铃乃"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f907d039d7c582c5.png") !important;}
-[data-char="雪代铃乃"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--768ce31ccac89122.png") !important;}
-[data-char="雪代铃乃"][data-action="害羞"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b285571e1e5e06c0.png") !important;}
-[data-char="雪代铃乃"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e354c0f58ff55010.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0c491f7cfc6dd1b8.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6c6c1569033354f5.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2617862d56f73f96.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--568e37c490e28051.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f907d039d7c582c5.png") !important;}
-[data-char="雪代铃乃"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--899f762b87a4e078.png") !important;}
-[data-char="雪代铃乃"][data-action="难过"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3a5108a225dba5c2.png") !important;}
-[data-char="雪代铃乃"][data-action="生气"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b3ba7f8630307d99.png") !important;}
-[data-char="雪代铃乃"][data-action="通常"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d9f51c9b83025311.png") !important;}
-[data-char="雪代铃乃"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--be2a7afefc789f36.png") !important;}
+[data-char="雪代铃乃"][data-action^="脸红"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/normal-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="高兴"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/happy.webp") !important;}
+[data-char="雪代铃乃"][data-action="害羞"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/shy.webp") !important;}
+[data-char="雪代铃乃"][data-action="惊讶"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/surprised.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红高兴"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/happy-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红惊讶"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/surprised-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红难过"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/sad-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红生气"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/angry-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红通常"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/normal-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="脸红疑惑"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/puzzled-blush.webp") !important;}
+[data-char="雪代铃乃"][data-action="难过"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/sad.webp") !important;}
+[data-char="雪代铃乃"][data-action="生气"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/angry.webp") !important;}
+[data-char="雪代铃乃"][data-action="通常"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/normal.webp") !important;}
+[data-char="雪代铃乃"][data-action="疑惑"] .custom-nvn-avatar-img, [data-char="铃乃"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/puzzled.webp") !important;}
 [data-char="雪代铃乃"] .custom-nvn-portrait-full, [data-char="铃乃"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--22341338598a048f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/xuedailingnai/uniform.webp") !important;}
 
 /* 早河惠（飞翔心） */
 [data-char="早河惠"] {
-  --main: #8a6fb8 !important;
-  --sub: #b3a1d1 !important;
-  --rgb: 138, 111, 184 !important;
-  --motion-color: #7962a2 !important;}
+  --main: #ac7de4 !important;
+  --sub: #cfb4ef !important;
+  --rgb: 172, 125, 228 !important;
+  --motion-color: #a578db !important;}
 [data-char="早河惠"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--e99e811ca6c3bd0b.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="早河惠"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="早河惠"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="早河惠"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e99e811ca6c3bd0b.png") !important;}
-[data-char="早河惠"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e99e811ca6c3bd0b.png") !important;}
+[data-char="早河惠"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/normal.webp") !important;}
+[data-char="早河惠"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/normal.webp") !important;}
 [data-char="早河惠"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--3c7c371ef0932efb.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/feixiangxin/zaohehui/uniform.webp") !important;}
 
 /* 冰堂芹香（芬芳） */
 [data-char="冰堂芹香"] {
-  --main: #d3b892 !important;
-  --sub: #e2d1b8 !important;
-  --rgb: 211, 184, 146 !important;
-  --motion-color: #baa280 !important;}
+  --main: #e8c592 !important;
+  --sub: #f2ddc0 !important;
+  --rgb: 232, 197, 146 !important;
+  --motion-color: #d1b183 !important;}
 [data-char="冰堂芹香"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--df4f5b7f9d43180d.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="冰堂芹香"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="冰堂芹香"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="冰堂芹香"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--936734450ea5a05d.png") !important;}
-[data-char="冰堂芹香"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0dab4b4a63b3f2bc.png") !important;}
-[data-char="冰堂芹香"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5e978b803656b9b9.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ba9aa98927a613a5.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--573431176342ba13.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--12621d0cd896a259.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cfb23ec2be7e0f22.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--936734450ea5a05d.png") !important;}
-[data-char="冰堂芹香"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0f4b1f3e362ebf64.png") !important;}
-[data-char="冰堂芹香"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c51bf7b52b2fd504.png") !important;}
-[data-char="冰堂芹香"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3bf0a682af390ae2.png") !important;}
-[data-char="冰堂芹香"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--df4f5b7f9d43180d.png") !important;}
-[data-char="冰堂芹香"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d1c511f6e0e97355.png") !important;}
+[data-char="冰堂芹香"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/normal-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/happy.webp") !important;}
+[data-char="冰堂芹香"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/surprised.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/happy-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/surprised-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/sad-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/angry-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/normal-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/puzzled-blush.webp") !important;}
+[data-char="冰堂芹香"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/sad.webp") !important;}
+[data-char="冰堂芹香"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/angry.webp") !important;}
+[data-char="冰堂芹香"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/normal.webp") !important;}
+[data-char="冰堂芹香"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/puzzled.webp") !important;}
 [data-char="冰堂芹香"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--95178cbf5b25349f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/bingtangqinxiang/outfit1.webp") !important;}
 
 /* 朝仓千弘（芬芳） */
 [data-char="朝仓千弘"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da8c51 !important;
+  --sub: #eabc9a !important;
+  --rgb: 218, 140, 81 !important;
+  --motion-color: #c47e49 !important;}
 [data-char="朝仓千弘"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--7dd11b16024f5f30.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="朝仓千弘"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="朝仓千弘"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="朝仓千弘"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f5af9bf7707f95fc.png") !important;}
-[data-char="朝仓千弘"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a2b809504f7e7393.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--13b9e803d5476688.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aada3e6cc7e340b8.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f362f8f4aa1924e4.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2a56ba9cf93a4f33.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f5af9bf7707f95fc.png") !important;}
-[data-char="朝仓千弘"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6fad96dea79bf45c.png") !important;}
-[data-char="朝仓千弘"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7a7d5e71ce2dd140.png") !important;}
-[data-char="朝仓千弘"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--19be33eccc156c52.png") !important;}
-[data-char="朝仓千弘"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7dd11b16024f5f30.png") !important;}
-[data-char="朝仓千弘"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3be0113443514278.png") !important;}
+[data-char="朝仓千弘"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/normal-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/happy.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/happy-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/surprised-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/sad-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/angry-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/normal-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/puzzled-blush.webp") !important;}
+[data-char="朝仓千弘"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/sad.webp") !important;}
+[data-char="朝仓千弘"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/angry.webp") !important;}
+[data-char="朝仓千弘"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/normal.webp") !important;}
+[data-char="朝仓千弘"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/puzzled.webp") !important;}
 [data-char="朝仓千弘"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--bf36df2a3f822f44.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/chaocangqianhong/uniform.webp") !important;}
 
 /* 菱川琴枝（芬芳） */
 [data-char="菱川琴枝"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da794e !important;
+  --sub: #eab198 !important;
+  --rgb: 218, 121, 78 !important;
+  --motion-color: #d1744b !important;}
 [data-char="菱川琴枝"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--dd2befb1b87fde4a.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="菱川琴枝"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="菱川琴枝"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="菱川琴枝"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--dd2befb1b87fde4a.png") !important;}
-[data-char="菱川琴枝"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--dd2befb1b87fde4a.png") !important;}
+[data-char="菱川琴枝"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/normal.webp") !important;}
+[data-char="菱川琴枝"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/normal.webp") !important;}
 [data-char="菱川琴枝"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ab6a4a39d2c65234.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/lingchuanqinzhi/outfit1.webp") !important;}
 
 /* 牧濑皋月（芬芳） */
 [data-char="牧濑皋月"] {
-  --main: #5078af !important;
-  --sub: #8da7cb !important;
-  --rgb: 80, 120, 175 !important;
-  --motion-color: #466a9a !important;}
+  --main: #679cdf !important;
+  --sub: #a7c6ec !important;
+  --rgb: 103, 156, 223 !important;
+  --motion-color: #5d8cc9 !important;}
 [data-char="牧濑皋月"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8012393a4d343e0f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="牧濑皋月"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="牧濑皋月"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="牧濑皋月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2e2460f72935b16f.png") !important;}
-[data-char="牧濑皋月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--69e00f9357304c0a.png") !important;}
-[data-char="牧濑皋月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a229e89eadce87c8.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6ead16b279b331b5.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fe1d23dadf88ca4a.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e09c966ce2db8062.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9261740381fc781b.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2e2460f72935b16f.png") !important;}
-[data-char="牧濑皋月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81243abc08877aef.png") !important;}
-[data-char="牧濑皋月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5839658b4849a38c.png") !important;}
-[data-char="牧濑皋月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9c885bf5f6fe7f24.png") !important;}
-[data-char="牧濑皋月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8012393a4d343e0f.png") !important;}
-[data-char="牧濑皋月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--67397aeda93153b3.png") !important;}
+[data-char="牧濑皋月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/normal-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/happy.webp") !important;}
+[data-char="牧濑皋月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/surprised.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/happy-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/surprised-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/sad-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/angry-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/normal-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/puzzled-blush.webp") !important;}
+[data-char="牧濑皋月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/sad.webp") !important;}
+[data-char="牧濑皋月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/angry.webp") !important;}
+[data-char="牧濑皋月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/normal.webp") !important;}
+[data-char="牧濑皋月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/puzzled.webp") !important;}
 [data-char="牧濑皋月"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--e95e68291330ae72.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/mulaigaoyue/uniform.webp") !important;}
 
 /* 千原乃亚（芬芳） */
 [data-char="千原乃亚"] {
-  --main: #7a568f !important;
-  --sub: #a991b6 !important;
-  --rgb: 122, 86, 143 !important;
-  --motion-color: #6b4c7e !important;}
+  --main: #bc6ce0 !important;
+  --sub: #d8aaed !important;
+  --rgb: 188, 108, 224 !important;
+  --motion-color: #b468d7 !important;}
 [data-char="千原乃亚"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--4da5388be869ddcb.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="千原乃亚"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="千原乃亚"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="千原乃亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f760c3b17ef7966c.png") !important;}
-[data-char="千原乃亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--86e5f2fa4dbb18df.png") !important;}
-[data-char="千原乃亚"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a1bd83c382d59b93.png") !important;}
-[data-char="千原乃亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9f6807a1825ed96c.png") !important;}
-[data-char="千原乃亚"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f4c9f8938af20980.png") !important;}
-[data-char="千原乃亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1d9bf3118d753a2b.png") !important;}
-[data-char="千原乃亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3602b3af333c0d41.png") !important;}
-[data-char="千原乃亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f760c3b17ef7966c.png") !important;}
-[data-char="千原乃亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f259d08906d30cc8.png") !important;}
-[data-char="千原乃亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--21ad3b7e7ef32400.png") !important;}
-[data-char="千原乃亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d88d1626a420b3d2.png") !important;}
-[data-char="千原乃亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4da5388be869ddcb.png") !important;}
-[data-char="千原乃亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--05ed991eb8f1a54e.png") !important;}
+[data-char="千原乃亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/normal-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/happy.webp") !important;}
+[data-char="千原乃亚"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/surprised.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/happy-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/surprised-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/sad-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/angry-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/normal-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/puzzled-blush.webp") !important;}
+[data-char="千原乃亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/sad.webp") !important;}
+[data-char="千原乃亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/angry.webp") !important;}
+[data-char="千原乃亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/normal.webp") !important;}
+[data-char="千原乃亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/puzzled.webp") !important;}
 [data-char="千原乃亚"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--eb2795948548570a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/qianyuannaiya/uniform.webp") !important;}
 
 /* 天城咲夜（芬芳） */
 [data-char="天城咲夜"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #c092e8 !important;
+  --sub: #dac0f2 !important;
+  --rgb: 192, 146, 232 !important;
+  --motion-color: #ad83d1 !important;}
 [data-char="天城咲夜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8a27d536a7089457.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="天城咲夜"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="天城咲夜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="天城咲夜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9587aa135cbe2aa7.png") !important;}
-[data-char="天城咲夜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--29afc13864e80021.png") !important;}
-[data-char="天城咲夜"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--efc4a3cfc15137ad.png") !important;}
-[data-char="天城咲夜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9163cd76cfda2962.png") !important;}
-[data-char="天城咲夜"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ba55820060a0c6b2.png") !important;}
-[data-char="天城咲夜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2be068bc43202992.png") !important;}
-[data-char="天城咲夜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--635b37a7f21c32c5.png") !important;}
-[data-char="天城咲夜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9587aa135cbe2aa7.png") !important;}
-[data-char="天城咲夜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07d9390c56b21919.png") !important;}
-[data-char="天城咲夜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--469a2026d1194b60.png") !important;}
-[data-char="天城咲夜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a640a64748e795b8.png") !important;}
-[data-char="天城咲夜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8a27d536a7089457.png") !important;}
-[data-char="天城咲夜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--044801152cf28e13.png") !important;}
+[data-char="天城咲夜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/normal-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/happy.webp") !important;}
+[data-char="天城咲夜"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/surprised.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/happy-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/surprised-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/sad-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/angry-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/normal-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/puzzled-blush.webp") !important;}
+[data-char="天城咲夜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/sad.webp") !important;}
+[data-char="天城咲夜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/angry.webp") !important;}
+[data-char="天城咲夜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/normal.webp") !important;}
+[data-char="天城咲夜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/puzzled.webp") !important;}
 [data-char="天城咲夜"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--501c662b8d22b3ca.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tianchengxiaoye/uniform.webp") !important;}
 
 /* 天道八云（芬芳） */
 [data-char="天道八云"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da8f4e !important;
+  --sub: #eabe98 !important;
+  --rgb: 218, 143, 78 !important;
+  --motion-color: #c48146 !important;}
 [data-char="天道八云"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a953b676b5dd2a97.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="天道八云"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="天道八云"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="天道八云"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a953b676b5dd2a97.png") !important;}
-[data-char="天道八云"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a953b676b5dd2a97.png") !important;}
+[data-char="天道八云"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/normal.webp") !important;}
+[data-char="天道八云"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/normal.webp") !important;}
 [data-char="天道八云"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--d274a21a19485d46.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/tiandaobayun/outfit1.webp") !important;}
 
 /* 夏目朱里（芬芳） */
 [data-char="夏目朱里"] {
-  --main: #e8799f !important;
-  --sub: #f0a8c1 !important;
-  --rgb: 232, 121, 159 !important;
-  --motion-color: #cc6a8c !important;}
+  --main: #f584b9 !important;
+  --sub: #f9b8d6 !important;
+  --rgb: 245, 132, 185 !important;
+  --motion-color: #dc77a6 !important;}
 [data-char="夏目朱里"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--895e3e04c5b496f9.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="夏目朱里"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="夏目朱里"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="夏目朱里"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cafe43c950cbd681.png") !important;}
-[data-char="夏目朱里"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f4fec1b43137e873.png") !important;}
-[data-char="夏目朱里"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1e1ffaf92f77a6e2.png") !important;}
-[data-char="夏目朱里"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e31732690e1c2940.png") !important;}
-[data-char="夏目朱里"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce227265052b1a29.png") !important;}
-[data-char="夏目朱里"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--70e407cd2240533d.png") !important;}
-[data-char="夏目朱里"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cafe43c950cbd681.png") !important;}
-[data-char="夏目朱里"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b9c262c106e288ba.png") !important;}
-[data-char="夏目朱里"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0084c60669aa54be.png") !important;}
-[data-char="夏目朱里"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4129404a67165a5e.png") !important;}
-[data-char="夏目朱里"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4a7f1b4bedfbf867.png") !important;}
-[data-char="夏目朱里"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--895e3e04c5b496f9.png") !important;}
-[data-char="夏目朱里"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7f775bb537c0ba7e.png") !important;}
+[data-char="夏目朱里"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/normal-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/happy.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/happy-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/sad-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/angry-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/thinking-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/normal-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/puzzled-blush.webp") !important;}
+[data-char="夏目朱里"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/sad.webp") !important;}
+[data-char="夏目朱里"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/angry.webp") !important;}
+[data-char="夏目朱里"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/thinking.webp") !important;}
+[data-char="夏目朱里"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/normal.webp") !important;}
+[data-char="夏目朱里"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/puzzled.webp") !important;}
 [data-char="夏目朱里"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--a3a5ba6d03a90837.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/xiamuzhuli/uniform.webp") !important;}
 
 /* 一之濑舞织（芬芳） */
 [data-char="一之濑舞织"] {
-  --main: #684f96 !important;
-  --sub: #9d8dbb !important;
-  --rgb: 104, 79, 150 !important;
-  --motion-color: #5c4684 !important;}
+  --main: #a07de3 !important;
+  --sub: #c8b4ef !important;
+  --rgb: 160, 125, 227 !important;
+  --motion-color: #9a78da !important;}
 [data-char="一之濑舞织"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--921511b16c4df204.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="一之濑舞织"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="一之濑舞织"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="一之濑舞织"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--921511b16c4df204.png") !important;}
-[data-char="一之濑舞织"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--921511b16c4df204.png") !important;}
+[data-char="一之濑舞织"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/normal.webp") !important;}
+[data-char="一之濑舞织"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/normal.webp") !important;}
 [data-char="一之濑舞织"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--982bca7f2f51ef09.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/fenfang/yizhilaiwuzhi/outfit1.webp") !important;}
 
 /* 安娜塔西亚（画布） */
 [data-char="安娜塔西亚"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #bf92e8 !important;
+  --sub: #dac0f2 !important;
+  --rgb: 191, 146, 232 !important;
+  --motion-color: #ac83d1 !important;}
 [data-char="安娜塔西亚"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--9cec81ebcb330f91.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="安娜塔西亚"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="安娜塔西亚"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="安娜塔西亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1929c657e4a1e28b.png") !important;}
-[data-char="安娜塔西亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce789617f2705af2.png") !important;}
-[data-char="安娜塔西亚"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b3a071d65933528a.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--20fbcb618c24f793.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2e5d1ee404548d60.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c63f7d9820d286a9.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c4ac97604225768b.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1929c657e4a1e28b.png") !important;}
-[data-char="安娜塔西亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--48713e9b814bea11.png") !important;}
-[data-char="安娜塔西亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--19efd622fb1bd151.png") !important;}
-[data-char="安娜塔西亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--384eb47306d77bb0.png") !important;}
-[data-char="安娜塔西亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9cec81ebcb330f91.png") !important;}
-[data-char="安娜塔西亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e39c8e9d9ebde501.png") !important;}
+[data-char="安娜塔西亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/normal-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/happy.webp") !important;}
+[data-char="安娜塔西亚"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/surprised.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/happy-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/surprised-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/sad-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/angry-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/normal-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/puzzled-blush.webp") !important;}
+[data-char="安娜塔西亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/sad.webp") !important;}
+[data-char="安娜塔西亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/angry.webp") !important;}
+[data-char="安娜塔西亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/normal.webp") !important;}
+[data-char="安娜塔西亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/puzzled.webp") !important;}
 [data-char="安娜塔西亚"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--a43e8e086e84ee4f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/annataxiya/uniform.webp") !important;}
 
 /* 凤怜奈（画布） */
 [data-char="凤怜奈"] {
-  --main: #ae4756 !important;
-  --sub: #ca8791 !important;
-  --rgb: 174, 71, 86 !important;
-  --motion-color: #993e4c !important;}
+  --main: #df696f !important;
+  --sub: #eca8ab !important;
+  --rgb: 223, 105, 111 !important;
+  --motion-color: #d6656b !important;}
 [data-char="凤怜奈"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8cfd64c920a42a7e.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="凤怜奈"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="凤怜奈"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="凤怜奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d6a19f3c5d62f352.png") !important;}
-[data-char="凤怜奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a7d18715629fa4dd.png") !important;}
-[data-char="凤怜奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3a855c45bd274bec.png") !important;}
-[data-char="凤怜奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--debd1fa0dff25fb2.png") !important;}
-[data-char="凤怜奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c6f778d7f94b6416.png") !important;}
-[data-char="凤怜奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--78ff21f4bc8575a2.png") !important;}
-[data-char="凤怜奈"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--262ca33252cd6ab5.png") !important;}
-[data-char="凤怜奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d6a19f3c5d62f352.png") !important;}
-[data-char="凤怜奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8e895792d70477bd.png") !important;}
-[data-char="凤怜奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4315cb6abf798597.png") !important;}
-[data-char="凤怜奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b155f6c5c37b0f1a.png") !important;}
-[data-char="凤怜奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8cfd64c920a42a7e.png") !important;}
-[data-char="凤怜奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7eda9c80e54a0017.png") !important;}
+[data-char="凤怜奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/normal-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/happy.webp") !important;}
+[data-char="凤怜奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/surprised.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/happy-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/surprised-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/sad-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/angry-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/normal-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/puzzled-blush.webp") !important;}
+[data-char="凤怜奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/sad.webp") !important;}
+[data-char="凤怜奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/angry.webp") !important;}
+[data-char="凤怜奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/normal.webp") !important;}
+[data-char="凤怜奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/puzzled.webp") !important;}
 [data-char="凤怜奈"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--e5848274209dafb8.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengliannai/uniform.webp") !important;}
 
 /* 凤一朗（画布） */
 [data-char="凤一朗"] {
-  --main: #9e6847 !important;
-  --sub: #c09d87 !important;
-  --rgb: 158, 104, 71 !important;
-  --motion-color: #8b5c3e !important;}
+  --main: #da804f !important;
+  --sub: #eab599 !important;
+  --rgb: 218, 128, 79 !important;
+  --motion-color: #c47347 !important;}
 [data-char="凤一朗"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--db1a0e7eb6ade387.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="凤一朗"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="凤一朗"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="凤一朗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--db1a0e7eb6ade387.png") !important;}
-[data-char="凤一朗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--db1a0e7eb6ade387.png") !important;}
+[data-char="凤一朗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/normal.webp") !important;}
+[data-char="凤一朗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/normal.webp") !important;}
 [data-char="凤一朗"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ea92c8caddc9b16f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/fengyilang/outfit1.webp") !important;}
 
 /* 猫西昭江（画布） */
 [data-char="猫西昭江"] {
-  --main: #5da1a5 !important;
-  --sub: #96c2c4 !important;
-  --rgb: 93, 161, 165 !important;
-  --motion-color: #528e91 !important;}
+  --main: #6bcae0 !important;
+  --sub: #a9e0ed !important;
+  --rgb: 107, 202, 224 !important;
+  --motion-color: #60b6ca !important;}
 [data-char="猫西昭江"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--1ae124b758a26580.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="猫西昭江"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="猫西昭江"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="猫西昭江"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1ae124b758a26580.png") !important;}
-[data-char="猫西昭江"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1ae124b758a26580.png") !important;}
+[data-char="猫西昭江"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/normal.webp") !important;}
+[data-char="猫西昭江"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/normal.webp") !important;}
 [data-char="猫西昭江"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--f13a7437b6e83ae7.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/maoxizhaojiang/outfit1.webp") !important;}
 
 /* 乾幸（画布） */
 [data-char="乾幸"] {
-  --main: #b89271 !important;
-  --sub: #d1b8a3 !important;
-  --rgb: 184, 146, 113 !important;
-  --motion-color: #a28063 !important;}
+  --main: #e7af8c !important;
+  --sub: #f1d1bc !important;
+  --rgb: 231, 175, 140 !important;
+  --motion-color: #d09e7e !important;}
 [data-char="乾幸"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2e61f764be0e941a.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="乾幸"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="乾幸"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="乾幸"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6ca6817079c7ffbd.png") !important;}
-[data-char="乾幸"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--085f86be3b4db1d7.png") !important;}
-[data-char="乾幸"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b1b60703c5643469.png") !important;}
-[data-char="乾幸"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0f60c2aa6380ae67.png") !important;}
-[data-char="乾幸"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6f8cc353db220ba5.png") !important;}
-[data-char="乾幸"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--073c4dfcb1c4173c.png") !important;}
-[data-char="乾幸"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4cf4aed71f659c3e.png") !important;}
-[data-char="乾幸"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6ca6817079c7ffbd.png") !important;}
-[data-char="乾幸"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--29a2301dd6720615.png") !important;}
-[data-char="乾幸"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--87d18cbf94612111.png") !important;}
-[data-char="乾幸"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bc27fcaf640b27d1.png") !important;}
-[data-char="乾幸"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2e61f764be0e941a.png") !important;}
-[data-char="乾幸"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--25fd220ddde02864.png") !important;}
+[data-char="乾幸"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/normal-blush.webp") !important;}
+[data-char="乾幸"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/happy.webp") !important;}
+[data-char="乾幸"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/surprised.webp") !important;}
+[data-char="乾幸"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/happy-blush.webp") !important;}
+[data-char="乾幸"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/surprised-blush.webp") !important;}
+[data-char="乾幸"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/sad-blush.webp") !important;}
+[data-char="乾幸"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/angry-blush.webp") !important;}
+[data-char="乾幸"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/normal-blush.webp") !important;}
+[data-char="乾幸"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/puzzled-blush.webp") !important;}
+[data-char="乾幸"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/sad.webp") !important;}
+[data-char="乾幸"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/angry.webp") !important;}
+[data-char="乾幸"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/normal.webp") !important;}
+[data-char="乾幸"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/puzzled.webp") !important;}
 [data-char="乾幸"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--b1f2c005b7e1ed52.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/qianxing/uniform.webp") !important;}
 
 /* 瑞木杷虎（画布） */
 [data-char="瑞木杷虎"] {
-  --main: #a26944 !important;
-  --sub: #c39e85 !important;
-  --rgb: 162, 105, 68 !important;
-  --motion-color: #8f5c3c !important;}
+  --main: #da8650 !important;
+  --sub: #eab99a !important;
+  --rgb: 218, 134, 80 !important;
+  --motion-color: #c47948 !important;}
 [data-char="瑞木杷虎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8bdcd76dfb146555.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="瑞木杷虎"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="瑞木杷虎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="瑞木杷虎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8bdcd76dfb146555.png") !important;}
-[data-char="瑞木杷虎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8bdcd76dfb146555.png") !important;}
+[data-char="瑞木杷虎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/normal.webp") !important;}
+[data-char="瑞木杷虎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/normal.webp") !important;}
 [data-char="瑞木杷虎"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--61bf3676689443f1.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/ruimupahu/outfit1.webp") !important;}
 
 /* 深山瑞希（画布） */
 [data-char="深山瑞希"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da7a50 !important;
+  --sub: #eab29a !important;
+  --rgb: 218, 122, 80 !important;
+  --motion-color: #d1754d !important;}
 [data-char="深山瑞希"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--021a34721bcb1f68.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="深山瑞希"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="深山瑞希"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="深山瑞希"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c430c36104cd787b.png") !important;}
-[data-char="深山瑞希"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c2b6b4042b843684.png") !important;}
-[data-char="深山瑞希"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--519e544160a3a4e3.png") !important;}
-[data-char="深山瑞希"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b60da60c4fda7580.png") !important;}
-[data-char="深山瑞希"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f146215b9d55d189.png") !important;}
-[data-char="深山瑞希"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--62ac599d16d2f752.png") !important;}
-[data-char="深山瑞希"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e0a57890f5460b6c.png") !important;}
-[data-char="深山瑞希"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c430c36104cd787b.png") !important;}
-[data-char="深山瑞希"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6d291ae97cba9acc.png") !important;}
-[data-char="深山瑞希"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0e6c203aae7cbe51.png") !important;}
-[data-char="深山瑞希"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d0d7cd9d17b2c5c5.png") !important;}
-[data-char="深山瑞希"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--021a34721bcb1f68.png") !important;}
-[data-char="深山瑞希"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6dce6b64936b59d7.png") !important;}
+[data-char="深山瑞希"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/normal-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/happy.webp") !important;}
+[data-char="深山瑞希"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/surprised.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/happy-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/surprised-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/sad-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/angry-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/normal-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/puzzled-blush.webp") !important;}
+[data-char="深山瑞希"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/sad.webp") !important;}
+[data-char="深山瑞希"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/angry.webp") !important;}
+[data-char="深山瑞希"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/normal.webp") !important;}
+[data-char="深山瑞希"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/puzzled.webp") !important;}
 [data-char="深山瑞希"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--b5fa2f5f33909cde.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shenshanruixi/uniform.webp") !important;}
 
 /* 狮子堂千晴（画布） */
 [data-char="狮子堂千晴"] {
-  --main: #dfc069 !important;
-  --sub: #ead69e !important;
-  --rgb: 223, 192, 105 !important;
-  --motion-color: #c4a95c !important;}
+  --main: #f5da84 !important;
+  --sub: #f9eab8 !important;
+  --rgb: 245, 218, 132 !important;
+  --motion-color: #dcc477 !important;}
 [data-char="狮子堂千晴"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--73f1c8e7892a743e.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="狮子堂千晴"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="狮子堂千晴"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="狮子堂千晴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--29c5bab1f6034332.png") !important;}
-[data-char="狮子堂千晴"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1b0f80e724e07ddb.png") !important;}
-[data-char="狮子堂千晴"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--41d9a5237521dad4.png") !important;}
-[data-char="狮子堂千晴"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c26a2ac6bec11f2e.png") !important;}
-[data-char="狮子堂千晴"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--65aafcd8c557ef57.png") !important;}
-[data-char="狮子堂千晴"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--29c5bab1f6034332.png") !important;}
-[data-char="狮子堂千晴"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9472261006f6052a.png") !important;}
-[data-char="狮子堂千晴"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ff68947a1b996609.png") !important;}
-[data-char="狮子堂千晴"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3da7d30aee7f2709.png") !important;}
-[data-char="狮子堂千晴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--73f1c8e7892a743e.png") !important;}
-[data-char="狮子堂千晴"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e1dd3f6ef0237a85.png") !important;}
+[data-char="狮子堂千晴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/normal-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/surprised.webp") !important;}
+[data-char="狮子堂千晴"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/surprised-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/sad-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/angry-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/normal-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/puzzled-blush.webp") !important;}
+[data-char="狮子堂千晴"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/sad.webp") !important;}
+[data-char="狮子堂千晴"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/angry.webp") !important;}
+[data-char="狮子堂千晴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/normal.webp") !important;}
+[data-char="狮子堂千晴"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/puzzled.webp") !important;}
 [data-char="狮子堂千晴"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--09a96134a2092c21.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/shizitangqianqing/uniform.webp") !important;}
 
 /* 沃尔夫冈（画布） */
 [data-char="沃尔夫冈"] {
-  --main: #9a8577 !important;
-  --sub: #bdb0a7 !important;
-  --rgb: 154, 133, 119 !important;
-  --motion-color: #887569 !important;}
+  --main: #e1ab73 !important;
+  --sub: #eeceae !important;
+  --rgb: 225, 171, 115 !important;
+  --motion-color: #ca9a68 !important;}
 [data-char="沃尔夫冈"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d6b66412fb80634f.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/woerfugang/normal.webp") !important;}
 [data-char="沃尔夫冈"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="沃尔夫冈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d6b66412fb80634f.png") !important;}
-[data-char="沃尔夫冈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d6b66412fb80634f.png") !important;}
+[data-char="沃尔夫冈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/woerfugang/normal.webp") !important;}
+[data-char="沃尔夫冈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/woerfugang/normal.webp") !important;}
 
 /* 乌丸铁子（画布） */
 [data-char="乌丸铁子"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #cb93e0 !important;
+  --sub: #e1c0ed !important;
+  --rgb: 203, 147, 224 !important;
+  --motion-color: #b784ca !important;}
 [data-char="乌丸铁子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--578c196434d05dd4.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="乌丸铁子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="乌丸铁子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="乌丸铁子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--578c196434d05dd4.png") !important;}
-[data-char="乌丸铁子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--578c196434d05dd4.png") !important;}
+[data-char="乌丸铁子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/normal.webp") !important;}
+[data-char="乌丸铁子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/normal.webp") !important;}
 [data-char="乌丸铁子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ba375b59efdd9642.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwantiezi/outfit1.webp") !important;}
 
 /* 乌丸紫月（画布） */
 [data-char="乌丸紫月"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #c496e0 !important;
+  --sub: #ddc2ed !important;
+  --rgb: 196, 150, 224 !important;
+  --motion-color: #b087ca !important;}
 [data-char="乌丸紫月"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d10b82a7e44a3bea.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="乌丸紫月"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="乌丸紫月"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="乌丸紫月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--01a6766c2b0b110c.png") !important;}
-[data-char="乌丸紫月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--65724fdb90916cc2.png") !important;}
-[data-char="乌丸紫月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2d508c846cf1682d.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--181ed60b4fb9db2a.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e8868b11d7cd7a19.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--545fe36d6622e6b6.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c97d9e2764d73675.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--01a6766c2b0b110c.png") !important;}
-[data-char="乌丸紫月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--13b40c1c648f3fe4.png") !important;}
-[data-char="乌丸紫月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1ec343b714d064d0.png") !important;}
-[data-char="乌丸紫月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc678bdc9556fda6.png") !important;}
-[data-char="乌丸紫月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d10b82a7e44a3bea.png") !important;}
-[data-char="乌丸紫月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--11e8ffcd544918a2.png") !important;}
+[data-char="乌丸紫月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/normal-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/happy.webp") !important;}
+[data-char="乌丸紫月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/surprised.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/happy-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/surprised-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/sad-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/angry-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/normal-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/puzzled-blush.webp") !important;}
+[data-char="乌丸紫月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/sad.webp") !important;}
+[data-char="乌丸紫月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/angry.webp") !important;}
+[data-char="乌丸紫月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/normal.webp") !important;}
+[data-char="乌丸紫月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/puzzled.webp") !important;}
 [data-char="乌丸紫月"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--f28b96fa50fbfbed.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/wuwanziyue/uniform.webp") !important;}
 
 /* 佐藤洋（画布） */
 [data-char="佐藤洋"] {
-  --main: #9f785d !important;
-  --sub: #c1a796 !important;
-  --rgb: 159, 120, 93 !important;
-  --motion-color: #8c6a52 !important;}
+  --main: #de9a61 !important;
+  --sub: #ecc4a3 !important;
+  --rgb: 222, 154, 97 !important;
+  --motion-color: #c88b57 !important;}
 [data-char="佐藤洋"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3feeb8c01fe5d5e5.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="佐藤洋"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="佐藤洋"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="佐藤洋"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3feeb8c01fe5d5e5.png") !important;}
-[data-char="佐藤洋"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3feeb8c01fe5d5e5.png") !important;}
+[data-char="佐藤洋"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/normal.webp") !important;}
+[data-char="佐藤洋"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/normal.webp") !important;}
 [data-char="佐藤洋"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--36645f8b8db67739.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huabu/zuotengyang/outfit1.webp") !important;}
 
 /* 八十岛壹与（近月） */
 [data-char="八十岛壹与"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #91b9e8 !important;
+  --sub: #bfd6f2 !important;
+  --rgb: 145, 185, 232 !important;
+  --motion-color: #82a6d1 !important;}
 [data-char="八十岛壹与"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a88b63a721e3f142.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/bashidaoyiyu/normal.webp") !important;}
 [data-char="八十岛壹与"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="八十岛壹与"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a88b63a721e3f142.png") !important;}
-[data-char="八十岛壹与"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a88b63a721e3f142.png") !important;}
+[data-char="八十岛壹与"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/bashidaoyiyu/normal.webp") !important;}
+[data-char="八十岛壹与"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/bashidaoyiyu/normal.webp") !important;}
 
 /* 布琉艾特（近月） */
 [data-char="布琉艾特"] {
-  --main: #9f785d !important;
-  --sub: #c1a796 !important;
-  --rgb: 159, 120, 93 !important;
-  --motion-color: #8c6a52 !important;}
+  --main: #dd905f !important;
+  --sub: #ebbfa2 !important;
+  --rgb: 221, 144, 95 !important;
+  --motion-color: #c78256 !important;}
 [data-char="布琉艾特"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--ca927c2e7784f7f4.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="布琉艾特"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="布琉艾特"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="布琉艾特"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8ee6493ab96ad3c3.png") !important;}
-[data-char="布琉艾特"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--448ea06fade80acc.png") !important;}
-[data-char="布琉艾特"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--382c0be30e769630.png") !important;}
-[data-char="布琉艾特"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3fd204e33dddf06d.png") !important;}
-[data-char="布琉艾特"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--289a97c7b9f850c6.png") !important;}
-[data-char="布琉艾特"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1c4c2e0b9d45b5ea.png") !important;}
-[data-char="布琉艾特"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--89bcd508be2aef64.png") !important;}
-[data-char="布琉艾特"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4452f284df0adb53.png") !important;}
-[data-char="布琉艾特"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--df070fb3ae23e1b8.png") !important;}
-[data-char="布琉艾特"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8ee6493ab96ad3c3.png") !important;}
-[data-char="布琉艾特"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4006d8dcefdfd8d3.png") !important;}
-[data-char="布琉艾特"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8a40a67711dfc4d4.png") !important;}
-[data-char="布琉艾特"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4f8d47432ff79787.png") !important;}
-[data-char="布琉艾特"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ca927c2e7784f7f4.png") !important;}
-[data-char="布琉艾特"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9ca25e288a1f0849.png") !important;}
+[data-char="布琉艾特"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/normal-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/smirk.webp") !important;}
+[data-char="布琉艾特"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/happy.webp") !important;}
+[data-char="布琉艾特"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/surprised.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/smirk-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/happy-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/surprised-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/sad-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/angry-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/normal-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/puzzled-blush.webp") !important;}
+[data-char="布琉艾特"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/sad.webp") !important;}
+[data-char="布琉艾特"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/angry.webp") !important;}
+[data-char="布琉艾特"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/normal.webp") !important;}
+[data-char="布琉艾特"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/puzzled.webp") !important;}
 [data-char="布琉艾特"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--3af331839ab2ffd5.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/buliuaite-nikelaite-pula-93f2/uniform.webp") !important;}
 
 /* 枞山红叶（近月） */
 [data-char="枞山红叶"] {
-  --main: #a97a52 !important;
-  --sub: #c7a98f !important;
-  --rgb: 169, 122, 82 !important;
-  --motion-color: #956b48 !important;}
+  --main: #dda35d !important;
+  --sub: #ebcaa1 !important;
+  --rgb: 221, 163, 93 !important;
+  --motion-color: #c79354 !important;}
 [data-char="枞山红叶"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--bebdc4e4c89363d5.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="枞山红叶"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="枞山红叶"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="枞山红叶"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bebdc4e4c89363d5.png") !important;}
-[data-char="枞山红叶"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bebdc4e4c89363d5.png") !important;}
+[data-char="枞山红叶"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/normal.webp") !important;}
+[data-char="枞山红叶"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/normal.webp") !important;}
 [data-char="枞山红叶"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--1e54b00b3168c363.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/congshanhongye/full.webp") !important;}
 
 /* 大藏安东尼（近月） */
 [data-char="大藏安东尼"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #8fb2e7 !important;
+  --sub: #bed2f1 !important;
+  --rgb: 143, 178, 231 !important;
+  --motion-color: #81a0d0 !important;}
 [data-char="大藏安东尼"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--72dcdd77dc7167f9.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangandongni/normal.webp") !important;}
 [data-char="大藏安东尼"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="大藏安东尼"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--72dcdd77dc7167f9.png") !important;}
-[data-char="大藏安东尼"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--72dcdd77dc7167f9.png") !important;}
+[data-char="大藏安东尼"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangandongni/normal.webp") !important;}
+[data-char="大藏安东尼"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangandongni/normal.webp") !important;}
 
 /* 大藏骏我（近月） */
 [data-char="大藏骏我"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #92c2e8 !important;
+  --sub: #c0dcf2 !important;
+  --rgb: 146, 194, 232 !important;
+  --motion-color: #83afd1 !important;}
 [data-char="大藏骏我"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--36a501901d4c8282.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangjunwo/normal.webp") !important;}
 [data-char="大藏骏我"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="大藏骏我"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--36a501901d4c8282.png") !important;}
-[data-char="大藏骏我"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--36a501901d4c8282.png") !important;}
+[data-char="大藏骏我"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangjunwo/normal.webp") !important;}
+[data-char="大藏骏我"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangjunwo/normal.webp") !important;}
 
 /* 大藏里想奈（近月） */
 [data-char="大藏里想奈"] {
-  --main: #6a5591 !important;
-  --sub: #9e90b8 !important;
-  --rgb: 106, 85, 145 !important;
-  --motion-color: #5d4b80 !important;}
+  --main: #997ae3 !important;
+  --sub: #c4b2ef !important;
+  --rgb: 153, 122, 227 !important;
+  --motion-color: #9375da !important;}
 [data-char="大藏里想奈"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--4c47fbb3c9254fa5.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="大藏里想奈"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="大藏里想奈"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="大藏里想奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--033dea30014db9a8.png") !important;}
-[data-char="大藏里想奈"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9c7d60fefa8e0215.png") !important;}
-[data-char="大藏里想奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a046305d40c545dc.png") !important;}
-[data-char="大藏里想奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7a34c058c10dffe3.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ec8ad8fec953144d.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--01ba0ae36bcd3925.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aa009a4d22fb6181.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--edc1b9eb4af76310.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--033dea30014db9a8.png") !important;}
-[data-char="大藏里想奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--31afdb762eb28d8d.png") !important;}
-[data-char="大藏里想奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6afa71a435e6a4ef.png") !important;}
-[data-char="大藏里想奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b77aedb191a53b52.png") !important;}
-[data-char="大藏里想奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4c47fbb3c9254fa5.png") !important;}
-[data-char="大藏里想奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0240c162d75dcb14.png") !important;}
+[data-char="大藏里想奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/smirk.webp") !important;}
+[data-char="大藏里想奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/happy.webp") !important;}
+[data-char="大藏里想奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/surprised.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/smirk-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/happy-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/surprised-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/sad-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/puzzled-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/sad.webp") !important;}
+[data-char="大藏里想奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/angry.webp") !important;}
+[data-char="大藏里想奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal.webp") !important;}
+[data-char="大藏里想奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/puzzled.webp") !important;}
 [data-char="大藏里想奈"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--534b9c191a34b8e4.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/uniform.webp") !important;}
 
 /* 大藏衣远（近月） */
 [data-char="大藏衣远"] {
-  --main: #6a5591 !important;
-  --sub: #9e90b8 !important;
-  --rgb: 106, 85, 145 !important;
-  --motion-color: #5d4b80 !important;}
+  --main: #9a7de3 !important;
+  --sub: #c4b4ef !important;
+  --rgb: 154, 125, 227 !important;
+  --motion-color: #9478da !important;}
 [data-char="大藏衣远"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d7ed59b49f330af9.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="大藏衣远"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="大藏衣远"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="大藏衣远"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d7ed59b49f330af9.png") !important;}
-[data-char="大藏衣远"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d7ed59b49f330af9.png") !important;}
+[data-char="大藏衣远"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/normal.webp") !important;}
+[data-char="大藏衣远"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/normal.webp") !important;}
 [data-char="大藏衣远"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--68d7cc69d088b726.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazangyiyuan/full.webp") !important;}
 
 /* 迪特琳德（近月） */
 [data-char="迪特琳德"] {
-  --main: #acacb3 !important;
-  --sub: #c9c9ce !important;
-  --rgb: 172, 172, 179 !important;
-  --motion-color: #97979e !important;}
+  --main: #c38ede !important;
+  --sub: #dcbdec !important;
+  --rgb: 195, 142, 222 !important;
+  --motion-color: #b080c8 !important;}
 [data-char="迪特琳德"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--de762f2d755cad71.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="迪特琳德"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="迪特琳德"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="迪特琳德"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--de762f2d755cad71.png") !important;}
-[data-char="迪特琳德"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--de762f2d755cad71.png") !important;}
+[data-char="迪特琳德"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/normal.webp") !important;}
+[data-char="迪特琳德"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/normal.webp") !important;}
 [data-char="迪特琳德"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--47456b299fda69ac.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/ditelinde-ciweigete/full.webp") !important;}
 
 /* 花之宫瑞穗（近月） */
 [data-char="花之宫瑞穗"] {
-  --main: #a98e66 !important;
-  --sub: #c7b69c !important;
-  --rgb: 169, 142, 102 !important;
-  --motion-color: #957d5a !important;}
+  --main: #e0b06e !important;
+  --sub: #edd1ab !important;
+  --rgb: 224, 176, 110 !important;
+  --motion-color: #ca9e63 !important;}
 [data-char="花之宫瑞穗"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--098fd0f2c7b14b24.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="花之宫瑞穗"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="花之宫瑞穗"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="花之宫瑞穗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--10daa3e41c7fe2e2.png") !important;}
-[data-char="花之宫瑞穗"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6930fb6103d53f50.png") !important;}
-[data-char="花之宫瑞穗"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0b55ecaf633226c8.png") !important;}
-[data-char="花之宫瑞穗"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--743380c5d0dfd1a8.png") !important;}
-[data-char="花之宫瑞穗"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b9ff504db71ddfbe.png") !important;}
-[data-char="花之宫瑞穗"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b42c5255c085b467.png") !important;}
-[data-char="花之宫瑞穗"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--10daa3e41c7fe2e2.png") !important;}
-[data-char="花之宫瑞穗"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ee836d06d47096c1.png") !important;}
-[data-char="花之宫瑞穗"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--92be549690aa8dc2.png") !important;}
-[data-char="花之宫瑞穗"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--80bdab86c3d77361.png") !important;}
-[data-char="花之宫瑞穗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--098fd0f2c7b14b24.png") !important;}
-[data-char="花之宫瑞穗"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0f77fdc4aa0af853.png") !important;}
+[data-char="花之宫瑞穗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/normal-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/happy.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/surprised.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/happy-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/sad-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/angry-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/normal-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/puzzled-blush.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/sad.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/angry.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/normal.webp") !important;}
+[data-char="花之宫瑞穗"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/puzzled.webp") !important;}
 [data-char="花之宫瑞穗"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--efe9cce668b2f59b.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huazhigongruisui/outfit1.webp") !important;}
 
 /* 华花（近月） */
 [data-char="华花"] {
-  --main: #598d78 !important;
-  --sub: #93b5a7 !important;
-  --rgb: 89, 141, 120 !important;
-  --motion-color: #4e7c6a !important;}
+  --main: #56db9a !important;
+  --sub: #9deac4 !important;
+  --rgb: 86, 219, 154 !important;
+  --motion-color: #4dc58b !important;}
 [data-char="华花"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--37ab1f99bbd4759e.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="华花"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="华花"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="华花"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--37ab1f99bbd4759e.png") !important;}
-[data-char="华花"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--37ab1f99bbd4759e.png") !important;}
+[data-char="华花"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/normal.webp") !important;}
+[data-char="华花"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/normal.webp") !important;}
 [data-char="华花"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--0aa1444efe4e5405.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/huahua/full.webp") !important;}
 
 /* 莉莉安奴（近月） */
 [data-char="莉莉安奴"] {
-  --main: #d87482 !important;
-  --sub: #e6a5ae !important;
-  --rgb: 216, 116, 130 !important;
-  --motion-color: #be6672 !important;}
+  --main: #f387a3 !important;
+  --sub: #f8b9ca !important;
+  --rgb: 243, 135, 163 !important;
+  --motion-color: #db7a93 !important;}
 [data-char="莉莉安奴"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8bdaa9c52399c31e.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="莉莉安奴"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="莉莉安奴"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="莉莉安奴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8bdaa9c52399c31e.png") !important;}
-[data-char="莉莉安奴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8bdaa9c52399c31e.png") !important;}
+[data-char="莉莉安奴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/normal.webp") !important;}
+[data-char="莉莉安奴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/normal.webp") !important;}
 [data-char="莉莉安奴"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5e820ffaae34df92.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liliannu-sailiya-lagelan-b685/full.webp") !important;}
 
 /* 柳之濑凑（近月） */
 [data-char="柳之濑凑"] {
-  --main: #dd88a2 !important;
-  --sub: #e9b2c3 !important;
-  --rgb: 221, 136, 162 !important;
-  --motion-color: #c2788f !important;}
+  --main: #f2879c !important;
+  --sub: #f7b9c6 !important;
+  --rgb: 242, 135, 156 !important;
+  --motion-color: #da7a8c !important;}
 [data-char="柳之濑凑"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2fb6c225e40826d6.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="柳之濑凑"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="柳之濑凑"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="柳之濑凑"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ea70291373008042.png") !important;}
-[data-char="柳之濑凑"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--79da661d6bad38f7.png") !important;}
-[data-char="柳之濑凑"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3bf59ce06959536f.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--06ea297831c1ebca.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--85d2cf735428b664.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--580aaa7dd5481e3b.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--abeb54c5cd82c988.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ea70291373008042.png") !important;}
-[data-char="柳之濑凑"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3b72b3b3f0ac3e8.png") !important;}
-[data-char="柳之濑凑"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e164be36cb7f93ca.png") !important;}
-[data-char="柳之濑凑"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--121e5c24963755d1.png") !important;}
-[data-char="柳之濑凑"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2fb6c225e40826d6.png") !important;}
-[data-char="柳之濑凑"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9bf0ce40934e52d3.png") !important;}
+[data-char="柳之濑凑"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/normal-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/happy.webp") !important;}
+[data-char="柳之濑凑"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/surprised.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/happy-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/surprised-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/sad-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/angry-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/normal-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/puzzled-blush.webp") !important;}
+[data-char="柳之濑凑"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/sad.webp") !important;}
+[data-char="柳之濑凑"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/angry.webp") !important;}
+[data-char="柳之濑凑"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/normal.webp") !important;}
+[data-char="柳之濑凑"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/puzzled.webp") !important;}
 [data-char="柳之濑凑"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--a9b97af1ce89c818.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/liuzhilaicou/uniform.webp") !important;}
 
 /* 梅丽尔（近月） */
 [data-char="梅丽尔"] {
-  --main: #d3b892 !important;
-  --sub: #e2d1b8 !important;
-  --rgb: 211, 184, 146 !important;
-  --motion-color: #baa280 !important;}
+  --main: #e8c692 !important;
+  --sub: #f2dec0 !important;
+  --rgb: 232, 198, 146 !important;
+  --motion-color: #d1b283 !important;}
 [data-char="梅丽尔"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2f090a5934dc1242.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="梅丽尔"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="梅丽尔"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="梅丽尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c38fb0bcce28fd4b.png") !important;}
-[data-char="梅丽尔"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--352bc0db72a2ab69.png") !important;}
-[data-char="梅丽尔"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cb8f4e866e380409.png") !important;}
-[data-char="梅丽尔"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8bab6a7530edd178.png") !important;}
-[data-char="梅丽尔"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--98f146af8698b684.png") !important;}
-[data-char="梅丽尔"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fdb00494f431fde4.png") !important;}
-[data-char="梅丽尔"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c19de44d795e8493.png") !important;}
-[data-char="梅丽尔"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c38fb0bcce28fd4b.png") !important;}
-[data-char="梅丽尔"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--86eef952f9675a81.png") !important;}
-[data-char="梅丽尔"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a76c3936825a6c07.png") !important;}
-[data-char="梅丽尔"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--386b4b5a2898e29e.png") !important;}
-[data-char="梅丽尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2f090a5934dc1242.png") !important;}
-[data-char="梅丽尔"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a73401c6a363990f.png") !important;}
+[data-char="梅丽尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/normal-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/happy.webp") !important;}
+[data-char="梅丽尔"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/surprised.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/happy-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/surprised-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/sad-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/angry-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/normal-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/puzzled-blush.webp") !important;}
+[data-char="梅丽尔"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/sad.webp") !important;}
+[data-char="梅丽尔"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/angry.webp") !important;}
+[data-char="梅丽尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/normal.webp") !important;}
+[data-char="梅丽尔"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/puzzled.webp") !important;}
 [data-char="梅丽尔"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--48c5466aff37cfa5.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/meilier-linqi/uniform.webp") !important;}
 
 /* 名波七爱（近月） */
 [data-char="名波七爱"] {
-  --main: #d3b892 !important;
-  --sub: #e2d1b8 !important;
-  --rgb: 211, 184, 146 !important;
-  --motion-color: #baa280 !important;}
+  --main: #e8cb92 !important;
+  --sub: #f2e1c0 !important;
+  --rgb: 232, 203, 146 !important;
+  --motion-color: #d1b783 !important;}
 [data-char="名波七爱"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d7da97b877c3a1b2.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="名波七爱"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="名波七爱"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="名波七爱"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d7da97b877c3a1b2.png") !important;}
-[data-char="名波七爱"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d7da97b877c3a1b2.png") !important;}
+[data-char="名波七爱"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/normal.webp") !important;}
+[data-char="名波七爱"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/normal.webp") !important;}
 [data-char="名波七爱"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--16326501810c467c.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/mingboqiai/full.webp") !important;}
 
 /* 让·皮埃尔（近月） */
 [data-char="让·皮埃尔"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #8ebde7 !important;
+  --sub: #bdd9f1 !important;
+  --rgb: 142, 189, 231 !important;
+  --motion-color: #80aad0 !important;}
 [data-char="让·皮埃尔"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3deb8e14d2382498.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/rang-piaier-shidanli/normal.webp") !important;}
 [data-char="让·皮埃尔"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="让·皮埃尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3deb8e14d2382498.png") !important;}
-[data-char="让·皮埃尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3deb8e14d2382498.png") !important;}
+[data-char="让·皮埃尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/rang-piaier-shidanli/normal.webp") !important;}
+[data-char="让·皮埃尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/rang-piaier-shidanli/normal.webp") !important;}
 
 /* 萨莎（近月） */
 [data-char="萨莎"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #ad92e8 !important;
+  --sub: #cfc0f2 !important;
+  --rgb: 173, 146, 232 !important;
+  --motion-color: #9c83d1 !important;}
 [data-char="萨莎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a9c0672534db4435.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="萨莎"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="萨莎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="萨莎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a9c0672534db4435.png") !important;}
-[data-char="萨莎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a9c0672534db4435.png") !important;}
+[data-char="萨莎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/normal.webp") !important;}
+[data-char="萨莎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/normal.webp") !important;}
 [data-char="萨莎"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--9e53c48116c0a3fc.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/sasha-bikai-yaneikan/full.webp") !important;}
 
 /* 山吹八千代（近月） */
 [data-char="山吹八千代"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da7f4e !important;
+  --sub: #eab598 !important;
+  --rgb: 218, 127, 78 !important;
+  --motion-color: #c47246 !important;}
 [data-char="山吹八千代"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--003b9a21123530f7.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="山吹八千代"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="山吹八千代"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="山吹八千代"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--003b9a21123530f7.png") !important;}
-[data-char="山吹八千代"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--003b9a21123530f7.png") !important;}
+[data-char="山吹八千代"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/normal.webp") !important;}
+[data-char="山吹八千代"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/normal.webp") !important;}
 [data-char="山吹八千代"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--34313893262729e5.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shanchuibaqiandai/full.webp") !important;}
 
 /* 杉村北斗（近月） */
 [data-char="杉村北斗"] {
-  --main: #8dc29d !important;
-  --sub: #b5d7bf !important;
-  --rgb: 141, 194, 157 !important;
-  --motion-color: #7cab8a !important;}
+  --main: #92e8ab !important;
+  --sub: #c0f2ce !important;
+  --rgb: 146, 232, 171 !important;
+  --motion-color: #83d19a !important;}
 [data-char="杉村北斗"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--42bf9e6a83b9466d.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="杉村北斗"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="杉村北斗"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="杉村北斗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--42bf9e6a83b9466d.png") !important;}
-[data-char="杉村北斗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--42bf9e6a83b9466d.png") !important;}
+[data-char="杉村北斗"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/normal.webp") !important;}
+[data-char="杉村北斗"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/normal.webp") !important;}
 [data-char="杉村北斗"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--b6f25f7de803ac05.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/shancunbeidou/full.webp") !important;}
 
 /* 瓦莲莉娅（近月） */
 [data-char="瓦莲莉娅"] {
-  --main: #acacb9 !important;
-  --sub: #c9c9d2 !important;
-  --rgb: 172, 172, 185 !important;
-  --motion-color: #9797a3 !important;}
+  --main: #c2d6cf !important;
+  --sub: #dce7e3 !important;
+  --rgb: 194, 214, 207 !important;
+  --motion-color: #afc1ba !important;}
 [data-char="瓦莲莉娅"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--60ecbd7fd8a1a88f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="瓦莲莉娅"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="瓦莲莉娅"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="瓦莲莉娅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--60ecbd7fd8a1a88f.png") !important;}
-[data-char="瓦莲莉娅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--60ecbd7fd8a1a88f.png") !important;}
+[data-char="瓦莲莉娅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/normal.webp") !important;}
+[data-char="瓦莲莉娅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/normal.webp") !important;}
 [data-char="瓦莲莉娅"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--d20dd80cee7cc62c.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/walianliya-telianqiewein-94de/full.webp") !important;}
 
 /* 小仓朝日（近月） */
 [data-char="小仓朝日"] {
-  --main: #745d9b !important;
-  --sub: #a596be !important;
-  --rgb: 116, 93, 155 !important;
-  --motion-color: #665288 !important;}
+  --main: #a278e2 !important;
+  --sub: #c9b1ee !important;
+  --rgb: 162, 120, 226 !important;
+  --motion-color: #9c73d9 !important;}
 [data-char="小仓朝日"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--85d3177552e21c35.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="小仓朝日"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="小仓朝日"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="小仓朝日"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3893873f93b5c0a.png") !important;}
-[data-char="小仓朝日"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--44868d47b42a0153.png") !important;}
-[data-char="小仓朝日"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3aa265182db6aaa4.png") !important;}
-[data-char="小仓朝日"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9f09de7f42367aaa.png") !important;}
-[data-char="小仓朝日"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f06e5df5db823c10.png") !important;}
-[data-char="小仓朝日"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7c639b20ee90acbc.png") !important;}
-[data-char="小仓朝日"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0b94f59a7b096755.png") !important;}
-[data-char="小仓朝日"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3893873f93b5c0a.png") !important;}
-[data-char="小仓朝日"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5fbe7a1ce248ea4f.png") !important;}
-[data-char="小仓朝日"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a676a5246f34eb81.png") !important;}
-[data-char="小仓朝日"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--02fcee14e4d4793d.png") !important;}
-[data-char="小仓朝日"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--85d3177552e21c35.png") !important;}
-[data-char="小仓朝日"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--47bbee67e77cbcb7.png") !important;}
+[data-char="小仓朝日"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/normal-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/happy.webp") !important;}
+[data-char="小仓朝日"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/surprised.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/happy-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/surprised-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/sad-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/angry-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/normal-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/puzzled-blush.webp") !important;}
+[data-char="小仓朝日"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/sad.webp") !important;}
+[data-char="小仓朝日"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/angry.webp") !important;}
+[data-char="小仓朝日"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/normal.webp") !important;}
+[data-char="小仓朝日"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/puzzled.webp") !important;}
 [data-char="小仓朝日"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--8afce5d44077b05f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/xiaocangzhaori/uniform.webp") !important;}
 
 /* 樱小路露娜（近月） */
 [data-char="樱小路露娜"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #b392e8 !important;
+  --sub: #d3c0f2 !important;
+  --rgb: 179, 146, 232 !important;
+  --motion-color: #a183d1 !important;}
 [data-char="樱小路露娜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f33b36910183ef0a.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="樱小路露娜"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="樱小路露娜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="樱小路露娜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--584d530f9e8d1eba.png") !important;}
-[data-char="樱小路露娜"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e6faf21f7f4f5392.png") !important;}
-[data-char="樱小路露娜"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--14d63ce9e4d62466.png") !important;}
-[data-char="樱小路露娜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c8f84c4d1d20cebf.png") !important;}
-[data-char="樱小路露娜"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1528225e6ec9866f.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8cb04955382d66d7.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81316bfe896663bf.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--30491510bac3c850.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d96e1bc30865f32a.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--386ea77f01dc6665.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a9854950576a7f89.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--584d530f9e8d1eba.png") !important;}
-[data-char="樱小路露娜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--05d2f7dfd0e67ea6.png") !important;}
-[data-char="樱小路露娜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3094aa63e043861.png") !important;}
-[data-char="樱小路露娜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d48e48f5704c3c8c.png") !important;}
-[data-char="樱小路露娜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f33b36910183ef0a.png") !important;}
-[data-char="樱小路露娜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0ceac66c8ab2833f.png") !important;}
+[data-char="樱小路露娜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/normal-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/smug.webp") !important;}
+[data-char="樱小路露娜"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/smirk.webp") !important;}
+[data-char="樱小路露娜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/happy.webp") !important;}
+[data-char="樱小路露娜"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/surprised.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/smug-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/smirk-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/happy-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/surprised-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/sad-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/angry-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/normal-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/puzzled-blush.webp") !important;}
+[data-char="樱小路露娜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/sad.webp") !important;}
+[data-char="樱小路露娜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/angry.webp") !important;}
+[data-char="樱小路露娜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/normal.webp") !important;}
+[data-char="樱小路露娜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/puzzled.webp") !important;}
 [data-char="樱小路露娜"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--7368fa3bcf2fa32a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/yingxiaoluluna/uniform.webp") !important;}
 
 /* 尤希尔（近月） */
 [data-char="尤希尔"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2db87 !important;
+  --sub: #f7eab9 !important;
+  --rgb: 242, 219, 135 !important;
+  --motion-color: #dac57a !important;}
 [data-char="尤希尔"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d2a805366492526b.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="尤希尔"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="尤希尔"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="尤希尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--71543a3e2bd91a1d.png") !important;}
-[data-char="尤希尔"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f7a90173834e5548.png") !important;}
-[data-char="尤希尔"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f6ef889ec580adde.png") !important;}
-[data-char="尤希尔"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8d21545843afbf7c.png") !important;}
-[data-char="尤希尔"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0fd85db4d6fc9842.png") !important;}
-[data-char="尤希尔"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cbf70b72704f1b60.png") !important;}
-[data-char="尤希尔"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b203c6eeb4ffef68.png") !important;}
-[data-char="尤希尔"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--71543a3e2bd91a1d.png") !important;}
-[data-char="尤希尔"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--19bf65d577521c2a.png") !important;}
-[data-char="尤希尔"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e6aac1dc27543e0d.png") !important;}
-[data-char="尤希尔"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ec22149e8dd49d96.png") !important;}
-[data-char="尤希尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d2a805366492526b.png") !important;}
-[data-char="尤希尔"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--85c1dc65198734ad.png") !important;}
+[data-char="尤希尔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/normal-blush.webp") !important;}
+[data-char="尤希尔"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/happy.webp") !important;}
+[data-char="尤希尔"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/surprised.webp") !important;}
+[data-char="尤希尔"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/happy-blush.webp") !important;}
+[data-char="尤希尔"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/surprised-blush.webp") !important;}
+[data-char="尤希尔"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/sad-blush.webp") !important;}
+[data-char="尤希尔"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/angry-blush.webp") !important;}
+[data-char="尤希尔"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/normal-blush.webp") !important;}
+[data-char="尤希尔"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/puzzled-blush.webp") !important;}
+[data-char="尤希尔"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/sad.webp") !important;}
+[data-char="尤希尔"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/angry.webp") !important;}
+[data-char="尤希尔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/normal.webp") !important;}
+[data-char="尤希尔"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/puzzled.webp") !important;}
 [data-char="尤希尔"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--0aecfc4d88982244.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/youxier-fululu-rangmeier/uniform.webp") !important;}
 
 /* 不知火怜（轮舞曲） */
 [data-char="不知火怜"] {
-  --main: #586a8d !important;
-  --sub: #929eb5 !important;
-  --rgb: 88, 106, 141 !important;
-  --motion-color: #4d5d7c !important;}
+  --main: #5a8fdc !important;
+  --sub: #9fbeeb !important;
+  --rgb: 90, 143, 220 !important;
+  --motion-color: #5689d3 !important;}
 [data-char="不知火怜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3fd5ee830f49591f.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/buzhihuolian/normal.webp") !important;}
 [data-char="不知火怜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="不知火怜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3fd5ee830f49591f.png") !important;}
-[data-char="不知火怜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3fd5ee830f49591f.png") !important;}
+[data-char="不知火怜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/buzhihuolian/normal.webp") !important;}
+[data-char="不知火怜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/buzhihuolian/normal.webp") !important;}
 
 /* 江利原美月（轮舞曲） */
 [data-char="江利原美月"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #b890df !important;
+  --sub: #d6bfec !important;
+  --rgb: 184, 144, 223 !important;
+  --motion-color: #a682c9 !important;}
 [data-char="江利原美月"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--1e2c3f9a49cfad5d.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="江利原美月"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="江利原美月"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="江利原美月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4407867eb0445aea.png") !important;}
-[data-char="江利原美月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4108ee8974bd2f94.png") !important;}
-[data-char="江利原美月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2e354437188724da.png") !important;}
-[data-char="江利原美月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--695846d727e0f03b.png") !important;}
-[data-char="江利原美月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--12ca47c72100227a.png") !important;}
-[data-char="江利原美月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4407867eb0445aea.png") !important;}
-[data-char="江利原美月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0802b146fa666209.png") !important;}
-[data-char="江利原美月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--59461a247110fd75.png") !important;}
-[data-char="江利原美月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--34028043afed8372.png") !important;}
-[data-char="江利原美月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1e2c3f9a49cfad5d.png") !important;}
-[data-char="江利原美月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1df4e5285f5122b5.png") !important;}
+[data-char="江利原美月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/normal-blush.webp") !important;}
+[data-char="江利原美月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/happy.webp") !important;}
+[data-char="江利原美月"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/happy-blush.webp") !important;}
+[data-char="江利原美月"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/sad-blush.webp") !important;}
+[data-char="江利原美月"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/angry-blush.webp") !important;}
+[data-char="江利原美月"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/normal-blush.webp") !important;}
+[data-char="江利原美月"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/puzzled-blush.webp") !important;}
+[data-char="江利原美月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/sad.webp") !important;}
+[data-char="江利原美月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/angry.webp") !important;}
+[data-char="江利原美月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/normal.webp") !important;}
+[data-char="江利原美月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/puzzled.webp") !important;}
 [data-char="江利原美月"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--cef2aad6499ca465.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiangliyuanmeiyue/uniform.webp") !important;}
 
 /* 堺浩一（轮舞曲） */
 [data-char="堺浩一"] {
-  --main: #a97a52 !important;
-  --sub: #c7a98f !important;
-  --rgb: 169, 122, 82 !important;
-  --motion-color: #956b48 !important;}
+  --main: #deac65 !important;
+  --sub: #eccfa6 !important;
+  --rgb: 222, 172, 101 !important;
+  --motion-color: #c89b5b !important;}
 [data-char="堺浩一"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--86bba89cbc2217ea.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiehaoyi/normal.webp") !important;}
 [data-char="堺浩一"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="堺浩一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--86bba89cbc2217ea.png") !important;}
-[data-char="堺浩一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--86bba89cbc2217ea.png") !important;}
+[data-char="堺浩一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiehaoyi/normal.webp") !important;}
+[data-char="堺浩一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/jiehaoyi/normal.webp") !important;}
 
 /* 门胁樱（轮舞曲） */
 [data-char="门胁樱"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2cd87 !important;
+  --sub: #f7e2b9 !important;
+  --rgb: 242, 205, 135 !important;
+  --motion-color: #dab87a !important;}
 [data-char="门胁樱"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--ce417cd3bac90f54.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="门胁樱"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="门胁樱"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="门胁樱"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--334a984cc58e376b.png") !important;}
-[data-char="门胁樱"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0b1b9b4e35b0d92e.png") !important;}
-[data-char="门胁樱"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07023fe4a5fd703b.png") !important;}
-[data-char="门胁樱"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5a54d6b5fb4d338e.png") !important;}
-[data-char="门胁樱"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--301df9f0002c0e09.png") !important;}
-[data-char="门胁樱"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--247a8414ece87031.png") !important;}
-[data-char="门胁樱"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f6c5ccfc9f8666b4.png") !important;}
-[data-char="门胁樱"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--334a984cc58e376b.png") !important;}
-[data-char="门胁樱"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--65243f1bca9ea48b.png") !important;}
-[data-char="门胁樱"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2145e203f94406d6.png") !important;}
-[data-char="门胁樱"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3eca914564bf924e.png") !important;}
-[data-char="门胁樱"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce417cd3bac90f54.png") !important;}
-[data-char="门胁樱"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f0fc5bfa9cbd9023.png") !important;}
+[data-char="门胁樱"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/normal-blush.webp") !important;}
+[data-char="门胁樱"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/happy.webp") !important;}
+[data-char="门胁樱"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/surprised.webp") !important;}
+[data-char="门胁樱"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/happy-blush.webp") !important;}
+[data-char="门胁樱"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/surprised-blush.webp") !important;}
+[data-char="门胁樱"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/sad-blush.webp") !important;}
+[data-char="门胁樱"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/angry-blush.webp") !important;}
+[data-char="门胁樱"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/normal-blush.webp") !important;}
+[data-char="门胁樱"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/puzzled-blush.webp") !important;}
+[data-char="门胁樱"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/sad.webp") !important;}
+[data-char="门胁樱"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/angry.webp") !important;}
+[data-char="门胁樱"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/normal.webp") !important;}
+[data-char="门胁樱"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/puzzled.webp") !important;}
 [data-char="门胁樱"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--d004b44dfc873f71.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/menxieying/uniform.webp") !important;}
 
 /* 双叶沙那子（轮舞曲） */
 [data-char="双叶沙那子"] {
-  --main: #a98e66 !important;
-  --sub: #c7b69c !important;
-  --rgb: 169, 142, 102 !important;
-  --motion-color: #957d5a !important;}
+  --main: #e2b378 !important;
+  --sub: #eed3b1 !important;
+  --rgb: 226, 179, 120 !important;
+  --motion-color: #cba16c !important;}
 [data-char="双叶沙那子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3a1cbf810704689d.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="双叶沙那子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="双叶沙那子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="双叶沙那子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3a1cbf810704689d.png") !important;}
-[data-char="双叶沙那子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3a1cbf810704689d.png") !important;}
+[data-char="双叶沙那子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/normal.webp") !important;}
+[data-char="双叶沙那子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/normal.webp") !important;}
 [data-char="双叶沙那子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--890638ec4bb4561d.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/shuangyeshanazi/outfit1.webp") !important;}
 
 /* 天司凉香（轮舞曲） */
 [data-char="天司凉香"] {
-  --main: #7a568f !important;
-  --sub: #a991b6 !important;
-  --rgb: 122, 86, 143 !important;
-  --motion-color: #6b4c7e !important;}
+  --main: #ad77e2 !important;
+  --sub: #cfb0ee !important;
+  --rgb: 173, 119, 226 !important;
+  --motion-color: #a672d9 !important;}
 [data-char="天司凉香"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2ca24b939ce3147b.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="天司凉香"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="天司凉香"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="天司凉香"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c040abcbb26a4276.png") !important;}
-[data-char="天司凉香"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--370f2cffd6a5d6b8.png") !important;}
-[data-char="天司凉香"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ec2e8263099e38f5.png") !important;}
-[data-char="天司凉香"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ffc55032c5fa2f6d.png") !important;}
-[data-char="天司凉香"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cf31384060153526.png") !important;}
-[data-char="天司凉香"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--54dde465371798fd.png") !important;}
-[data-char="天司凉香"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--daef6e9cf7a53555.png") !important;}
-[data-char="天司凉香"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c040abcbb26a4276.png") !important;}
-[data-char="天司凉香"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--453fa5e8f0aaecc9.png") !important;}
-[data-char="天司凉香"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3d2979e7b6ae271f.png") !important;}
-[data-char="天司凉香"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6be10a0877e5df5d.png") !important;}
-[data-char="天司凉香"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2ca24b939ce3147b.png") !important;}
-[data-char="天司凉香"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b07feecca4fa9f04.png") !important;}
+[data-char="天司凉香"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/normal-blush.webp") !important;}
+[data-char="天司凉香"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/happy.webp") !important;}
+[data-char="天司凉香"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/surprised.webp") !important;}
+[data-char="天司凉香"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/happy-blush.webp") !important;}
+[data-char="天司凉香"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/surprised-blush.webp") !important;}
+[data-char="天司凉香"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/sad-blush.webp") !important;}
+[data-char="天司凉香"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/angry-blush.webp") !important;}
+[data-char="天司凉香"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/normal-blush.webp") !important;}
+[data-char="天司凉香"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/puzzled-blush.webp") !important;}
+[data-char="天司凉香"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/sad.webp") !important;}
+[data-char="天司凉香"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/angry.webp") !important;}
+[data-char="天司凉香"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/normal.webp") !important;}
+[data-char="天司凉香"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/puzzled.webp") !important;}
 [data-char="天司凉香"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--726f125dd09ba1a8.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/tiansiliangxiang/uniform.webp") !important;}
 
 /* 小峰真奈美（轮舞曲） */
 [data-char="小峰真奈美"] {
-  --main: #dd88a1 !important;
-  --sub: #e9b2c2 !important;
-  --rgb: 221, 136, 161 !important;
-  --motion-color: #c2788e !important;}
+  --main: #f287af !important;
+  --sub: #f7b9d1 !important;
+  --rgb: 242, 135, 175 !important;
+  --motion-color: #da7a9e !important;}
 [data-char="小峰真奈美"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--24d0cb08475393f3.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="小峰真奈美"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="小峰真奈美"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="小峰真奈美"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--87551538c1df3cb9.png") !important;}
-[data-char="小峰真奈美"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5346151138e492bf.png") !important;}
-[data-char="小峰真奈美"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9c58e6691a4c6eac.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--86e9a9fdf8779bae.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fed6753ece28bdab.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8fd5167b12fed41c.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--11f0df5408d83622.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--87551538c1df3cb9.png") !important;}
-[data-char="小峰真奈美"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8cd4480ba621e8a8.png") !important;}
-[data-char="小峰真奈美"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4f4593fda2b862db.png") !important;}
-[data-char="小峰真奈美"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a37f866d2c152f73.png") !important;}
-[data-char="小峰真奈美"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--24d0cb08475393f3.png") !important;}
-[data-char="小峰真奈美"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4cb983a00606e95e.png") !important;}
+[data-char="小峰真奈美"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/normal-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/happy.webp") !important;}
+[data-char="小峰真奈美"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/surprised.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/happy-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/surprised-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/sad-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/angry-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/normal-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/puzzled-blush.webp") !important;}
+[data-char="小峰真奈美"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/sad.webp") !important;}
+[data-char="小峰真奈美"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/angry.webp") !important;}
+[data-char="小峰真奈美"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/normal.webp") !important;}
+[data-char="小峰真奈美"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/puzzled.webp") !important;}
 [data-char="小峰真奈美"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--e6f94ce1ee49f326.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaofengzhennaimei/uniform.webp") !important;}
 
 /* 小石川珠音（轮舞曲） */
 [data-char="小石川珠音"] {
-  --main: #c9a97a !important;
-  --sub: #dcc7a9 !important;
-  --rgb: 201, 169, 122 !important;
-  --motion-color: #b1956b !important;}
+  --main: #e8cd92 !important;
+  --sub: #f2e2c0 !important;
+  --rgb: 232, 205, 146 !important;
+  --motion-color: #d1b883 !important;}
 [data-char="小石川珠音"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--07b4b150a8ff4094.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="小石川珠音"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="小石川珠音"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="小石川珠音"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07b4b150a8ff4094.png") !important;}
-[data-char="小石川珠音"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--07b4b150a8ff4094.png") !important;}
+[data-char="小石川珠音"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/normal.webp") !important;}
+[data-char="小石川珠音"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/normal.webp") !important;}
 [data-char="小石川珠音"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--71605b036d1f706d.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xiaoshichuanzhuyin/outfit1.webp") !important;}
 
 /* 新垣若菜（轮舞曲） */
 [data-char="新垣若菜"] {
-  --main: #e5aa5a !important;
-  --sub: #eec894 !important;
-  --rgb: 229, 170, 90 !important;
-  --motion-color: #ca964f !important;}
+  --main: #f5cb84 !important;
+  --sub: #f9e1b8 !important;
+  --rgb: 245, 203, 132 !important;
+  --motion-color: #dcb777 !important;}
 [data-char="新垣若菜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--bdd4578cca495812.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="新垣若菜"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="新垣若菜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="新垣若菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce16485ec390d470.png") !important;}
-[data-char="新垣若菜"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c432838e2b3d97c8.png") !important;}
-[data-char="新垣若菜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--72259e1856a531c8.png") !important;}
-[data-char="新垣若菜"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ea2e145fa81abc17.png") !important;}
-[data-char="新垣若菜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3373ef398a6ae3b.png") !important;}
-[data-char="新垣若菜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bc734dcb37436c16.png") !important;}
-[data-char="新垣若菜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fb2904a1c45ccc16.png") !important;}
-[data-char="新垣若菜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce16485ec390d470.png") !important;}
-[data-char="新垣若菜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1f7ea73b5e8b7d57.png") !important;}
-[data-char="新垣若菜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--79f1e654ac673a4e.png") !important;}
-[data-char="新垣若菜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4debd82a3bca0579.png") !important;}
-[data-char="新垣若菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bdd4578cca495812.png") !important;}
-[data-char="新垣若菜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d2e1439553a808c3.png") !important;}
+[data-char="新垣若菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/normal-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/smug.webp") !important;}
+[data-char="新垣若菜"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/happy.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/smug-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/happy-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/sad-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/angry-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/normal-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/puzzled-blush.webp") !important;}
+[data-char="新垣若菜"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/sad.webp") !important;}
+[data-char="新垣若菜"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/angry.webp") !important;}
+[data-char="新垣若菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/normal.webp") !important;}
+[data-char="新垣若菜"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/puzzled.webp") !important;}
 [data-char="新垣若菜"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--68708fd4bb5cf3df.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/xinyuanruocai/uniform.webp") !important;}
 
 /* 真原葵（轮舞曲） */
 [data-char="真原葵"] {
-  --main: #9e6747 !important;
-  --sub: #c09c87 !important;
-  --rgb: 158, 103, 71 !important;
-  --motion-color: #8b5b3e !important;}
+  --main: #da8b4e !important;
+  --sub: #eabc98 !important;
+  --rgb: 218, 139, 78 !important;
+  --motion-color: #c47d46 !important;}
 [data-char="真原葵"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--492a55e82a412ae9.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="真原葵"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="真原葵"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="真原葵"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8beb33086750b81b.png") !important;}
-[data-char="真原葵"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8e7f83d0b60f17ce.png") !important;}
-[data-char="真原葵"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a1e26f9de75b03c0.png") !important;}
-[data-char="真原葵"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5aef578c5f024241.png") !important;}
-[data-char="真原葵"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6e5f9cd48b3fb436.png") !important;}
-[data-char="真原葵"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--39f4088db83bcede.png") !important;}
-[data-char="真原葵"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ce5cc49008da4df9.png") !important;}
-[data-char="真原葵"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8beb33086750b81b.png") !important;}
-[data-char="真原葵"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bfa59fced3d21c9f.png") !important;}
-[data-char="真原葵"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--90cde5003ff51d32.png") !important;}
-[data-char="真原葵"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--431750d5889b911b.png") !important;}
-[data-char="真原葵"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--492a55e82a412ae9.png") !important;}
-[data-char="真原葵"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bc20b28f7983430c.png") !important;}
+[data-char="真原葵"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/normal-blush.webp") !important;}
+[data-char="真原葵"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/happy.webp") !important;}
+[data-char="真原葵"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/surprised.webp") !important;}
+[data-char="真原葵"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/happy-blush.webp") !important;}
+[data-char="真原葵"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/surprised-blush.webp") !important;}
+[data-char="真原葵"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/sad-blush.webp") !important;}
+[data-char="真原葵"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/angry-blush.webp") !important;}
+[data-char="真原葵"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/normal-blush.webp") !important;}
+[data-char="真原葵"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/puzzled-blush.webp") !important;}
+[data-char="真原葵"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/sad.webp") !important;}
+[data-char="真原葵"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/angry.webp") !important;}
+[data-char="真原葵"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/normal.webp") !important;}
+[data-char="真原葵"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/puzzled.webp") !important;}
 [data-char="真原葵"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--e9db54583a5d023d.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuankui/outfit1.webp") !important;}
 
 /* 真原祐里（轮舞曲） */
 [data-char="真原祐里"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2d087 !important;
+  --sub: #f7e4b9 !important;
+  --rgb: 242, 208, 135 !important;
+  --motion-color: #dabb7a !important;}
 [data-char="真原祐里"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--23ec968a2eabbdfd.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="真原祐里"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="真原祐里"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="真原祐里"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a18911f9a3236033.png") !important;}
-[data-char="真原祐里"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d0dd3bddbf779d05.png") !important;}
-[data-char="真原祐里"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--291b80581479cc3f.png") !important;}
-[data-char="真原祐里"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0838858a21374920.png") !important;}
-[data-char="真原祐里"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9d274745180a6020.png") !important;}
-[data-char="真原祐里"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7a4ab801631aa5dc.png") !important;}
-[data-char="真原祐里"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--186034efb52184ab.png") !important;}
-[data-char="真原祐里"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a18911f9a3236033.png") !important;}
-[data-char="真原祐里"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--43709c83485d4dcd.png") !important;}
-[data-char="真原祐里"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ba5275ad1f02c05b.png") !important;}
-[data-char="真原祐里"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e60f3970c2133fd4.png") !important;}
-[data-char="真原祐里"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--23ec968a2eabbdfd.png") !important;}
-[data-char="真原祐里"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5723d93a35b7fa40.png") !important;}
+[data-char="真原祐里"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/normal-blush.webp") !important;}
+[data-char="真原祐里"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/happy.webp") !important;}
+[data-char="真原祐里"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/surprised.webp") !important;}
+[data-char="真原祐里"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/happy-blush.webp") !important;}
+[data-char="真原祐里"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/surprised-blush.webp") !important;}
+[data-char="真原祐里"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/sad-blush.webp") !important;}
+[data-char="真原祐里"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/angry-blush.webp") !important;}
+[data-char="真原祐里"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/normal-blush.webp") !important;}
+[data-char="真原祐里"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/puzzled-blush.webp") !important;}
+[data-char="真原祐里"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/sad.webp") !important;}
+[data-char="真原祐里"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/angry.webp") !important;}
+[data-char="真原祐里"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/normal.webp") !important;}
+[data-char="真原祐里"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/puzzled.webp") !important;}
 [data-char="真原祐里"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ae667f59f3f3dcb2.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zhenyuanyouli/uniform.webp") !important;}
 
 /* 佐佐原亮子（轮舞曲） */
 [data-char="佐佐原亮子"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #bb92e8 !important;
+  --sub: #d8c0f2 !important;
+  --rgb: 187, 146, 232 !important;
+  --motion-color: #a883d1 !important;}
 [data-char="佐佐原亮子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--77a96e1085df6d2f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="佐佐原亮子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="佐佐原亮子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="佐佐原亮子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--77a96e1085df6d2f.png") !important;}
-[data-char="佐佐原亮子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--77a96e1085df6d2f.png") !important;}
+[data-char="佐佐原亮子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/normal.webp") !important;}
+[data-char="佐佐原亮子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/normal.webp") !important;}
 [data-char="佐佐原亮子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--9599d8eec278cb5f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/lunwuqu/zuozuoyuanliangzi/outfit1.webp") !important;}
 
 /* 不二卫哉（柠水） */
 [data-char="不二卫哉"] {
-  --main: #dfc069 !important;
-  --sub: #ead69e !important;
-  --rgb: 223, 192, 105 !important;
-  --motion-color: #c4a95c !important;}
+  --main: #f5e484 !important;
+  --sub: #f9efb8 !important;
+  --rgb: 245, 228, 132 !important;
+  --motion-color: #dccd77 !important;}
 [data-char="不二卫哉"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--bd19bb94342e7161.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/buerweizai/normal.webp") !important;}
 [data-char="不二卫哉"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="不二卫哉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bd19bb94342e7161.png") !important;}
-[data-char="不二卫哉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bd19bb94342e7161.png") !important;}
+[data-char="不二卫哉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/buerweizai/normal.webp") !important;}
+[data-char="不二卫哉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/buerweizai/normal.webp") !important;}
 
 /* 茶园那优花（柠水） */
 [data-char="茶园那优花"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #b392e8 !important;
+  --sub: #d3c0f2 !important;
+  --rgb: 179, 146, 232 !important;
+  --motion-color: #a183d1 !important;}
 [data-char="茶园那优花"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--e1e92048c9563987.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="茶园那优花"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="茶园那优花"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="茶园那优花"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--de250dff4a0d5eb0.png") !important;}
-[data-char="茶园那优花"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--60a8d02686adc0ea.png") !important;}
-[data-char="茶园那优花"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fd4364652b6bb7aa.png") !important;}
-[data-char="茶园那优花"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5398c972e35d4b0a.png") !important;}
-[data-char="茶园那优花"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0c5fdbca899ab1f4.png") !important;}
-[data-char="茶园那优花"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--48719e6a75732572.png") !important;}
-[data-char="茶园那优花"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5868c2427bf617ab.png") !important;}
-[data-char="茶园那优花"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bee8dfa352cd2cc6.png") !important;}
-[data-char="茶园那优花"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6a79cfa5b8669172.png") !important;}
-[data-char="茶园那优花"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--de250dff4a0d5eb0.png") !important;}
-[data-char="茶园那优花"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c7eb0b01562b7f96.png") !important;}
-[data-char="茶园那优花"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5ad171673435f104.png") !important;}
-[data-char="茶园那优花"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cca205180b9fc042.png") !important;}
-[data-char="茶园那优花"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e1e92048c9563987.png") !important;}
-[data-char="茶园那优花"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b349bf823b5fa7c8.png") !important;}
+[data-char="茶园那优花"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/normal-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/smug.webp") !important;}
+[data-char="茶园那优花"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/smirk.webp") !important;}
+[data-char="茶园那优花"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/happy.webp") !important;}
+[data-char="茶园那优花"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/surprised.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/smirk-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/happy-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/surprised-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/angry-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/normal-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/puzzled-blush.webp") !important;}
+[data-char="茶园那优花"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/sad.webp") !important;}
+[data-char="茶园那优花"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/angry.webp") !important;}
+[data-char="茶园那优花"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/normal.webp") !important;}
+[data-char="茶园那优花"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/puzzled.webp") !important;}
 [data-char="茶园那优花"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5ccfa48cd9d4d3ab.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/chayuannayouhua/outfit1.webp") !important;}
 
 /* 岛越月望（柠水） */
 [data-char="岛越月望"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2d787 !important;
+  --sub: #f7e8b9 !important;
+  --rgb: 242, 215, 135 !important;
+  --motion-color: #dac27a !important;}
 [data-char="岛越月望"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--66cd1a7b49851997.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="岛越月望"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="岛越月望"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="岛越月望"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2ac7ffc56783a240.png") !important;}
-[data-char="岛越月望"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0bb0b720cbb6fab4.png") !important;}
-[data-char="岛越月望"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--620a33d006470123.png") !important;}
-[data-char="岛越月望"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--620dfe117780aaaa.png") !important;}
-[data-char="岛越月望"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c141e3dfab4f9c27.png") !important;}
-[data-char="岛越月望"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a2aa5858ecec0be3.png") !important;}
-[data-char="岛越月望"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b3323772ba0e1369.png") !important;}
-[data-char="岛越月望"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7d13fbd0f8e85456.png") !important;}
-[data-char="岛越月望"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ae7a770bb899ab7a.png") !important;}
-[data-char="岛越月望"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0f40493ea37f308a.png") !important;}
-[data-char="岛越月望"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fd376798f797f3c9.png") !important;}
-[data-char="岛越月望"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2ac7ffc56783a240.png") !important;}
-[data-char="岛越月望"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--33c71256f64fccbd.png") !important;}
-[data-char="岛越月望"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e637536f4936348b.png") !important;}
-[data-char="岛越月望"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aed5ec142b33c361.png") !important;}
-[data-char="岛越月望"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--66cd1a7b49851997.png") !important;}
-[data-char="岛越月望"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1787bcd37599f51f.png") !important;}
+[data-char="岛越月望"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/normal-blush.webp") !important;}
+[data-char="岛越月望"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/smug.webp") !important;}
+[data-char="岛越月望"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/smirk.webp") !important;}
+[data-char="岛越月望"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/happy.webp") !important;}
+[data-char="岛越月望"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/surprised.webp") !important;}
+[data-char="岛越月望"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/smug-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/smirk-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/happy-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/surprised-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/sad-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/angry-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/normal-blush.webp") !important;}
+[data-char="岛越月望"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/puzzled-blush.webp") !important;}
+[data-char="岛越月望"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/sad.webp") !important;}
+[data-char="岛越月望"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/angry.webp") !important;}
+[data-char="岛越月望"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/normal.webp") !important;}
+[data-char="岛越月望"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/puzzled.webp") !important;}
 [data-char="岛越月望"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--dc0cc720524462d5.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/daoyueyuewang/uniform.webp") !important;}
 
 /* 二见原莉莉子（柠水） */
 [data-char="二见原莉莉子"] {
-  --main: #ca92a3 !important;
-  --sub: #ddb8c3 !important;
-  --rgb: 202, 146, 163 !important;
-  --motion-color: #b2808f !important;}
+  --main: #e892a2 !important;
+  --sub: #f2c0c9 !important;
+  --rgb: 232, 146, 162 !important;
+  --motion-color: #d18392 !important;}
 [data-char="二见原莉莉子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a4dcefed03ba40b5.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="二见原莉莉子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="二见原莉莉子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="二见原莉莉子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fc4060dfd87f6b74.png") !important;}
-[data-char="二见原莉莉子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d68dbeb4d4d473a0.png") !important;}
-[data-char="二见原莉莉子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bdf5348c2188f4f1.png") !important;}
-[data-char="二见原莉莉子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--918f1ffa490891d2.png") !important;}
-[data-char="二见原莉莉子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--72c4e62f02495935.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e10048560a2b25ae.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--67d3a0a73f5bb27f.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0b3b5fc89c9a09c2.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8595b41e9f14d797.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0dc5a044f0c4a57c.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3f75e3ca5f5917c7.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f58c5db78150838d.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fc4060dfd87f6b74.png") !important;}
-[data-char="二见原莉莉子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5f68f569ade665b5.png") !important;}
-[data-char="二见原莉莉子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0be0b8d7b452f5f7.png") !important;}
-[data-char="二见原莉莉子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e12983fb89c19837.png") !important;}
-[data-char="二见原莉莉子"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ddbaecd4493708de.png") !important;}
-[data-char="二见原莉莉子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a4dcefed03ba40b5.png") !important;}
-[data-char="二见原莉莉子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cd9817857776794a.png") !important;}
+[data-char="二见原莉莉子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/normal-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/smug.webp") !important;}
+[data-char="二见原莉莉子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/smirk.webp") !important;}
+[data-char="二见原莉莉子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/happy.webp") !important;}
+[data-char="二见原莉莉子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/surprised.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/smug-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/smirk-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/happy-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/surprised-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/sad-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/angry-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/thinking-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/normal-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/puzzled-blush.webp") !important;}
+[data-char="二见原莉莉子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/sad.webp") !important;}
+[data-char="二见原莉莉子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/angry.webp") !important;}
+[data-char="二见原莉莉子"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/thinking.webp") !important;}
+[data-char="二见原莉莉子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/normal.webp") !important;}
+[data-char="二见原莉莉子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/puzzled.webp") !important;}
 [data-char="二见原莉莉子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--45d6b7af98087092.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/erjianyuanlilizi/uniform.webp") !important;}
 
 /* 砾川杰（柠水） */
 [data-char="砾川杰"] {
-  --main: #9a9aa2 !important;
-  --sub: #bdbdc3 !important;
-  --rgb: 154, 154, 162 !important;
-  --motion-color: #88888f !important;}
+  --main: #dfa792 !important;
+  --sub: #ecccc0 !important;
+  --rgb: 223, 167, 146 !important;
+  --motion-color: #c99683 !important;}
 [data-char="砾川杰"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--b067843043fc1fc6.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanjie/normal.webp") !important;}
 [data-char="砾川杰"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="砾川杰"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b067843043fc1fc6.png") !important;}
-[data-char="砾川杰"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b067843043fc1fc6.png") !important;}
+[data-char="砾川杰"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanjie/normal.webp") !important;}
+[data-char="砾川杰"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanjie/normal.webp") !important;}
 
 /* 砾川美玖（柠水） */
 [data-char="砾川美玖"] {
-  --main: #a6a6bf !important;
-  --sub: #c5c5d5 !important;
-  --rgb: 166, 166, 191 !important;
-  --motion-color: #9292a8 !important;}
+  --main: #9392e8 !important;
+  --sub: #c0c0f2 !important;
+  --rgb: 147, 146, 232 !important;
+  --motion-color: #8483d1 !important;}
 [data-char="砾川美玖"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--286edf32e8db6a61.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="砾川美玖"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="砾川美玖"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="砾川美玖"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e5ba66a8a906a542.png") !important;}
-[data-char="砾川美玖"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--783e6bd184f967ce.png") !important;}
-[data-char="砾川美玖"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a5ef9809ff4e80a6.png") !important;}
-[data-char="砾川美玖"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0883ed4f6b0b7846.png") !important;}
-[data-char="砾川美玖"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8c0164de666d1be0.png") !important;}
-[data-char="砾川美玖"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ba7187b22b1d197b.png") !important;}
-[data-char="砾川美玖"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--67fd334d1af7303e.png") !important;}
-[data-char="砾川美玖"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e5ba66a8a906a542.png") !important;}
-[data-char="砾川美玖"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--28fd14ffa16dc24c.png") !important;}
-[data-char="砾川美玖"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b7c1932ed97934f8.png") !important;}
-[data-char="砾川美玖"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--debc7e69c29807c6.png") !important;}
-[data-char="砾川美玖"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--286edf32e8db6a61.png") !important;}
-[data-char="砾川美玖"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d94a1e15e7f0c807.png") !important;}
+[data-char="砾川美玖"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/normal-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/happy.webp") !important;}
+[data-char="砾川美玖"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/surprised.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/happy-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/surprised-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/sad-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/angry-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/normal-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/puzzled-blush.webp") !important;}
+[data-char="砾川美玖"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/sad.webp") !important;}
+[data-char="砾川美玖"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/angry.webp") !important;}
+[data-char="砾川美玖"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/normal.webp") !important;}
+[data-char="砾川美玖"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/puzzled.webp") !important;}
 [data-char="砾川美玖"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5dbf9001228f02bf.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanmeijiu/outfit1.webp") !important;}
 
 /* 砾川雄真（柠水） */
 [data-char="砾川雄真"] {
-  --main: #9a9aa2 !important;
-  --sub: #bdbdc3 !important;
-  --rgb: 154, 154, 162 !important;
-  --motion-color: #88888f !important;}
+  --main: #dea68e !important;
+  --sub: #eccbbd !important;
+  --rgb: 222, 166, 142 !important;
+  --motion-color: #c89580 !important;}
 [data-char="砾川雄真"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--a5d64df580095ac2.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanxiongzhen/normal.webp") !important;}
 [data-char="砾川雄真"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="砾川雄真"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a5d64df580095ac2.png") !important;}
-[data-char="砾川雄真"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a5d64df580095ac2.png") !important;}
+[data-char="砾川雄真"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanxiongzhen/normal.webp") !important;}
+[data-char="砾川雄真"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/lichuanxiongzhen/normal.webp") !important;}
 
 /* 阳见惠凪（柠水） */
 [data-char="阳见惠凪"] {
-  --main: #dd88a1 !important;
-  --sub: #e9b2c2 !important;
-  --rgb: 221, 136, 161 !important;
-  --motion-color: #c2788e !important;}
+  --main: #f287a5 !important;
+  --sub: #f7b9cb !important;
+  --rgb: 242, 135, 165 !important;
+  --motion-color: #da7a94 !important;}
 [data-char="阳见惠凪"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f18a3bc312267368.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="阳见惠凪"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="阳见惠凪"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="阳见惠凪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c99fd81a3d1072a4.png") !important;}
-[data-char="阳见惠凪"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e1fa71bffb0573b4.png") !important;}
-[data-char="阳见惠凪"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4b7379d11ec64d59.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3026400b4eba28c5.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d9b7e0e47603976e.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d0a04707f3f328eb.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0d3a29c912181d93.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c99fd81a3d1072a4.png") !important;}
-[data-char="阳见惠凪"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4e90fb9b233db50c.png") !important;}
-[data-char="阳见惠凪"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4311bd1115b940cc.png") !important;}
-[data-char="阳见惠凪"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--80ddc4e60b6f4e80.png") !important;}
-[data-char="阳见惠凪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f18a3bc312267368.png") !important;}
-[data-char="阳见惠凪"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6dd1ef621c616fcb.png") !important;}
+[data-char="阳见惠凪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/normal-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/happy.webp") !important;}
+[data-char="阳见惠凪"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/surprised.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/happy-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/surprised-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/sad-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/angry-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/normal-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/puzzled-blush.webp") !important;}
+[data-char="阳见惠凪"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/sad.webp") !important;}
+[data-char="阳见惠凪"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/angry.webp") !important;}
+[data-char="阳见惠凪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/normal.webp") !important;}
+[data-char="阳见惠凪"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/puzzled.webp") !important;}
 [data-char="阳见惠凪"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--9b3ec8837691c1cd.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yangjianhuizhi/uniform.webp") !important;}
 
 /* 隐杏珠（柠水） */
 [data-char="隐杏珠"] {
-  --main: #7a568f !important;
-  --sub: #a991b6 !important;
-  --rgb: 122, 86, 143 !important;
-  --motion-color: #6b4c7e !important;}
+  --main: #b270e1 !important;
+  --sub: #d2acee !important;
+  --rgb: 178, 112, 225 !important;
+  --motion-color: #ab6cd8 !important;}
 [data-char="隐杏珠"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d1d88f3507010700.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="隐杏珠"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="隐杏珠"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="隐杏珠"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cf11a45e8f731954.png") !important;}
-[data-char="隐杏珠"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b0f786a33ed50406.png") !important;}
-[data-char="隐杏珠"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--03574908b8c6361e.png") !important;}
-[data-char="隐杏珠"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e6d41fde6c02015b.png") !important;}
-[data-char="隐杏珠"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--290331c951ec4ce8.png") !important;}
-[data-char="隐杏珠"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d48b53a3c9f3ec65.png") !important;}
-[data-char="隐杏珠"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5ed4b5c317bfd449.png") !important;}
-[data-char="隐杏珠"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--250b7e3f9bab37a9.png") !important;}
-[data-char="隐杏珠"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f3ce60243eeffebb.png") !important;}
-[data-char="隐杏珠"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cf11a45e8f731954.png") !important;}
-[data-char="隐杏珠"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fc430e1cbffef3c1.png") !important;}
-[data-char="隐杏珠"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b883b86bbc45039d.png") !important;}
-[data-char="隐杏珠"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--91d7818e590c4236.png") !important;}
-[data-char="隐杏珠"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d1d88f3507010700.png") !important;}
-[data-char="隐杏珠"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--488844b5bed45c07.png") !important;}
+[data-char="隐杏珠"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/normal-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/smug.webp") !important;}
+[data-char="隐杏珠"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/happy.webp") !important;}
+[data-char="隐杏珠"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/surprised.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/smug-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/happy-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/surprised-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/sad-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/angry-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/normal-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/puzzled-blush.webp") !important;}
+[data-char="隐杏珠"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/sad.webp") !important;}
+[data-char="隐杏珠"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/angry.webp") !important;}
+[data-char="隐杏珠"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/normal.webp") !important;}
+[data-char="隐杏珠"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/puzzled.webp") !important;}
 [data-char="隐杏珠"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--b3e3a4d156248c91.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/yinxingzhu/uniform.webp") !important;}
 
 /* 仲原大梦（柠水） */
 [data-char="仲原大梦"] {
-  --main: #a16a44 !important;
-  --sub: #c29e85 !important;
-  --rgb: 161, 106, 68 !important;
-  --motion-color: #8e5d3c !important;}
+  --main: #db7a54 !important;
+  --sub: #eab29c !important;
+  --rgb: 219, 122, 84 !important;
+  --motion-color: #d27551 !important;}
 [data-char="仲原大梦"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d15b0a002510bd96.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/zhongyuandameng/normal.webp") !important;}
 [data-char="仲原大梦"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="仲原大梦"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d15b0a002510bd96.png") !important;}
-[data-char="仲原大梦"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d15b0a002510bd96.png") !important;}
+[data-char="仲原大梦"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/zhongyuandameng/normal.webp") !important;}
+[data-char="仲原大梦"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/ningshui/zhongyuandameng/normal.webp") !important;}
 
 /* 莲华（万华镜） */
 [data-char="莲华"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #c88ede !important;
+  --sub: #dfbdec !important;
+  --rgb: 200, 142, 222 !important;
+  --motion-color: #b480c8 !important;}
 [data-char="莲华"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--03a246ddb10517f8.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="莲华"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="莲华"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="莲华"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--03a246ddb10517f8.png") !important;}
-[data-char="莲华"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--03a246ddb10517f8.png") !important;}
+[data-char="莲华"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/normal.webp") !important;}
+[data-char="莲华"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/normal.webp") !important;}
 [data-char="莲华"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5950e7f860429458.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lianhua/outfit1.webp") !important;}
 
 /* 铃森伊千果（万华镜） */
 [data-char="铃森伊千果"] {
-  --main: #d3b892 !important;
-  --sub: #e2d1b8 !important;
-  --rgb: 211, 184, 146 !important;
-  --motion-color: #baa280 !important;}
+  --main: #e8c392 !important;
+  --sub: #f2dcc0 !important;
+  --rgb: 232, 195, 146 !important;
+  --motion-color: #d1b083 !important;}
 [data-char="铃森伊千果"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--bbefaa813a59241f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="铃森伊千果"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="铃森伊千果"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="铃森伊千果"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--071cbdcb981d3c1c.png") !important;}
-[data-char="铃森伊千果"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f24bc55555b591cc.png") !important;}
-[data-char="铃森伊千果"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f8c45a4af429854f.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bd5ded1720a3da0b.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--413f8448e0da8193.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--663b39fcf3ed162d.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--429c4fcd76dd77b4.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--071cbdcb981d3c1c.png") !important;}
-[data-char="铃森伊千果"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--649c8559b72db503.png") !important;}
-[data-char="铃森伊千果"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--80a5e0f39c711202.png") !important;}
-[data-char="铃森伊千果"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d2dfb956fd3cebbf.png") !important;}
-[data-char="铃森伊千果"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bbefaa813a59241f.png") !important;}
-[data-char="铃森伊千果"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0bd1c1e6481e2705.png") !important;}
+[data-char="铃森伊千果"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/normal-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/happy.webp") !important;}
+[data-char="铃森伊千果"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/surprised.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/happy-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/surprised-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/sad-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/angry-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/normal-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/puzzled-blush.webp") !important;}
+[data-char="铃森伊千果"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/sad.webp") !important;}
+[data-char="铃森伊千果"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/angry.webp") !important;}
+[data-char="铃森伊千果"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/normal.webp") !important;}
+[data-char="铃森伊千果"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/puzzled.webp") !important;}
 [data-char="铃森伊千果"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--a28b799007f5a35a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/lingsenyiqianguo/uniform.webp") !important;}
 
 /* 藤堂咲（万华镜） */
 [data-char="藤堂咲"] {
-  --main: #ead87b !important;
-  --sub: #f1e6a9 !important;
-  --rgb: 234, 216, 123 !important;
-  --motion-color: #cebe6c !important;}
+  --main: #f5df84 !important;
+  --sub: #f9ecb8 !important;
+  --rgb: 245, 223, 132 !important;
+  --motion-color: #dcc977 !important;}
 [data-char="藤堂咲"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--928fb3031dc70b9e.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="藤堂咲"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="藤堂咲"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="藤堂咲"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--928fb3031dc70b9e.png") !important;}
-[data-char="藤堂咲"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--928fb3031dc70b9e.png") !important;}
+[data-char="藤堂咲"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/normal.webp") !important;}
+[data-char="藤堂咲"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/normal.webp") !important;}
 [data-char="藤堂咲"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--df149f61aa45a905.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/tengtangxiao/outfit1.webp") !important;}
 
 /* 觋礼次郎（万华镜） */
 [data-char="觋礼次郎"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #90b9e8 !important;
+  --sub: #bfd6f2 !important;
+  --rgb: 144, 185, 232 !important;
+  --motion-color: #82a6d1 !important;}
 [data-char="觋礼次郎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--e06c3858ea39b8ca.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xilicilang/normal.webp") !important;}
 [data-char="觋礼次郎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="觋礼次郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e06c3858ea39b8ca.png") !important;}
-[data-char="觋礼次郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e06c3858ea39b8ca.png") !important;}
+[data-char="觋礼次郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xilicilang/normal.webp") !important;}
+[data-char="觋礼次郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xilicilang/normal.webp") !important;}
 
 /* 觋夕莉（万华镜） */
 [data-char="觋夕莉"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2cc87 !important;
+  --sub: #f7e1b9 !important;
+  --rgb: 242, 204, 135 !important;
+  --motion-color: #dab87a !important;}
 [data-char="觋夕莉"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--cfcbd58db3f96a60.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="觋夕莉"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="觋夕莉"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="觋夕莉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc3663ece45137c4.png") !important;}
-[data-char="觋夕莉"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--821f52f297b10d4c.png") !important;}
-[data-char="觋夕莉"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4c240fd5c2d9819a.png") !important;}
-[data-char="觋夕莉"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5fbddd9ae9a52e3a.png") !important;}
-[data-char="觋夕莉"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--78080ab0f9f33f37.png") !important;}
-[data-char="觋夕莉"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6b24706719ae073f.png") !important;}
-[data-char="觋夕莉"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fbb5b11d8943e431.png") !important;}
-[data-char="觋夕莉"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--027404f1a7d12b7e.png") !important;}
-[data-char="觋夕莉"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a98d5ff0f675b78e.png") !important;}
-[data-char="觋夕莉"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc3663ece45137c4.png") !important;}
-[data-char="觋夕莉"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--9a07c35c71c6526f.png") !important;}
-[data-char="觋夕莉"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b75912eb2044d5d7.png") !important;}
-[data-char="觋夕莉"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d3c1fa9ccbfabb14.png") !important;}
-[data-char="觋夕莉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cfcbd58db3f96a60.png") !important;}
-[data-char="觋夕莉"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--af9e42e0c4e68d61.png") !important;}
+[data-char="觋夕莉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/normal-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/smirk.webp") !important;}
+[data-char="觋夕莉"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/happy.webp") !important;}
+[data-char="觋夕莉"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/surprised.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/smirk-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/happy-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/surprised-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/sad-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/angry-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/normal-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/puzzled-blush.webp") !important;}
+[data-char="觋夕莉"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/sad.webp") !important;}
+[data-char="觋夕莉"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/angry.webp") !important;}
+[data-char="觋夕莉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/normal.webp") !important;}
+[data-char="觋夕莉"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/puzzled.webp") !important;}
 [data-char="觋夕莉"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--80b8216824a9f5d4.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xixili/uniform.webp") !important;}
 
 /* 觋夕摩（万华镜） */
 [data-char="觋夕摩"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2e387 !important;
+  --sub: #f7efb9 !important;
+  --rgb: 242, 227, 135 !important;
+  --motion-color: #dacc7a !important;}
 [data-char="觋夕摩"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d8e9f756dab64ef1.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="觋夕摩"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="觋夕摩"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="觋夕摩"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--96e5a98606296be8.png") !important;}
-[data-char="觋夕摩"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--958555e7391b92cc.png") !important;}
-[data-char="觋夕摩"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--96e5a98606296be8.png") !important;}
-[data-char="觋夕摩"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b5624723944927d3.png") !important;}
-[data-char="觋夕摩"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d8e9f756dab64ef1.png") !important;}
+[data-char="觋夕摩"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/normal-blush.webp") !important;}
+[data-char="觋夕摩"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/angry-blush.webp") !important;}
+[data-char="觋夕摩"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/normal-blush.webp") !important;}
+[data-char="觋夕摩"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/angry.webp") !important;}
+[data-char="觋夕摩"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/normal.webp") !important;}
 [data-char="觋夕摩"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--8df830180d6dbfd3.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/xiximo/uniform.webp") !important;}
 
 /* 御殿场镜子（万华镜） */
 [data-char="御殿场镜子"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #dda68a !important;
+  --sub: #ebcbbb !important;
+  --rgb: 221, 166, 138 !important;
+  --motion-color: #c7957c !important;}
 [data-char="御殿场镜子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3659841d09174d71.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="御殿场镜子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="御殿场镜子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="御殿场镜子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c62de72c5d23e799.png") !important;}
-[data-char="御殿场镜子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3f91877fbafc77ba.png") !important;}
-[data-char="御殿场镜子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d7b15b1d59110778.png") !important;}
-[data-char="御殿场镜子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ed85112ae9175090.png") !important;}
-[data-char="御殿场镜子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2a09b4aa3f386457.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b5729c6bb9164d1c.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cc75322666c7fd81.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0bf348eadabc3f11.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--63807e573c626f0b.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a1d8143a3e611e3a.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3fbd7c90bbf8b68e.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c62de72c5d23e799.png") !important;}
-[data-char="御殿场镜子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--79a16c7b5b3521da.png") !important;}
-[data-char="御殿场镜子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b7ac05e4994016f3.png") !important;}
-[data-char="御殿场镜子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b4e08a6902798944.png") !important;}
-[data-char="御殿场镜子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3659841d09174d71.png") !important;}
-[data-char="御殿场镜子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--71776b42c2567e33.png") !important;}
+[data-char="御殿场镜子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/normal-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/smug.webp") !important;}
+[data-char="御殿场镜子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/smirk.webp") !important;}
+[data-char="御殿场镜子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/happy.webp") !important;}
+[data-char="御殿场镜子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/surprised.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/smug-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/smirk-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/happy-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/surprised-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/sad-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/angry-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/normal-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/puzzled-blush.webp") !important;}
+[data-char="御殿场镜子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/sad.webp") !important;}
+[data-char="御殿场镜子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/angry.webp") !important;}
+[data-char="御殿场镜子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/normal.webp") !important;}
+[data-char="御殿场镜子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/puzzled.webp") !important;}
 [data-char="御殿场镜子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--a8adb2d4acf8c140.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/wanhuajing/yudianchangjingzi/uniform.webp") !important;}
 
 /* 本间丽华（樱之诗） */
 [data-char="本间丽华"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #b092e8 !important;
+  --sub: #d1c0f2 !important;
+  --rgb: 176, 146, 232 !important;
+  --motion-color: #9e83d1 !important;}
 [data-char="本间丽华"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f82b7bc3c3191c15.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="本间丽华"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="本间丽华"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="本间丽华"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f82b7bc3c3191c15.png") !important;}
-[data-char="本间丽华"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f82b7bc3c3191c15.png") !important;}
+[data-char="本间丽华"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/normal.webp") !important;}
+[data-char="本间丽华"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/normal.webp") !important;}
 [data-char="本间丽华"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--2be4614914d07a71.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/benjianlihua/full.webp") !important;}
 
 /* 冰川里奈（樱之诗） */
 [data-char="冰川里奈"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #bd92e8 !important;
+  --sub: #d9c0f2 !important;
+  --rgb: 189, 146, 232 !important;
+  --motion-color: #aa83d1 !important;}
 [data-char="冰川里奈"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--ffe908a4554c8903.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="冰川里奈"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="冰川里奈"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="冰川里奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e76bc10477d8fe68.png") !important;}
-[data-char="冰川里奈"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--388ec9c750f2ac6c.png") !important;}
-[data-char="冰川里奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--99e79d3a5c2d0e4c.png") !important;}
-[data-char="冰川里奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7558b86c9cd985a1.png") !important;}
-[data-char="冰川里奈"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e41ab72c9c42d26d.png") !important;}
-[data-char="冰川里奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--16062f7640abee3f.png") !important;}
-[data-char="冰川里奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--be6880f9e5f74c31.png") !important;}
-[data-char="冰川里奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1c6d6505a847dc4d.png") !important;}
-[data-char="冰川里奈"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4b74c26a1cca1acd.png") !important;}
-[data-char="冰川里奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e76bc10477d8fe68.png") !important;}
-[data-char="冰川里奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b94ce727fe56e193.png") !important;}
-[data-char="冰川里奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--256b8aa69efd5a6d.png") !important;}
-[data-char="冰川里奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--abad38963c0a0883.png") !important;}
-[data-char="冰川里奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ffe908a4554c8903.png") !important;}
-[data-char="冰川里奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--68607d6b7b103b33.png") !important;}
+[data-char="冰川里奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/normal-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/smirk.webp") !important;}
+[data-char="冰川里奈"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/happy.webp") !important;}
+[data-char="冰川里奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/surprised.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/smirk-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/happy-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/surprised-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/sad-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/angry-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/normal-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/puzzled-blush.webp") !important;}
+[data-char="冰川里奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/sad.webp") !important;}
+[data-char="冰川里奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/angry.webp") !important;}
+[data-char="冰川里奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/normal.webp") !important;}
+[data-char="冰川里奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/puzzled.webp") !important;}
 [data-char="冰川里奈"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--f2255e79670b6e6f.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanlinai/uniform.webp") !important;}
 
 /* 冰川露莉莴（樱之诗） */
 [data-char="冰川露莉莴"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #c092e8 !important;
+  --sub: #dac0f2 !important;
+  --rgb: 192, 146, 232 !important;
+  --motion-color: #ad83d1 !important;}
 [data-char="冰川露莉莴"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f62bad390ef20357.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="冰川露莉莴"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="冰川露莉莴"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="冰川露莉莴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f62bad390ef20357.png") !important;}
-[data-char="冰川露莉莴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f62bad390ef20357.png") !important;}
+[data-char="冰川露莉莴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/normal.webp") !important;}
+[data-char="冰川露莉莴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/normal.webp") !important;}
 [data-char="冰川露莉莴"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--76667a482926454b.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/bingchuanluliwo/full.webp") !important;}
 
 /* 伯奇（樱之诗） */
 [data-char="伯奇"] {
-  --main: #a16a44 !important;
-  --sub: #c29e85 !important;
-  --rgb: 161, 106, 68 !important;
-  --motion-color: #8e5d3c !important;}
+  --main: #da944e !important;
+  --sub: #eac198 !important;
+  --rgb: 218, 148, 78 !important;
+  --motion-color: #c48546 !important;}
 [data-char="伯奇"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--376ec5a47fb39f29.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="伯奇"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="伯奇"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="伯奇"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--376ec5a47fb39f29.png") !important;}
-[data-char="伯奇"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--376ec5a47fb39f29.png") !important;}
+[data-char="伯奇"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/normal.webp") !important;}
+[data-char="伯奇"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/normal.webp") !important;}
 [data-char="伯奇"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--cc27cd0250b1853b.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/boqi/full.webp") !important;}
 
 /* 草薙健一郎（樱之诗） */
 [data-char="草薙健一郎"] {
-  --main: #c3b8a2 !important;
-  --sub: #d8d1c3 !important;
-  --rgb: 195, 184, 162 !important;
-  --motion-color: #aca28f !important;}
+  --main: #e8c992 !important;
+  --sub: #f2e0c0 !important;
+  --rgb: 232, 201, 146 !important;
+  --motion-color: #d1b583 !important;}
 [data-char="草薙健一郎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--48e2b10639040406.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotijianyilang/normal.webp") !important;}
 [data-char="草薙健一郎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="草薙健一郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--48e2b10639040406.png") !important;}
-[data-char="草薙健一郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--48e2b10639040406.png") !important;}
+[data-char="草薙健一郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotijianyilang/normal.webp") !important;}
+[data-char="草薙健一郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotijianyilang/normal.webp") !important;}
 
 /* 草薙直哉（樱之诗） */
 [data-char="草薙直哉"] {
-  --main: #a8abb4 !important;
-  --sub: #c6c8ce !important;
-  --rgb: 168, 171, 180 !important;
-  --motion-color: #94969e !important;}
+  --main: #d5c3ca !important;
+  --sub: #e7dce0 !important;
+  --rgb: 213, 195, 202 !important;
+  --motion-color: #c0b0b6 !important;}
 [data-char="草薙直哉"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/c3180da89e62f2278b1dd0ff5912e3742aa694adaf5a4ab4.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhizai/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="草薙直哉"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="草薙直哉"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="草薙直哉"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="草薙直哉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/c3180da89e62f2278b1dd0ff5912e3742aa694adaf5a4ab4.png") !important;}
-[data-char="草薙直哉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/c3180da89e62f2278b1dd0ff5912e3742aa694adaf5a4ab4.png") !important;}
+[data-char="草薙直哉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhizai/normal.webp") !important;}
+[data-char="草薙直哉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhizai/normal.webp") !important;}
 
 /* 川内野铃菜（樱之诗） */
 [data-char="川内野铃菜"] {
-  --main: #9a6f4b !important;
-  --sub: #bda18a !important;
-  --rgb: 154, 111, 75 !important;
-  --motion-color: #886242 !important;}
+  --main: #da924e !important;
+  --sub: #eac098 !important;
+  --rgb: 218, 146, 78 !important;
+  --motion-color: #c48346 !important;}
 [data-char="川内野铃菜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--68a1f0be41ce9f73.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="川内野铃菜"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="川内野铃菜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="川内野铃菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--68a1f0be41ce9f73.png") !important;}
-[data-char="川内野铃菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--68a1f0be41ce9f73.png") !important;}
+[data-char="川内野铃菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/normal.webp") !important;}
+[data-char="川内野铃菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/normal.webp") !important;}
 [data-char="川内野铃菜"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--90b07adb77b006e4.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyelingcai/full.webp") !important;}
 
 /* 川内野优美（樱之诗） */
 [data-char="川内野优美"] {
-  --main: #7a568f !important;
-  --sub: #a991b6 !important;
-  --rgb: 122, 86, 143 !important;
-  --motion-color: #6b4c7e !important;}
+  --main: #bf68df !important;
+  --sub: #daa7ec !important;
+  --rgb: 191, 104, 223 !important;
+  --motion-color: #b764d6 !important;}
 [data-char="川内野优美"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--3397e5253ea4d089.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="川内野优美"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="川内野优美"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="川内野优美"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--132dfbf6185d1a56.png") !important;}
-[data-char="川内野优美"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--56106e27cb47651a.png") !important;}
-[data-char="川内野优美"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3d91cf03dfd58a33.png") !important;}
-[data-char="川内野优美"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aedaa4ff9f08b3ad.png") !important;}
-[data-char="川内野优美"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ae5d38f2a5284333.png") !important;}
-[data-char="川内野优美"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e63b3ba8ea79fd18.png") !important;}
-[data-char="川内野优美"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bc4623ea43bca138.png") !important;}
-[data-char="川内野优美"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8d06cec5d389a89a.png") !important;}
-[data-char="川内野优美"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--009252ac630d6750.png") !important;}
-[data-char="川内野优美"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--132dfbf6185d1a56.png") !important;}
-[data-char="川内野优美"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--11d3fc612abf9ffc.png") !important;}
-[data-char="川内野优美"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--554035042715ab16.png") !important;}
-[data-char="川内野优美"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--71ba12038a16f4f0.png") !important;}
-[data-char="川内野优美"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--3397e5253ea4d089.png") !important;}
-[data-char="川内野优美"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--67be24f5148cd48f.png") !important;}
+[data-char="川内野优美"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/normal-blush.webp") !important;}
+[data-char="川内野优美"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/smirk.webp") !important;}
+[data-char="川内野优美"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/happy.webp") !important;}
+[data-char="川内野优美"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/surprised.webp") !important;}
+[data-char="川内野优美"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/smirk-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/happy-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/surprised-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/sad-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/angry-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/normal-blush.webp") !important;}
+[data-char="川内野优美"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/puzzled-blush.webp") !important;}
+[data-char="川内野优美"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/sad.webp") !important;}
+[data-char="川内野优美"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/angry.webp") !important;}
+[data-char="川内野优美"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/normal.webp") !important;}
+[data-char="川内野优美"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/puzzled.webp") !important;}
 [data-char="川内野优美"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--0c7225b1d6d3f2b3.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chuanneiyeyoumei/uniform.webp") !important;}
 
 /* 吹（樱之诗） */
 [data-char="吹"] {
-  --main: #9285a4 !important;
-  --sub: #b8b0c4 !important;
-  --rgb: 146, 133, 164 !important;
-  --motion-color: #807590 !important;}
+  --main: #a681e4 !important;
+  --sub: #cbb6ef !important;
+  --rgb: 166, 129, 228 !important;
+  --motion-color: #9f7cdb !important;}
 [data-char="吹"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--04c022404d102d0c.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="吹"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="吹"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="吹"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--04c022404d102d0c.png") !important;}
-[data-char="吹"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--04c022404d102d0c.png") !important;}
+[data-char="吹"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/normal.webp") !important;}
+[data-char="吹"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/normal.webp") !important;}
 [data-char="吹"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--5b7ab4b3d3b40efd.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/chui/full.webp") !important;}
 
 /* 东浪见（樱之诗） */
 [data-char="东浪见"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #92b1e8 !important;
+  --sub: #c0d2f2 !important;
+  --rgb: 146, 177, 232 !important;
+  --motion-color: #839fd1 !important;}
 [data-char="东浪见"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--d0c02f8aa9629c9a.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/donglangjian/normal.webp") !important;}
 [data-char="东浪见"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="东浪见"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d0c02f8aa9629c9a.png") !important;}
-[data-char="东浪见"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d0c02f8aa9629c9a.png") !important;}
+[data-char="东浪见"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/donglangjian/normal.webp") !important;}
+[data-char="东浪见"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/donglangjian/normal.webp") !important;}
 
 /* 恩田宁（樱之诗） */
 [data-char="恩田宁"] {
-  --main: #cdb198 !important;
-  --sub: #deccbc !important;
-  --rgb: 205, 177, 152 !important;
-  --motion-color: #b49c86 !important;}
+  --main: #e8c292 !important;
+  --sub: #f2dcc0 !important;
+  --rgb: 232, 194, 146 !important;
+  --motion-color: #d1af83 !important;}
 [data-char="恩田宁"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--55785aab403c9446.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="恩田宁"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="恩田宁"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="恩田宁"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--55785aab403c9446.png") !important;}
-[data-char="恩田宁"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--55785aab403c9446.png") !important;}
+[data-char="恩田宁"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/normal.webp") !important;}
+[data-char="恩田宁"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/normal.webp") !important;}
 [data-char="恩田宁"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--adc5ad12cffd35c6.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/entianning/full.webp") !important;}
 
 /* 栗山奈津子（樱之诗） */
 [data-char="栗山奈津子"] {
-  --main: #6a5591 !important;
-  --sub: #9e90b8 !important;
-  --rgb: 106, 85, 145 !important;
-  --motion-color: #5d4b80 !important;}
+  --main: #9f78e2 !important;
+  --sub: #c7b1ee !important;
+  --rgb: 159, 120, 226 !important;
+  --motion-color: #9973d9 !important;}
 [data-char="栗山奈津子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--37796b18b948d46f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="栗山奈津子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="栗山奈津子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="栗山奈津子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--37796b18b948d46f.png") !important;}
-[data-char="栗山奈津子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--37796b18b948d46f.png") !important;}
+[data-char="栗山奈津子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/normal.webp") !important;}
+[data-char="栗山奈津子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/normal.webp") !important;}
 [data-char="栗山奈津子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--2624104eae73372a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/lishannaijinzi/full.webp") !important;}
 
 /* 泷泽托马斯（樱之诗） */
 [data-char="泷泽托马斯"] {
-  --main: #ddc688 !important;
-  --sub: #e9dab2 !important;
-  --rgb: 221, 198, 136 !important;
-  --motion-color: #c2ae78 !important;}
+  --main: #f2dc87 !important;
+  --sub: #f7ebb9 !important;
+  --rgb: 242, 220, 135 !important;
+  --motion-color: #dac67a !important;}
 [data-char="泷泽托马斯"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f97383e04729dcce.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/longzetuomasi/normal.webp") !important;}
 [data-char="泷泽托马斯"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="泷泽托马斯"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f97383e04729dcce.png") !important;}
-[data-char="泷泽托马斯"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f97383e04729dcce.png") !important;}
+[data-char="泷泽托马斯"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/longzetuomasi/normal.webp") !important;}
+[data-char="泷泽托马斯"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/longzetuomasi/normal.webp") !important;}
 
 /* 麦提弗里曼（樱之诗） */
 [data-char="麦提弗里曼"] {
-  --main: #d3b892 !important;
-  --sub: #e2d1b8 !important;
-  --rgb: 211, 184, 146 !important;
-  --motion-color: #baa280 !important;}
+  --main: #e8cb92 !important;
+  --sub: #f2e1c0 !important;
+  --rgb: 232, 203, 146 !important;
+  --motion-color: #d1b783 !important;}
 [data-char="麦提弗里曼"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--403403f707328d34.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/maitifuliman/normal.webp") !important;}
 [data-char="麦提弗里曼"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="麦提弗里曼"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--403403f707328d34.png") !important;}
-[data-char="麦提弗里曼"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--403403f707328d34.png") !important;}
+[data-char="麦提弗里曼"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/maitifuliman/normal.webp") !important;}
+[data-char="麦提弗里曼"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/maitifuliman/normal.webp") !important;}
 
 /* 明石亘（樱之诗） */
 [data-char="明石亘"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #c7ced1 !important;
+  --sub: #dfe3e4 !important;
+  --rgb: 199, 206, 209 !important;
+  --motion-color: #b3b9bc !important;}
 [data-char="明石亘"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8d80bde2d7894d4a.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="明石亘"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="明石亘"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="明石亘"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8d80bde2d7894d4a.png") !important;}
-[data-char="明石亘"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8d80bde2d7894d4a.png") !important;}
+[data-char="明石亘"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/normal.webp") !important;}
+[data-char="明石亘"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/normal.webp") !important;}
 [data-char="明石亘"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--d5392f3fe1ee1745.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshigen/full.webp") !important;}
 
 /* 明石小牧（樱之诗） */
 [data-char="明石小牧"] {
-  --main: #a98e66 !important;
-  --sub: #c7b69c !important;
-  --rgb: 169, 142, 102 !important;
-  --motion-color: #957d5a !important;}
+  --main: #e0a76e !important;
+  --sub: #edccab !important;
+  --rgb: 224, 167, 110 !important;
+  --motion-color: #ca9663 !important;}
 [data-char="明石小牧"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--6af96e23d0091621.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="明石小牧"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="明石小牧"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="明石小牧"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6af96e23d0091621.png") !important;}
-[data-char="明石小牧"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6af96e23d0091621.png") !important;}
+[data-char="明石小牧"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/normal.webp") !important;}
+[data-char="明石小牧"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/normal.webp") !important;}
 [data-char="明石小牧"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--8aab97613ee90c83.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaomu/outfit1.webp") !important;}
 
 /* 明石小沙智（樱之诗） */
 [data-char="明石小沙智"] {
-  --main: #a16a44 !important;
-  --sub: #c29e85 !important;
-  --rgb: 161, 106, 68 !important;
-  --motion-color: #8e5d3c !important;}
+  --main: #da964e !important;
+  --sub: #eac298 !important;
+  --rgb: 218, 150, 78 !important;
+  --motion-color: #c48746 !important;}
 [data-char="明石小沙智"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--321901ffd86ad740.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="明石小沙智"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="明石小沙智"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="明石小沙智"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--321901ffd86ad740.png") !important;}
-[data-char="明石小沙智"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--321901ffd86ad740.png") !important;}
+[data-char="明石小沙智"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/normal.webp") !important;}
+[data-char="明石小沙智"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/normal.webp") !important;}
 [data-char="明石小沙智"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--c4a2ba33ad3201d7.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/mingshixiaoshazhi/outfit1.webp") !important;}
 
 /* 鸟谷纱希（樱之诗） */
 [data-char="鸟谷纱希"] {
-  --main: #9a9aa2 !important;
-  --sub: #bdbdc3 !important;
-  --rgb: 154, 154, 162 !important;
-  --motion-color: #88888f !important;}
+  --main: #e1b398 !important;
+  --sub: #eed3c3 !important;
+  --rgb: 225, 179, 152 !important;
+  --motion-color: #caa189 !important;}
 [data-char="鸟谷纱希"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--0ffee73fc2816a0d.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="鸟谷纱希"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="鸟谷纱希"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="鸟谷纱希"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0ffee73fc2816a0d.png") !important;}
-[data-char="鸟谷纱希"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--0ffee73fc2816a0d.png") !important;}
+[data-char="鸟谷纱希"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/normal.webp") !important;}
+[data-char="鸟谷纱希"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/normal.webp") !important;}
 [data-char="鸟谷纱希"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--32a4ed523f9f2bb6.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaogushaxi/full.webp") !important;}
 
 /* 鸟谷真琴（樱之诗） */
 [data-char="鸟谷真琴"] {
-  --main: #ae94d1 !important;
-  --sub: #cab9e1 !important;
-  --rgb: 174, 148, 209 !important;
-  --motion-color: #9982b8 !important;}
+  --main: #b092e8 !important;
+  --sub: #d1c0f2 !important;
+  --rgb: 176, 146, 232 !important;
+  --motion-color: #9e83d1 !important;}
 [data-char="鸟谷真琴"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--8d8c8db832d09cc9.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="鸟谷真琴"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="鸟谷真琴"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="鸟谷真琴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bf3705b3ff7d16ed.png") !important;}
-[data-char="鸟谷真琴"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--24f2a95939e4a0be.png") !important;}
-[data-char="鸟谷真琴"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4f347680041ff894.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--77199e40bedb30aa.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--fc8ec1dd22e022ae.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--af0a6c8e44cc9b24.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--d9c2becc81834312.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bf3705b3ff7d16ed.png") !important;}
-[data-char="鸟谷真琴"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b69b82524dd867ce.png") !important;}
-[data-char="鸟谷真琴"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f10c11b915e2e8b3.png") !important;}
-[data-char="鸟谷真琴"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--87152f4384e83d68.png") !important;}
-[data-char="鸟谷真琴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--8d8c8db832d09cc9.png") !important;}
-[data-char="鸟谷真琴"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--00a60643c0e90ff4.png") !important;}
+[data-char="鸟谷真琴"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/normal-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/happy.webp") !important;}
+[data-char="鸟谷真琴"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/surprised.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/happy-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/surprised-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/sad-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/angry-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/normal-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/puzzled-blush.webp") !important;}
+[data-char="鸟谷真琴"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/sad.webp") !important;}
+[data-char="鸟谷真琴"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/angry.webp") !important;}
+[data-char="鸟谷真琴"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/normal.webp") !important;}
+[data-char="鸟谷真琴"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/puzzled.webp") !important;}
 [data-char="鸟谷真琴"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--209e975a8c3b2499.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/niaoguzhenqin/uniform.webp") !important;}
 
 /* 片贝巧实（樱之诗） */
 [data-char="片贝巧实"] {
-  --main: #c9a97a !important;
-  --sub: #dcc7a9 !important;
-  --rgb: 201, 169, 122 !important;
-  --motion-color: #b1956b !important;}
+  --main: #e8c492 !important;
+  --sub: #f2ddc0 !important;
+  --rgb: 232, 196, 146 !important;
+  --motion-color: #d1b083 !important;}
 [data-char="片贝巧实"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--c87b2fe2770f54bb.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/pianbeiqiaoshi/normal.webp") !important;}
 [data-char="片贝巧实"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="片贝巧实"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c87b2fe2770f54bb.png") !important;}
-[data-char="片贝巧实"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c87b2fe2770f54bb.png") !important;}
+[data-char="片贝巧实"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/pianbeiqiaoshi/normal.webp") !important;}
+[data-char="片贝巧实"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/pianbeiqiaoshi/normal.webp") !important;}
 
 /* 若田清二郎（樱之诗） */
 [data-char="若田清二郎"] {
-  --main: #9a9aa2 !important;
-  --sub: #bdbdc3 !important;
-  --rgb: 154, 154, 162 !important;
-  --motion-color: #88888f !important;}
+  --main: #ddb28b !important;
+  --sub: #ebd2bc !important;
+  --rgb: 221, 178, 139 !important;
+  --motion-color: #c7a07d !important;}
 [data-char="若田清二郎"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--6102d8ce40c1ba75.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/ruotianqingerlang/normal.webp") !important;}
 [data-char="若田清二郎"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="若田清二郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6102d8ce40c1ba75.png") !important;}
-[data-char="若田清二郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6102d8ce40c1ba75.png") !important;}
+[data-char="若田清二郎"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/ruotianqingerlang/normal.webp") !important;}
+[data-char="若田清二郎"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/ruotianqingerlang/normal.webp") !important;}
 
 /* 夏目圭（樱之诗） */
 [data-char="夏目圭"] {
-  --main: #a6a6bf !important;
-  --sub: #c5c5d5 !important;
-  --rgb: 166, 166, 191 !important;
-  --motion-color: #9292a8 !important;}
+  --main: #9298e8 !important;
+  --sub: #c0c3f2 !important;
+  --rgb: 146, 152, 232 !important;
+  --motion-color: #8389d1 !important;}
 [data-char="夏目圭"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--f31f0380248839ca.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="夏目圭"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="夏目圭"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="夏目圭"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f31f0380248839ca.png") !important;}
-[data-char="夏目圭"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f31f0380248839ca.png") !important;}
+[data-char="夏目圭"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/normal.webp") !important;}
+[data-char="夏目圭"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/normal.webp") !important;}
 [data-char="夏目圭"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--6ab8231aa7fe1509.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamugui/full.webp") !important;}
 
 /* 夏目蓝（樱之诗） */
 [data-char="夏目蓝"] {
-  --main: #6a6a7b !important;
-  --sub: #9e9ea9 !important;
-  --rgb: 106, 106, 123 !important;
-  --motion-color: #5d5d6c !important;}
+  --main: #ddae8a !important;
+  --sub: #ebd0bb !important;
+  --rgb: 221, 174, 138 !important;
+  --motion-color: #c79d7c !important;}
 [data-char="夏目蓝"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--71bdf6952ba35608.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="夏目蓝"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="夏目蓝"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="夏目蓝"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--17a9f5b04ae1fc76.png") !important;}
-[data-char="夏目蓝"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f1bb858950556610.png") !important;}
-[data-char="夏目蓝"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--62857c3d4259b928.png") !important;}
-[data-char="夏目蓝"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--60d1ee682cfe61fe.png") !important;}
-[data-char="夏目蓝"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a8d401eb0d6d9dc7.png") !important;}
-[data-char="夏目蓝"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--93a561517de375b6.png") !important;}
-[data-char="夏目蓝"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a81850137a7b16b1.png") !important;}
-[data-char="夏目蓝"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cb66fecafc62262e.png") !important;}
-[data-char="夏目蓝"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e5dc71a38f4e4943.png") !important;}
-[data-char="夏目蓝"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--17a9f5b04ae1fc76.png") !important;}
-[data-char="夏目蓝"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--14b58a5a01fb43cd.png") !important;}
-[data-char="夏目蓝"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--c6c0f7f69ce35bec.png") !important;}
-[data-char="夏目蓝"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7a750b41610b5c85.png") !important;}
-[data-char="夏目蓝"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--71bdf6952ba35608.png") !important;}
-[data-char="夏目蓝"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a3f910612e01167d.png") !important;}
+[data-char="夏目蓝"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/normal-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/smirk.webp") !important;}
+[data-char="夏目蓝"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/happy.webp") !important;}
+[data-char="夏目蓝"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/surprised.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/smirk-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/happy-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/surprised-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/sad-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/angry-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/normal-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/puzzled-blush.webp") !important;}
+[data-char="夏目蓝"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/sad.webp") !important;}
+[data-char="夏目蓝"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/angry.webp") !important;}
+[data-char="夏目蓝"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/normal.webp") !important;}
+[data-char="夏目蓝"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/puzzled.webp") !important;}
 [data-char="夏目蓝"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--f2dde0704970c7fe.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamulan/outfit1.webp") !important;}
 
 /* 夏目雫（樱之诗） */
 [data-char="夏目雫"] {
-  --main: #dd88a2 !important;
-  --sub: #e9b2c3 !important;
-  --rgb: 221, 136, 162 !important;
-  --motion-color: #c2788f !important;}
+  --main: #f287aa !important;
+  --sub: #f7b9ce !important;
+  --rgb: 242, 135, 170 !important;
+  --motion-color: #da7a99 !important;}
 [data-char="夏目雫"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--81ea234c315fe848.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="夏目雫"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="夏目雫"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="夏目雫"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6ac3d0178a3f98cc.png") !important;}
-[data-char="夏目雫"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--1876eacbe6a7ff97.png") !important;}
-[data-char="夏目雫"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4179771acc036d3b.png") !important;}
-[data-char="夏目雫"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4a56f4f306f73d60.png") !important;}
-[data-char="夏目雫"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--cd700668491204ec.png") !important;}
-[data-char="夏目雫"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--62f006650870a9ca.png") !important;}
-[data-char="夏目雫"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--e684b36f4084dedd.png") !important;}
-[data-char="夏目雫"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--bf9b8a9cccfdcece.png") !important;}
-[data-char="夏目雫"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f78f453e20390b88.png") !important;}
-[data-char="夏目雫"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6ac3d0178a3f98cc.png") !important;}
-[data-char="夏目雫"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81b594b707a58711.png") !important;}
-[data-char="夏目雫"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--122d2c509e4b3a30.png") !important;}
-[data-char="夏目雫"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--b5abd3d1c9a11a67.png") !important;}
-[data-char="夏目雫"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--81ea234c315fe848.png") !important;}
-[data-char="夏目雫"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--09868216854ac3af.png") !important;}
+[data-char="夏目雫"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/normal-blush.webp") !important;}
+[data-char="夏目雫"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/smirk.webp") !important;}
+[data-char="夏目雫"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/happy.webp") !important;}
+[data-char="夏目雫"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/surprised.webp") !important;}
+[data-char="夏目雫"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/smirk-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/happy-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/surprised-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/sad-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/angry-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/normal-blush.webp") !important;}
+[data-char="夏目雫"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/puzzled-blush.webp") !important;}
+[data-char="夏目雫"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/sad.webp") !important;}
+[data-char="夏目雫"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/angry.webp") !important;}
+[data-char="夏目雫"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/normal.webp") !important;}
+[data-char="夏目雫"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/puzzled.webp") !important;}
 [data-char="夏目雫"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--53e06023349a686b.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiamuna/uniform.webp") !important;}
 
 /* 咲崎樱子（樱之诗） */
 [data-char="咲崎樱子"] {
-  --main: #dd88a2 !important;
-  --sub: #e9b2c3 !important;
-  --rgb: 221, 136, 162 !important;
-  --motion-color: #c2788f !important;}
+  --main: #f287b6 !important;
+  --sub: #f7b9d5 !important;
+  --rgb: 242, 135, 182 !important;
+  --motion-color: #da7aa4 !important;}
 [data-char="咲崎樱子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--6313a183ad941670.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="咲崎樱子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="咲崎樱子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="咲崎樱子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6313a183ad941670.png") !important;}
-[data-char="咲崎樱子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6313a183ad941670.png") !important;}
+[data-char="咲崎樱子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/normal.webp") !important;}
+[data-char="咲崎樱子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/normal.webp") !important;}
 [data-char="咲崎樱子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ad57ae2c680f34fa.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/xiaoqiyingzi/full.webp") !important;}
 
 /* 一宫（樱之诗） */
 [data-char="一宫"] {
-  --main: #8c9aab !important;
-  --sub: #b4bdc8 !important;
-  --rgb: 140, 154, 171 !important;
-  --motion-color: #7b8896 !important;}
+  --main: #92b2e8 !important;
+  --sub: #c0d2f2 !important;
+  --rgb: 146, 178, 232 !important;
+  --motion-color: #83a0d1 !important;}
 [data-char="一宫"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--699ce4aa42062891.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yigong/normal.webp") !important;}
 [data-char="一宫"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="一宫"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--699ce4aa42062891.png") !important;}
-[data-char="一宫"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--699ce4aa42062891.png") !important;}
+[data-char="一宫"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yigong/normal.webp") !important;}
+[data-char="一宫"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yigong/normal.webp") !important;}
 
 /* 御樱稟（樱之诗） */
 [data-char="御樱稟"] {
-  --main: #a16a44 !important;
-  --sub: #c29e85 !important;
-  --rgb: 161, 106, 68 !important;
-  --motion-color: #8e5d3c !important;}
+  --main: #db9d55 !important;
+  --sub: #eac69c !important;
+  --rgb: 219, 157, 85 !important;
+  --motion-color: #c58d4c !important;}
 [data-char="御樱稟"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--54f5072aaf8eb4cd.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="御樱稟"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="御樱稟"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="御樱稟"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f1ec4ee79b0678f0.png") !important;}
-[data-char="御樱稟"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--66e157baeb29a6dc.png") !important;}
-[data-char="御樱稟"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2f87bf3e22df26a6.png") !important;}
-[data-char="御樱稟"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--510d814801c9a565.png") !important;}
-[data-char="御樱稟"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--63c0346847bb2a1d.png") !important;}
-[data-char="御樱稟"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--ab4d9259f190610b.png") !important;}
-[data-char="御樱稟"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--a56f1bf40b58eb1d.png") !important;}
-[data-char="御樱稟"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--26e495e0817ba33a.png") !important;}
-[data-char="御樱稟"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--6a26ca15c80f14fe.png") !important;}
-[data-char="御樱稟"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f1ec4ee79b0678f0.png") !important;}
-[data-char="御樱稟"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--f6bed320e152bd28.png") !important;}
-[data-char="御樱稟"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--4ae75d50097a298d.png") !important;}
-[data-char="御樱稟"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--54f5072aaf8eb4cd.png") !important;}
-[data-char="御樱稟"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--7f4ac5a6226f7ebb.png") !important;}
+[data-char="御樱稟"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/normal-blush.webp") !important;}
+[data-char="御樱稟"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/smirk.webp") !important;}
+[data-char="御樱稟"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/happy.webp") !important;}
+[data-char="御樱稟"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/surprised.webp") !important;}
+[data-char="御樱稟"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/smirk-blush.webp") !important;}
+[data-char="御樱稟"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/happy-blush.webp") !important;}
+[data-char="御樱稟"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/surprised-blush.webp") !important;}
+[data-char="御樱稟"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/sad-blush.webp") !important;}
+[data-char="御樱稟"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/angry-blush.webp") !important;}
+[data-char="御樱稟"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/normal-blush.webp") !important;}
+[data-char="御樱稟"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/sad.webp") !important;}
+[data-char="御樱稟"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/angry.webp") !important;}
+[data-char="御樱稟"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/normal.webp") !important;}
+[data-char="御樱稟"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/puzzled.webp") !important;}
 [data-char="御樱稟"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--8f5763e09606369a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingbing/uniform.webp") !important;}
 
 /* 御樱雄三（樱之诗） */
 [data-char="御樱雄三"] {
-  --main: #c3b8a2 !important;
-  --sub: #d8d1c3 !important;
-  --rgb: 195, 184, 162 !important;
-  --motion-color: #aca28f !important;}
+  --main: #e8d592 !important;
+  --sub: #f2e7c0 !important;
+  --rgb: 232, 213, 146 !important;
+  --motion-color: #d1c083 !important;}
 [data-char="御樱雄三"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2f4be6fa068afc5d.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingxiongsan/normal.webp") !important;}
 [data-char="御樱雄三"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="御樱雄三"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2f4be6fa068afc5d.png") !important;}
-[data-char="御樱雄三"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2f4be6fa068afc5d.png") !important;}
+[data-char="御樱雄三"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingxiongsan/normal.webp") !important;}
+[data-char="御樱雄三"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/yuyingxiongsan/normal.webp") !important;}
 
 /* 长山香奈（樱之诗） */
 [data-char="长山香奈"] {
-  --main: #b89271 !important;
-  --sub: #d1b8a3 !important;
-  --rgb: 184, 146, 113 !important;
-  --motion-color: #a28063 !important;}
+  --main: #e5a784 !important;
+  --sub: #f0ccb8 !important;
+  --rgb: 229, 167, 132 !important;
+  --motion-color: #ce9677 !important;}
 [data-char="长山香奈"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--39004e100809d5ef.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="长山香奈"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="长山香奈"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="长山香奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--39004e100809d5ef.png") !important;}
-[data-char="长山香奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--39004e100809d5ef.png") !important;}
+[data-char="长山香奈"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/normal.webp") !important;}
+[data-char="长山香奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/normal.webp") !important;}
 [data-char="长山香奈"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--ae6907e93a8272e6.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhangshanxiangnai/full.webp") !important;}
 
 /* 中村水菜（樱之诗） */
 [data-char="中村水菜"] {
-  --main: #7a568f !important;
-  --sub: #a991b6 !important;
-  --rgb: 122, 86, 143 !important;
-  --motion-color: #6b4c7e !important;}
+  --main: #be68df !important;
+  --sub: #d9a7ec !important;
+  --rgb: 190, 104, 223 !important;
+  --motion-color: #b664d6 !important;}
 [data-char="中村水菜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2ec668fe44f8a84c.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="中村水菜"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="中村水菜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="中村水菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2ec668fe44f8a84c.png") !important;}
-[data-char="中村水菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2ec668fe44f8a84c.png") !important;}
+[data-char="中村水菜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/normal.webp") !important;}
+[data-char="中村水菜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/normal.webp") !important;}
 [data-char="中村水菜"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--288d5082706b58ff.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunshuicai/full.webp") !important;}
 
 /* 中村义贞（樱之诗） */
 [data-char="中村义贞"] {
-  --main: #6a707b !important;
-  --sub: #9ea2a9 !important;
-  --rgb: 106, 112, 123 !important;
-  --motion-color: #5d636c !important;}
+  --main: #cbc2d6 !important;
+  --sub: #e1dce7 !important;
+  --rgb: 203, 194, 214 !important;
+  --motion-color: #b7afc1 !important;}
 [data-char="中村义贞"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--2a90a3418ba79eec.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunyizhen/normal.webp") !important;}
 [data-char="中村义贞"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="中村义贞"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2a90a3418ba79eec.png") !important;}
-[data-char="中村义贞"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--2a90a3418ba79eec.png") !important;}
+[data-char="中村义贞"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunyizhen/normal.webp") !important;}
+[data-char="中村义贞"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunyizhen/normal.webp") !important;}
 
 /* 中村章一（樱之诗） */
 [data-char="中村章一"] {
-  --main: #c3b8a2 !important;
-  --sub: #d8d1c3 !important;
-  --rgb: 195, 184, 162 !important;
-  --motion-color: #aca28f !important;}
+  --main: #e8c892 !important;
+  --sub: #f2dfc0 !important;
+  --rgb: 232, 200, 146 !important;
+  --motion-color: #d1b483 !important;}
 [data-char="中村章一"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--5c73081c244c4917.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunzhangyi/normal.webp") !important;}
 [data-char="中村章一"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="中村章一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5c73081c244c4917.png") !important;}
-[data-char="中村章一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--5c73081c244c4917.png") !important;}
+[data-char="中村章一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunzhangyi/normal.webp") !important;}
+[data-char="中村章一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongcunzhangyi/normal.webp") !important;}
 
 /* 柊乃乃未（樱之诗） */
 [data-char="柊乃乃未"] {
-  --main: #dd88a2 !important;
-  --sub: #e9b2c3 !important;
-  --rgb: 221, 136, 162 !important;
-  --motion-color: #c2788f !important;}
+  --main: #f287b6 !important;
+  --sub: #f7b9d5 !important;
+  --rgb: 242, 135, 182 !important;
+  --motion-color: #da7aa4 !important;}
 [data-char="柊乃乃未"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/10/--aa7f44567b915017.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="柊乃乃未"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="柊乃乃未"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="柊乃乃未"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aa7f44567b915017.png") !important;}
-[data-char="柊乃乃未"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/10/--aa7f44567b915017.png") !important;}
+[data-char="柊乃乃未"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/normal.webp") !important;}
+[data-char="柊乃乃未"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/normal.webp") !important;}
 [data-char="柊乃乃未"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/10/--c7b5a426ff89b24c.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/zhongnainaiwei/full.webp") !important;}
 
 /* 成濑沙月（9nine） */
 [data-char="成濑沙月"] {
-  --main: #754d96 !important;
-  --sub: #a58bbb !important;
-  --rgb: 117, 77, 150 !important;
-  --motion-color: #674484 !important;}
+  --main: #af74e1 !important;
+  --sub: #d1aeee !important;
+  --rgb: 175, 116, 225 !important;
+  --motion-color: #a86fd8 !important;}
 [data-char="成濑沙月"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--1c09ee8d9d4135f9.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="成濑沙月"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="成濑沙月"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="成濑沙月"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="成濑沙月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--1c09ee8d9d4135f9.png") !important;}
-[data-char="成濑沙月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b6834e4c3b93f6c3.png") !important;}
-[data-char="成濑沙月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--ab7a38113583e672.png") !important;}
-[data-char="成濑沙月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--1aab9ffd21e04d98.png") !important;}
-[data-char="成濑沙月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--ede685ba9a665229.png") !important;}
-[data-char="成濑沙月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--1c09ee8d9d4135f9.png") !important;}
-[data-char="成濑沙月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--fac8fce2b8721a97.png") !important;}
+[data-char="成濑沙月"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/normal.webp") !important;}
+[data-char="成濑沙月"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/happy.webp") !important;}
+[data-char="成濑沙月"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/surprised.webp") !important;}
+[data-char="成濑沙月"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/sad.webp") !important;}
+[data-char="成濑沙月"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/angry.webp") !important;}
+[data-char="成濑沙月"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/normal.webp") !important;}
+[data-char="成濑沙月"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/chenglaishayue/puzzled.webp") !important;}
 
 /* 九条都（9nine） */
 [data-char="九条都"] {
-  --main: #c6a577 !important;
-  --sub: #dac5a7 !important;
-  --rgb: 198, 165, 119 !important;
-  --motion-color: #ae9169 !important;}
+  --main: #e8bf92 !important;
+  --sub: #f2dac0 !important;
+  --rgb: 232, 191, 146 !important;
+  --motion-color: #d1ac83 !important;}
 [data-char="九条都"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--dd04dc09ffa93abe.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="九条都"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="九条都"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="九条都"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--aee82179fe8a4bb6.png") !important;}
-[data-char="九条都"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--795e50ee6e96ed67.png") !important;}
-[data-char="九条都"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b0bf0630e591438d.png") !important;}
-[data-char="九条都"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--65d758d0f43f5747.png") !important;}
-[data-char="九条都"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--a5823a178bc4a2c7.png") !important;}
-[data-char="九条都"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--5418b0f9ba74c83a.png") !important;}
-[data-char="九条都"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--23dc04510bfe1bfd.png") !important;}
-[data-char="九条都"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--aee82179fe8a4bb6.png") !important;}
-[data-char="九条都"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--afaf6f2da850aa45.png") !important;}
-[data-char="九条都"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--bebdc18aba8e6d78.png") !important;}
-[data-char="九条都"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--e91698be0416eb20.png") !important;}
-[data-char="九条都"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--dd04dc09ffa93abe.png") !important;}
-[data-char="九条都"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--cf405619a2d335a8.png") !important;}
+[data-char="九条都"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/normal-blush.webp") !important;}
+[data-char="九条都"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/happy.webp") !important;}
+[data-char="九条都"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/surprised.webp") !important;}
+[data-char="九条都"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/happy-blush.webp") !important;}
+[data-char="九条都"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/surprised-blush.webp") !important;}
+[data-char="九条都"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/sad-blush.webp") !important;}
+[data-char="九条都"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/angry-blush.webp") !important;}
+[data-char="九条都"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/normal-blush.webp") !important;}
+[data-char="九条都"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/puzzled-blush.webp") !important;}
+[data-char="九条都"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/sad.webp") !important;}
+[data-char="九条都"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/angry.webp") !important;}
+[data-char="九条都"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/normal.webp") !important;}
+[data-char="九条都"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/puzzled.webp") !important;}
 [data-char="九条都"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/9nine--b551af98d82b8785.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiutiaodou/full.webp") !important;}
 
 /* 高峰莲夜（9nine） */
 [data-char="高峰莲夜"] {
-  --main: #c94a53 !important;
-  --sub: #dc898f !important;
-  --rgb: 201, 74, 83 !important;
-  --motion-color: #b14149 !important;}
+  --main: #ec667c !important;
+  --sub: #f4a6b3 !important;
+  --rgb: 236, 102, 124 !important;
+  --motion-color: #e36277 !important;}
 [data-char="高峰莲夜"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--2968e5d6bc31a6d6.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/gaofenglianye/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="高峰莲夜"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="高峰莲夜"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="高峰莲夜"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="高峰莲夜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2968e5d6bc31a6d6.png") !important;}
-[data-char="高峰莲夜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2968e5d6bc31a6d6.png") !important;}
+[data-char="高峰莲夜"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/gaofenglianye/normal.webp") !important;}
+[data-char="高峰莲夜"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/gaofenglianye/normal.webp") !important;}
 
 /* 苏菲缇雅（9nine） */
 [data-char="苏菲缇雅"] {
-  --main: #b3b1ac !important;
-  --sub: #ceccc9 !important;
-  --rgb: 179, 177, 172 !important;
-  --motion-color: #9e9c97 !important;}
+  --main: #d5c3ca !important;
+  --sub: #e7dce0 !important;
+  --rgb: 213, 195, 202 !important;
+  --motion-color: #c0b0b6 !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--7c5bfe1e8b17138c.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="苏菲缇雅"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="苏菲缇雅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--7c5bfe1e8b17138c.png") !important;}
-[data-char="苏菲缇雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--7c5bfe1e8b17138c.png") !important;}
+[data-char="苏菲缇雅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
+[data-char="苏菲缇雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
 
 /* 结城希亚（9nine） */
 [data-char="结城希亚"] {
-  --main: #a85c48 !important;
-  --sub: #c69588 !important;
-  --rgb: 168, 92, 72 !important;
-  --motion-color: #94513f !important;}
+  --main: #db7a56 !important;
+  --sub: #eab29d !important;
+  --rgb: 219, 122, 86 !important;
+  --motion-color: #d27553 !important;}
 [data-char="结城希亚"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--5b04b43746bb590f.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="结城希亚"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="结城希亚"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="结城希亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--69cecb02b5a639c2.png") !important;}
-[data-char="结城希亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--9102eb206ea17abd.png") !important;}
-[data-char="结城希亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b4a0b5f7db8559d8.png") !important;}
-[data-char="结城希亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--0b82e1941ff286ee.png") !important;}
-[data-char="结城希亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--98af5acefa77225e.png") !important;}
-[data-char="结城希亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--69cecb02b5a639c2.png") !important;}
-[data-char="结城希亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b188d751e307bcf5.png") !important;}
-[data-char="结城希亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--e90e24940decfc4e.png") !important;}
-[data-char="结城希亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2cb4ab66730b31ed.png") !important;}
-[data-char="结城希亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--5b04b43746bb590f.png") !important;}
-[data-char="结城希亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--be097a49e3a37288.png") !important;}
+[data-char="结城希亚"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/normal-blush.webp") !important;}
+[data-char="结城希亚"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/happy.webp") !important;}
+[data-char="结城希亚"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/happy-blush.webp") !important;}
+[data-char="结城希亚"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/sad-blush.webp") !important;}
+[data-char="结城希亚"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/angry-blush.webp") !important;}
+[data-char="结城希亚"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/normal-blush.webp") !important;}
+[data-char="结城希亚"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/puzzled-blush.webp") !important;}
+[data-char="结城希亚"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/sad.webp") !important;}
+[data-char="结城希亚"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/angry.webp") !important;}
+[data-char="结城希亚"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/normal.webp") !important;}
+[data-char="结城希亚"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/puzzled.webp") !important;}
 [data-char="结城希亚"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/9nine--89445fcc32a2743c.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/jiechengxiya/full.webp") !important;}
 
 /* 香坂春风（9nine） */
 [data-char="香坂春风"] {
-  --main: #9c78c8 !important;
-  --sub: #bfa7db !important;
-  --rgb: 156, 120, 200 !important;
-  --motion-color: #896ab0 !important;}
+  --main: #c392e8 !important;
+  --sub: #dcc0f2 !important;
+  --rgb: 195, 146, 232 !important;
+  --motion-color: #b083d1 !important;}
 [data-char="香坂春风"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--2b4f0417d2413490.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="香坂春风"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="香坂春风"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="香坂春风"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--d602f6816ea9965e.png") !important;}
-[data-char="香坂春风"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--c334c2aed15b7031.png") !important;}
-[data-char="香坂春风"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--d72036e574ebc9a5.png") !important;}
-[data-char="香坂春风"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--3f27921418bf07d2.png") !important;}
-[data-char="香坂春风"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--91722ffddf19de80.png") !important;}
-[data-char="香坂春风"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--ccdb114b7d66242e.png") !important;}
-[data-char="香坂春风"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--cccdc563bef83c7b.png") !important;}
-[data-char="香坂春风"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--f57719b4342ae842.png") !important;}
-[data-char="香坂春风"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--e3ca5cc0d28a2b88.png") !important;}
-[data-char="香坂春风"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--00466e84b3f87b73.png") !important;}
-[data-char="香坂春风"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--4f8b0d5349038a52.png") !important;}
-[data-char="香坂春风"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--d602f6816ea9965e.png") !important;}
-[data-char="香坂春风"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--5be5999178709fd8.png") !important;}
-[data-char="香坂春风"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--182552e76504eedf.png") !important;}
-[data-char="香坂春风"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--40456dbbbc5a53ce.png") !important;}
-[data-char="香坂春风"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2b4f0417d2413490.png") !important;}
-[data-char="香坂春风"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--836150ffd3d63250.png") !important;}
+[data-char="香坂春风"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/normal-blush.webp") !important;}
+[data-char="香坂春风"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/smug.webp") !important;}
+[data-char="香坂春风"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/smirk.webp") !important;}
+[data-char="香坂春风"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/happy.webp") !important;}
+[data-char="香坂春风"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/surprised.webp") !important;}
+[data-char="香坂春风"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/smug-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/smirk-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/happy-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/surprised-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/sad-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/angry-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/normal-blush.webp") !important;}
+[data-char="香坂春风"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/puzzled-blush.webp") !important;}
+[data-char="香坂春风"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/sad.webp") !important;}
+[data-char="香坂春风"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/angry.webp") !important;}
+[data-char="香坂春风"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/normal.webp") !important;}
+[data-char="香坂春风"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/puzzled.webp") !important;}
 [data-char="香坂春风"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/9nine--edd8d0987197930d.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xiangbanchunfeng/full.webp") !important;}
 
 /* 新海天（9nine） */
 [data-char="新海天"] {
-  --main: #a6adbc !important;
-  --sub: #c5cad3 !important;
-  --rgb: 166, 173, 188 !important;
-  --motion-color: #9298a5 !important;}
+  --main: #92aae8 !important;
+  --sub: #c0cef2 !important;
+  --rgb: 146, 170, 232 !important;
+  --motion-color: #8399d1 !important;}
 [data-char="新海天"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--3631f76f77f67946.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="新海天"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="新海天"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="新海天"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--7090614a822b40cb.png") !important;}
-[data-char="新海天"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--67aa904c1291a7bd.png") !important;}
-[data-char="新海天"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--f7e0c358ba923184.png") !important;}
-[data-char="新海天"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--fa55a63c66f143cd.png") !important;}
-[data-char="新海天"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--564e7b5f5a238e6c.png") !important;}
-[data-char="新海天"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--15ee39b60e14f706.png") !important;}
-[data-char="新海天"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--f4f359a6a494e61f.png") !important;}
-[data-char="新海天"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--aec8b3d008e3e4a4.png") !important;}
-[data-char="新海天"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--1c1e105fc548e847.png") !important;}
-[data-char="新海天"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--bfc402adf3ae85d4.png") !important;}
-[data-char="新海天"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--7090614a822b40cb.png") !important;}
-[data-char="新海天"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--11e6d194a5b28c79.png") !important;}
-[data-char="新海天"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--9f9358b41b753a1a.png") !important;}
-[data-char="新海天"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--6281ee103a354fa0.png") !important;}
-[data-char="新海天"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--f6a6a95ec4c00b85.png") !important;}
-[data-char="新海天"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--3631f76f77f67946.png") !important;}
-[data-char="新海天"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--447adf053d024cc1.png") !important;}
+[data-char="新海天"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/normal-blush.webp") !important;}
+[data-char="新海天"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/smug.webp") !important;}
+[data-char="新海天"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/happy.webp") !important;}
+[data-char="新海天"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/surprised.webp") !important;}
+[data-char="新海天"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/smug-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/happy-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/surprised-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/sad-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/angry-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/thinking-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/normal-blush.webp") !important;}
+[data-char="新海天"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/puzzled-blush.webp") !important;}
+[data-char="新海天"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/sad.webp") !important;}
+[data-char="新海天"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/angry.webp") !important;}
+[data-char="新海天"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/thinking.webp") !important;}
+[data-char="新海天"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/normal.webp") !important;}
+[data-char="新海天"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/puzzled.webp") !important;}
 [data-char="新海天"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/9nine--a78b4a39491377d8.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaitian/full.webp") !important;}
 
 /* 新海霞（9nine） */
 [data-char="新海霞"] {
-  --main: #4b8f68 !important;
-  --sub: #8ab69d !important;
-  --rgb: 75, 143, 104 !important;
-  --motion-color: #427e5c !important;}
+  --main: #4eda84 !important;
+  --sub: #98eab8 !important;
+  --rgb: 78, 218, 132 !important;
+  --motion-color: #46c477 !important;}
 [data-char="新海霞"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/-bf18ec2611d45652.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="新海霞"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="新海霞"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="新海霞"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/-bf18ec2611d45652.png") !important;}
-[data-char="新海霞"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/-bf18ec2611d45652.png") !important;}
+[data-char="新海霞"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/normal.webp") !important;}
+[data-char="新海霞"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/normal.webp") !important;}
 [data-char="新海霞"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/9nine--4d3211356a286721.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixia/full.webp") !important;}
 
 /* 新海翔（9nine） */
 [data-char="新海翔"] {
-  --main: #4b8f68 !important;
-  --sub: #8ab69d !important;
-  --rgb: 75, 143, 104 !important;
-  --motion-color: #427e5c !important;}
+  --main: #4eda82 !important;
+  --sub: #98eab6 !important;
+  --rgb: 78, 218, 130 !important;
+  --motion-color: #46c475 !important;}
 [data-char="新海翔"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--2345425a242b24c6.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixiang/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="新海翔"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="新海翔"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="新海翔"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="新海翔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2345425a242b24c6.png") !important;}
-[data-char="新海翔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--2345425a242b24c6.png") !important;}
+[data-char="新海翔"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixiang/normal.webp") !important;}
+[data-char="新海翔"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/xinhaixiang/normal.webp") !important;}
 
 /* 幽灵（9nine） */
 [data-char="幽灵"] {
-  --main: #d9c177 !important;
-  --sub: #e6d7a7 !important;
-  --rgb: 217, 193, 119 !important;
-  --motion-color: #bfaa69 !important;}
+  --main: #f3d387 !important;
+  --sub: #f8e5b9 !important;
+  --rgb: 243, 211, 135 !important;
+  --motion-color: #dbbe7a !important;}
 [data-char="幽灵"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--17108378886aab77.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/youling/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="幽灵"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="幽灵"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="幽灵"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="幽灵"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--17108378886aab77.png") !important;}
-[data-char="幽灵"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--d2d5e4d4c28e0dbe.png") !important;}
-[data-char="幽灵"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--17108378886aab77.png") !important;}
+[data-char="幽灵"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/youling/normal.webp") !important;}
+[data-char="幽灵"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/youling/happy.webp") !important;}
+[data-char="幽灵"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/youling/normal.webp") !important;}
 
 /* 深泽与一（9nine） */
 [data-char="深泽与一"] {
-  --main: #5b84c4 !important;
-  --sub: #94afd9 !important;
-  --rgb: 91, 132, 196 !important;
-  --motion-color: #5074ac !important;}
+  --main: #7faae7 !important;
+  --sub: #b5cef1 !important;
+  --rgb: 127, 170, 231 !important;
+  --motion-color: #7299d0 !important;}
 [data-char="深泽与一"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/9nine--b4f97811312c1ea6.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/shenzeyuyi/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="深泽与一"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="深泽与一"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="深泽与一"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="深泽与一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b4f97811312c1ea6.png") !important;}
-[data-char="深泽与一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/9nine--b4f97811312c1ea6.png") !important;}
+[data-char="深泽与一"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/shenzeyuyi/normal.webp") !important;}
+[data-char="深泽与一"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/shenzeyuyi/normal.webp") !important;}
 
 /* 草薙直绪（樱之诗） */
 [data-char="草薙直绪"] {
-  --main: #a8abb4 !important;
-  --sub: #c6c8ce !important;
-  --rgb: 168, 171, 180 !important;
-  --motion-color: #94969e !important;}
+  --main: #d5c3ca !important;
+  --sub: #e7dce0 !important;
+  --rgb: 213, 195, 202 !important;
+  --motion-color: #c0b0b6 !important;}
 [data-char="草薙直绪"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/-593ffa9a7cd24bb7.png") !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhixu/normal.webp") !important;}
 div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
 [data-char="草薙直绪"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="草薙直绪"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="草薙直绪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/-593ffa9a7cd24bb7.png") !important;}
-[data-char="草薙直绪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/-593ffa9a7cd24bb7.png") !important;}
+[data-char="草薙直绪"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhixu/normal.webp") !important;}
+[data-char="草薙直绪"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yingzhishi/caotizhixu/normal.webp") !important;}
 
 /* 花子（花子） */
 [data-char="花子"] {
-  --main: #de7880 !important;
-  --sub: #eaa7ac !important;
-  --rgb: 222, 120, 128 !important;
-  --motion-color: #c36a71 !important;}
+  --main: #f58684 !important;
+  --sub: #f9b9b8 !important;
+  --rgb: 245, 134, 132 !important;
+  --motion-color: #dc7977 !important;}
 [data-char="花子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/13/--f37feb32b757c189.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="花子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="花子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="花子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--05f2519c9acb5bd9.png") !important;}
-[data-char="花子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--819ae197ed6fd0bf.png") !important;}
-[data-char="花子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--ca5374dba7fcc5f5.png") !important;}
-[data-char="花子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--4b96f5c975d9339c.png") !important;}
-[data-char="花子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--180206ff774aa573.png") !important;}
-[data-char="花子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--0949f0481e2ebb61.png") !important;}
-[data-char="花子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--41f65ad54e858b69.png") !important;}
-[data-char="花子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--457074954b2aec3e.png") !important;}
-[data-char="花子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--e8687113c98fc2fb.png") !important;}
-[data-char="花子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--21eff53eb012f4a7.png") !important;}
-[data-char="花子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--931663541225217c.png") !important;}
-[data-char="花子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--05f2519c9acb5bd9.png") !important;}
-[data-char="花子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--a760cae8c42e6ad2.png") !important;}
-[data-char="花子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--e4b589562752e47e.png") !important;}
-[data-char="花子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--ffd39236b67f4e3c.png") !important;}
-[data-char="花子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--f37feb32b757c189.png") !important;}
-[data-char="花子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/13/--4d2d052a095711b4.png") !important;}
+[data-char="花子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/normal-blush.webp") !important;}
+[data-char="花子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/smug.webp") !important;}
+[data-char="花子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/smirk.webp") !important;}
+[data-char="花子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/happy.webp") !important;}
+[data-char="花子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/surprised.webp") !important;}
+[data-char="花子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/smug-blush.webp") !important;}
+[data-char="花子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/smirk-blush.webp") !important;}
+[data-char="花子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/happy-blush.webp") !important;}
+[data-char="花子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/surprised-blush.webp") !important;}
+[data-char="花子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/sad-blush.webp") !important;}
+[data-char="花子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/angry-blush.webp") !important;}
+[data-char="花子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/normal-blush.webp") !important;}
+[data-char="花子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/puzzled-blush.webp") !important;}
+[data-char="花子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/sad.webp") !important;}
+[data-char="花子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/angry.webp") !important;}
+[data-char="花子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/normal.webp") !important;}
+[data-char="花子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/puzzled.webp") !important;}
 [data-char="花子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/13/--3400219468506b6a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/huazi/huazi/full.webp") !important;}
 
 /* 大垣日向（少女领域） */
 [data-char="大垣日向"] {
-  --main: #e6c86a !important;
-  --sub: #efdb9e !important;
-  --rgb: 230, 200, 106 !important;
-  --motion-color: #cab05d !important;}
+  --main: #f5d084 !important;
+  --sub: #f9e4b8 !important;
+  --rgb: 245, 208, 132 !important;
+  --motion-color: #dcbb77 !important;}
 [data-char="大垣日向"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--96aa4e71003773d2.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="大垣日向"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="大垣日向"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="大垣日向"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--85555f073553bcd7.png") !important;}
-[data-char="大垣日向"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--893e59179d3bd744.png") !important;}
-[data-char="大垣日向"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--22a403d0a51bda99.png") !important;}
-[data-char="大垣日向"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--fb89df5b6caea366.png") !important;}
-[data-char="大垣日向"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--71bfc89fccd41c32.png") !important;}
-[data-char="大垣日向"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--31403c27544e5761.png") !important;}
-[data-char="大垣日向"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--76839c88b356fee4.png") !important;}
-[data-char="大垣日向"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--f12c86a594409fa7.png") !important;}
-[data-char="大垣日向"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--b668d707113556fd.png") !important;}
-[data-char="大垣日向"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--85555f073553bcd7.png") !important;}
-[data-char="大垣日向"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--226e785f2eaae1dd.png") !important;}
-[data-char="大垣日向"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--bf64a0e26a94ff6e.png") !important;}
-[data-char="大垣日向"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--290e018e528a2250.png") !important;}
-[data-char="大垣日向"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--96aa4e71003773d2.png") !important;}
-[data-char="大垣日向"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--af502c122fabea0d.png") !important;}
+[data-char="大垣日向"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/normal-blush.webp") !important;}
+[data-char="大垣日向"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/smug.webp") !important;}
+[data-char="大垣日向"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/happy.webp") !important;}
+[data-char="大垣日向"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/surprised.webp") !important;}
+[data-char="大垣日向"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/smug-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/happy-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/surprised-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/sad-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/angry-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/normal-blush.webp") !important;}
+[data-char="大垣日向"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/puzzled-blush.webp") !important;}
+[data-char="大垣日向"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/sad.webp") !important;}
+[data-char="大垣日向"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/angry.webp") !important;}
+[data-char="大垣日向"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/normal.webp") !important;}
+[data-char="大垣日向"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/puzzled.webp") !important;}
 [data-char="大垣日向"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--6d02b26185dd69fe.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/dayuanrixiang/full.webp") !important;}
 
 /* 飞鸟凑（少女领域） */
 [data-char="飞鸟凑"] {
-  --main: #aa9cc6 !important;
-  --sub: #c8bfda !important;
-  --rgb: 170, 156, 198 !important;
-  --motion-color: #9689ae !important;}
+  --main: #b492e8 !important;
+  --sub: #d4c0f2 !important;
+  --rgb: 180, 146, 232 !important;
+  --motion-color: #a283d1 !important;}
 [data-char="飞鸟凑"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--4b669db2bc7ccd64.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="飞鸟凑"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="飞鸟凑"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="飞鸟凑"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--e9749ca98c5313c7.png") !important;}
-[data-char="飞鸟凑"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--c14e4c3ba720fcf0.png") !important;}
-[data-char="飞鸟凑"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--fda1aa5e8f74f393.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--13058f68a5250e9c.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--6f0877ba1d48c9d0.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--4eb92e1dd6f2566d.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--9436be22dd3a6040.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--0e52935efe2cd4da.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--e9749ca98c5313c7.png") !important;}
-[data-char="飞鸟凑"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--7a0d7c3b553d5e76.png") !important;}
-[data-char="飞鸟凑"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--5650f3f726630fcc.png") !important;}
-[data-char="飞鸟凑"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--414b766a455fb50a.png") !important;}
-[data-char="飞鸟凑"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--7e914104e7205076.png") !important;}
-[data-char="飞鸟凑"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--4b669db2bc7ccd64.png") !important;}
-[data-char="飞鸟凑"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--9a0830e957464b05.png") !important;}
+[data-char="飞鸟凑"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/normal-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/happy.webp") !important;}
+[data-char="飞鸟凑"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/surprised.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/happy-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/surprised-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/sad-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/angry-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/thinking-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/normal-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/puzzled-blush.webp") !important;}
+[data-char="飞鸟凑"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/sad.webp") !important;}
+[data-char="飞鸟凑"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/angry.webp") !important;}
+[data-char="飞鸟凑"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/thinking.webp") !important;}
+[data-char="飞鸟凑"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/normal.webp") !important;}
+[data-char="飞鸟凑"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/puzzled.webp") !important;}
 [data-char="飞鸟凑"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--53434e0e7fb2e28d.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/feiniaocou/full.webp") !important;}
 
 /* 贵船柚子（少女领域） */
 [data-char="贵船柚子"] {
-  --main: #6f7178 !important;
-  --sub: #a1a3a7 !important;
-  --rgb: 111, 113, 120 !important;
-  --motion-color: #62636a !important;}
+  --main: #d5c3ca !important;
+  --sub: #e7dce0 !important;
+  --rgb: 213, 195, 202 !important;
+  --motion-color: #c0b0b6 !important;}
 [data-char="贵船柚子"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--58ba66fa6ab85b67.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="贵船柚子"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="贵船柚子"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="贵船柚子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--8065217f2fd2bbbe.png") !important;}
-[data-char="贵船柚子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--7c8243a91f5c6d4a.png") !important;}
-[data-char="贵船柚子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--599b6b659ff7af63.png") !important;}
-[data-char="贵船柚子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--571d549aebe4cb45.png") !important;}
-[data-char="贵船柚子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--7b26b8e353f0d49a.png") !important;}
-[data-char="贵船柚子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--0d0e926170349c42.png") !important;}
-[data-char="贵船柚子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--7ad9308220ca06e3.png") !important;}
-[data-char="贵船柚子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--da572d317c54f665.png") !important;}
-[data-char="贵船柚子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--b125d271d0b2a129.png") !important;}
-[data-char="贵船柚子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--d5075cc0800cb295.png") !important;}
-[data-char="贵船柚子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--f10bc6a4b0243fca.png") !important;}
-[data-char="贵船柚子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--8065217f2fd2bbbe.png") !important;}
-[data-char="贵船柚子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--666fb7d060da387a.png") !important;}
-[data-char="贵船柚子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--e616b794f44975d8.png") !important;}
-[data-char="贵船柚子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--662cd71401de7f86.png") !important;}
-[data-char="贵船柚子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--58ba66fa6ab85b67.png") !important;}
-[data-char="贵船柚子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--4e6065f11f472389.png") !important;}
+[data-char="贵船柚子"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/normal-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/smug.webp") !important;}
+[data-char="贵船柚子"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/smirk.webp") !important;}
+[data-char="贵船柚子"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/happy.webp") !important;}
+[data-char="贵船柚子"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/surprised.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/smug-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/smirk-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/happy-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/surprised-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/sad-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/angry-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/normal-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/puzzled-blush.webp") !important;}
+[data-char="贵船柚子"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/sad.webp") !important;}
+[data-char="贵船柚子"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/angry.webp") !important;}
+[data-char="贵船柚子"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/normal.webp") !important;}
+[data-char="贵船柚子"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/puzzled.webp") !important;}
 [data-char="贵船柚子"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--74f43ccf68584ebc.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/guichuanyouzi/full.webp") !important;}
 
 /* 皆见美结（少女领域） */
 [data-char="皆见美结"] {
-  --main: #92c462 !important;
-  --sub: #b8d999 !important;
-  --rgb: 146, 196, 98 !important;
-  --motion-color: #80ac56 !important;}
+  --main: #aee582 !important;
+  --sub: #d0f0b6 !important;
+  --rgb: 174, 229, 130 !important;
+  --motion-color: #9dce75 !important;}
 [data-char="皆见美结"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--5e649b16d21a802a.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="皆见美结"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="皆见美结"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="皆见美结"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--d39fc5ae8d1675c1.png") !important;}
-[data-char="皆见美结"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--24d197489b3b5dbf.png") !important;}
-[data-char="皆见美结"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--9ed478d2f8745bd9.png") !important;}
-[data-char="皆见美结"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--4449d7ac99fc238a.png") !important;}
-[data-char="皆见美结"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--575e8e001c351370.png") !important;}
-[data-char="皆见美结"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--96daaf5ffc417152.png") !important;}
-[data-char="皆见美结"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--c411e590e66b9070.png") !important;}
-[data-char="皆见美结"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--10f4287abcbda3d0.png") !important;}
-[data-char="皆见美结"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--5df03c4b215f48d6.png") !important;}
-[data-char="皆见美结"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--dd656de5e7dfc0b7.png") !important;}
-[data-char="皆见美结"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--d39fc5ae8d1675c1.png") !important;}
-[data-char="皆见美结"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--84b8c5a82faf63fa.png") !important;}
-[data-char="皆见美结"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--a61c7e156af9774b.png") !important;}
-[data-char="皆见美结"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--35ac6bbb42f57345.png") !important;}
-[data-char="皆见美结"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--ecd32522a49bf12d.png") !important;}
-[data-char="皆见美结"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--5e649b16d21a802a.png") !important;}
-[data-char="皆见美结"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--914f4be748764397.png") !important;}
+[data-char="皆见美结"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/normal-blush.webp") !important;}
+[data-char="皆见美结"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/smirk.webp") !important;}
+[data-char="皆见美结"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/happy.webp") !important;}
+[data-char="皆见美结"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/surprised.webp") !important;}
+[data-char="皆见美结"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/smirk-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/happy-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/surprised-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/sad-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/angry-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/thinking-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/normal-blush.webp") !important;}
+[data-char="皆见美结"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/puzzled-blush.webp") !important;}
+[data-char="皆见美结"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/sad.webp") !important;}
+[data-char="皆见美结"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/angry.webp") !important;}
+[data-char="皆见美结"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/thinking.webp") !important;}
+[data-char="皆见美结"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/normal.webp") !important;}
+[data-char="皆见美结"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/puzzled.webp") !important;}
 [data-char="皆见美结"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--aa49c63f8b4a3229.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/jiejianmeijie/full.webp") !important;}
 
 /* 那波七海（少女领域） */
 [data-char="那波七海"] {
-  --main: #ba6b5a !important;
-  --sub: #d29f94 !important;
-  --rgb: 186, 107, 90 !important;
-  --motion-color: #a45e4f !important;}
+  --main: #e28378 !important;
+  --sub: #eeb7b1 !important;
+  --rgb: 226, 131, 120 !important;
+  --motion-color: #cb766c !important;}
 [data-char="那波七海"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--0f7b23716f746540.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="那波七海"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="那波七海"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="那波七海"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--0f7b23716f746540.png") !important;}
-[data-char="那波七海"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--0f7b23716f746540.png") !important;}
+[data-char="那波七海"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/normal.webp") !important;}
+[data-char="那波七海"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/normal.webp") !important;}
 [data-char="那波七海"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--07b695b0c3d54b3a.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/naboqihai/full.webp") !important;}
 
 /* 西园寺风莉（少女领域） */
 [data-char="西园寺风莉"] {
-  --main: #cfa694 !important;
-  --sub: #e0c5b9 !important;
-  --rgb: 207, 166, 148 !important;
-  --motion-color: #b69282 !important;}
+  --main: #e8b392 !important;
+  --sub: #f2d3c0 !important;
+  --rgb: 232, 179, 146 !important;
+  --motion-color: #d1a183 !important;}
 [data-char="西园寺风莉"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/14/--e1042745e3c0a593.png") !important;
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/normal.webp") !important;
   cursor: pointer !important;}
 [data-char="西园寺风莉"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="西园寺风莉"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="西园寺风莉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--c2dcf78bdcd7fc43.png") !important;}
-[data-char="西园寺风莉"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--d8705d46cb169df5.png") !important;}
-[data-char="西园寺风莉"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--b7381b693d9c798f.png") !important;}
-[data-char="西园寺风莉"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--c97ec6817b2c12f0.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--dd5c6eea96087609.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--59fd3518c596d634.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--2e0822be5dcafd6c.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--ddaa355d4e5d9302.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--4cdeb94643f7f489.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--c2dcf78bdcd7fc43.png") !important;}
-[data-char="西园寺风莉"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--177f6f3ab8d55f37.png") !important;}
-[data-char="西园寺风莉"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--87cec44170d8bf85.png") !important;}
-[data-char="西园寺风莉"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--f78b5e6ccdba7f4d.png") !important;}
-[data-char="西园寺风莉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--e1042745e3c0a593.png") !important;}
-[data-char="西园寺风莉"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/14/--d4804603caeb69fe.png") !important;}
+[data-char="西园寺风莉"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/normal-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/smug.webp") !important;}
+[data-char="西园寺风莉"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/happy.webp") !important;}
+[data-char="西园寺风莉"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/surprised.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/smug-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/happy-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/surprised-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/sad-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/angry-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/normal-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/puzzled-blush.webp") !important;}
+[data-char="西园寺风莉"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/sad.webp") !important;}
+[data-char="西园寺风莉"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/angry.webp") !important;}
+[data-char="西园寺风莉"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/normal.webp") !important;}
+[data-char="西园寺风莉"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/puzzled.webp") !important;}
 [data-char="西园寺风莉"] .custom-nvn-portrait-full {
-  content: url("https://origin.picgo.net/2026/11/14/--42cfd74bd9ebf68e.png") !important;}
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/shaonvlingyu/xiyuansifengli/full.webp") !important;}
 
 `;
 
@@ -3290,6 +4479,22 @@ div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nv
  * ========================================================================= */
 `;
 
+  function escCssStr(s) {
+    return String(s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  }
+
+  function effectiveCastIs() {
+    const extra = [];
+    for (const c of NEW_CHARACTERS) {
+      if (!c || !Array.isArray(c.chars)) continue;
+      for (const n of c.chars) {
+        if (n) extra.push('[data-char="' + escCssStr(n) + '"]');
+      }
+    }
+    if (!extra.length) return CAST_IS;
+    return CAST_IS ? (CAST_IS + ', ' + extra.join(', ')) : extra.join(', ');
+  }
+
   function buildNewCharacterCss() {
     if (!NEW_CHARACTERS.length) return '';
     const B = '.mes_text div.custom-nvn-dialogue:is(';
@@ -3297,8 +4502,15 @@ div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nv
     let out = '\n\n/* ================= 新增角色（由 NEW_CHARACTERS 自动生成） ================= */\n';
     for (const c of NEW_CHARACTERS) {
       if (!c || !Array.isArray(c.chars) || !c.chars.length) continue;
-      const sel = c.chars.map(function (n) { return '[data-char="' + n + '"], [data-char^="' + n + '·"]'; }).join(', ');
+      const sel = c.chars.map(function (n) {
+        const e = escCssStr(n);
+        return '[data-char="' + e + '"], [data-char^="' + e + '·"]';
+      }).join(', ');
       const head = B + sel + BOOST;
+      const actions = (c.actions && typeof c.actions === 'object') ? c.actions : null;
+      const baseAvatar = c.avatar || (actions && actions['通常']) || '';
+      const hasPortrait = !!c.portrait;
+
       out += '\n/* ' + c.chars.join(' / ') + ' */\n';
       out += head + ' {\n'
            + '  --main: ' + (c.main || '#8896a5') + ' !important;\n'
@@ -3306,32 +4518,84 @@ div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nv
            + '  --rgb: ' + (c.rgb || '136, 150, 165') + ' !important;\n'
            + '  --motion-color: ' + (c.motion || c.main || '#a8b5c2') + ' !important;\n'
            + '}\n';
-      if (c.avatar) {
-        out += head + ' .custom-nvn-avatar-img {\n'
-             + '  background-image: url("' + c.avatar + '") !important;\n'
-             + '  border: 1.5px solid rgba(var(--rgb), 0.78) !important;\n'
+
+      if (baseAvatar || c.blush) {
+        out += head + ' .custom-nvn-avatar-img {\n';
+        if (baseAvatar) {
+          out += '  background-image: url("' + escCssStr(baseAvatar) + '") !important;\n';
+        }
+        if (c.blush) {
+          out += '  --nvn-blush: url("' + escCssStr(c.blush) + '");\n'
+               + '  --nvn-blush-display: block;\n';
+          if (c.blushPos) {
+            out += '  --nvn-blush-pos: ' + c.blushPos + ';\n';
+          }
+          if (c.blushOpacity !== undefined) {
+            out += '  --nvn-blush-opacity: ' + c.blushOpacity + ';\n';
+          }
+        }
+        out += '  border: 1.5px solid rgba(var(--rgb), 0.78) !important;\n'
              + '  box-shadow: 0 8px 22px var(--halo), inset 0 0 14px rgba(var(--rgb), 0.12) !important;\n'
-             + (c.big ? '  cursor: pointer !important;\n' : '')
+             + ((c.big || hasPortrait) ? '  cursor: pointer !important;\n' : '  cursor: default !important;\n')
              + '}\n';
-        /* 有立绘的角色不要 NPC 那圈 4px 内嵌细框（基础 CSS 用
-           `:not(:is(旧名单)) .custom-nvn-avatar-img::after` 加的；新角色不在那份旧名单里，
-           就会被套上 → 看上去像「图没填满 + 里面多了一圈细框」）。 */
         out += head + ' .custom-nvn-avatar-img::after { display: none !important; }\n';
-      } else if (c.big) {
+        if (baseAvatar) {
+          out += head + ' .custom-nvn-avatar-fallback-box { display: none !important; }\n';
+        }
+      } else if (c.big || hasPortrait) {
         out += head + ' .custom-nvn-avatar-img { cursor: pointer !important; }\n';
       }
+
+      if (actions) {
+        const entries = Object.entries(actions).filter(function (kv) { return kv[0] && kv[1]; });
+        const normalEntries = entries
+          .filter(function (kv) { return kv[0] !== '通常' && kv[0].indexOf('脸红') !== 0; })
+          .sort(function (a, b) { return a[0].length - b[0].length; });
+        const blushFallback = entries.filter(function (kv) { return kv[0] === '脸红'; });
+        const exactBlushEntries = entries.filter(function (kv) { return kv[0] !== '脸红' && kv[0].indexOf('脸红') === 0; });
+
+        for (const kv of normalEntries) {
+          out += head + '[data-action*="' + escCssStr(kv[0]) + '"] .custom-nvn-avatar-img {\n'
+               + '  background-image: url("' + escCssStr(kv[1]) + '") !important;\n'
+               + '}\n';
+        }
+        for (const kv of blushFallback) {
+          out += head + '[data-action^="脸红"] .custom-nvn-avatar-img {\n'
+               + '  background-image: url("' + escCssStr(kv[1]) + '") !important;\n'
+               + '  --nvn-blush-display: none;\n'
+               + '}\n';
+        }
+        for (const kv of exactBlushEntries) {
+          out += head + '[data-action="' + escCssStr(kv[0]) + '"] .custom-nvn-avatar-img {\n'
+               + '  background-image: url("' + escCssStr(kv[1]) + '") !important;\n'
+               + '  --nvn-blush-display: none;\n'
+               + '}\n';
+        }
+      }
+
+      if (c.blush && Array.isArray(c.blushTriggers) && c.blushTriggers.length) {
+        const extra = c.blushTriggers.filter(function (t) { return t && t !== '脸红'; });
+        if (extra.length) {
+          const tSel = extra.map(function (t) { return '[data-action*="' + escCssStr(t) + '"]'; }).join(', ');
+          out += head + ':is(' + tSel + ') .custom-nvn-avatar-img::after {\n'
+               + '  display: var(--nvn-blush-display, none) !important;\n'
+               + '}\n';
+        }
+      }
+
       out += head + '::before, ' + head + '::after { display: none !important; }\n';
-      if (c.portrait) {
-        out += head + ' .custom-nvn-portrait-full {\n  content: url("' + c.portrait + '") !important;\n}\n';
+      if (hasPortrait) {
+        out += head + ' .custom-nvn-portrait-full {\n  content: url("' + escCssStr(c.portrait) + '") !important;\n}\n';
         out += head + ' .custom-nvn-avatar-popover { pointer-events: auto !important; }\n';
+      } else {
+        out += head + ' .custom-nvn-avatar-popover { pointer-events: none !important; }\n';
       }
       if (c.big) {
         out += head + ' .custom-nvn-avatar-fallback-box { display: none !important; }\n';
       }
       if (c.rose) {
-        out += head + ' .custom-nvn-rose-crest {\n'
-             + '  display: flex !important;\n  align-items: center;\n  justify-content: center;\n'
-             + '  width: 20px;\n  height: 20px;\n  color: var(--main);\n'
+        out += head + ' .custom-nvn-rose-crest {\n  display: flex !important;\n  align-items: center;\n'
+             + '  justify-content: center;\n  width: 20px;\n  height: 20px;\n  color: var(--main);\n'
              + '  filter: drop-shadow(0 0 4px rgba(var(--rgb), 0.6));\n  flex-shrink: 0;\n}\n';
       }
     }
@@ -3801,30 +5065,30 @@ div.custom-nvn-dialogue[data-char*="克蕾雅"] { --main: #e6b85c !important; --
 div.custom-nvn-dialogue[data-char*="玛丽·安"] { --main: #2ed573 !important; --sub: #e0f9ec !important; --rgb: 46, 213, 115 !important; --motion-color: #65e199 !important; } /* 玛丽·安 · 翠草清绿 */
 
 /* ====== 角色头像 / 表情差分 / 大立绘 ====== */
-div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/10/08/68208d56a291c30f7e89bc8a5fa6fd13e1aed1c696238752.png") !important; }
-[data-char*="克蕾雅"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1409d4e13ab7c1ad7e96924a36bdd9a3482303ab0ef221c1.png") !important; }
-[data-char*="克蕾雅"][data-action*="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/fc2183f6475eb6ee573dd4db16b3ec9f48c2cb75b49e78e4.png") !important; }
-[data-char*="克蕾雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1409d4e13ab7c1ad7e96924a36bdd9a3482303ab0ef221c1.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/fc2183f6475eb6ee573dd4db16b3ec9f48c2cb75b49e78e4.png") !important; }
-[data-char*="克蕾雅"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1f27d649bd5f1a9ddb35bfefea4ed3f04683fd73356f1699.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/bc29db1fa53036376ad890acbf993fda57275798edb08f16.png") !important; }
-[data-char*="克蕾雅"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/5f4e05c1af887f84f81b6389692ef9af103738822016d420.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/2d53ef3ea50d7e218f439e2fac5683be6c93ddb9aacfbb81.png") !important; }
-[data-char*="克蕾雅"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/68033e2d6a21b8051c9508ff0755bddbed247c407040b4bb.png") !important; }
-[data-char*="克蕾雅"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/7794ef980f5bc34e787a3995b6b0b4b7745084898eb659ed.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/baa11b8602a9f6449cf68eed348d25580c136419c3adba4f.png") !important; }
-[data-char*="克蕾雅"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/d8a041121401ef923bac3be73db4bf7b0d8a40a14a7ca628.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/57581a2f8d7520b05fc6b4faac3a7d06100aa17811a87dd5.png") !important; }
-[data-char*="克蕾雅"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/f65ef8265d29273d9253d211fc1e1e1fb7179c9a6778d8b2.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/3befe4267924d76dbc662ecae1807ed7f63377ed996d0970.png") !important; }
-[data-char*="克蕾雅"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/b0b4fdd77f7292caf2f58b6edff0f66b237500ffb5fb3610.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/f03cbb5d81bb016bac835a74dfd51176f02cbb804c65fe98.png") !important; }
-[data-char*="克蕾雅"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/3b2308cdc7cf17a9cbdcc5e19940c31ec7d54698b268f4f5.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/44ce1289e408ff31326c15854d2dd52400d534ac1dcbd11f.png") !important; }
-[data-char*="克蕾雅"][data-action="皱眉"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/2a1abab328580412da62f64cc99df487554518f75d7f6560.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红皱眉"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/c1f238456163127c71dad05c1ff273da1cf2136d8b8580ee.png") !important; }
-[data-char*="克蕾雅"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/d0e17c88434483f1d7a56d38338f6d23aea4606b985fee04.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/c9a1f8b8fc602d1a851b83c15311e7b05e5f33868d44dde8.png") !important; }
+div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/mali-an/normal.webp") !important; }
+[data-char*="克蕾雅"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal.webp") !important; }
+[data-char*="克蕾雅"][data-action*="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smug.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smug-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smirk.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smirk-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/shy.webp") !important; }
+[data-char*="克蕾雅"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/surprised.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/surprised-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/happy.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/happy-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/sad.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/sad-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/puzzled.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/puzzled-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/angry.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/angry-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="皱眉"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/frown.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红皱眉"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/frown-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/thinking.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/thinking-blush.webp") !important; }
 
 /* =========================================================================
  * 🌟 纯透明全屏居中大立绘映射
@@ -3873,7 +5137,7 @@ div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { backg
 }
 
 /* 大立绘（格式参考：克蕾雅；卢克蕾齐雅是她的别名，一并留着） */
-div.custom-nvn-dialogue:is([data-char*="克蕾雅"], [data-char*="卢克蕾齐雅"]) .custom-nvn-portrait-full { content: url("https://origin.picgo.net/2026/09/17/ac92bf314de5fc2fb6488b395a70a66e25515781bb8ce916.png") !important; }
+div.custom-nvn-dialogue:is([data-char*="克蕾雅"], [data-char*="卢克蕾齐雅"]) .custom-nvn-portrait-full { content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/full.webp") !important; }
 
 /* 消除 Markdown 斜体污染 */
 .custom-nvn-dialogue em, .custom-nvn-dialogue i,
@@ -4456,30 +5720,30 @@ div.custom-nvn-dialogue[data-char*="克蕾雅"] { --main: #e6b85c !important; --
 div.custom-nvn-dialogue[data-char*="玛丽·安"] { --main: #2ed573 !important; --sub: #e0f9ec !important; --rgb: 46, 213, 115 !important; --motion-color: #65e199 !important; } /* 玛丽·安 · 翠草清绿 */
 
 /* ====== 角色头像 / 表情差分 / 大立绘 ====== */
-div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/10/08/68208d56a291c30f7e89bc8a5fa6fd13e1aed1c696238752.png") !important; }
-[data-char*="克蕾雅"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1409d4e13ab7c1ad7e96924a36bdd9a3482303ab0ef221c1.png") !important; }
-[data-char*="克蕾雅"][data-action*="脸红"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/fc2183f6475eb6ee573dd4db16b3ec9f48c2cb75b49e78e4.png") !important; }
-[data-char*="克蕾雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1409d4e13ab7c1ad7e96924a36bdd9a3482303ab0ef221c1.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/fc2183f6475eb6ee573dd4db16b3ec9f48c2cb75b49e78e4.png") !important; }
-[data-char*="克蕾雅"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/1f27d649bd5f1a9ddb35bfefea4ed3f04683fd73356f1699.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/bc29db1fa53036376ad890acbf993fda57275798edb08f16.png") !important; }
-[data-char*="克蕾雅"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/5f4e05c1af887f84f81b6389692ef9af103738822016d420.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/2d53ef3ea50d7e218f439e2fac5683be6c93ddb9aacfbb81.png") !important; }
-[data-char*="克蕾雅"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/68033e2d6a21b8051c9508ff0755bddbed247c407040b4bb.png") !important; }
-[data-char*="克蕾雅"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/7794ef980f5bc34e787a3995b6b0b4b7745084898eb659ed.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/baa11b8602a9f6449cf68eed348d25580c136419c3adba4f.png") !important; }
-[data-char*="克蕾雅"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/d8a041121401ef923bac3be73db4bf7b0d8a40a14a7ca628.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/57581a2f8d7520b05fc6b4faac3a7d06100aa17811a87dd5.png") !important; }
-[data-char*="克蕾雅"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/f65ef8265d29273d9253d211fc1e1e1fb7179c9a6778d8b2.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/3befe4267924d76dbc662ecae1807ed7f63377ed996d0970.png") !important; }
-[data-char*="克蕾雅"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/b0b4fdd77f7292caf2f58b6edff0f66b237500ffb5fb3610.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/f03cbb5d81bb016bac835a74dfd51176f02cbb804c65fe98.png") !important; }
-[data-char*="克蕾雅"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/3b2308cdc7cf17a9cbdcc5e19940c31ec7d54698b268f4f5.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/44ce1289e408ff31326c15854d2dd52400d534ac1dcbd11f.png") !important; }
-[data-char*="克蕾雅"][data-action="皱眉"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/2a1abab328580412da62f64cc99df487554518f75d7f6560.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红皱眉"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/c1f238456163127c71dad05c1ff273da1cf2136d8b8580ee.png") !important; }
-[data-char*="克蕾雅"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/d0e17c88434483f1d7a56d38338f6d23aea4606b985fee04.png") !important; }
-[data-char*="克蕾雅"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/09/16/c9a1f8b8fc602d1a851b83c15311e7b05e5f33868d44dde8.png") !important; }
+div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/mali-an/normal.webp") !important; }
+[data-char*="克蕾雅"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal.webp") !important; }
+[data-char*="克蕾雅"][data-action*="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/normal-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smug.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smug-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smirk.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/smirk-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="害羞"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/shy.webp") !important; }
+[data-char*="克蕾雅"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/surprised.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/surprised-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/happy.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/happy-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/sad.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/sad-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/puzzled.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/puzzled-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/angry.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/angry-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="皱眉"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/frown.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红皱眉"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/frown-blush.webp") !important; }
+[data-char*="克蕾雅"][data-action="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/thinking.webp") !important; }
+[data-char*="克蕾雅"][data-action="脸红思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/thinking-blush.webp") !important; }
 
 /* =========================================================================
  * 🌟 纯透明全屏居中大立绘映射
@@ -4528,7 +5792,7 @@ div.custom-nvn-dialogue[data-char*="玛丽·安"] .custom-nvn-avatar-img { backg
 }
 
 /* 大立绘（格式参考：克蕾雅；卢克蕾齐雅是她的别名，一并留着） */
-div.custom-nvn-dialogue:is([data-char*="克蕾雅"], [data-char*="卢克蕾齐雅"]) .custom-nvn-portrait-full { content: url("https://origin.picgo.net/2026/09/17/ac92bf314de5fc2fb6488b395a70a66e25515781bb8ce916.png") !important; }
+div.custom-nvn-dialogue:is([data-char*="克蕾雅"], [data-char*="卢克蕾齐雅"]) .custom-nvn-portrait-full { content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jiukashili/keleiya/full.webp") !important; }
 
 /* 消除 Markdown 斜体污染 */
 .custom-nvn-dialogue em, .custom-nvn-dialogue i,
@@ -5049,8 +6313,10 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   function fullCss(theme) {
     if (!cache) cache = {};
     if (!cache[theme]) {
-      cache[theme] = (CSS[theme] + buildNewCharacterCss())
-        .split('__CAST_IS__').join(CAST_IS) + CAST_CSS;
+      const castIs = effectiveCastIs();
+      cache[theme] = CSS[theme].split('__CAST_IS__').join(castIs)
+        + CAST_CSS
+        + buildNewCharacterCss();
     }
     return cache[theme];
   }
@@ -5335,15 +6601,40 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   letter-spacing: 0.05em !important;
   font-weight: 500 !important;
 }
+
+/* ====== 7. 分离式脸红叠加层（data-action 含「脸红」时，自动叠上该角色的 --nvn-blush） ======
+   素材 = 普通底图 + 200×250 透明脸红层；老角色没配 --nvn-blush 时变量为空 → display:none，不会重影。
+   玩家头像脚本塞了行内 background-image 的行（[style*=background-image]）自动跳过。 */
+:is(#chat, .mes_text) div.custom-nvn-dialogue[data-action*="脸红"] .custom-nvn-avatar-img:not(#nvn-modern-boost):not([style*="background-image"]):not([data-wn-ua-applied="1"])::after {
+  content: "" !important;
+  display: var(--nvn-blush-display, none) !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  background-image: var(--nvn-blush, none) !important;
+  background-size: cover !important;
+  background-position: var(--nvn-blush-pos, center top) !important;
+  background-repeat: no-repeat !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  opacity: var(--nvn-blush-opacity, 1) !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
 `;
 
   function pageCss(theme) {
     const d = D_LAYOUT_CSS[theme] || D_LAYOUT_CSS.dark;
-    return fullCss(theme) + LAYOUT_PATCH_CSS + d.split('__CAST_IS__').join(CAST_IS) + STREAM_FIX_CSS;
+    return fullCss(theme) + LAYOUT_PATCH_CSS + d.split('__CAST_IS__').join(effectiveCastIs()) + STREAM_FIX_CSS;
   }
 
   function apply(theme, force) {
-    if (!Object.prototype.hasOwnProperty.call(CSS, theme)) theme = 'dark';    if (!force && theme === current && styleEl && styleEl.isConnected) return;
+    if (!Object.prototype.hasOwnProperty.call(CSS, theme)) theme = 'light';
+    if (!force && theme === current && styleEl && styleEl.isConnected) return;
 
     HD = getHostDoc();
     const chatBox = HD.getElementById ? HD.getElementById('chat') : null;
@@ -5393,7 +6684,8 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   function ensureStyleOnly() {
     try {
       if (styleEl && styleEl.isConnected) return;
-      const t = userTheme || current || 'dark';
+      const t = userTheme || current || themeFromDom() || themeFromConfig()
+        || ((HD.body && /(^|\s)(dark|theme-dark)($|\s)/.test(String(HD.body.className || ''))) ? 'dark' : 'light');
       apply(t, true);
     } catch (_) {}
   }
@@ -5413,7 +6705,8 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
     isMutating = true;
     try {
-      const t = userTheme || current || 'dark';
+      const t = userTheme || current || themeFromDom() || themeFromConfig()
+        || ((HD.body && /(^|\s)(dark|theme-dark)($|\s)/.test(String(HD.body.className || ''))) ? 'dark' : 'light');
       apply(t, false);
       if (!styleEl || !styleEl.isConnected) apply(t, true);
       injectToggles();
@@ -5497,7 +6790,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       const t = el && el.getAttribute('data-nvn-theme');
       if (t === 'light' || t === 'dark') return t;
     } catch (_) {}
-    return (current === 'light' ? 'light' : 'dark');
+    return (current === 'dark' ? 'dark' : 'light');
   }
 
   function syncToggles() {
@@ -5964,7 +7257,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     try { if (HW[SLOT] && typeof HW[SLOT].destroy === 'function') HW[SLOT].destroy(); } catch (_) {}
     try { HW.addEventListener('beforeunload', destroy); HW.addEventListener('pagehide', destroy); } catch (_) {}
 
-    apply(userTheme || 'dark', true);
+    apply(userTheme || themeFromDom() || themeFromConfig() || 'light', true);
     injectToggles();
     wireObserver();
     wireEvents();
