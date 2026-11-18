@@ -1,8 +1,9 @@
 {
   "schema": 1,
-  "abi": 1,
-  "version": "3.21.0",
   "script": "opening.js",
-  "sha256": "ecd8587a1c8387d8685675ad88429e25be9e1269ca80cf22b1ed29ad4267b57f",
-  "updatedAt": "2026-11-14T12:40:24Z"
+  "abi": 1,
+  "version": "3.35.0",
+  "sha256": "8d9cdd47096d32bbfddea9051de8836e82f13745f0701727bd69eea1375fc318",
+  "size": 1008913,
+  "note": "GALWORLD 开局前端 v3.35（本地版内嵌同一份代码）"
 }
