@@ -966,16 +966,179 @@
 .krs-vbtn.clear { background: rgba(179,69,69,.12) !important; color: #b34545 !important; }
 .krs-vbtn.cancel { background: rgba(91,65,49,.1) !important; color: #47382f !important; }
 .krs-vbtn.save { background: #a64f68 !important; color: #fff !important; }
-.krs-cg-window { width: min(94vw, 920px) !important; max-height: 88vh !important; background: #fbf5ec !important; border-radius: 20px !important; display: flex !important; flex-direction: column !important; overflow: hidden !important; color: #2b211c !important; }
-.krs-cg-topbar { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 12px 18px !important; border-bottom: 1px solid rgba(91,65,49,.15) !important; }
-.krs-cg-top-title { display: flex !important; align-items: center !important; gap: 10px !important; font-family: var(--font-display) !important; font-size: 16px !important; font-weight: 600 !important; }
-.krs-cg-back-btn { background: #fff !important; border: 1px solid rgba(91,65,49,.25) !important; padding: 3px 10px !important; border-radius: 99px !important; cursor: pointer !important; }
-.krs-cg-close-btn { background: none !important; border: none !important; font-size: 22px !important; cursor: pointer !important; }
-.krs-cg-body { padding: 16px 18px !important; overflow-y: auto !important; max-height: calc(88vh - 60px) !important; }
-.krs-cg-albums-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; gap: 12px !important; }
-.krs-cg-album-card { background: #221d24 !important; border-radius: 12px !important; overflow: hidden !important; cursor: pointer !important; display: flex !important; flex-direction: column !important; }
-.krs-cg-album-cover { width: 100% !important; height: 200px !important; object-fit: cover !important; object-position: center top !important; }
-.krs-cg-album-info { padding: 7px 10px !important; display: flex !important; justify-content: space-between !important; background: #fff !important; color: #2b211c !important; font-size: 11px !important; font-weight: 600 !important; }
+/* 关系页立绘可点击 + 右侧粉色 CG 按钮 */
+.krs-status-root:not(.krs-editing) .krs-heroine-avatar-box img.cg-sprite-trigger { cursor: zoom-in !important; }
+.krs-pill.cg-hero-btn.has-cg {
+  background: linear-gradient(135deg, #c45670, #a64f68) !important;
+  border-color: #a64f68 !important; color: #fff !important;
+  box-shadow: 0 2px 8px rgba(166, 79, 104, .28);
+}
+.krs-pill.cg-hero-btn.has-cg:hover {
+  filter: brightness(1.08); color: #fff !important; border-color: #c45670 !important;
+}
+
+/* 图鉴弹窗基础与亮暗双色主题 */
+.krs-cg-window { width: min(94vw, 960px) !important; max-height: 90vh !important; background: #fbf5ec !important; border-radius: 20px !important; display: flex !important; flex-direction: column !important; overflow: hidden !important; color: #2b211c !important; }
+.krs-cg-topbar { display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 10px !important; padding: 12px 18px !important; border-bottom: 1px solid rgba(91,65,49,.15) !important; flex-shrink: 0 !important; }
+.krs-cg-top-title { display: flex !important; align-items: center !important; gap: 8px !important; flex-wrap: wrap !important; font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif !important; font-size: 15.5px !important; font-weight: 700 !important; min-width: 0 !important; }
+.krs-cg-back-btn { background: #fff !important; border: 1px solid rgba(91,65,49,.25) !important; color: #4a3a30 !important; padding: 3px 10px !important; border-radius: 99px !important; font-size: 11.5px !important; font-weight: 600 !important; cursor: pointer !important; white-space: nowrap !important; }
+.krs-cg-back-btn:hover { border-color: #a64f68 !important; color: #8c3e55 !important; }
+.krs-cg-close-btn { background: none !important; border: none !important; font-size: 24px !important; line-height: 1 !important; color: inherit !important; cursor: pointer !important; padding: 0 4px !important; }
+.krs-cg-body { padding: 14px 18px 18px !important; overflow-y: auto !important; flex: 1 1 auto !important; scrollbar-width: thin !important; }
+
+.krs-cg-modal-backdrop {
+  --cg-bg: #fbf5ec; --cg-surface: #fffdf9; --cg-surface2: #f4ebdf;
+  --cg-text: #2b211c; --cg-muted: rgba(43,33,28,.65); --cg-line: rgba(91,65,49,.16);
+  --cg-rose: #a64f68; --cg-rose-deep: #8c3e55; --cg-gold: #8c6630;
+}
+.krs-cg-modal-backdrop.krs-cg-dark {
+  --cg-bg: #101624; --cg-surface: #182034; --cg-surface2: #121829;
+  --cg-text: #f4f0e7; --cg-muted: rgba(239,234,224,.66); --cg-line: rgba(241,235,223,.14);
+  --cg-rose: #ff92a8; --cg-rose-deep: #ffb4c4; --cg-gold: #e7c48b;
+}
+.krs-cg-modal-backdrop .krs-cg-gallery-win { background: var(--cg-bg) !important; color: var(--cg-text) !important; border: 1px solid var(--cg-line) !important; }
+.krs-cg-modal-backdrop .krs-cg-gallery-win .krs-cg-topbar { border-bottom-color: var(--cg-line) !important; }
+.krs-cg-modal-backdrop .krs-cg-gallery-win .krs-cg-back-btn { background: var(--cg-surface) !important; border-color: var(--cg-line) !important; color: var(--cg-text) !important; }
+
+.krs-cg-toolbar {
+  display: flex !important; align-items: center !important; justify-content: space-between !important;
+  gap: 8px !important; flex-wrap: wrap !important; padding: 9px 18px !important;
+  background: var(--cg-surface2) !important; border-bottom: 1px solid var(--cg-line) !important; flex-shrink: 0 !important;
+}
+.krs-cg-toolbar:empty { display: none !important; }
+.krs-cg-tabs { display: flex !important; align-items: center !important; gap: 6px !important; flex-wrap: wrap !important; }
+.krs-cg-tab-pill {
+  padding: 4px 12px !important; border-radius: 99px !important; font-size: 11.5px !important; font-weight: 600 !important;
+  background: var(--cg-surface) !important; border: 1px solid var(--cg-line) !important;
+  color: var(--cg-muted) !important; cursor: pointer !important; transition: all .16s ease !important;
+}
+.krs-cg-tab-pill:hover { border-color: var(--cg-rose) !important; color: var(--cg-text) !important; }
+.krs-cg-tab-pill.active { background: var(--cg-rose) !important; border-color: var(--cg-rose) !important; color: #fff !important; }
+.krs-cg-search {
+  min-width: 190px !important; flex: 0 1 240px !important; height: 30px !important;
+  padding: 0 11px !important; border-radius: 99px !important; font-size: 12px !important;
+  background: var(--cg-surface) !important; border: 1px solid var(--cg-line) !important; color: var(--cg-text) !important; outline: none !important;
+}
+.krs-cg-search:focus { border-color: var(--cg-rose) !important; }
+
+/* 作品分类网格 */
+.krs-cg-sec-title {
+  display: flex !important; align-items: center !important; gap: 9px !important;
+  margin: 4px 0 10px !important; font-family: "Noto Serif SC", Georgia, serif !important;
+  font-size: 12.5px !important; font-weight: 700 !important; color: var(--cg-gold) !important;
+}
+.krs-cg-sec-title::after { content: "" !important; flex: 1 !important; height: 1px !important; background: var(--cg-line) !important; }
+.krs-cg-works-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)) !important; gap: 12px !important; margin-bottom: 18px !important; }
+.krs-cg-work-card {
+  position: relative !important; border-radius: 13px !important; overflow: hidden !important; cursor: pointer !important;
+  background: var(--cg-surface) !important; border: 1px solid var(--cg-line) !important;
+  display: flex !important; flex-direction: column !important; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+}
+.krs-cg-work-card:hover { transform: translateY(-2px) !important; border-color: var(--cg-rose) !important; box-shadow: 0 8px 20px rgba(0,0,0,.16) !important; }
+.krs-cg-work-card.has-cg { border-color: rgba(166,79,104,.45) !important; }
+.krs-cg-work-cover-wrap { position: relative !important; width: 100% !important; aspect-ratio: 16 / 10 !important; background: #1d1822 !important; overflow: hidden !important; }
+.krs-cg-work-cover { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center 22% !important; display: block !important; transition: transform .25s ease !important; }
+.krs-cg-work-card:hover .krs-cg-work-cover { transform: scale(1.04) !important; }
+.krs-cg-badge-corner {
+  position: absolute !important; top: 7px !important; right: 7px !important; z-index: 2 !important;
+  padding: 2px 8px !important; border-radius: 99px !important; font-size: 10px !important; font-weight: 700 !important;
+  background: rgba(16, 14, 22, .76) !important; color: #f5ebe1 !important; border: 1px solid rgba(255,255,255,.22) !important; backdrop-filter: blur(4px) !important;
+}
+.krs-cg-badge-corner.hot { background: rgba(166, 79, 104, .92) !important; border-color: rgba(255, 200, 214, .55) !important; color: #fff !important; }
+.krs-cg-work-info { padding: 8px 11px !important; display: flex !important; flex-direction: column !important; gap: 3px !important; }
+.krs-cg-work-name { font-family: "Noto Serif SC", Georgia, serif !important; font-size: 13px !important; font-weight: 700 !important; color: var(--cg-text) !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+.krs-cg-work-sub { font-size: 10.5px !important; color: var(--cg-muted) !important; display: flex !important; justify-content: space-between !important; align-items: center !important; }
+
+/* 角色卡片网格 */
+.krs-cg-albums-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(156px, 1fr)) !important; gap: 12px !important; }
+.krs-cg-album-card {
+  position: relative !important; background: #221d24 !important; border-radius: 12px !important; overflow: hidden !important;
+  cursor: pointer !important; display: flex !important; flex-direction: column !important;
+  border: 1px solid var(--cg-line) !important; transition: transform .18s ease, border-color .18s ease !important;
+}
+.krs-cg-album-card:hover { transform: translateY(-2px) !important; border-color: var(--cg-rose) !important; }
+.krs-cg-album-card.has-cg { border-color: rgba(166,79,104,.55) !important; }
+.krs-cg-album-cover { width: 100% !important; height: 196px !important; object-fit: cover !important; object-position: center top !important; display: block !important; }
+.krs-cg-album-info {
+  padding: 7px 10px !important; display: flex !important; justify-content: space-between !important; align-items: center !important; gap: 6px !important;
+  background: var(--cg-surface) !important; color: var(--cg-text) !important; font-size: 11.5px !important; font-weight: 600 !important;
+}
+.krs-cg-album-info span:first-child { white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+.krs-cg-album-sub { color: var(--cg-rose-deep) !important; font-size: 10px !important; flex-shrink: 0 !important; }
+
+/* 专属 CG 网格与分组 */
+.krs-cg-cg-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)) !important; gap: 11px !important; margin-bottom: 18px !important; }
+.krs-cg-cg-card {
+  position: relative !important; border-radius: 11px !important; overflow: hidden !important; cursor: zoom-in !important;
+  background: #1a1620 !important; border: 1px solid var(--cg-line) !important; transition: transform .18s ease, border-color .18s ease !important;
+}
+.krs-cg-cg-card:hover { transform: translateY(-2px) !important; border-color: var(--cg-rose) !important; }
+.krs-cg-cg-thumb { width: 100% !important; aspect-ratio: 16 / 9 !important; object-fit: cover !important; display: block !important; }
+.krs-cg-cg-cap {
+  padding: 5px 9px !important; display: flex !important; justify-content: space-between !important; align-items: center !important;
+  background: var(--cg-surface) !important; color: var(--cg-text) !important; font-size: 11px !important; font-weight: 600 !important;
+}
+.krs-cg-cg-cap small { color: var(--cg-muted) !important; font-size: 10px !important; font-weight: 500 !important; }
+.krs-cg-group-head {
+  display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 8px !important;
+  margin: 6px 0 9px !important; padding: 6px 10px !important; border-radius: 10px !important;
+  background: var(--cg-surface2) !important; border: 1px solid var(--cg-line) !important;
+}
+.krs-cg-group-left { display: flex !important; align-items: center !important; gap: 8px !important; font-weight: 700 !important; font-size: 13px !important; }
+.krs-cg-group-ava { width: 28px !important; height: 28px !important; border-radius: 50% !important; object-fit: cover !important; object-position: center 15% !important; border: 1.5px solid var(--cg-rose) !important; }
+
+/* 角色立绘与服装网格 */
+.krs-cg-sprite-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)) !important; gap: 12px !important; }
+.krs-cg-sprite-card {
+  background: #221d24 !important; border-radius: 13px !important; padding: 12px 10px 10px !important; text-align: center !important;
+  cursor: zoom-in !important; border: 1px solid var(--cg-line) !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: space-between !important;
+}
+.krs-cg-sprite-card:hover { border-color: var(--cg-rose) !important; }
+.krs-cg-sprite-card img { max-height: 300px !important; max-width: 100% !important; object-fit: contain !important; display: block !important; }
+.krs-cg-sprite-lbl { color: #f5ebe1 !important; font-size: 11.5px !important; margin-top: 8px !important; font-weight: 600 !important; }
+
+/* 全屏大图灯箱 */
+.krs-cg-lightbox {
+  position: fixed !important; inset: 0 !important; z-index: 2147483647 !important;
+  background: rgba(8, 8, 14, .92) !important; backdrop-filter: blur(8px) !important;
+  display: flex; flex-direction: column !important; align-items: center !important; justify-content: center !important; padding: 18px !important;
+}
+.krs-cg-lightbox:empty { display: none !important; }
+.krs-lb-stage { position: relative !important; width: 100% !important; flex: 1 1 auto !important; display: flex !important; align-items: center !important; justify-content: center !important; min-height: 0 !important; }
+.krs-lb-img { max-width: 90vw !important; max-height: 80vh !important; object-fit: contain !important; border-radius: 8px !important; box-shadow: 0 12px 40px rgba(0,0,0,.6) !important; user-select: none !important; }
+.krs-lb-nav {
+  position: absolute !important; top: 50% !important; transform: translateY(-50%) !important;
+  width: 42px !important; height: 56px !important; border-radius: 12px !important; border: 1px solid rgba(255,255,255,.22) !important;
+  background: rgba(20, 20, 30, .68) !important; color: #fff !important; font-size: 28px !important; cursor: pointer !important;
+  display: grid !important; place-items: center !important; transition: background .16s ease !important;
+}
+.krs-lb-nav:hover { background: rgba(166, 79, 104, .9) !important; }
+.krs-lb-prev { left: 10px !important; }
+.krs-lb-next { right: 10px !important; }
+.krs-lb-bar {
+  width: min(92vw, 860px) !important; padding-top: 10px !important;
+  display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 10px !important;
+  color: #f4f0e7 !important; font-size: 13px !important;
+}
+.krs-lb-actions { display: flex !important; align-items: center !important; gap: 8px !important; }
+.krs-lb-btn {
+  padding: 4px 12px !important; border-radius: 99px !important; border: 1px solid rgba(255,255,255,.28) !important;
+  background: rgba(255,255,255,.1) !important; color: #fff !important; font-size: 11.5px !important; text-decoration: none !important; cursor: pointer !important;
+}
+.krs-lb-btn:hover { background: #a64f68 !important; border-color: #a64f68 !important; }
+
+@media (max-width: 600px) {
+  .krs-cg-topbar { padding: 10px 12px !important; }
+  .krs-cg-toolbar { padding: 8px 12px !important; }
+  .krs-cg-search { flex: 1 1 100% !important; min-width: 0 !important; }
+  .krs-cg-body { padding: 10px 12px 14px !important; }
+  .krs-cg-works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .krs-cg-albums-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .krs-cg-album-cover { height: 158px !important; }
+  .krs-cg-cg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .krs-cg-sprite-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .krs-lb-nav { width: 34px !important; height: 46px !important; font-size: 22px !important; }
+}
 .krs-ext-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 10px; }
 .krs-ext-card { position: relative; height: 122px; border-radius: 12px; overflow: hidden; border: 1.5px solid rgba(91,65,49,.25); background-size: cover; background-position: center; cursor: pointer; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; text-align: left; color: #fff; }
 .krs-ext-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,8,14,.15), rgba(10,8,14,.86)); }
@@ -1151,23 +1314,143 @@
   font-size: 10.5px; color: var(--muted); padding: 6px 18px 12px; border-top: 1px solid var(--line);
   background: var(--surface-2); flex-shrink: 0;
 }
+/* 暗色模式变量兼容弹窗外层挂类名 */
+.krs-plot-dark .krs-plot-window {
+  --paper: #f4f0e7; --paper-soft: #dfd8cc;
+  --muted: rgba(239, 234, 224, .68); --muted-2: rgba(239, 234, 224, .45);
+  --line: rgba(241, 235, 223, .11); --line-strong: rgba(241, 235, 223, .22);
+  --rose: #ff92a8; --rose-deep: #ffb4c4; --violet: #b3a7ff;
+  --cyan: #7ce7da; --gold: #e7c48b; --danger: #ff7f86;
+  --surface-1: rgba(20, 25, 40, .92); --surface-2: rgba(15, 19, 32, .90);
+  background: #101624 !important; color: #f4f0e7 !important;
+}
+.krs-plot-dark .krs-plot-window .krs-cg-topbar { border-bottom-color: rgba(241, 235, 223, .14) !important; }
+
+/* 弹窗高度与滚动彻底解锁（兼容手机 dvh + 触摸滚动） */
+.krs-plot-window { max-height: 90vh !important; max-height: 90dvh !important; }
+.krs-plot-searchbar {
+  display: flex; align-items: center; gap: 8px; padding: 8px 18px;
+  background: var(--surface-2); border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+.krs-plot-search-input {
+  width: 100%; height: 32px; padding: 0 12px; border-radius: 999px;
+  border: 1px solid var(--line-strong); background: var(--surface-1);
+  color: var(--paper); font-size: 12px; outline: none; font-family: inherit;
+}
+.krs-plot-search-input:focus { border-color: var(--rose); }
+.krs-plot-body {
+  flex: 1 1 auto !important; min-height: 0 !important;
+  overflow-y: auto !important; overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  max-height: calc(90vh - 180px) !important;
+  max-height: calc(90dvh - 180px) !important;
+}
+.krs-plot-body.is-stack { display: block !important; }
+.krs-plot-body.is-stack > * + * { margin-top: 12px; }
+
+/* 剧情页外部活跃区与空状态提示 */
+.krs-plot-empty-box {
+  padding: 15px 14px; border-radius: 13px; text-align: center;
+  border: 1.5px dashed var(--line-strong); background: var(--surface-2);
+  display: flex; flex-direction: column; gap: 4px; align-items: center;
+}
+.krs-plot-empty-box b { font-family: var(--font-display); font-size: 13.5px; color: var(--paper); }
+.krs-plot-empty-box span { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.krs-plot-active-wrap { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; }
+.krs-plot-active-wrap.is-single .krs-plot-card { flex: 1 1 100%; }
+
+@keyframes krsPlotPopIn {
+  0% { opacity: 0; transform: translateY(10px) scale(.98); box-shadow: 0 0 0 3px rgba(166,79,104,.45); }
+  100% { opacity: 1; transform: none; box-shadow: 0 6px 18px rgba(60,30,40,.08); }
+}
+.krs-plot-card.is-pop-in { animation: krsPlotPopIn .38s ease both; }
+
+/* 📦 剧情收纳盒 */
+.krs-plot-drawer {
+  border: 1px solid var(--line-strong); border-radius: 14px;
+  background: var(--surface-2); overflow: hidden;
+}
+.krs-plot-drawer-head {
+  width: 100%; min-height: 48px; border: 0; padding: 10px 14px;
+  background: transparent; color: var(--paper); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  text-align: left; font-family: inherit; transition: background .16s ease;
+}
+.krs-plot-drawer-head:hover { background: rgba(166,79,104,.07); }
+.krs-plot-dh-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.krs-plot-dh-title { font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--paper); }
+.krs-plot-dh-badge {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px;
+  background: rgba(166,79,104,.14); color: var(--rose-deep);
+}
+.krs-plot-dh-sub { font-size: 10.5px; color: var(--muted); }
+.krs-plot-dh-arrow { font-size: 11px; font-weight: 700; color: var(--rose-deep); white-space: nowrap; flex-shrink: 0; }
+.krs-plot-drawer-body {
+  padding: 10px 12px 12px; border-top: 1px dashed var(--line-strong);
+  display: flex; flex-direction: column; gap: 9px;
+}
+.krs-plot-drawer-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.krs-plot-df-pill {
+  padding: 3px 11px; border-radius: 99px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--line-strong); background: var(--surface-1);
+  color: var(--muted); cursor: pointer; font-family: inherit;
+}
+.krs-plot-df-pill.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+/* 收纳盒内快捷「▶ 开启」按钮 */
+.krs-plot-quick-btn {
+  padding: 4px 11px; border-radius: 99px; border: 1px solid rgba(255,180,196,.65);
+  background: linear-gradient(135deg, #c45670, #a64f68); color: #fff;
+  font-size: 10.5px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  font-family: inherit; transition: transform .15s ease, filter .15s ease;
+}
+.krs-plot-quick-btn:hover { filter: brightness(1.1); transform: scale(1.03); }
+.krs-plot-quick-btn.disabled {
+  background: rgba(20, 20, 28, .68); border-color: rgba(255,255,255,.22);
+  color: #bcb5c2; cursor: not-allowed;
+}
+
+/* 旧版扩展网格的桌面/平板/手机多端比例缩放 */
+.krs-plot-body.grid-ext {
+  display: grid !important; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: 10px; align-content: start;
+}
+.krs-plot-tile { aspect-ratio: 1.24 / 1; }
+
 @media (max-width: 820px) {
   .krs-plot-card { flex-basis: 100%; }
-  .krs-plot-body { max-height: calc(92vh - 156px); }
-  .krs-plot-body.grid-ext { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .krs-plot-tile { aspect-ratio: 1.04 / 1; padding: 8px 9px 9px; }
-  .krs-plot-tile-name { font-size: 11.5px; }
-  .krs-plot-tile-desc { font-size: 8.8px; -webkit-line-clamp: 2; }
+  .krs-plot-body.grid-ext { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .krs-plot-tile { aspect-ratio: 1.18 / 1; padding: 8px 9px; }
+  .krs-plot-tile-name { font-size: 12px; }
+  .krs-plot-tile-desc { font-size: 9px; -webkit-line-clamp: 2; }
 }
-@media (max-width: 520px) {
-  .krs-plot-body { padding: 10px 10px 8px; }
+@media (max-width: 560px) {
   .krs-plot-tabs { padding: 0 10px; }
-  .krs-plot-tab { padding: 8px 16px; font-size: 12px; }
-  .krs-plot-body.grid-ext { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .krs-plot-tile { aspect-ratio: .92 / 1; border-radius: 8px; }
-  .krs-plot-tile-desc { font-size: 7.8px; }
-  .krs-plot-tile-state { font-size: 8px; padding: 1px 6px; top: 6px; right: 6px; }
-  .krs-plot-hint { padding: 6px 10px 10px; font-size: 9.5px; }
+  .krs-plot-tab { padding: 9px 16px; font-size: 13px; }
+  .krs-plot-searchbar { padding: 7px 10px; }
+  .krs-plot-search-input { height: 34px; font-size: 13px; }
+  .krs-plot-body {
+    padding: 10px 10px 12px;
+    max-height: calc(90vh - 172px) !important;
+    max-height: calc(90dvh - 172px) !important;
+  }
+  .krs-plot-body.grid-ext { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .krs-plot-tile { aspect-ratio: 1.32 / 1; padding: 7px 8px; border-radius: 10px; }
+  .krs-plot-tile-name { font-size: 11.5px; line-height: 1.25; }
+  .krs-plot-tile-desc { font-size: 9px; line-height: 1.35; -webkit-line-clamp: 2; margin-top: 2px; }
+  .krs-plot-tile-count { font-size: 8.5px; margin-top: 2px; }
+  .krs-plot-tile-state { font-size: 8.5px; padding: 1.5px 6px; top: 5px; right: 5px; }
+
+  .krs-plot-drawer-head { padding: 10px 12px; min-height: 50px; }
+  .krs-plot-drawer-body { padding: 8px 8px 10px; }
+  .krs-plot-card-head { min-height: 54px; padding: 8px 10px; gap: 7px; }
+  .krs-plot-card-name { font-size: 12.5px; white-space: normal; line-height: 1.3; }
+  .krs-plot-story-top { flex-wrap: wrap; gap: 6px; }
+  .krs-plot-chapter-name { white-space: normal; font-size: 12.5px; }
+  .krs-plot-chapter-order button { width: 30px; height: 30px; font-size: 16px; border-radius: 8px; }
+  .krs-plot-close-story { padding: 4px 11px; font-size: 11px; }
+  .krs-plot-hint { padding: 7px 10px 10px; font-size: 10px; }
 }
 
 
@@ -1829,6 +2112,122 @@
     ["近江希未", 21, "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/normal.webp", { "校园制服": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/uniform.webp", "衣装①": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/outfit1.webp", "衣装②": "https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/outfit2.webp" }],
   ];
 
+  const WORK_COVERS = {
+    "Flyable Heart": GAL_COVERS.fly,
+    "有少女涂彩的爱之芬芳": GAL_COVERS.kaoru,
+    "少女编织爱的画布": GAL_COVERS.canvas,
+    "近月少女的礼仪": GAL_COVERS.tsuki,
+    "少女理论及其周边": GAL_COVERS.theo,
+    "轮舞曲": GAL_COVERS.waltz,
+    "橘光柠水随想曲": GAL_COVERS.lemon,
+    "美少女万华镜4": GAL_COVERS.tsumi,
+    "樱之诗": GAL_COVERS.sakura,
+    "9nine": GAL_COVERS.nine,
+    "花子": GAL_COVERS.hanako,
+    "少女领域": GAL_COVERS.shoujo,
+    "Summer Pockets REFLECTION BLUE": "https://origin.picgo.net/2026/11/18/2932bd86c77f1fda93ae0303a02cb6526a5bfb37e3e8089b.png",
+    "恋爱？我就借走了哦！": "https://origin.picgo.net/2026/11/18/18e01c495f01b01960a793d5d6071ee707086541dbef8231.png",
+    "水葬银币的伊斯特里亚": "https://origin.picgo.net/2026/11/18/28a58ae2609e1d5bd8e3c50ef92a2c6e2ae33c2036c9a30f.png",
+    "灵感满溢的甜蜜创想": "https://origin.picgo.net/2026/11/18/4615f918f5035f57f010ef7bc2283effdd6dc1ef08032975.png",
+    "甜蜜女友2": "https://origin.picgo.net/2026/11/18/c081d7ca6a566a3c585c43f05f5c6e9ce31e98f5bf929bde.png",
+    "甜蜜女友2.5": "https://origin.picgo.net/2026/11/18/3cf1b4296a5c84e50c7129ad5b613254b8bd7d45a4703c5f.png",
+    "甜蜜女友3": "https://origin.picgo.net/2026/11/18/8af4b0a6fd6fac485a8d4a906508f15a36583c35fdd40f78.png",
+    "纯白交响曲": "https://origin.picgo.net/2026/11/18/e9c54d42152857c19821f182bde149bf02c8ad5de8f74b9d.png",
+    "纸上魔法使": "https://origin.picgo.net/2026/11/18/5050e54dd2133fffd2a80b41de1a96eed8f37f324dcf8b11.png",
+    "缘起甜韵趣恋丛生！": "https://origin.picgo.net/2026/11/18/f84565d8ab7c7ad276f490ea5bffca3def6e2b895136d9fe.png"
+  };
+
+  /* 角色专属 CG 库（支持短文件名自动拼 _CG_BASE，也支持直接填完整 https:// 链接） */
+  const _CG_BASE = "https://origin.picgo.net/2026/11/19/";
+  const _CAST_CG_RAW = {
+    /* 9nine */
+    "结城希亚": ["9nine--CG01d8867f9ccab54c00.webp","9nine--CG020861cfac9ea738a1.webp","9nine--CG03bed826f4cbdd1148.webp","9nine--CG042e5aa3437e68882b.webp","9nine--CG0517447eb170731337.webp","9nine--CG06b1eb4365dd42c3de.webp","9nine--CG0734eb76769050ac80.webp","9nine--CG0867f6f0415c9e130e.webp","9nine--CG094382ec3a146caffb.webp","9nine--CG10f5d404b76681ff3c.webp","9nine--CG1127a4cd289b0a2242.webp","9nine--CG12732f00446e16078c.webp","9nine--CG130b2710a09fe90ce7.webp","9nine--CG146b0961349a8d667c.webp"],
+    "九条都": ["9nine--CG0174b05d32d0fee11b.webp","9nine--CG02f9083e18f6d0ef62.webp","9nine--CG0310ee28ad07d09c18.webp","9nine--CG047d4cd1d65b162d39.webp","9nine--CG054b53be18af28c132.webp","9nine--CG060a1e46c746ab79f4.webp","9nine--CG07cc8fc48ece32199e.webp","9nine--CG08d4d6348762323cac.webp","9nine--CG09bd38c912d92becf0.webp","9nine--CG1066f22a039b3f4f54.webp","9nine--CG11fc051268a8a0eaf6.webp","9nine--CG12784d6aa0c5483eea.webp","9nine--CG13e28902d616e7186a.webp"],
+    "香坂春风": ["9nine--CG014c7f3872189e354e.webp","9nine--CG02b3f0606330debf1b.webp","9nine--CG03ab9979c2c063f8e6.webp","9nine--CG047eb1edbdf2cfeba7.webp","9nine--CG050c469720829cf453.webp","9nine--CG065e199a85c5571e7d.webp","9nine--CG07b627497df07363a0.webp","9nine--CG087ab6ecc6ff3161ed.webp","9nine--CG09a19ca9db36ae3566.webp"],
+    "新海天": ["9nine--CG01d57b7816d0172c5a.webp","9nine--CG02f8a7679d98160c80.webp","9nine--CG039ed1290403f54b82.webp","9nine--CG04d57700438cd33ddd.webp","9nine--CG05dfea158350bd658d.webp","9nine--CG06352974a364adfc64.webp","9nine--CG0779f6575218f9dac7.webp","9nine--CG0880263698e2428dd5.webp","9nine--CG0996958c852472946b.webp","9nine--CG10b81ac075b66c222c.webp","9nine--CG11f245ba0335750f47.webp","9nine--CG121981993c314a5861.webp","9nine--CG13191005fee47c3856.webp","9nine--CG1437c58ecf39b9b0e1.webp","9nine--CG1536a55f97d6a1f86c.webp","9nine--CG162edb52c686640c99.webp"],
+
+    /* Summer Pockets REFLECTION BLUE */
+    "䌷·文德斯": ["Summer-Pockets-REFLECTION-BLUE--CG01510b6b498707632b.webp","Summer-Pockets-REFLECTION-BLUE--CG02aaa8f8cf67987ae4.webp","Summer-Pockets-REFLECTION-BLUE--CG03133e3f947af5d945.webp","Summer-Pockets-REFLECTION-BLUE--CG0413f3de1df259dc35.webp","Summer-Pockets-REFLECTION-BLUE--CG05528754c5b75d167d.webp","Summer-Pockets-REFLECTION-BLUE--CG063805b56fd931c43e.webp","Summer-Pockets-REFLECTION-BLUE--CG07f79c179863fc56ba.webp"],
+    "加藤羽未": ["Summer-Pockets-REFLECTION-BLUE--CG018e3a29d3936368e5.webp","Summer-Pockets-REFLECTION-BLUE--CG02a7b9323aaf574e99.webp","Summer-Pockets-REFLECTION-BLUE--CG03f770a94dc6a72b34.webp","Summer-Pockets-REFLECTION-BLUE--CG048713b2717726cd36.webp"],
+    "久岛鸥": ["Summer-Pockets-REFLECTION-BLUE--CG0163f365056fbc1b82.webp","Summer-Pockets-REFLECTION-BLUE--CG02621ba5110b9b12fb.webp","Summer-Pockets-REFLECTION-BLUE--CG03abdce082fc1bb552.webp","Summer-Pockets-REFLECTION-BLUE--CG0480dc630c63a32acb.webp","Summer-Pockets-REFLECTION-BLUE--CG053805c9662c15aabe.webp","Summer-Pockets-REFLECTION-BLUE--CG06dee751e421b708aa.webp","Summer-Pockets-REFLECTION-BLUE--CG079b6f89510958244f.webp"],
+    "空门苍": ["Summer-Pockets-REFLECTION-BLUE--CG0121795931b5aecd57.webp","Summer-Pockets-REFLECTION-BLUE--CG02e72d1a286add5799.webp","Summer-Pockets-REFLECTION-BLUE--CG03072fc2112916bad7.webp","Summer-Pockets-REFLECTION-BLUE--CG0468a61099f52a4a87.webp","Summer-Pockets-REFLECTION-BLUE--CG05efa53523b8146f64.webp","Summer-Pockets-REFLECTION-BLUE--CG06e4c31894b152e775.webp","Summer-Pockets-REFLECTION-BLUE--CG0766034dbb5b925823.webp","Summer-Pockets-REFLECTION-BLUE--CG0845065401a3931213.webp","Summer-Pockets-REFLECTION-BLUE--CG094300621670c413de.webp","Summer-Pockets-REFLECTION-BLUE--CG10de214e44d4cdabf7.webp","Summer-Pockets-REFLECTION-BLUE--CG11cec11a8d157456e9.webp"],
+    "鸣濑白羽": ["Summer-Pockets-REFLECTION-BLUE--CG01105149791318293e.webp","Summer-Pockets-REFLECTION-BLUE--CG029106b5c955b40f4d.webp","Summer-Pockets-REFLECTION-BLUE--CG03d9d2279f46656336.webp","Summer-Pockets-REFLECTION-BLUE--CG04fa134242201d4b09.webp","Summer-Pockets-REFLECTION-BLUE--CG05033c13e2db512752.webp","Summer-Pockets-REFLECTION-BLUE--CG06a421a592128471fb.webp","Summer-Pockets-REFLECTION-BLUE--CG077fd2acee66c79512.webp","Summer-Pockets-REFLECTION-BLUE--CG0832f1e2fb6f6df084.webp","Summer-Pockets-REFLECTION-BLUE--CG0924594c6f623b0c76.webp","Summer-Pockets-REFLECTION-BLUE--CG106579e7780ab17ab9.webp","Summer-Pockets-REFLECTION-BLUE--CG11888266dfd70438b2.webp","Summer-Pockets-REFLECTION-BLUE--CG12f3247a05e6b01bcc.webp","Summer-Pockets-REFLECTION-BLUE--CG13f633e95a3b603da5.webp","Summer-Pockets-REFLECTION-BLUE--CG148ed749f8741477bc.webp","Summer-Pockets-REFLECTION-BLUE--CG15b503f88ee8c70ee3.webp","Summer-Pockets-REFLECTION-BLUE--CG16067bec69cef341dc.webp"],
+    "野村美希": ["Summer-Pockets-REFLECTION-BLUE--CG017ed37febae43e5a6.webp","Summer-Pockets-REFLECTION-BLUE--CG021c46b71d65fa73cb.webp","Summer-Pockets-REFLECTION-BLUE--CG035f6741df6bed9948.webp","Summer-Pockets-REFLECTION-BLUE--CG04c25bebc269b2a968.webp","Summer-Pockets-REFLECTION-BLUE--CG056fdc64fbe41e77cb.webp"],
+
+    /* 纯白交响曲 */
+    "安洁莉娜·菜夏·史威尔": ["--CG01a92d5d84bf1dd592.webp","--CG021bee33971302a580.webp","--CG035f98927f4c4237e0.webp","--CG04fcf67e9c8110caa9.webp","--CG05c10a717de756dc95.webp","--CG06bfa347369d600264.webp","--CG07ffa59cfc7d940b41.webp","--CG0845979196dee48b88.webp","--CG092ccc0cbb9bdd2cce.webp"],
+    "瓜生樱乃": ["--CG019e974672a9e2ab87.webp","--CG024b0de66c3b7db938.webp","--CG03578ca99559834081.webp","--CG04b6e3634911281dfc.webp","--CG05bab547ebeb68e24b.webp","--CG06e391c1388e6cc94d.webp","--CG07b866f6006ee0d860.webp","--CG08e8f7abab1d1e2153.webp","--CG09c1ac80d1a1c5043e.webp","--CG10876867984ea57143.webp","--CG1110497ad8ffe03acc.webp","--CG12bce3aa7ba5523c99.webp"],
+    "濑名爱理": ["--CG019cdb03b278f02fb8.webp","--CG02a9bc55adefb8ae4d.webp","--CG038b7d6a2088ca20bd.webp","--CG0403586a4834a115ff.webp","--CG05577d33339fc54746.webp","--CG067e1cd74664ec22db.webp","--CG07356ea10880a38a92.webp","--CG088613b9e6c79f1e39.webp","--CG09bbf69107327a2424.webp","--CG10e331a7cd8a616d15.webp"],
+    "天羽美羽": ["--CG012455fa856486ff00.webp","--CG0257a68afb9dbe8376.webp","--CG0304e9f7315ebb6a52.webp","--CG04e783bdf499b2e038.webp","--CG05735c7c012c710fd7.webp","--CG066735ff8097bf19b4.webp","--CG07b08ce452e344dc6b.webp","--CG08d66cba23c9506e71.webp","--CG092ce8ab03d0c758e2.webp","--CG10b0027f9b9a9a1369.webp"],
+
+    /* 有少女涂彩的爱之芬芳 */
+    "冰堂芹香": ["--CG01f44aaeb5982502a0.webp","--CG02af5b6a71208df951.webp","--CG03a0d63241408be2f2.webp","--CG0486f560843162f69f.webp","--CG05e95da8f51a2de116.webp","--CG06f60408e00b29d15c.webp"],
+    "朝仓千弘": ["--CG01437e93726eab9487.webp","--CG02aa3095c6d2797b04.webp","--CG03a10ce6c35a6b4c7b.webp","--CG041f8acf3d53c57226.webp","--CG05445d5f346efa9f7c.webp","--CG063db4f0d89a55feaa.webp"],
+    "牧濑皋月": ["--CG0133ac9afb4a958870.webp","--CG02191a0aa064b7ea7b.webp","--CG0371cb245e581b5c9a.webp","--CG046b9ffd3311a1f3f3.webp","--CG0580f1f2c329bd32a9.webp","--CG06f36078e77536db96.webp","--CG0756e13bdcd38c46b5.webp"],
+    "千原乃亚": ["--CG0172c2ab61078b0b2f.webp","--CG02d544aa675a3d8be5.webp","--CG033f976f4573d88974.webp","--CG047d418b49abb278e1.webp","--CG0529cb68f8c255a62e.webp","--CG067b8056793fb56255.webp"],
+    "天城咲夜": ["--CG017d3ff53e9794fb7b.webp","--CG027e1e6989125ec7ca.webp","--CG033343e51075a7dfc2.webp","--CG0448d621cff54899b2.webp","--CG0520fbc657ff1a14a0.webp","--CG0638916349c371abf4.webp"],
+    "夏目朱里": ["--CG01f21e466cb8743ca4.webp","--CG02a5c2f1a17a9827c1.webp","--CG03a74600ab0e8061dc.webp","--CG04669ee3a09205a2f6.webp","--CG05cbfe435b918848de.webp","--CG0603f338de873d6534.webp"],
+
+    /* 恋爱？我就借走了哦！ */
+    "空路椿": ["--CG017203a05f55c4c4ee.webp","--CG023b24a389ab659baf.webp","--CG03730358aa8bc9231c.webp","--CG0405e3df3bb0c41484.webp"],
+    "濑川绘未": ["--CG0188dad40590efbd5b.webp","--CG02dec213be52dc7344.webp","--CG039d02b4d4b723b209.webp","--CG04d1189e7d418eb9eb.webp","--CG059b4aa6e47d301b96.webp","--CG065ba97f3c44dbe2df.webp"],
+    "泉千夏": ["--CG01e4a4906de47bde7d.webp","--CG02bd167c7d0aaa3404.webp","--CG03a54b87432fda2ee8.webp"],
+    "泉子夏": ["--CG013b14554347044623.webp","--CG0262cbf2c7c40725b2.webp","--CG0343cf0732863e8226.webp","--CG0462475732bf14856f.webp","--CG05b9a4858bd943311c.webp"],
+    "天满八纯": ["--CG014bb46c9f19f6bed4.webp","--CG02b81de32dc7242251.webp","--CG035bb350234e0194b3.webp","--CG045f2670d8920b047a.webp","--CG0554ff9d1a675035a5.webp","--CG06dbffe0b0df8e0022.webp","--CG0706686ee45ffe17d7.webp","--CG0808682f3f09bc076a.webp"],
+
+    /* 灵感满溢的甜蜜创想 */
+    "常磐华乃": ["--CG01d250503ff801ef9a.webp","--CG024bb89afaff91c861.webp","--CG037ee67b3a18f1b353.webp","--CG0485ddb8f99f377924.webp","--CG0510e15c99a9946d26.webp","--CG06878550f2439679bc.webp"],
+    "和泉妃爱": ["--CG0191fbde6e8776eec7.webp","--CG023a21fde5b3c71d14.webp","--CG03a3e0ebad6abfe24b.webp","--CG049647bbe58da411cd.webp","--CG058a5be6dbbd22c32d.webp","--CG064f3f82ef27393c22.webp"],
+    "锦明日海": ["--CG01727548698f2ef610.webp","--CG02c5311a405b0b1f95.webp","--CG035a1a8f91f40b3708.webp","--CG049c8afd27876f413d.webp","--CG05fd12314dd6368934.webp","--CG06e34d5644ebb8937d.webp"],
+    "镰仓诗樱": ["--CG01bbb0dfc400633578.webp","--CG02dde92b7c7415ffdb.webp","--CG03c72f4897005b0335.webp","--CG042268b77bd5f2f849.webp","--CG05a5156683905a838a.webp","--CG064b86b1a791b71f69.webp","--CG07d3a93ecbbc070810.webp"],
+
+    /* 轮舞曲 */
+    "江利原美月": ["--CG011bf2e5a2702f0e1e.webp","--CG029ea21c855d7fadc4.webp","--CG03fb1f7483fc8006c3.webp","--CG040b05be0f5b9c52d0.webp","--CG05d789c71403edafcf.webp","--CG064c4c06a99b9f1487.webp","--CG078d07df742df6b449.webp","--CG086aac9c0376dd2074.webp"],
+    "门胁樱": ["--CG01479fc1fa0346db36.webp","--CG0239538bc13b475f01.webp","--CG03b85ff1df9173ee2f.webp","--CG044c941ed3f6601bce.webp","--CG05ad576114fa19a85e.webp","--CG06facc821ea0df7068.webp","--CG0741b704153fc39e22.webp"],
+    "天司凉香": ["--CG01e46cc5c1645bd4f2.webp","--CG02c2da31cebfc60122.webp","--CG0353238aafb7302d2f.webp","--CG0491648cdf495c2fff.webp","--CG051157bacda8da7a6b.webp","--CG062a65ca8a8982eafa.webp","--CG07e1f12d90e3bcabaa.webp","--CG081e404df5f1140bf8.webp","--CG09d8ba21629e7dabd7.webp"],
+    "小峰真奈美": ["--CG017bce5be952f245ec.webp","--CG025aced19cf6f85c05.webp","--CG03a22d338fec752bfb.webp","--CG0469c4a3fc36d935e4.webp","--CG0516fa51f71a8503a8.webp","--CG064f1d1023862ef36d.webp","--CG07b5260a0820cc7afc.webp","--CG083dd2bce17e3e893d.webp","--CG094beb0c6bcfed4a67.webp","--CG107eccdb1a2ff05ea9.webp","--CG116829496143b1c45d.webp","--CG1277e28b34c867ba86.webp","--CG138b80c8ef55c4cd8e.webp"],
+    "新垣若菜": ["--CG011fff37ceacee56b8.webp","--CG020b0f3046f1e8b771.webp","--CG03c0c213b9a1f89119.webp","--CG04647a173768bfeb86.webp","--CG054bb5501ef02fbcdc.webp","--CG060036d6373e9feb99.webp","--CG07ca6fc4ce1ed4df74.webp"],
+    "真原祐里": ["--CG013a27a1f7969963ec.webp"],
+
+    /* 少女领域 */
+    "大垣日向": ["--CG0120c020433414e9a2.webp","--CG024858422bd6fdbb0e.webp","--CG03a989e46578616a81.webp","--CG04551555a16193d017.webp","--CG05c67c4e4ddfa71549.webp","--CG06fb0db5b1d047fc83.webp","--CG0703de1e977c5cfa51.webp","--CG08193d6475c5555fbe.webp","--CG09ea7fcae0ef902d99.webp","--CG102df4823343d21a19.webp"],
+    "飞鸟凑": ["--CG01f71c7a04d1f38f4e.webp","--CG02d1e66c8d56cd43b3.webp","--CG03a1320a230ab428f0.webp","--CG0402a430aa3ce46caa.webp","--CG0593a151ede1938816.webp","--CG06f3c5ce3a347a2b00.webp","--CG072d66dca56d36b45d.webp","--CG08aff5603cf7af4d25.webp","--CG09024abb62eb32e86e.webp"],
+    "贵船柚子": ["--CG012b28efdf93b66852.webp","--CG025ea7306d49291be9.webp","--CG034de5428d1ccc3dd6.webp","--CG041cd432d2f96ae58c.webp","--CG05d25fa98d9ff4da57.webp","--CG06aee8ad6960d2c864.webp","--CG072326a93f2e05acd9.webp","--CG087740b4aa8be0e492.webp","--CG09283d2dadfcb959de.webp","--CG107a38716183f77925.webp","--CG111f02e231d4d83f89.webp"],
+    "西园寺风莉": ["--CG018341cb983b606033.webp","--CG02998b417745b53323.webp","--CG0307618c09aafb7c0e.webp","--CG045b9acc5bb8ba64b4.webp","--CG05e849d2db4fd68556.webp","--CG0645e8cd75ad1ef675.webp","--CG07ba07e924a9853466.webp","--CG0814864f974142f72e.webp","--CG09997b1d899a1e184a.webp","--CG10144da23e62765953.webp"],
+
+    /* 水葬银币的伊斯特里亚 */
+    "八椚红叶": ["--CG0150ec48435fb56035.webp","--CG02c01e5ba268ac16cc.webp","--CG038936ea7d7252a399.webp","--CG04dc41dbdd0715754d.webp"],
+    "茅崎夕樱": ["--CG015bdb1e99055eb440.webp","--CG02b8d37537ea1493b8.webp","--CG038274ac6c25a3fbed.webp","--CG04612d47c6f9704641.webp","--CG0535c5b193e4a75677.webp"],
+    "煤谷小夜": ["--CG01c56463d99237da82.webp","--CG0291f7d66c3d147448.webp","--CG036ccc846a21a25fe1.webp","--CG046c8f0009b7e44800.webp","--CG057b96c18be5e25e4c.webp","--CG06d0e6f6373a2e06b5.webp"],
+    "汐入玖玖里": ["--CG01cf897739033f089b.webp","--CG0254d64a7ff1e96664.webp","--CG030b3cb22db43a2dc5.webp","--CG043d25b217fb3776e5.webp","--CG058ef767c21e72bd67.webp","--CG06599e4b3e2b212b6b.webp","--CG07b32233f2983f953d.webp"],
+    "小不动摇": ["--CG0182f49ef476ae4db8.webp","--CG0210af025a15fc28c7.webp","--CG03c1aad4eb2d70566b.webp"],
+
+    /* 甜蜜女友2.5 */
+    "沓野奏": ["2.5--CG016933c3f76e723483.webp","2.5--CG02c66c781e52ccfca9.webp","2.5--CG03fb21769f13eba05d.webp","2.5--CG04c17055d358eb3434.webp","2.5--CG054fc4765c5382448c.webp","2.5--CG06c766078adbe9e863.webp","2.5--CG0795b1e0765383f008.webp","2.5--CG08a4d67ab9c95e668e.webp","2.5--CG09083b869240e77da9.webp"],
+    "高社雪静": ["2.5--CG01fbd26a99612efcc0.webp","2.5--CG025f7ff3de46ebdf9b.webp","2.5--CG034dd317e9a3d11925.webp","2.5--CG048423e40f55f1ae9a.webp","2.5--CG05978ff85dcc9c18ad.webp","2.5--CG06a5cdf60c1cc40ba0.webp","2.5--CG07b30c652781f7b474.webp"],
+    "砚川·优芙拉希·泪香": ["2.5--CG01dc538030137d1ed9.webp","2.5--CG02194080e00e4f4e28.webp","2.5--CG036bfd96aee2be55a2.webp","2.5--CG04809d518895e4db47.webp","2.5--CG0520efb98f8320860e.webp","2.5--CG068a7be97bdbcd8855.webp","2.5--CG07ec59567445b7a040.webp"],
+    "一之濑穗波": ["2.5--CG016dbbbfc74bcc5eb8.webp","2.5--CG02a54560b7bb60c4f9.webp","2.5--CG038046b06d412dc068.webp","2.5--CG044e3a09977063f478.webp","2.5--CG05c2c8eb832c92583e.webp","2.5--CG063db404b32a398605.webp"],
+
+    /* 甜蜜女友2 */
+    "冰见山玲": ["2--CG016f1477a857aaa1e3.webp","2--CG0221b937f9b83cbcae.webp","2--CG0319bbabd86760ac47.webp","2--CG04edb298350b9fee07.webp","2--CG05a12d43f06c855395.webp","2--CG067e7de028a95f693b.webp","2--CG07b2e5d16502ed81eb.webp","2--CG08054804c022aa1a70.webp"],
+    "黑姬结灯": ["2--CG01b5f43819a48ec8e3.webp","2--CG02e61c0128d047399d.webp","2--CG03bad561409f43a5c8.webp","2--CG041683ce828824d18f.webp","2--CG0521a1ad1178404cd0.webp","2--CG06f52cebeb08c196d4.webp"],
+    "茑町千岁": ["2--CG0138f63f730a0564b5.webp","2--CG025b44c0a888a6a74f.webp","2--CG03267b77df9e93bc64.webp","2--CG04058101f6b992dc8c.webp","2--CG05a4238e7cf422b603.webp","2--CG06891c255409ec7510.webp"],
+
+    /* 甜蜜女友3 */
+    "鸿纱由美": ["3--CG01aa974c4c9722981f.webp","3--CG02efec34b93fa30469.webp","3--CG03c280e2a306fca1f2.webp","3--CG042abf74d2ecd5a946.webp","3--CG05da14e099ab12add4.webp","3--CG066b837a9fa919fa67.webp","3--CG07c65bad38a19270aa.webp"],
+    "柳木诗梦": ["3--CG01a18854be779fac1b.webp","3--CG02f8ad1d6149ab5a6a.webp","3--CG03ba65c64881dc3696.webp"],
+    "斯卡蕾特·斑鸠·维斯塔莉娅": ["3--CG0194bfb0adbc27fb1a.webp","3--CG02bb5ffed52887e349.webp","3--CG0328b82cc8ba33f4ee.webp","3--CG04fd3a93af74ad5bc3.webp","3--CG05280dbf2e4325e82a.webp"],
+    "御所院冬桦": ["3--CG01d99d07f332ad0ba4.webp","3--CG026cc5eda971db0fc9.webp","3--CG03a78463279f52e587.webp","3--CG0427e679a859c3a2f0.webp","3--CG05abd98fefab0fa18b.webp","3--CG06ca84bc32907b77e9.webp","3--CG0700d07ae61d899ece.webp"],
+
+    /* 缘起甜韵趣恋丛生！ */
+    "八乙女凉花": ["--CG01e3ea1d2f5c780fa0.webp","--CG024cd6c6521433a5c3.webp","--CG03d1b727b6f8da2870.webp","--CG045ad766a51745690c.webp","--CG05032d654a351964a6.webp","--CG067d5704a6f66133ed.webp","--CG0721ba13758b79f9c6.webp","--CG08962a1ed63a5846e7.webp","--CG094e1975fdfc7637cb.webp"],
+    "冈井蒲公英": ["--CG01d2261fdd85ce1d5b.webp","--CG02285000a6643a159e.webp","--CG03367695b773960a13.webp","--CG04f818521ce8d9490e.webp"],
+    "近江希未": ["--CG0156b961bcac028e86.webp","--CG025ed6ff9eab42b670.webp","--CG039945cda0aef5f304.webp","--CG04f117e5c05ff26d8f.webp","--CG05ac0b0960bf9786ae.webp","--CG064e1de21a342b3b32.webp"],
+    "漆原绫子": ["--CG01cc474992b16347d5.webp","--CG024b80255655f263a5.webp","--CG03d46904aa98b932c4.webp","--CG046bf1eb9846d55f40.webp","--CG059e0d82e1956ad9b6.webp"],
+    "寿珠祈": ["--CG01dfb3123da7387e39.webp","--CG02646d11201bdd7a62.webp","--CG038590abb9412cc203.webp","--CG04029ad14d62103ab5.webp","--CG05a62f2193e039b08b.webp","--CG067c200d836c31fe13.webp","--CG0738ed551887facdd5.webp"],
+    "衣川美卯": ["--CG0130b081baf9e77a62.webp","--CG0284cb573c35112a88.webp","--CG03939e538156c45338.webp","--CG0445cdc0de9bf94e31.webp","--CG0527b5c78f340bd5e2.webp","--CG06a69356f837976345.webp"]
+  };
+
   const CAST_ART = {};
   _CAST_ROWS.forEach(([name, wIdx, norm, rawOutfits]) => {
     const outfits = {};
@@ -1836,7 +2235,9 @@
       for (const [k, v] of Object.entries(rawOutfits)) outfits[k] = _u(v);
     }
     const normal = _u(norm);
-    const stage = outfits["衣装①"] || outfits["校园制服"] || outfits["大立绘"] || Object.values(outfits)[0] || "";    CAST_ART[name] = { normal, stage, outfits, work: _W[wIdx] || "" };
+    const stage = outfits["衣装①"] || outfits["校园制服"] || outfits["大立绘"] || Object.values(outfits)[0] || "";
+    const cgs = (_CAST_CG_RAW[name] || []).map(u => /^https?:\/\//i.test(u) ? u : (_CG_BASE + u));
+    CAST_ART[name] = { normal, stage, outfits, work: _W[wIdx] || "", cgs };
   });
 
   const CAST_ALIASES = {
@@ -2791,6 +3192,7 @@
       const iStage = getIntimacyStage(intimacy);
       const aStageName = getAttractStage(attract);
       const entryInfo = findCastEntry(activeCharName);
+      const charCgs = (entryInfo && entryInfo.cgs) || [];
       const stageChainList = stageChainOf(activeCharName, curC['服装']);
       const stageUrl = stageChainList[0] || FALLBACK_IMG;
       const stageFb = JSON.stringify(stageChainList.slice(1));
@@ -2814,7 +3216,7 @@
                 <div class="gw-st-row"><span>左右</span><input type="range" min="-100" max="100" step="2" value="${getSpriteCrop(activeCharName).x}" oninput="window.__krsTuneSprite(this,'x',this.value)"><b data-tune-lbl="x">${getSpriteCrop(activeCharName).x}</b></div>
                 <div class="gw-st-copy" onclick="window.__krsCopyTune(this)">📋 复制此角色微调代码</div>
               </div>
-              <img src="${escHtml(stageUrl)}" alt="${escHtml(activeCharName)}" data-fb="${escHtml(stageFb)}" onerror="window.__krsStageFb(this)">
+              <img class="cg-sprite-trigger" data-cg-char="${escHtml(activeCharName)}" title="点击查看${escHtml(activeCharName)}的${charCgs.length ? '专属CG与' : ''}立绘档案" src="${escHtml(stageUrl)}" alt="${escHtml(activeCharName)}" data-fb="${escHtml(stageFb)}" onerror="window.__krsStageFb(this)">
               <div class="krs-h-badge-stack">${stateBadgesHtml}</div>
             </div>
           ` : ''}
@@ -2831,7 +3233,7 @@
               <div class="krs-heroine-badges">
                 <span class="krs-pill" data-krs-edit="角色.${activeCharName}.关系" data-krs-label="关系标签">关系: ${escHtml(curC['关系'] || '初识')}</span>
                 <span class="krs-pill" data-krs-edit="角色.${activeCharName}.钱包" data-krs-label="持有日元" data-krs-type="number">💴 ${formatYen(cWallet)}</span>
-                ${hasSprite ? `<button type="button" class="krs-pill cg-hero-btn" data-cg-char="${escHtml(activeCharName)}">📷 立绘</button>` : ''}
+                ${(hasSprite || charCgs.length) ? `<button type="button" class="krs-pill cg-hero-btn ${charCgs.length ? 'has-cg' : ''}" data-cg-char="${escHtml(activeCharName)}">${charCgs.length ? `🎬 ${charCgs.length} CG` : '📷 立绘'}</button>` : ''}
                 <button type="button" class="krs-pill" data-del-char="${escHtml(activeCharName)}" style="color:var(--danger);">清退</button>
               </div>
             </div>
@@ -3181,82 +3583,440 @@
     `;
   }
 
-  /* ═══ 图鉴弹窗（支持展示全角色多套服装与常态头像） ═══ */
+  /* ═══ 图鉴弹窗（按作品分类 → 角色与本作CG → 角色专属CG与立绘 + 全屏大图灯箱） ═══ */
   function openCgGalleryModal(targetCharName) {
     const matched = targetCharName ? findCastEntry(targetCharName) : null;
     let currentChar = matched ? matched.fullName : null;
-    let currentView = currentChar ? 'char' : 'albums';
+    let currentWork = matched ? (matched.work || null) : null;
+    let currentView = currentChar ? 'char' : 'works'; // 'works' | 'work' | 'char'
+    let workFilter = 'all'; // 'all' | 'cg' | 'nocg'
+    let workTab = 'chars';  // 'chars' | 'cgs'
+    let charTab = 'all';    // 'all' | 'cgs' | 'sprites'
+    let searchQuery = '';
+
+    /* 汇总全部作品、角色与 CG 目录 */
+    const allCharNames = Object.keys(CAST_ART);
+    const workMap = new Map();
+    _W.forEach(w => workMap.set(w, { name: w, chars: [], cgCount: 0, cover: WORK_COVERS[w] || '' }));
+    allCharNames.forEach(n => {
+      const item = CAST_ART[n];
+      const w = item.work || '其他作品';
+      if (!workMap.has(w)) workMap.set(w, { name: w, chars: [], cgCount: 0, cover: WORK_COVERS[w] || '' });
+      const entry = workMap.get(w);
+      entry.chars.push(n);
+      entry.cgCount += (item.cgs || []).length;
+    });
+    const worksList = Array.from(workMap.values()).filter(w => w.chars.length > 0);
+    worksList.forEach(w => {
+      /* 作品内有 CG 的角色排在前面 */
+      w.chars.sort((a, b) => {
+        const ac = (CAST_ART[a].cgs || []).length > 0 ? 1 : 0;
+        const bc = (CAST_ART[b].cgs || []).length > 0 ? 1 : 0;
+        return bc - ac;
+      });
+      if (!w.cover && w.chars.length) {
+        const first = CAST_ART[w.chars[0]];
+        w.cover = getDefaultStage(first) || first.normal || FALLBACK_IMG;
+      }
+    });
+    const totalCgCount = worksList.reduce((s, w) => s + w.cgCount, 0);
+    const cgWorksList = worksList.filter(w => w.cgCount > 0);
+    const noCgWorksList = worksList.filter(w => w.cgCount === 0);
 
     let modal = document.getElementById('krs-cg-modal-root');
     if (modal) modal.remove();
     modal = document.createElement('div');
     modal.id = 'krs-cg-modal-root';
     modal.className = 'krs-cg-modal-backdrop';
+    try {
+      if (document.querySelector('.krs-status-root.krs-dark')) modal.classList.add('krs-cg-dark');
+    } catch (_) {}
 
-    function renderModal() {
-      const names = Object.keys(CAST_ART);
-      if (currentView === 'albums') {
-        const cards = names.map(n => {
-          const item = CAST_ART[n];
-          const coverUrl = getDefaultStage(item) || item.normal || FALLBACK_IMG;
-          return `
-            <div class="krs-cg-album-card" data-cg-char="${escHtml(n)}">
-              <img class="krs-cg-album-cover" src="${escHtml(coverUrl)}" alt="${escHtml(n)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(coverUrl)]))}" onerror="window.__krsImgFb(this)">
-              <div class="krs-cg-album-info">
-                <span>${escHtml(n)}</span>
-                <span style="color:var(--rose-deep);font-size:10px;">${escHtml(item.work || '')}</span>
-              </div>
-            </div>
-          `;
-        }).join('');
-        modal.innerHTML = `
-          <div class="krs-cg-window">
-            <div class="krs-cg-topbar">
-              <div class="krs-cg-top-title"><span>🖼️ GALWORLD · 角色立绘档案 (${names.length}人)</span></div>
-              <button type="button" class="krs-cg-close-btn" id="cg-close-btn">×</button>
-            </div>
-            <div class="krs-cg-body"><div class="krs-cg-albums-grid">${cards}</div></div>
+    modal.innerHTML = `
+      <div class="krs-cg-window krs-cg-gallery-win">
+        <div class="krs-cg-topbar" id="krs-cg-topbar"></div>
+        <div class="krs-cg-toolbar" id="krs-cg-toolbar"></div>
+        <div class="krs-cg-body" id="krs-cg-body"></div>
+      </div>
+      <div class="krs-cg-lightbox" id="krs-cg-lightbox" style="display:none;"></div>
+    `;
+
+    const topbarEl = modal.querySelector('#krs-cg-topbar');
+    const toolbarEl = modal.querySelector('#krs-cg-toolbar');
+    const bodyEl = modal.querySelector('#krs-cg-body');
+    const lbEl = modal.querySelector('#krs-cg-lightbox');
+
+    /* 灯箱状态与图片池 */
+    let lbPools = {};
+    let lbItems = [];
+    let lbIdx = 0;
+    let lbOpen = false;
+    let lbTouchX = 0, lbTouchY = 0;
+
+    function renderLightbox() {
+      if (!lbOpen || !lbItems.length) {
+        lbEl.style.display = 'none';
+        lbEl.innerHTML = '';
+        return;
+      }
+      const cur = lbItems[lbIdx];
+      const hasMulti = lbItems.length > 1;
+      lbEl.style.display = 'flex';
+      lbEl.innerHTML = `
+        <div class="krs-lb-stage">
+          ${hasMulti ? `<button type="button" class="krs-lb-nav krs-lb-prev" data-lb-step="-1" title="上一张">‹</button>` : ''}
+          <img class="krs-lb-img" src="${escHtml(cur.url)}" alt="${escHtml(cur.title)}">
+          ${hasMulti ? `<button type="button" class="krs-lb-nav krs-lb-next" data-lb-step="1" title="下一张">›</button>` : ''}
+        </div>
+        <div class="krs-lb-bar">
+          <div><b>${escHtml(cur.title)}</b>${cur.sub ? ` <span style="opacity:.7;font-size:12px;">· ${escHtml(cur.sub)}</span>` : ''} <span style="opacity:.65;margin-left:6px;">(${lbIdx + 1} / ${lbItems.length})</span></div>
+          <div class="krs-lb-actions">
+            <a class="krs-lb-btn" href="${escHtml(cur.url)}" target="_blank" rel="noopener noreferrer">↗ 原图</a>
+            <button type="button" class="krs-lb-btn" id="krs-lb-close">关闭 ×</button>
           </div>
-        `;
+        </div>
+      `;
+    }
+
+    function openLightbox(items, idx) {
+      if (!items || !items.length) return;
+      lbItems = items;
+      lbIdx = Math.max(0, Math.min(items.length - 1, idx || 0));
+      lbOpen = true;
+      renderLightbox();
+    }
+
+    function stepLightbox(dir) {
+      if (!lbOpen || lbItems.length <= 1) return;
+      lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+      renderLightbox();
+    }
+
+    function closeLightbox() {
+      lbOpen = false;
+      renderLightbox();
+    }
+
+    function onKeyDown(e) {
+      if (lbOpen) {
+        if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); stepLightbox(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); stepLightbox(1); }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      }
+    }
+
+    function closeModal() {
+      document.removeEventListener('keydown', onKeyDown);
+      modal.remove();
+    }
+    document.addEventListener('keydown', onKeyDown);
+
+    function renderWorkCard(w) {
+      const hasCg = w.cgCount > 0;
+      return `
+        <div class="krs-cg-work-card ${hasCg ? 'has-cg' : ''}" data-cg-work="${escHtml(w.name)}">
+          <div class="krs-cg-work-cover-wrap">
+            <img class="krs-cg-work-cover" loading="lazy" decoding="async" src="${escHtml(w.cover)}" alt="${escHtml(w.name)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(w.cover)]))}" onerror="window.__krsImgFb(this)">
+            <span class="krs-cg-badge-corner ${hasCg ? 'hot' : ''}">${hasCg ? `🎬 ${w.cgCount} CG` : '👗 立绘'}</span>
+          </div>
+          <div class="krs-cg-work-info">
+            <div class="krs-cg-work-name" title="${escHtml(w.name)}">${escHtml(w.name)}</div>
+            <div class="krs-cg-work-sub">
+              <span>👤 ${w.chars.length} 位角色</span>
+              <span>${hasCg ? `含 ${w.chars.filter(n => (CAST_ART[n].cgs || []).length > 0).length} 人专属CG` : '暂未收录CG'}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCharCard(n, showWork) {
+      const item = CAST_ART[n] || {};
+      const coverUrl = getDefaultStage(item) || item.normal || FALLBACK_IMG;
+      const cgLen = (item.cgs || []).length;
+      const outfitLen = Object.keys(item.outfits || {}).length + (item.normal ? 1 : 0);
+      return `
+        <div class="krs-cg-album-card ${cgLen ? 'has-cg' : ''}" data-cg-char="${escHtml(n)}">
+          ${cgLen ? `<span class="krs-cg-badge-corner hot">🎬 ${cgLen} CG</span>` : ''}
+          <img class="krs-cg-album-cover" loading="lazy" decoding="async" src="${escHtml(coverUrl)}" alt="${escHtml(n)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(coverUrl)]))}" onerror="window.__krsImgFb(this)">
+          <div class="krs-cg-album-info">
+            <span title="${escHtml(n)}">${escHtml(n)}</span>
+            <span class="krs-cg-album-sub">${showWork ? escHtml(item.work || '') : `👗${outfitLen}`}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWorksBody() {
+      const q = searchQuery.trim().toLowerCase();
+      if (q) {
+        const hitWorks = worksList.filter(w => w.name.toLowerCase().includes(q));
+        const hitChars = allCharNames.filter(n => n.toLowerCase().includes(q));
+        let html = '';
+        if (hitWorks.length) {
+          html += `<div class="krs-cg-sec-title">◆ 匹配作品 (${hitWorks.length})</div><div class="krs-cg-works-grid">${hitWorks.map(renderWorkCard).join('')}</div>`;
+        }
+        if (hitChars.length) {
+          html += `<div class="krs-cg-sec-title">◆ 匹配角色 (${hitChars.length})</div><div class="krs-cg-albums-grid">${hitChars.map(n => renderCharCard(n, true)).join('')}</div>`;
+        }
+        bodyEl.innerHTML = html || `<div style="text-align:center;padding:48px 16px;color:var(--cg-muted);">未找到与「${escHtml(searchQuery)}」相关的作品或角色。</div>`;
+        return;
+      }
+
+      if (workFilter === 'cg') {
+        bodyEl.innerHTML = `<div class="krs-cg-sec-title">◆ 已收录专属CG作品 (${cgWorksList.length} 部 · ${totalCgCount} 张CG)</div><div class="krs-cg-works-grid">${cgWorksList.map(renderWorkCard).join('')}</div>`;
+      } else if (workFilter === 'nocg') {
+        bodyEl.innerHTML = `<div class="krs-cg-sec-title">◆ 角色立绘档案 (${noCgWorksList.length} 部)</div><div class="krs-cg-works-grid">${noCgWorksList.map(renderWorkCard).join('')}</div>`;
       } else {
-        const item = CAST_ART[currentChar] || {};
-        const outfitEntries = Object.entries(item.outfits || {});
-        const galleryCards = [
-          ...outfitEntries.map(([label, url]) => ({ label, url })),
-          ...(item.normal ? [{ label: '头像 / 常态立绘', url: item.normal }] : [])
-        ];
-        modal.innerHTML = `
-          <div class="krs-cg-window">
-            <div class="krs-cg-topbar">
-              <div class="krs-cg-top-title">
-                <button type="button" class="krs-cg-back-btn" id="cg-back-btn">‹ 返回全部角色</button>
-                <span>${escHtml(currentChar)} · 《${escHtml(item.work || 'GALWORLD')}》</span>
-              </div>
-              <button type="button" class="krs-cg-close-btn" id="cg-close-btn">×</button>
-            </div>
-            <div class="krs-cg-body" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;align-items:center;">
-              ${galleryCards.map(g => `
-                <div style="background:#221d24;border-radius:14px;padding:14px;text-align:center;">
-                  <img src="${escHtml(g.url)}" style="max-height:54vh;max-width:100%;object-fit:contain;margin:0 auto;" data-fb="${escHtml(JSON.stringify([rawUrlOf(g.url)]))}" onerror="window.__krsImgFb(this)">
-                  <div style="color:#f5ebe1;font-size:12px;margin-top:8px;">${escHtml(g.label)}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
+        bodyEl.innerHTML = `
+          ${cgWorksList.length ? `<div class="krs-cg-sec-title">◆ 已收录专属CG作品 (${cgWorksList.length} 部 · ${totalCgCount} 张CG)</div><div class="krs-cg-works-grid">${cgWorksList.map(renderWorkCard).join('')}</div>` : ''}
+          ${noCgWorksList.length ? `<div class="krs-cg-sec-title">◆ 角色立绘档案 (${noCgWorksList.length} 部)</div><div class="krs-cg-works-grid">${noCgWorksList.map(renderWorkCard).join('')}</div>` : ''}
         `;
       }
-      modal.querySelector('#cg-close-btn').onclick = () => modal.remove();
-      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-      const backBtn = modal.querySelector('#cg-back-btn');
-      if (backBtn) backBtn.onclick = () => { currentView = 'albums'; renderModal(); };
-      modal.querySelectorAll('.krs-cg-album-card').forEach(card => {
-        card.onclick = () => {
-          currentChar = card.getAttribute('data-cg-char');
-          currentView = 'char';
-          renderModal();
-        };
-      });
     }
+
+    function renderModal() {
+      lbPools = {};
+      bodyEl.scrollTop = 0;
+
+      if (currentView === 'works') {
+        topbarEl.innerHTML = `
+          <div class="krs-cg-top-title">
+            <span>🖼️ GALWORLD · 作品与CG图鉴</span>
+            <span style="font-size:11.5px;font-weight:500;color:var(--cg-muted);">(${worksList.length}部作品 · ${allCharNames.length}人 · ${totalCgCount}张CG)</span>
+          </div>
+          <button type="button" class="krs-cg-close-btn" id="cg-close-btn">×</button>
+        `;
+        toolbarEl.innerHTML = `
+          <div class="krs-cg-tabs">
+            <button type="button" class="krs-cg-tab-pill ${workFilter === 'all' ? 'active' : ''}" data-cg-wfilter="all">全部作品 (${worksList.length})</button>
+            <button type="button" class="krs-cg-tab-pill ${workFilter === 'cg' ? 'active' : ''}" data-cg-wfilter="cg">🎬 含CG作品 (${cgWorksList.length})</button>
+            <button type="button" class="krs-cg-tab-pill ${workFilter === 'nocg' ? 'active' : ''}" data-cg-wfilter="nocg">👗 仅立绘 (${noCgWorksList.length})</button>
+          </div>
+          <input type="search" class="krs-cg-search" id="krs-cg-search-input" placeholder="🔍 搜索作品或角色名..." value="${escHtml(searchQuery)}">
+        `;
+        renderWorksBody();
+        return;
+      }
+
+      if (currentView === 'work') {
+        const wObj = workMap.get(currentWork) || worksList[0];
+        if (!wObj) { currentView = 'works'; renderModal(); return; }
+        const hasWorkCgs = wObj.cgCount > 0;
+        if (!hasWorkCgs) workTab = 'chars';
+
+        topbarEl.innerHTML = `
+          <div class="krs-cg-top-title">
+            <button type="button" class="krs-cg-back-btn" data-cg-go="works">‹ 全部作品</button>
+            <span>《${escHtml(wObj.name)}》</span>
+            <span style="font-size:11.5px;font-weight:500;color:var(--cg-muted);">(${wObj.chars.length}位角色${hasWorkCgs ? ` · ${wObj.cgCount}张CG` : ''})</span>
+          </div>
+          <button type="button" class="krs-cg-close-btn" id="cg-close-btn">×</button>
+        `;
+
+        toolbarEl.innerHTML = hasWorkCgs ? `
+          <div class="krs-cg-tabs">
+            <button type="button" class="krs-cg-tab-pill ${workTab === 'chars' ? 'active' : ''}" data-cg-wtab="chars">👤 作品角色 (${wObj.chars.length})</button>
+            <button type="button" class="krs-cg-tab-pill ${workTab === 'cgs' ? 'active' : ''}" data-cg-wtab="cgs">🎬 本作全部CG (${wObj.cgCount})</button>
+          </div>
+          <span style="font-size:11px;color:var(--cg-muted);">点击角色查看专属CG与服装，点击CG可全屏浏览</span>
+        ` : '';
+
+        if (workTab === 'chars') {
+          bodyEl.innerHTML = `<div class="krs-cg-albums-grid">${wObj.chars.map(n => renderCharCard(n, false)).join('')}</div>`;
+        } else {
+          const allWorkCgs = [];
+          let groupsHtml = '';
+          wObj.chars.forEach(cName => {
+            const cItem = CAST_ART[cName];
+            const cgs = (cItem && cItem.cgs) || [];
+if (!cgs.length) return;
+            const avaUrl = getAvatar(cName);
+            const cardsHtml = cgs.map((url, idx) => {
+              const poolIdx = allWorkCgs.length;
+              const num = String(idx + 1).padStart(2, '0');
+              allWorkCgs.push({ url, title: `${cName} · CG${num}`, sub: wObj.name });
+              return `
+                <div class="krs-cg-cg-card" data-lb-group="work-cgs" data-lb-idx="${poolIdx}">
+                  <img class="krs-cg-cg-thumb" loading="lazy" decoding="async" src="${escHtml(url)}" alt="${escHtml(cName)} CG${num}">
+                  <div class="krs-cg-cg-cap"><span>CG ${num}</span><small>点击大图</small></div>
+                </div>
+              `;
+            }).join('');
+            groupsHtml += `
+              <div class="krs-cg-group-head">
+                <div class="krs-cg-group-left">
+                  <img class="krs-cg-group-ava" loading="lazy" src="${escHtml(avaUrl)}" alt="${escHtml(cName)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(avaUrl)]))}" onerror="window.__krsImgFb(this)">
+                  <span>${escHtml(cName)}</span>
+                  <span style="font-size:11px;font-weight:500;color:var(--cg-muted);">(${cgs.length} 张CG)</span>
+                </div>
+                <button type="button" class="krs-cg-back-btn" data-cg-char="${escHtml(cName)}">查看立绘与衣装 ➔</button>
+              </div>
+              <div class="krs-cg-cg-grid">${cardsHtml}</div>
+            `;
+          });
+          lbPools['work-cgs'] = allWorkCgs;
+          bodyEl.innerHTML = groupsHtml || `<div style="text-align:center;padding:48px 16px;color:var(--cg-muted);">该作品暂未收录CG。</div>`;
+        }
+        return;
+      }
+
+      /* 角色详情页：专属CG（置顶展示）+ 立绘与服装 */
+      const item = CAST_ART[currentChar] || {};
+      const workName = item.work || currentWork || 'GALWORLD';
+      const cgs = item.cgs || [];
+      const outfitEntries = Object.entries(item.outfits || {});
+      const spriteCards = [
+        ...outfitEntries.map(([label, url]) => ({ label, url })),
+        ...(item.normal ? [{ label: '头像 / 常态立绘', url: item.normal }] : [])
+      ];
+      if (!cgs.length) charTab = 'sprites';
+
+      lbPools['char-cgs'] = cgs.map((url, idx) => ({
+        url,
+        title: `${currentChar} · CG${String(idx + 1).padStart(2, '0')}`,
+        sub: workName
+      }));
+      lbPools['char-sprites'] = spriteCards.map(g => ({
+        url: g.url,
+        title: `${currentChar} · ${g.label}`,
+        sub: workName
+      }));
+
+      topbarEl.innerHTML = `
+        <div class="krs-cg-top-title">
+          ${workMap.has(workName) ? `<button type="button" class="krs-cg-back-btn" data-cg-work="${escHtml(workName)}">‹ 《${escHtml(workName)}》</button>` : ''}
+          <button type="button" class="krs-cg-back-btn" data-cg-go="works">全部作品</button>
+          <span>${escHtml(currentChar)}</span>
+        </div>
+        <button type="button" class="krs-cg-close-btn" id="cg-close-btn">×</button>
+      `;
+
+      toolbarEl.innerHTML = cgs.length ? `
+        <div class="krs-cg-tabs">
+          <button type="button" class="krs-cg-tab-pill ${charTab === 'all' ? 'active' : ''}" data-cg-ctab="all">全部 (${cgs.length + spriteCards.length})</button>
+          <button type="button" class="krs-cg-tab-pill ${charTab === 'cgs' ? 'active' : ''}" data-cg-ctab="cgs">🎬 专属CG (${cgs.length})</button>
+          <button type="button" class="krs-cg-tab-pill ${charTab === 'sprites' ? 'active' : ''}" data-cg-ctab="sprites">👗 立绘与服装 (${spriteCards.length})</button>
+        </div>
+        <span style="font-size:11px;color:var(--cg-muted);">点击任意图片全屏查看 · 支持 ← → 键切换</span>
+      ` : '';
+
+      const cgSectionHtml = cgs.length ? `
+        <div class="krs-cg-sec-title">🎬 ${escHtml(currentChar)} · 专属CG (${cgs.length} 张)</div>
+        <div class="krs-cg-cg-grid">
+          ${cgs.map((url, idx) => {
+            const num = String(idx + 1).padStart(2, '0');
+            return `
+              <div class="krs-cg-cg-card" data-lb-group="char-cgs" data-lb-idx="${idx}">
+                <img class="krs-cg-cg-thumb" loading="lazy" decoding="async" src="${escHtml(url)}" alt="${escHtml(currentChar)} CG${num}">
+                <div class="krs-cg-cg-cap"><span>CG ${num}</span><small>点击大图</small></div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : '';
+
+      const spriteSectionHtml = `
+        <div class="krs-cg-sec-title">👗 立绘与服装 (${spriteCards.length} 套)</div>
+        <div class="krs-cg-sprite-grid">
+          ${spriteCards.map((g, idx) => `
+            <div class="krs-cg-sprite-card" data-lb-group="char-sprites" data-lb-idx="${idx}">
+              <img loading="lazy" decoding="async" src="${escHtml(g.url)}" alt="${escHtml(g.label)}" data-fb="${escHtml(JSON.stringify([rawUrlOf(g.url)]))}" onerror="window.__krsImgFb(this)">
+              <div class="krs-cg-sprite-lbl">${escHtml(g.label)}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      if (charTab === 'cgs') bodyEl.innerHTML = cgSectionHtml;
+      else if (charTab === 'sprites') bodyEl.innerHTML = spriteSectionHtml;
+      else bodyEl.innerHTML = cgSectionHtml + spriteSectionHtml;
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (lbOpen) {
+        if (e.target.closest('a.krs-lb-btn')) return;
+        const stepBtn = e.target.closest('[data-lb-step]');
+        if (stepBtn) { stepLightbox(parseInt(stepBtn.getAttribute('data-lb-step'), 10) || 1); return; }
+        if (e.target === lbEl || e.target.classList.contains('krs-lb-stage') || e.target.closest('#krs-lb-close')) {
+          closeLightbox();
+        }
+        return;
+      }
+      if (e.target === modal || e.target.closest('#cg-close-btn')) { closeModal(); return; }
+
+      const lbCard = e.target.closest('[data-lb-group]');
+      if (lbCard) {
+        const group = lbCard.getAttribute('data-lb-group');
+        const idx = parseInt(lbCard.getAttribute('data-lb-idx'), 10) || 0;
+        openLightbox(lbPools[group] || [], idx);
+        return;
+      }
+
+      if (e.target.closest('[data-cg-go="works"]')) {
+        currentView = 'works'; currentWork = null; currentChar = null;
+        renderModal(); return;
+      }
+
+      const wBtn = e.target.closest('[data-cg-work]');
+      if (wBtn) {
+        currentWork = wBtn.getAttribute('data-cg-work');
+        currentChar = null;
+        currentView = 'work';
+        workTab = 'chars';
+        renderModal(); return;
+      }
+
+      const cBtn = e.target.closest('[data-cg-char]');
+      if (cBtn) {
+        currentChar = cBtn.getAttribute('data-cg-char');
+        const info = CAST_ART[currentChar];
+        if (info && info.work) currentWork = info.work;
+        currentView = 'char';
+        charTab = 'all';
+        renderModal(); return;
+      }
+
+      const wfBtn = e.target.closest('[data-cg-wfilter]');
+      if (wfBtn) {
+        workFilter = wfBtn.getAttribute('data-cg-wfilter');
+        toolbarEl.querySelectorAll('[data-cg-wfilter]').forEach(b => b.classList.toggle('active', b === wfBtn));
+        renderWorksBody(); return;
+      }
+
+      const wtBtn = e.target.closest('[data-cg-wtab]');
+      if (wtBtn) {
+        workTab = wtBtn.getAttribute('data-cg-wtab');
+        renderModal(); return;
+      }
+
+      const ctBtn = e.target.closest('[data-cg-ctab]');
+      if (ctBtn) {
+        charTab = ctBtn.getAttribute('data-cg-ctab');
+        renderModal(); return;
+      }
+    });
+
+    modal.addEventListener('input', (e) => {
+      if (e.target && e.target.id === 'krs-cg-search-input') {
+        searchQuery = e.target.value || '';
+        renderWorksBody();
+      }
+    });
+
+    /* 灯箱手机端左右滑动切图 */
+    lbEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) { lbTouchX = e.touches[0].clientX; lbTouchY = e.touches[0].clientY; }
+    }, { passive: true });
+    lbEl.addEventListener('touchend', (e) => {
+      if (!lbOpen || !e.changedTouches.length) return;
+      const dx = e.changedTouches[0].clientX - lbTouchX;
+      const dy = e.changedTouches[0].clientY - lbTouchY;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) stepLightbox(dx < 0 ? 1 : -1);
+    }, { passive: true });
 
     document.body.appendChild(modal);
     renderModal();
@@ -3448,7 +4208,33 @@
       ])
     },
     {
-      key: 'nine', label: '9-nine EP2 · 天色天歌天籁音', cover: GAL_COVERS.nine,
+      key: 'nine_miyako', label: '9-nine EP1 · 九次九日九重色（都线）',
+      extLabel: '9-nine · 全系列 (EP1~EP4)',
+      extDesc: '白巳津川 · 收录 EP1 九条都 / EP2 新海天 / EP3 香坂春风 / EP4 结城希亚 四部全主线。',
+      cover: GAL_COVERS.nine,
+      desc: '白巳津川 · 新海翔与九条都追查石化事件与魔眼，序章～第十三章。',
+      prefixes: ['[9-nine]'], story: '事件', event: '世界.事件.9-nine-都线',
+      outline: '[9-nine][大纲]9nine_都线大纲', detail: '[9-nine][剧情细纲]',
+      role: '9-nine-都线：新海翔与同班同学九条都在白巳津川追查石化事件与魔眼，在得到与返还之间守护彼此',
+      chapters: krsPlotChapters([
+        ['序章', '序章：莫比乌斯节的最后一天'],
+        ['第一章', '第一章：烧起来的校舍'],
+        ['第二章', '第二章：公园里的传闻'],
+        ['第三章', '第三章：手心里的石头'],
+        ['第四章', '第四章：魔眼的影子'],
+        ['第五章', '第五章：门缝里的忍者'],
+        ['第六章', '第六章：渐渐弄清楚的能力'],
+        ['第七章', '第七章：缩小距离的方式'],
+        ['第八章', '第八章：冷下来的那一周'],
+        ['第九章', '第九章：打工的店与那顿晚饭'],
+        ['第十章', '第十章：成为恋人那一天'],
+        ['第十一章', '第十一章：地方史的那节课'],
+        ['第十二章', '第十二章：神社里等到的那个人'],
+        ['第十三章', '第十三章：五月的结尾']
+      ])
+    },
+    {
+      key: 'nine', hideExt: true, label: '9-nine EP2 · 天色天歌天籁音（天主线）', cover: GAL_COVERS.nine,
       desc: '白巳津川 · 新海翔与妹妹天追查魔眼与梨俱吠陀，序章～第十二章。',
       prefixes: ['[9-nine]'], story: '事件', event: '世界.事件.9-nine-主线',
       outline: '[9-nine][大纲]9nine_主线大纲', detail: '[9-nine][剧情细纲]',
@@ -3467,6 +4253,60 @@
         ['第十章', '第十章：面具与枪'],
         ['第十一章', '第十一章：初吻'],
         ['第十二章', '第十二章：明天也一起走']
+      ])
+    },
+    {
+      key: 'nine_haruka', hideExt: true, label: '9-nine EP3 · 春色春恋春熙风（春风线）', cover: GAL_COVERS.nine,
+      desc: '白巳津川 · 潜入梨俱吠陀、直面伊莉丝与安布罗西亚，序章～终章。',
+      prefixes: ['[9-nine]'], story: '事件', event: '世界.事件.9-nine-春风线',
+      outline: '[9-nine][大纲]9nine_春风线大纲', detail: '[9-nine][剧情细纲]',
+      role: '9-nine-春风线：新海翔与香坂春风周旋于梨俱吠陀、伊莉丝与索菲缇雅之间，打破虚壳直面命运',
+      chapters: krsPlotChapters([
+        ['序章', '序章：新学期开始前的半个月'],
+        ['第一章', '第一章：背叛者的第一次会议'],
+        ['第二章', '第二章：早上回家的那顿早饭'],
+        ['第三章', '第三章：两个人与四个人的会合'],
+        ['第四章', '第四章：梨俱吠陀·阿修罗'],
+        ['第五章', '第五章：温泉与伊莉丝的名字'],
+        ['第六章', '第六章：神社里的那位神'],
+        ['第七章', '第七章：黄金周的分头行动'],
+        ['第八章', '第八章：自己家里的作战会议'],
+        ['第九章', '第九章：索菲缇雅的那次长谈'],
+        ['第十章', '第十章：夜里潜入社务所'],
+        ['第十一章', '第十一章：打完之后的那一天'],
+        ['第十二章', '第十二章：天的商量'],
+        ['第十三章', '第十三章：第一次约会'],
+        ['第十四章', '第十四章：旅行开始的早上'],
+        ['第十五章', '第十五章：伊莉丝与那场游戏'],
+        ['终章', '终章：那天出现的索菲并非索菲']
+      ])
+    },
+    {
+      key: 'nine_noa', hideExt: true, label: '9-nine EP4 · 雪色雪花雪余痕（希亚线）', cover: GAL_COVERS.nine,
+      desc: '白巳津川 · 跨分支决战伊莉丝与全系列终局，序章～终章。',
+      prefixes: ['[9-nine]'], story: '事件', event: '世界.事件.9-nine-希亚线',
+      outline: '[9-nine][大纲]9nine_希亚线大纲', detail: '[9-nine][剧情细纲]',
+      role: '9-nine-希亚线：新海翔与结城希亚跨越多条分支直面伊莉丝与与一，在五月二十日将全系列命运收束',
+      chapters: krsPlotChapters([
+        ['序章', '序章：世界之眼的邀约'],
+        ['第一章', '第一章：神社的埋伏'],
+        ['第二章', '第二章：新的分支'],
+        ['第三章', '第三章：白天的两个回合'],
+        ['第四章', '第四章：火提早烧起来的那一天'],
+        ['第五章', '第五章：同一张桌子上'],
+        ['第六章', '第六章：猫与索菲缇雅的真话'],
+        ['第七章', '第七章：哭着看完的那部电影'],
+        ['第八章', '第八章：作战会议'],
+        ['第九章', '第九章：时限'],
+        ['第十章', '第十章：浴缸与那条界线'],
+        ['第十一章', '第十一章：第二天的早上'],
+        ['第十二章', '第十二章：平静到反常的一个月'],
+        ['第十三章', '第十三章：暴动的街道'],
+        ['第十四章', '第十四章：最高指令'],
+        ['第十五章', '第十五章：递来创可贴的那只手'],
+        ['第十六章', '第十六章：与一的那一局'],
+        ['第十七章', '第十七章：入夜之后'],
+        ['终章', '终章：五月二十日']
       ])
     },
     {
@@ -3973,18 +4813,38 @@
       + '<div class="krs-cg-topbar"><div class="krs-cg-top-title"><span>📖 剧情总览</span></div>'
       + '<button type="button" class="krs-cg-close-btn" id="krs-plot-close">×</button></div>'
       + '<div class="krs-plot-tabs">'
-      + '<button type="button" class="krs-plot-tab active" data-plot-tab="ext">扩展</button>'
-      + '<button type="button" class="krs-plot-tab" data-plot-tab="story">剧情</button>'
+      + '<button type="button" class="krs-plot-tab active" data-plot-tab="story">剧情</button>'
+      + '<button type="button" class="krs-plot-tab" data-plot-tab="ext">扩展</button>'
       + '</div>'
-      + '<div class="krs-plot-body grid-ext" id="krs-plot-body"></div>'
+      + '<div class="krs-plot-searchbar">'
+      + '<input type="search" class="krs-plot-search-input" id="krs-plot-search" placeholder="🔍 搜索作品或主线名称...">'
+      + '</div>'
+      + '<div class="krs-plot-body is-stack" id="krs-plot-body"></div>'
       + '<div class="krs-plot-hint" id="krs-plot-hint">正在读取世界书…</div></div>';
     document.body.appendChild(modal);
+
     const hintEl = modal.querySelector('#krs-plot-hint');
+    const searchEl = modal.querySelector('#krs-plot-search');
     let entries = null;
-    let tab = 'ext';
+    let tab = 'story';
+    let searchQuery = '';
+    let storyDrawerOpen = false;
+    let storyDrawerFilter = 'all'; // 'all' | 'off' | 'done'
+    let extOnDrawerOpen = false;
+    let extOffDrawerOpen = false;
+    let justOpenedKey = '';
 
     const STORIES = KRS_PLOT_LINES.filter(function (l) { return l.story === '事件'; });
-    const EXPANSIONS = KRS_PLOT_LINES.filter(function (l) { return l.story === 'none'; });
+    const EXT_STORIES = STORIES.filter(function (l) { return !l.hideExt; });
+    const EXPANSIONS = KRS_PLOT_LINES.filter(function (l) { return l.story === 'none' && !l.hideExt; });
+    const EXT_ALL = EXT_STORIES.concat(EXPANSIONS);
+
+    function extHasActiveStory(sd, extLine) {
+      return STORIES.some(function (s) {
+        return s.prefixes.some(function (p) { return extLine.prefixes.indexOf(p) >= 0; })
+          && krsPlotStatusOf(sd, s).on;
+      });
+    }
 
     function paintTile(line) {
       const unknown = line._itemsOn === null;
@@ -3993,17 +4853,78 @@
       return '<button type="button" class="krs-plot-tile ' + (unknown ? 'unknown' : (on ? 'on' : 'off')) + '" data-ext-key="' + line.key + '"'
         + ' style="background-image:url(\'' + escHtml(line.cover || '') + '\')">'
         + '<span class="krs-plot-tile-state">' + (unknown ? '状态未知' : (on ? '已启用' : '未启用')) + '</span>'
-        + '<span class="krs-plot-tile-name">' + escHtml(line.label) + '</span>'
-        + '<span class="krs-plot-tile-desc">' + escHtml(line.desc || '') + '</span>'
+        + '<span class="krs-plot-tile-name">' + escHtml(line.extLabel || line.label) + '</span>'
+        + '<span class="krs-plot-tile-desc">' + escHtml(line.extDesc || line.desc || '') + '</span>'
         + '<span class="krs-plot-tile-count">' + (unknown ? '条目未知' : (count >= 0 ? count + ' 条世界书' : '条目未知')) + '</span>'
         + '</button>';
     }
 
+    function paintStoryCard(line, sd, inDrawer) {
+      const st = krsPlotStatusOf(sd, line);
+      const open = !!line._open;
+      const total = line.chapters.length;
+      const idx = krsPlotChapterIndex(line, st.chapter);
+      const order = st.chapter === '完结' ? (total + '/' + total) : (idx >= 0 ? ((idx + 1) + '/' + total) : ('—/' + total));
+      const progressIdx = (st.done || st.chapter === '完结') ? total : (idx >= 0 ? idx : 0);
+      const warn = (line._itemsOn === false && !st.on)
+        ? '<div class="krs-plot-warn">扩展未启用，请先到「扩展」页开启。</div>' : '';
+      const stateText = st.done ? '已完结' : (st.on ? '进行中' : (st.broken ? '已破弃' : '未开启'));
+      const stateCls = st.done ? 'done' : (st.on ? 'on' : 'off');
+      const btnText = st.on ? '关闭剧情' : ((st.done || st.broken) ? '重新开启' : '开启剧情');
+      const popCls = (!inDrawer && justOpenedKey && justOpenedKey === line.key) ? ' is-pop-in' : '';
+
+      const quickBtnHtml = (inDrawer && !st.on)
+        ? (line._itemsOn === false
+          ? '<span class="krs-plot-quick-btn disabled" data-plot-quick-open="' + line.key + '">需启扩展</span>'
+          : '<span class="krs-plot-quick-btn" data-plot-quick-open="' + line.key + '">' + ((st.done || st.broken) ? '↻ 重开' : '▶ 开启') + '</span>')
+        : '';
+
+      const storyHtml = open
+        ? '<div class="krs-plot-progress">' + line.chapters.map(function (c, i) {
+            return '<span class="' + (i < progressIdx ? 'on' : '') + '"></span>';
+          }).join('') + '</div>'
+          + '<div class="krs-plot-story-top">'
+          + '<span class="krs-plot-chapter-name" title="' + escHtml(krsPlotChapterTitle(line, st.chapter)) + '">' + escHtml(krsPlotChapterTitle(line, st.chapter)) + '</span>'
+          + '<span class="krs-plot-chapter-order"><button type="button" data-plot-prev="' + line.key + '" title="上一章">‹</button>'
+          + '<em>' + order + '</em>'
+          + '<button type="button" data-plot-next="' + line.key + '" title="下一章">›</button></span>'
+          + '</div>'
+          + '<div class="krs-plot-stage"><b>阶段目标</b><span>' + escHtml(st.stage || '—') + '</span></div>'
+          + '<div class="krs-plot-next"><b>下一步</b><span>' + escHtml(st.next || '—') + '</span></div>'
+        : '';
+
+      return '<div class="krs-plot-card ' + (open ? 'open ' : '') + stateCls + popCls + '" data-plot-card="' + line.key + '">'
+        + '<button type="button" class="krs-plot-card-head" data-plot-head="' + line.key + '"'
+        + ' style="background-image:url(\'' + escHtml(line.cover || '') + '\')">'
+        + '<span class="krs-plot-card-name">' + escHtml(line.label) + '</span>'
+        + '<span class="krs-plot-card-state">' + stateText + '</span>'
+        + quickBtnHtml
+        + '<span class="krs-plot-card-arrow">' + (open ? '▾' : '▸') + '</span>'
+        + '</button>'
+        + '<div class="krs-plot-card-body">'
+        + '<div class="krs-plot-enabled' + (st.on ? '' : ' off') + '"><span>'
+        + (st.done ? '✓ 剧情已完结' : (st.on ? '✓ 剧情进行中' : (st.broken ? '✗ 剧情已破弃' : '✗ 剧情未开启')))
+        + '</span><button type="button" class="krs-plot-close-story" data-plot-close-story="' + line.key + '">' + btnText + '</button></div>'
+        + warn + storyHtml
+        + '</div></div>';
+    }
+
     function paintExt() {
+      const q = searchQuery.trim().toLowerCase();
+      if (q) {
+        const hits = EXT_ALL.filter(function (l) {
+          return (l.extLabel || l.label || '').toLowerCase().indexOf(q) >= 0
+            || (l.extDesc || l.desc || '').toLowerCase().indexOf(q) >= 0;
+        });
+        if (!hits.length) {
+          return '<div class="krs-plot-empty-box" style="grid-column:1/-1;"><b>未找到匹配的扩展</b><span>换个关键词试试</span></div>';
+        }
+        return '<div class="krs-plot-ext-sec">◆ 搜索结果 (' + hits.length + ' 部)</div>' + hits.map(paintTile).join('');
+      }
       let html = '';
-      if (STORIES.length) {
+      if (EXT_STORIES.length) {
         html += '<div class="krs-plot-ext-sec">◆ 可开启主线 · 角色 / 世界观 / 剧情细纲</div>';
-        html += STORIES.map(paintTile).join('');
+        html += EXT_STORIES.map(paintTile).join('');
       }
       if (EXPANSIONS.length) {
         html += '<div class="krs-plot-ext-sec">◆ 联动扩展 · 仅有角色与世界观</div>';
@@ -4014,45 +4935,96 @@
 
     function paintStory() {
       const sd = rs() || {};
-      return STORIES.map(function (line) {
+      const q = searchQuery.trim().toLowerCase();
+      if (q) {
+        const hits = STORIES.filter(function (l) {
+          return (l.label || '').toLowerCase().indexOf(q) >= 0
+            || (l.desc || '').toLowerCase().indexOf(q) >= 0
+            || (l.event || '').toLowerCase().indexOf(q) >= 0;
+        });
+        if (!hits.length) {
+          return '<div class="krs-plot-empty-box"><b>未找到匹配的主线</b><span>换个关键词试试</span></div>';
+        }
+        return '<div class="krs-plot-ext-sec">◆ 搜索结果 (' + hits.length + ' 条)</div>'
+          + '<div class="krs-plot-active-wrap' + (hits.length === 1 ? ' is-single' : '') + '">'
+          + hits.map(function (l) { return paintStoryCard(l, sd, !krsPlotStatusOf(sd, l).on); }).join('')
+          + '</div>';
+      }
+
+      const activeList = [];
+      const boxList = [];
+      let offCnt = 0;
+      let doneCnt = 0;
+      let brokenCnt = 0;
+
+      STORIES.forEach(function (line) {
         const st = krsPlotStatusOf(sd, line);
-        const open = !!line._open;
-        const total = line.chapters.length;
-        const idx = krsPlotChapterIndex(line, st.chapter);
-        const order = st.chapter === '完结' ? (total + '/' + total) : (idx >= 0 ? ((idx + 1) + '/' + total) : ('—/' + total));
-        const progressIdx = (st.done || st.chapter === '完结') ? total : (idx >= 0 ? idx : 0);
-        const warn = (line._itemsOn === false && !st.on)
-          ? '<div class="krs-plot-warn">扩展未启用，请先到「扩展」页开启。</div>' : '';
-        const stateText = st.done ? '已完结' : (st.on ? '进行中' : (st.broken ? '已破弃' : '未开启'));
-        const stateCls = st.done ? 'done' : (st.on ? 'on' : 'off');
-        const btnText = st.on ? '关闭剧情' : ((st.done || st.broken) ? '重新开启' : '开启剧情');
-        const storyHtml = open
-          ? '<div class="krs-plot-progress">' + line.chapters.map(function (c, i) {
-              return '<span class="' + (i < progressIdx ? 'on' : '') + '"></span>';
-            }).join('') + '</div>'
-            + '<div class="krs-plot-story-top">'
-            + '<span class="krs-plot-chapter-name" title="' + escHtml(krsPlotChapterTitle(line, st.chapter)) + '">' + escHtml(krsPlotChapterTitle(line, st.chapter)) + '</span>'
-            + '<span class="krs-plot-chapter-order"><button type="button" data-plot-prev="' + line.key + '" title="上一章">‹</button>'
-            + '<em>' + order + '</em>'
-            + '<button type="button" data-plot-next="' + line.key + '" title="下一章">›</button></span>'
-            + '</div>'
-            + '<div class="krs-plot-stage"><b>阶段目标</b><span>' + escHtml(st.stage || '—') + '</span></div>'
-            + '<div class="krs-plot-next"><b>下一步</b><span>' + escHtml(st.next || '—') + '</span></div>'
-          : '';
-        return '<div class="krs-plot-card ' + (open ? 'open' : '') + ' ' + stateCls + '" data-plot-card="' + line.key + '">'
-          + '<button type="button" class="krs-plot-card-head" data-plot-head="' + line.key + '"'
-          + ' style="background-image:url(\'' + escHtml(line.cover || '') + '\')">'
-          + '<span class="krs-plot-card-name">' + escHtml(line.label) + '</span>'
-          + '<span class="krs-plot-card-state">' + stateText + '</span>'
-          + '<span class="krs-plot-card-arrow">' + (open ? '▾' : '▸') + '</span>'
+        if (st.on) {
+          activeList.push(line);
+        } else {
+          boxList.push(line);
+          if (st.done) doneCnt++;
+          else if (st.broken) brokenCnt++;
+          else offCnt++;
+        }
+      });
+
+      let html = '';
+      if (activeList.length) {
+        html += '<div class="krs-plot-ext-sec">🔥 进行中的主线 (' + activeList.length + ' 条)</div>'
+          + '<div class="krs-plot-active-wrap' + (activeList.length === 1 ? ' is-single' : '') + '">'
+          + activeList.map(function (l) { return paintStoryCard(l, sd, false); }).join('')
+          + '</div>';
+      } else {
+        html += '<div class="krs-plot-empty-box">'
+          + '<b>✨ 当前暂无进行中的主线剧情</b>'
+          + '<span>全部未开启主线已自动收入下方收纳盒，点开挑选开启后会直接跳出到此处。</span>'
+          + '</div>';
+      }
+
+      if (boxList.length) {
+        const subParts = [];
+        if (offCnt) subParts.push('未开启 ' + offCnt);
+        if (doneCnt) subParts.push('已完结 ' + doneCnt);
+        if (brokenCnt) subParts.push('已破弃 ' + brokenCnt);
+
+        const filteredBox = boxList.filter(function (line) {
+          if (storyDrawerFilter === 'all') return true;
+          const st = krsPlotStatusOf(sd, line);
+          if (storyDrawerFilter === 'off') return !st.done && !st.broken;
+          return st.done || st.broken;
+        });
+
+        let drawerInner = '';
+        if (storyDrawerOpen) {
+          const filterBar = (doneCnt + brokenCnt > 0)
+            ? '<div class="krs-plot-drawer-filters">'
+              + '<button type="button" class="krs-plot-df-pill' + (storyDrawerFilter === 'all' ? ' active' : '') + '" data-plot-sfilter="all">全部 (' + boxList.length + ')</button>'
+              + '<button type="button" class="krs-plot-df-pill' + (storyDrawerFilter === 'off' ? ' active' : '') + '" data-plot-sfilter="off">未开启 (' + offCnt + ')</button>'
+              + '<button type="button" class="krs-plot-df-pill' + (storyDrawerFilter === 'done' ? ' active' : '') + '" data-plot-sfilter="done">已完结 / 破弃 (' + (doneCnt + brokenCnt) + ')</button>'
+              + '</div>'
+            : '';
+          drawerInner = '<div class="krs-plot-drawer-body">'
+            + filterBar
+            + '<div class="krs-plot-active-wrap">'
+            + filteredBox.map(function (l) { return paintStoryCard(l, sd, true); }).join('')
+            + '</div></div>';
+        }
+
+        html += '<div class="krs-plot-drawer">'
+          + '<button type="button" class="krs-plot-drawer-head" data-plot-drawer="story">'
+          + '<div class="krs-plot-dh-left">'
+          + '<span class="krs-plot-dh-title">📦 ' + (activeList.length ? '其他主线收纳盒' : '全部主线收纳盒') + '</span>'
+          + '<span class="krs-plot-dh-badge">' + boxList.length + ' 条</span>'
+          + (subParts.length ? ('<span class="krs-plot-dh-sub">' + subParts.join(' · ') + '</span>') : '')
+          + '</div>'
+          + '<span class="krs-plot-dh-arrow">' + (storyDrawerOpen ? '收起 ▴' : '展开挑选 ▾') + '</span>'
           + '</button>'
-          + '<div class="krs-plot-card-body">'
-          + '<div class="krs-plot-enabled' + (st.on ? '' : ' off') + '"><span>'
-          + (st.done ? '✓ 剧情已完结' : (st.on ? '✓ 剧情已开启' : (st.broken ? '✗ 剧情已破弃' : '✗ 剧情未开启')))
-          + '</span><button type="button" class="krs-plot-close-story" data-plot-close-story="' + line.key + '">' + btnText + '</button></div>'
-          + warn + storyHtml
-          + '</div></div>';
-      }).join('');
+          + drawerInner
+          + '</div>';
+      }
+
+      return html;
     }
 
     function render() {
@@ -4061,7 +5033,10 @@
       modal.querySelectorAll('[data-plot-tab]').forEach(function (b) {
         b.classList.toggle('active', b.getAttribute('data-plot-tab') === tab);
       });
-      body.className = 'krs-plot-body ' + (tab === 'ext' ? 'grid-ext' : 'grid-story');
+      if (searchEl) {
+        searchEl.placeholder = tab === 'story' ? '🔍 搜索想开启的主线剧情...' : '🔍 搜索作品世界书扩展...';
+      }
+      body.className = 'krs-plot-body ' + (tab === 'ext' ? 'grid-ext' : 'is-stack');
       try {
         body.innerHTML = tab === 'ext' ? paintExt() : paintStory();
       } catch (err) {
@@ -4071,9 +5046,11 @@
     }
 
     function applyDefaultOpen() {
+      const sd = rs() || {};
       STORIES.forEach(function (line) {
-        const st = krsPlotStatusOf(rs() || {}, line);
-        line._open = line._itemsOn === true || st.on;
+        const st = krsPlotStatusOf(sd, line);
+        /* 仅「进行中」主线默认展开在外部；收纳盒内的未开启主线保持折叠紧凑 */
+        line._open = st.on;
       });
     }
 
@@ -4147,16 +5124,25 @@
     async function toggleExt(line) {
       const next = line._itemsOn !== true;
       const res = await krsPlotToggleEntries(line.prefixes, next);
-      if (res.ok) line._itemsOn = next;
-      if (!next && res.ok && line.story === '事件') await clearStoryVars(line);
+      const siblings = KRS_PLOT_LINES.filter(function (l) {
+        return l.prefixes.some(function (p) { return line.prefixes.indexOf(p) >= 0; });
+      });
+      if (res.ok) siblings.forEach(function (s) { s._itemsOn = next; });
+      if (!next && res.ok) {
+        for (let i = 0; i < siblings.length; i++) {
+          if (siblings[i].story === '事件') await clearStoryVars(siblings[i]);
+        }
+      }
       if (hintEl) {
+        const title = line.extLabel || line.label;
+        const hasStory = siblings.some(function (s) { return s.story === '事件'; });
         hintEl.textContent = !res.ok
           ? '世界书接口不可用：条目未能同步开关。'
           : (!res.changed
-            ? ('「' + line.label + '」没有匹配到条目，世界书没有改动。')
+            ? ('「' + title + '」没有匹配到条目，世界书没有改动。')
             : (next
-              ? ('已启用「' + line.label + '」：' + res.changed + ' 条世界书条目已打开。')
-              : ('已关闭「' + line.label + '」：' + res.changed + ' 条条目已关闭' + (line.story === '事件' ? '，其主线已标记为「破弃」。' : '。'))));
+              ? ('已启用「' + title + '」：' + res.changed + ' 条世界书条目已打开。')
+              : ('已关闭「' + title + '」：' + res.changed + ' 条条目已关闭' + (hasStory ? '，相关主线已标记为「破弃」。' : '。'))));
       }
       try { renderAll(); } catch (_) {}
       render();
@@ -4164,7 +5150,7 @@
 
     async function openStory(line) {
       if (line._itemsOn === false) {
-        if (hintEl) hintEl.textContent = '「' + line.label + '」扩展未启用，请先到「扩展」页开启。';
+        if (hintEl) hintEl.textContent = '「' + line.label + '」扩展未启用，请先切到「扩展」页开启。';
         return;
       }
       line._open = true;
@@ -4174,14 +5160,23 @@
         stage = st.chapter;
       }
       await applyStory(line, stage);
-      if (hintEl) hintEl.textContent = '「' + line.label + '」剧情已开启：' + krsPlotChapterTitle(line, stage) + '。';
+      /* 开启后自动收起收纳盒、移出至外部活跃区并滚回顶部 */
+      justOpenedKey = line.key;
+      storyDrawerOpen = false;
+      searchQuery = '';
+      if (searchEl) searchEl.value = '';
+      if (hintEl) hintEl.textContent = '「' + line.label + '」已开启（' + krsPlotChapterTitle(line, stage) + '），已移出至上方进行中列表。';
       try { renderAll(); } catch (_) {}
       render();
+      const body = modal.querySelector('#krs-plot-body');
+      if (body) body.scrollTop = 0;
+      setTimeout(function () { if (justOpenedKey === line.key) justOpenedKey = ''; }, 900);
     }
 
     async function closeStory(line) {
+      line._open = false;
       await clearStoryVars(line);
-      if (hintEl) hintEl.textContent = '「' + line.label + '」剧情已关闭并标记为「破弃」；作品扩展条目保持启用。';
+      if (hintEl) hintEl.textContent = '「' + line.label + '」已关闭并收回收纳盒；作品扩展条目保持启用。';
       try { renderAll(); } catch (_) {}
       render();
     }
@@ -4189,35 +5184,74 @@
     async function stepChapter(line, dir) {
       const total = line.chapters.length;
       if (!line._itemsOn) {
-        if (hintEl) hintEl.textContent = '「' + line.label + '」扩展未启用，请先到「扩展」页开启。';
+        if (hintEl) hintEl.textContent = '「' + line.label + '」扩展未启用，请先切到「扩展」页开启。';
         return;
       }
-      line._open = true;
       const st = krsPlotStatusOf(rs() || {}, line);
       let idx = st.chapter === '完结' ? total : krsPlotChapterIndex(line, st.chapter);
       if (idx < 0) idx = 0;
       const target = Math.max(0, Math.min(total, idx + dir));
-      await applyStory(line, target === total ? '完结' : line.chapters[target].stage);
-      if (hintEl) hintEl.textContent = '「' + line.label + '」已推进到：' + (target === total ? '完结' : line.chapters[target].title) + '。';
+      const isDone = target === total;
+      line._open = !isDone;
+      await applyStory(line, isDone ? '完结' : line.chapters[target].stage);
+      if (hintEl) {
+        hintEl.textContent = isDone
+          ? ('「' + line.label + '」已完结，已自动收入收纳盒。')
+          : ('「' + line.label + '」已推进到：' + line.chapters[target].title + '。');
+      }
       try { renderAll(); } catch (_) {}
       render();
     }
 
     function extSummary() {
-      const on = KRS_PLOT_LINES.filter(function (l) { return l._itemsOn === true; }).length;
+      const on = EXT_ALL.filter(function (l) { return l._itemsOn === true; }).length;
       const active = STORIES.filter(function (l) { return krsPlotStatusOf(rs() || {}, l).on; }).length;
       return '世界书 ' + krsPlotRead.books + ' 本 · ' + krsPlotRead.entries + ' 条　｜　扩展已启用 '
-        + on + ' / ' + KRS_PLOT_LINES.length + '　｜　主线进行中 ' + active + ' / ' + STORIES.length;
+        + on + ' / ' + EXT_ALL.length + '　｜　主线进行中 ' + active + ' / ' + STORIES.length;
+    }
+
+    if (searchEl) {
+      searchEl.addEventListener('input', function () {
+        searchQuery = searchEl.value || '';
+        render();
+      });
     }
 
     modal.addEventListener('click', async function (ev) {
       if (ev.target === modal || ev.target.closest('#krs-plot-close')) { modal.remove(); return; }
+
+      const quickOpen = ev.target.closest('[data-plot-quick-open]');
+      if (quickOpen) {
+        ev.stopPropagation();
+        const line = KRS_PLOT_LINES.find(function (x) { return x.key === quickOpen.getAttribute('data-plot-quick-open'); });
+        if (line) await openStory(line);
+        return;
+      }
+
+      const drawerBtn = ev.target.closest('[data-plot-drawer]');
+      if (drawerBtn) {
+        const which = drawerBtn.getAttribute('data-plot-drawer');
+        if (which === 'story') storyDrawerOpen = !storyDrawerOpen;
+        else if (which === 'ext-on') extOnDrawerOpen = !extOnDrawerOpen;
+        else if (which === 'ext-off') extOffDrawerOpen = !extOffDrawerOpen;
+        render();
+        return;
+      }
+
+      const sFilter = ev.target.closest('[data-plot-sfilter]');
+      if (sFilter) {
+        storyDrawerFilter = sFilter.getAttribute('data-plot-sfilter') || 'all';
+        render();
+        return;
+      }
 
       const tabBtn = ev.target.closest('[data-plot-tab]');
       if (tabBtn) {
         const next = tabBtn.getAttribute('data-plot-tab');
         if (next === tab) return;
         tab = next;
+        searchQuery = '';
+        if (searchEl) searchEl.value = '';
         await refreshEntryState();
         if (tab === 'story') applyDefaultOpen();
         render();
@@ -4258,6 +5292,7 @@
 
     (async function () {
       await refreshEntryState();
+      applyDefaultOpen();
       if (hintEl) hintEl.textContent = entries ? extSummary() : '未找到世界书接口：剧情变量仍可推进，但扩展条目无法同步开关。';
       render();
     })();
@@ -4774,8 +5809,12 @@
       if (e.target.closest('.krs-lang-switch')) { await krsLangToggle(); return; }
       if (e.target.closest('.cg-hub-btn')) { openCgGalleryModal(null); return; }
 
-      const heroCgBtn = e.target.closest('.cg-hero-btn');
-      if (heroCgBtn) { openCgGalleryModal(heroCgBtn.getAttribute('data-cg-char') || activeCharName); return; }
+      const heroCgBtn = e.target.closest('.cg-hero-btn, .cg-sprite-trigger');
+      if (heroCgBtn) {
+        if (heroCgBtn.classList.contains('cg-sprite-trigger') && isEditMode) return;
+        openCgGalleryModal(heroCgBtn.getAttribute('data-cg-char') || activeCharName);
+        return;
+      }
 
       const jumpCareer = e.target.closest('[data-jump-career]');
       if (jumpCareer) {
