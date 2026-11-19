@@ -3,7 +3,7 @@
   "abi": 1,
   "version": "2.4.30",
   "script": "dialogue.js",
-  "sha256": "7b5427fe741ca6b8a5b94669580b10bf5381da0f30a7e6169159c5b917613476",
-  "updatedAt": "2026-11-19T09:22:05Z",
+  "sha256": "f8109ef08a3f0f2e5e767dbdbbaa9f1d156845ce0586e7655ce96cc4c812e4ad",
+  "updatedAt": "2026-11-19T15:15:56Z",
   "engine": "2.4.23"
 }
