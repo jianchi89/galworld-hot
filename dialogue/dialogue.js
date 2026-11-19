@@ -4020,12 +4020,20 @@ div.custom-nvn-dialogue[data-char="高峰莲夜"] .custom-nvn-avatar-img:not(#nv
   --rgb: 213, 195, 202 !important;
   --motion-color: #c0b0b6 !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img {
-  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
-div.custom-nvn-dialogue[data-char="苏菲缇雅"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
-[data-char="苏菲缇雅"] .custom-nvn-avatar-popover { pointer-events: none !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;
+  --nvn-blush: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/blush.webp");
+  --nvn-blush-display: block;
+  cursor: pointer !important;}
+[data-char="苏菲缇雅"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="苏菲缇雅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
-[data-char="苏菲缇雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="得意"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/smug.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="思考"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/thinking.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/angry.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/puzzled.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/sad.webp") !important;}
+[data-char="苏菲缇雅"][data-action*="高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/happy.webp") !important;}
+[data-char="苏菲缇雅"] .custom-nvn-portrait-full {
+  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/outfit1.webp") !important;}
 
 /* 结城希亚（9nine） */
 [data-char="结城希亚"] {
