@@ -285,7 +285,7 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.4.23';
+  const VERSION  = '2.4.30';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
@@ -6923,6 +6923,126 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     });
   }
 
+  /* ---------------- 头像断链自动换源 + 破缓存重试引擎 ---------------- */
+  const AV_FB_STYLE_ID = 'nvn-avatar-fb-style';
+  const AV_STATE = new Map(); /* key -> { state:'loading'|'ok'|'fixed'|'failed', fixedUrl, id, failedAt } */
+  let avFbSeq = 0;
+  let avFbInited = false;
+
+  function extractCssUrl(val) {
+    const m = String(val || '').match(/url\(\s*["']?([^"')]+)["']?\s*\)/i);
+    if (!m || !m[1]) return '';
+    const u = m[1].trim();
+    return /^https?:\/\//i.test(u) ? u : '';
+  }
+
+  function buildAvatarFallbacks(url) {
+    const out = [];
+    const add = function (u) { if (u && u !== url && out.indexOf(u) === -1) out.push(u); };
+    const m = url.match(/^https:\/\/(?:fastly|gcore|cdn)\.jsdelivr\.net\/gh\/([^/]+\/[^/@]+)@([^/]+)\//i);
+    if (m) {
+      const repo = m[1], ref = m[2], rest = url.slice(m[0].length);
+      add('https://gcore.jsdelivr.net/gh/' + repo + '@' + ref + '/' + rest);
+      add('https://cdn.jsdelivr.net/gh/' + repo + '@' + ref + '/' + rest);
+      add('https://raw.githubusercontent.com/' + repo + '/' + ref + '/' + rest);
+    }
+    /* 最后用带时间戳的破缓存原链重试一次，彻底绕开浏览器失败内存缓存 */
+    add(url + (url.indexOf('?') === -1 ? '?' : '&') + '_r=' + Date.now());
+    return out;
+  }
+
+  function ensureFbRule(id, goodUrl, isBlush) {
+    try {
+      let el = HD.getElementById ? HD.getElementById(AV_FB_STYLE_ID) : null;
+      if (!avFbInited) {
+        avFbInited = true;
+        if (el) { el.remove(); el = null; }
+      }
+      if (!el) {
+        el = HD.createElement('style');
+        el.id = AV_FB_STYLE_ID;
+        (HD.head || HD.documentElement).appendChild(el);
+      }
+      const marker = '/*fb:' + (isBlush ? 'b' : 'a') + id + '*/';
+      if (el.textContent.indexOf(marker) !== -1) return;
+      const esc = escCssStr(goodUrl);
+      const rule = isBlush
+        ? marker + ':is(#chat,.mes_text) div.custom-nvn-dialogue:not(#nvn-fb-a):not(#nvn-fb-b) .custom-nvn-avatar-img[data-nvn-blush-fb="' + id + '"]{--nvn-blush:url("' + esc + '") !important;}\n'
+        : marker + ':is(#chat,.mes_text) div.custom-nvn-dialogue:not(#nvn-fb-a):not(#nvn-fb-b) .custom-nvn-avatar-img[data-nvn-fb="' + id + '"]{background-image:url("' + esc + '") !important;}\n';
+      el.textContent += rule;
+    } catch (_) {}
+  }
+
+  function applyFbToDom(origUrl, entry, isBlush) {
+    try {
+      const srcAttr = isBlush ? 'data-nvn-blush-src' : 'data-nvn-src';
+      const fbAttr = isBlush ? 'data-nvn-blush-fb' : 'data-nvn-fb';
+      ensureFbRule(entry.id, entry.fixedUrl, isBlush);
+      for (const av of HD.querySelectorAll('.custom-nvn-avatar-img[' + srcAttr + ']')) {
+        if (av.getAttribute(srcAttr) === origUrl) av.setAttribute(fbAttr, String(entry.id));
+      }
+    } catch (_) {}
+  }
+
+  function testImgLoad(url, timeoutMs) {
+    return new Promise(function (resolve) {
+      let done = false;
+      const ImgCtor = HW.Image || Image;
+      const img = new ImgCtor();
+      const finish = function (ok) {
+        if (done) return;
+        done = true;
+        clearTimeout(t);
+        img.onload = img.onerror = null;
+        resolve(ok);
+      };
+      const t = setTimeout(function () { finish(false); }, timeoutMs || 6500);
+      img.onload = function () { finish(img.naturalWidth > 0); };
+      img.onerror = function () { finish(false); };
+      img.src = url;
+    });
+  }
+
+  function guardAvatarUrl(origUrl, isBlush) {
+    if (!origUrl) return;
+    const key = (isBlush ? 'b:' : 'a:') + origUrl;
+    const prev = AV_STATE.get(key);
+    if (prev) {
+      if (prev.state === 'ok' || prev.state === 'loading') return;
+      if (prev.state === 'fixed') { applyFbToDom(origUrl, prev, isBlush); return; }
+      if (prev.state === 'failed' && Date.now() - prev.failedAt < 15000) return;
+    }
+    const entry = prev || { state: 'loading', fixedUrl: '', id: 0, failedAt: 0 };
+    entry.state = 'loading';
+    AV_STATE.set(key, entry);
+
+    testImgLoad(origUrl, 6000).then(async function (ok) {
+      if (ok) { entry.state = 'ok'; return; }
+      const cands = buildAvatarFallbacks(origUrl);
+      for (const cand of cands) {
+        if (await testImgLoad(cand, 7000)) {
+          if (!entry.id) entry.id = ++avFbSeq;
+          entry.state = 'fixed';
+          entry.fixedUrl = cand;
+          applyFbToDom(origUrl, entry, isBlush);
+          return;
+        }
+      }
+      entry.state = 'failed';
+      entry.failedAt = Date.now();
+    });
+  }
+
+  function retryFailedAvatars() {
+    const now = Date.now();
+    for (const kv of AV_STATE.entries()) {
+      const k = kv[0], e = kv[1];
+      if (e.state === 'failed' && now - e.failedAt >= 15000) {
+        guardAvatarUrl(k.slice(2), k.indexOf('b:') === 0);
+      }
+    }
+  }
+
   /* ---------------- 增量 DOM 处理函数 ---------------- */
   function markAvatars(rows) {
     try {
@@ -6930,17 +7050,35 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       for (const row of rows) {
         for (const av of row.querySelectorAll('.custom-nvn-avatar-img')) {
           let has = false;
+          let cssUrl = '';
+          let blushUrl = '';
           try {
             const st = av.getAttribute('style');
             if (st && /background-image/i.test(st)) has = true;
             else if (av.getAttribute('data-wn-ua-applied')) has = true;
             else {
-              const bi = String(gs(av).backgroundImage || '');
+              const cs = gs(av);
+              const bi = String(cs.backgroundImage || '');
               has = bi.indexOf('url(') !== -1;
+              if (has) {
+                cssUrl = av.getAttribute('data-nvn-src') || extractCssUrl(bi);
+                blushUrl = av.getAttribute('data-nvn-blush-src') || extractCssUrl(cs.getPropertyValue('--nvn-blush'));
+              }
             }
           } catch (_) {}
-          if (has) av.setAttribute('data-nvn-has-avatar', '1');
-          else av.removeAttribute('data-nvn-has-avatar');
+          if (has) {
+            av.setAttribute('data-nvn-has-avatar', '1');
+            if (cssUrl) {
+              av.setAttribute('data-nvn-src', cssUrl);
+              guardAvatarUrl(cssUrl, false);
+            }
+            if (blushUrl) {
+              av.setAttribute('data-nvn-blush-src', blushUrl);
+              guardAvatarUrl(blushUrl, true);
+            }
+          } else {
+            av.removeAttribute('data-nvn-has-avatar');
+          }
         }
       }
       for (const av of HD.querySelectorAll('.custom-nvn-avatar-img:not([data-nvn-has-avatar="1"])')) {
@@ -6949,6 +7087,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
           av.setAttribute('data-nvn-has-avatar', '1');
         }
       }
+      retryFailedAvatars();
     } catch (_) {}
   }
 
