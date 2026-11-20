@@ -5902,6 +5902,7 @@ function renderConsoleV2() {
 
   const BOND_SISTER_ROLE = {
     '新海天': '妹妹',
+    '和泉妃爱': '妹妹',
     '大藏里想奈': '妹妹',
     '真原祐里': '妹妹',
     '千原乃亚': '妹妹',
@@ -6006,8 +6007,12 @@ function renderConsoleV2() {
       }).join('');
     }
     const list = all.filter(({ person }) => bondGroupFor(person) === current).sort((a, b) => {
-      if (current === '姐妹' && a.person.name === '新海天') return -1;
-      if (current === '姐妹' && b.person.name === '新海天') return 1;
+      if (current === '姐妹') {
+        const order = { '新海天': 1, '和泉妃爱': 2 };
+        const oa = order[a.person.name] || 99;
+        const ob = order[b.person.name] || 99;
+        if (oa !== ob) return oa - ob;
+      }
       return 0;
     });
     if (!list.length) {
