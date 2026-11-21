@@ -285,7 +285,7 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.4.30';
+  const VERSION  = '2.4.31';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
