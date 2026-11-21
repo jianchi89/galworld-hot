@@ -4020,20 +4020,12 @@ div.custom-nvn-dialogue[data-char="高峰莲夜"] .custom-nvn-avatar-img:not(#nv
   --rgb: 213, 195, 202 !important;
   --motion-color: #c0b0b6 !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img {
-  background-image: url("https://origin.picgo.net/2026/11/19/27a61240349bab9bc16d50de34787c8d7679bef9999f4f97.png") !important;
-  --nvn-blush: url("https://origin.picgo.net/2026/11/19/bcea3dd5f2baa415f41238d623543fe178039001c3381e16.png");
-  --nvn-blush-display: block;
-  cursor: pointer !important;}
-[data-char="苏菲缇雅"] .custom-nvn-avatar-popover { pointer-events: auto !important;}
+  background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
+div.custom-nvn-dialogue[data-char="苏菲缇雅"] .custom-nvn-avatar-img:not(#nvn-modern-boost) { cursor: default !important;}
+[data-char="苏菲缇雅"] .custom-nvn-avatar-popover { pointer-events: none !important;}
 [data-char="苏菲缇雅"] .custom-nvn-avatar-img::after { display: none !important;}
-[data-char="苏菲缇雅"][data-action*="得意"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/6594473a7683e0cf323a09a2ccbaf7cd0ed734fddc367d29.png") !important;}
-[data-char="苏菲缇雅"][data-action*="思考"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/83e9a4dfecd08268d3aaabc30338e02c7caa454c4fd2036c.png") !important;}
-[data-char="苏菲缇雅"][data-action*="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/db23429e325e04d5d3ee2e86f78c500b2423150e2163f384.png") !important;}
-[data-char="苏菲缇雅"][data-action*="疑惑"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/593ed46b0b65228157e739e32130351fc89f2ebbc005cff7.png") !important;}
-[data-char="苏菲缇雅"][data-action*="难过"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/5320a7b1cb180256fdd5c9f2e752392b7efe7b75b7ab4577.png") !important;}
-[data-char="苏菲缇雅"][data-action*="高兴"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/19/9772189fce0f3add4130355b53832677b7d52c8777874bfe.png") !important;}
-[data-char="苏菲缇雅"] .custom-nvn-portrait-full {
-  content: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/outfit1.webp") !important;}
+[data-char="苏菲缇雅"][data-action^="脸红"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
+[data-char="苏菲缇雅"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/9nine/sufeitiya/normal.webp") !important;}
 
 /* 结城希亚（9nine） */
 [data-char="结城希亚"] {
@@ -4526,6 +4518,19 @@ div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nv
            + '  --rgb: ' + (c.rgb || '136, 150, 165') + ' !important;\n'
            + '  --motion-color: ' + (c.motion || c.main || '#a8b5c2') + ' !important;\n'
            + '}\n';
+
+      const chatHead = '.mes_text div.custom-chat-row:is(' + sel + ')';
+      out += chatHead + ' {\n'
+           + '  --main: ' + (c.main || '#8896a5') + ' !important;\n'
+           + '  --sub: ' + (c.sub || '#b2becb') + ' !important;\n'
+           + '  --rgb: ' + (c.rgb || '136, 150, 165') + ' !important;\n'
+           + '  --motion-color: ' + (c.motion || c.main || '#a8b5c2') + ' !important;\n'
+           + '}\n';
+      if (baseAvatar) {
+        out += chatHead + ' .custom-nvn-avatar-img {\n'
+             + '  background-image: url("' + escCssStr(baseAvatar) + '") !important;\n'
+             + '}\n';
+      }
 
       if (baseAvatar || c.blush) {
         out += head + ' .custom-nvn-avatar-img {\n';
