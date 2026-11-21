@@ -5,5 +5,5 @@
   "script": "dialogue.js",
   "sha256": "d0ab5599dafaf21b78261cc66e05e89d84f2e12044b89493f9b527ebc15159b5",
   "updatedAt": "2026-11-21T06:50:02Z",
-  "engine": "2.4.23"
+  "engine": "2.4.31"
 }
