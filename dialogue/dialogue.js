@@ -285,7 +285,7 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.4.35';
+  const VERSION  = '2.4.36';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
@@ -6650,8 +6650,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     if (!force && theme === current && styleEl && styleEl.isConnected) return;
 
     HD = getHostDoc();
-    const chatBox = HD.getElementById ? HD.getElementById('chat') : null;
-    const head = chatBox || HD.head || HD.documentElement;
+    const head = HD.head || HD.documentElement;
     if (!head) return;
 
     try {
@@ -6902,6 +6901,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     try {
       for (const b of HD.querySelectorAll('.custom-nvn-theme-toggle')) { try { b.remove(); } catch (_) {} }
     } catch (_) {}
+    try { if (HW.__NVN_DLG_VERSION__ === VERSION) delete HW.__NVN_DLG_VERSION__; } catch (_) {}
     styleEl = null;
     current = null;
     suspended = true;
@@ -7391,6 +7391,15 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     schedTimer = null;
     for (const d of disposers.splice(0)) { try { d(); } catch (_) {} }
     try { if (styleEl && styleEl.isConnected) styleEl.remove(); } catch (_) {}
+    try { const fb = HD.getElementById && HD.getElementById('nvn-avatar-fb-style'); if (fb) fb.remove(); } catch (_) {}
+    try { if (HW[SLOT] && HW[SLOT].destroy === destroy) delete HW[SLOT]; } catch (_) {}
+    try { if (HW.__NVN_DLG_VERSION__ === VERSION) delete HW.__NVN_DLG_VERSION__; } catch (_) {}
+    try {
+      window.removeEventListener('pagehide', destroy);
+      window.removeEventListener('unload', destroy);
+      HW.removeEventListener('beforeunload', destroy);
+      HW.removeEventListener('pagehide', destroy);
+    } catch (_) {}
     styleEl = null;
     current = null;
     try {
@@ -7403,7 +7412,12 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
   function boot() {
     try { if (HW[SLOT] && typeof HW[SLOT].destroy === 'function') HW[SLOT].destroy(); } catch (_) {}
-    try { HW.addEventListener('beforeunload', destroy); HW.addEventListener('pagehide', destroy); } catch (_) {}
+    try {
+      window.addEventListener('pagehide', destroy);
+      window.addEventListener('unload', destroy);
+      HW.addEventListener('beforeunload', destroy);
+      HW.addEventListener('pagehide', destroy);
+    } catch (_) {}
 
     apply(userTheme || 'dark', true);
     injectToggles();
