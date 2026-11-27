@@ -883,6 +883,36 @@
   color: var(--rose-deep);
 }
 .gw-app .bgm-btn.is-blocked { border-color: var(--rose); color: var(--rose-deep); }
+@container galworld (max-width: 760px) {
+  .gw-app .site-nav .nav-link { flex: 1 1 auto; min-width: 0; padding: 0 4px; }
+}
+@container galworld (max-width: 620px) {
+  .gw-app .nav-shell { height: 52px; padding-inline: 8px; gap: 6px; }
+  .gw-app .brand { min-width: 0; gap: 0; }
+  .gw-app .brand-type { display: none; }
+  .gw-app .brand-mark { width: 24px; height: 24px; }
+  .gw-app .site-nav { justify-content: space-between; gap: 2px; }
+  .gw-app .site-nav .nav-link { flex: 1 1 auto; min-width: 0; padding: 0 4px; }
+  .gw-app .site-nav .nav-num { display: none; }
+  .gw-app .site-nav .nav-cn { font-size: 12px; letter-spacing: 0; }
+  .gw-app .nav-glider { top: 10px; bottom: 10px; }
+  .gw-app .bgm-btn { position: relative; width: 28px; height: 28px; padding: 0; gap: 0; justify-content: center; }
+  .gw-app .bgm-btn i { font-size: 13px; line-height: 1; }
+  .gw-app .bgm-btn span { display: none; }
+  .gw-app .bgm-btn[aria-pressed="false"]:not(.is-blocked) { opacity: .55; }
+  .gw-app .bgm-btn[aria-pressed="false"]:not(.is-blocked)::after {
+    content: ""; position: absolute; width: 16px; height: 1.5px;
+    background: currentColor; transform: rotate(-45deg); border-radius: 2px;
+  }
+  .gw-app .bgm-btn.is-blocked { border-style: dashed; }
+}
+@container galworld (max-width: 380px) {
+  .gw-app .nav-shell { padding-inline: 6px; gap: 4px; }
+  .gw-app .brand-mark { width: 22px; height: 22px; }
+  .gw-app .site-nav .nav-link { padding: 0 2px; }
+  .gw-app .site-nav .nav-cn { font-size: 11px; }
+  .gw-app .bgm-btn { width: 26px; height: 26px; }
+}
 .gw-app .persona-quick-bars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 12px; }
 .gw-app .persona-quick-bars .persona-companion-bar { margin: 0; }
 .gw-app .persona-career-bar { border-color: rgba(117, 97, 156, .38); background: linear-gradient(180deg, #8b74b5, #725b9c); box-shadow: 0 2px 0 rgba(70, 52, 105, .14); }
