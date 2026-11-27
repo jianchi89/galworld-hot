@@ -1,291 +1,7 @@
-/* =========================================================================
- * 对白美化 · 全局 CSS 注入器  v2.3.4
- * -------------------------------------------------------------------------
- * 【为什么需要它 / v2.0.0 的由来】
- *   酒馆会把消息里的所有 class 改名：nvn-dialogue → custom-nvn-dialogue
- *   （见酒馆本体 public/scripts/chats.js 的 addDOMPurifyHooks()）。
- *   消息自带的 <style> 也会被同步改写成 .mes_text .custom-nvn-*，
- *   所以「把原样 CSS 挂到 <head>」匹配不到任何元素。
- *   本脚本里的 CSS 是用酒馆自己的 decodeStyleTags() 跑出来的结果，实测生效。
- *
- *   另外：旧版把约 22 万字符 CSS 写进正则替换文本，每条对白复制一份，
- *   而且酒馆每次渲染都要 css.parse()+css.stringify() 一遍这段 CSS
- *   （13 句对白 = 每次渲染解析 13 次 22 万字符），流式每个 token 再来一轮。
- *   现在消息里 0 字节 CSS，以上开销全部归零。
- *
- * 【v2.1.0 变化】
- *   1) 中文版与中日双语版合并成一份 light：实测「用双语CSS渲染中文消息」
- *      与中文CSS的计算样式差异为 0 处，而反过来会坏（ruby 注音行高全错）。
- *      所以 light 一份同时管中文与双语 —— 你只切正则，不用碰脚本。
- *   2) 新增 NEW_CHARACTERS 表：以后加角色只改那一处，脚本自动生成规则。
- *
- * 【v2.2.0 修复「玩家行（user 模式）不对」】
- *   原卡写的是「.is_user .nvn-dialogue { flex-direction: row-reverse }」，
- *   但酒馆的 is_user 是 **属性** 不是 class（见 index.html 的
- *   <div class="mes" is_user="true">），酒馆自己的样式表里根本没有 .is_user
- *   这个类 —— 所以这套「玩家行」规则从来没生效过：玩家那一行的头像会跑到
- *   左边、名牌也翻不过去，玩家名一旦和角色名重名就彻底崩。
- *   现在改成 [is_user="true"]，玩家行才真正右对齐。
- *
- *   另外顺手修了两处：
- *     · 原卡 [data-player] 分支里 .nvn-name-plate .nvn-name-plate 这类
- *       重复类名（漏了 5 处），导致即使命中也不会翻名牌；
- *     · 选择器不再统一加 .mes_text 前缀 —— 加了会让 [is_user] /
- *       :is(.dark,.theme-dark) 这类「祖先在消息之外」的规则失效。
- *       需要收窄的 .mes_text 规则改用 :has(.custom-nvn-dialogue) 限定。
- *
- * 【v2.3.0】中日双语字号加大：日语 0.98em → 1.15em；
- *   中文小字 11.5px → 0.8em（em 相对 ruby 基准，故恒为日语的 80%）。
- *
- * 【v2.5.1】星号包裹（*…*）单独走「内心思绪」：标签文案换成「内心思绪」、
- *   引号图标换成 *，且不套心灵感应那套淡紫配色（与普通行同色）。
- *   不带引号也没星号的仍走「心灵感应」。两条兜底正则按此顺序排列。
- *
- * 【v2.6.1】修 NEW_CHARACTERS 的两个「只有新角色才会中」的问题：
- *   1) 颜色不生效：基础 CSS 的「译名首字色池」用 :not() 链把权重堆到 (0,7,1)，
- *      生成的选择器只有 (0,3,1)，同 !important 时输给它 → 「欧里丝」这类
- *      名字首字撞上色池的角色，头像框/引号/动作描写是色池的灰紫色。
- *      现在生成的选择器统一加 :not(#nvn-char-color-override) 提权。
- *   2) 头像多一圈细框：基础 CSS 只对「旧名单以外」的角色画 .custom-nvn-avatar-img::after
- *      的 4px 内嵌细框；新角色不在旧名单里，于是有立绘也被套上这圈框。
- *      现在凡是有 avatar 的角色都把 ::after 关掉，和盖欧这类老角色一致（整块填满）。
- *
- * 【v2.6.2】热更新「先正常、加载完又变回去」的根因与对策：
- *   远端拿到的还是旧版脚本时，它会把卡内已经生效的新版 CSS 整个替换掉。
- *   现在 boot() 会把真正生效的版本写到宿主 window.__NVN_DLG_VERSION__，
- *   加载器据此做三道闸（见 dialogue-loader.template.js）：
- *     ① 远端 version 更旧 → 不执行；② 清单 version 与脚本内 VERSION 不符 → 不执行；
- *     ③ 执行完回读版本，不符就在控制台报警。
- *
- * 【发布 2.3.0（2026-11-10）· 全角色主题色 / 头像 / 差分 / 立绘】
- *   数据来源：
- *     · 角色发色一览.txt（136 条发色）→ 每个角色的 --main
- *     · 合集200x250_URL对照表.txt（8 部作品 / 123 角色 / 882 张图）→ 头像 / 差分 / 立绘
- *   匹配规则：
- *     1) data-char 必须【完全等于】姓名 —— 多一字少一字都不出图。
- *        例：写「川内野优美」出图，写「川内野优」不出（回落普通 NPC 玻璃名片）。
- *     2) 欧美名只登记「名」：布琉艾特·妮科莱特·普朗凯特 → 布琉艾特。
- *     3) 全名 / 短名并存时（稻羽结衣 / 结衣），短名仅在「全表唯一」时才作为别名。
- *   立绘优先级：校园制服 → 衣装① → 衣装② → 衣装③ → 衣装④ → 大立绘。
- *   主题色：发色 → 色相 → HSL 明度夹到 0.45~0.70（深发色也能当强调色）。
- *   没有发色资料的 12 人沿用默认灰，可在 _build_cast.py 里补。
- *
- * 【发布 2.3.1（2026-11-10）· 三个修补】
- *   1) 头像贴顶：原来整行 align-items:center，长台词时头像漂到中间、再长就贴到
- *      上边。现在顶对齐 —— 纵向偏移恒为 0，是硬上限。
- *   2) 「脸红」兜底：data-action 以「脸红」开头但没有精确差分（如「脸红慌张」）时，
- *      回落到「脸红通常」（没有则任取一张脸红差分，再没有就通常）。该通用规则排在
- *      所有精确差分之前，同权重下后者覆盖，所以「脸红高兴」等精确差分仍优先。
- *   3) 名字：首字放大 + 交替上色。splitNames() 拆成逐字 span，
- *      奇数位取 --main、偶数位取默认色（1 染色 / 2 不染色 / 3 染色…）。
- *      v2.3.2 起：字体换黑体（Noto Sans SC → 苹方 → 雅黑），
- *      首字 1.25em、其余 1.02em（= 首字的 82%，满足「小字 ≥ 80%」）。
- *      v2.3.3：去掉名字发光（原来叠了 .mes_text 继承的 0 0 2px 黑 + 首字 10px 光晕）。
- *      v2.3.4：名字字体样式完全对齐 regex-对话渲染v7_1 ——
- *        font-family "Noto Serif SC","Source Han Serif SC","Songti SC",serif；
- *        font-weight 800；letter-spacing 1.5px；line-height 1；text-shadow 全去掉。
- *        字号仍按上一轮：首字 1.25em、其余 1.02em（82%）。
- *
- * 【发布 2.2.6（2026-11-10）· 神态/动作的玻璃与头像卡同档】
- *   把神态 / 动作的玻璃数值直接对齐头像卡（NPC 名片）那一组：
- *     暗色：background-color rgba(var(--rgb), .24) + 平铺 rgba(9,11,15,.56)
- *     亮色：background-color rgba(var(--rgb), .14) + 平铺 rgba(255,255,255,.76)
- *     磨砂：blur(14px) saturate(1.35)（和头像卡一致）
- *   这样同一行里「动作条」和「头像卡」的材质是同一块玻璃，不会一个深一个浅。
- *
- * 【发布 2.2.5（2026-11-10）· 动作框竖条跟着行走】
- *   角色行的动作条竖条 → 左侧（和角色头像卡的左竖条同侧）；
- *   user 行的动作条竖条 → 右侧（和 user 头像卡的右竖条同侧）。
- *   左右内边距与圆角一起镜像：3px 3px 9px 9px → 9px 3px 3px 9px。
- *   （上一版把两边都放在右侧，角色行看着别拗。）
- *
- * 【发布 2.2.4（2026-11-10）· 玻璃底改成「均匀」的，不再斜向渐变】
- *   现象：装进酒馆后，神态 / 动作 / NPC 名片的底「左亮右暗」，渐变很生硬。
- *   根因：160deg 的斜向渐变在窄长条上就是从左到右铺开 —— 条越宽，左右差越大。
- *   改法：两层叠出均匀玻璃，全程不做方向性渐变：
- *        · background-color: rgba(var(--rgb), .16)      → 一点点主题色染色
- *        · background-image: linear-gradient(同色, 同色) → 一层平铺的深玻璃
- *     两个色标同色 = 均匀，任何宽度都不会左右分色；也不依赖 color-mix。
- *   顺带：主题色染色从 30% 降到 16%、深玻璃 52% → 58%，底更干净，
- *        主题色只留在边框和文字上（原来 30% 金 + 52% 黑会发土）。
- *   亮色主题同理：14%~18% 主题色 + 一层平铺白玻璃。
- *
- * 【发布 2.2.3（2026-11-10）· 玻璃底不能再只靠 backdrop-filter】
- *   现象：v1.0.5 装进酒馆后，神态 / 动作只剩「外框 + 文字」，没有那层半透明底。
- *   根因：那版只写了 `background: transparent` + `backdrop-filter: blur()`，
- *        底子完全交给 backdrop-filter；部分酒馆内核 / WebView 不支持（或被打断），
- *        于是连底都没了，退化成空框。我这边 Chrome 支持，所以示例图正常 —— 是
- *        环境差异，不是样式写错。
- *   改法：跟头像卡彻底统一成同一套「玻璃」配方 ——
- *        · 先给一层真正的半透明底色（background-color，暗色 rgba(10,12,18,.42)）；
- *        · 再叠一层主题色渐变（160deg，主题色 → 深玻璃）；
- *        · backdrop-filter 只当加分项，不支持也不影响观感。
- *   顺带把 NPC 玻璃名片的底色也提亮了（原来越依靠 blur 越像空框）。
- *   验收方式：在本地酒馆里跑真脚本，另跑一遍「强制关掉 backdrop-filter」，
- *   两种情况下都有可见的半透明底。
- *
- * 【发布 2.2.2（2026-11-10）· 神态/动作改成「只有边框」的玻璃】
- *   1) 名字行的「小字」偏小（0.76em）→ 0.88em；首字 1.46em → 1.38em，整行更匀。
- *   2) 神态 / 动作不再铺 40% 主题色底，改成跟头像卡同一路子：
- *      只有一层主题色细边框，里面是透明的磨砂玻璃（backdrop-filter blur），
- *      文字用纯 var(--main)，阴影与正文 .custom-nvn-primary 完全一致
- *      （0 1px 3px rgba(0,0,0,.8)）—— 之前那圈多向描边太像黑轮廓了。
- *      动作底板右侧仍保留 3px 主题色竖条。
- *   3) 有头像的角色不再显示竖排名字兜底（原来只对克蕾雅 / 玛丽·安关闭，
- *      上传头像的角色会「图 + 竖排名字」叠在一起）。判定同样走 markAvatars 的
- *      data-nvn-has-avatar，规则放进 LAYOUT_PATCH_CSS，亮暗共用。
- *
- * 【发布 2.2.1（2026-11-10）· 头像判定 + 底框收尾】
- *   1) 「有没有头像」不再靠名字猜：玩家头像脚本（玩家头像·悬浮球）会给任意角色
- *      行内塞 background-image，正则 / 别家美化也可能塞图，于是有头像的角色仍被
- *      套上 NPC 的玻璃名片 + 左侧竖条（就是那条「蓝边」）。现在三重守卫：
- *        · 脚本 markAvatars() 看 computed background-image 里有没有 url( ，
- *          有就打 data-nvn-has-avatar="1"（图没了会自动摘掉）；
- *        · :not([style*="background-image"]) 兜住行内图（脚本还没跑时也不闪）；
- *        · :not([data-wn-ua-applied="1"]) 兜住玩家头像脚本自己的标记。
- *   2) 头像描边统一走主题色：基础规则直接画 1.5px rgba(--rgb,.78) + 内发光，
- *      不再只对克蕾雅 / 玛丽·安生效（否则上传头像的角色又变回一圈黑边）。
- *   3) 神态 / 动作底：从「渐变到近黑」改成均匀的 rgba(--rgb,.40) 淡主题色；
- *      文字仍是主题色，但往同色系压深约三成，才压得住 40% 同色底
- *      （想回到纯主题色字：删掉那条 color-mix 即可）。
- *   4) 动作底板的竖条从左移到右侧（border-right 3px，浅一档的同类色），
- *      圆角同步改成 9px 3px 3px 9px。
- *   5) user 行「竖条改右侧」那条规则的权重跟着提上来，否则会被 NPC 左边条压住。
- *
- * 【发布 2.2.0（2026-11-10）· A + 方案1 定稿】
- *   1) 名字行改「大首字」：首字 1.46em、其余 0.76em，字距 0.10em。
- *   2) 神态/动作改成角色主题色的半透明玻璃：主题色→深玻璃的渐变底 + 主题色实字；
- *      动作左侧保留 2px 主题色竖条。为了让主题色字在亮背景上仍能读，渐变底部压到
- *      近黑（rgba(6,8,12,.86)），主题色只留边光；纯主题色透明底会让金字糊在金底上。
- *   3) 无头像 NPC 换成磨砂玻璃名片：均匀玻璃 + 白色细边 + 顶部主题色小点，
- *      去掉旧版 4px 内框；左侧加 3px 主题色竖条。
- *   4) 玩家行（user）没有头像时竖条自动换到右侧，和角色行左右对称。
- *   5) 亮色主题单独一套：白玻璃 + 压深的主题色字（color-mix，老内核回退纯主题色）。
- *
- * 【发布 2.1.5（2026-11-10）· 本地酒馆实测补刀】
- *   在 D:\HGame\SillyTavern-1.18.0（实际 1.14.0）里用真实消息结构跑了一遍：
- *   ① 点头像打开立绘后，点遮罩虽然命中 <summary>，但原生 details 开关不触发 / 或被回弹，
- *      v1.0.1 的 click 兜底会出现「先关掉、又被原生开关打开」。现在改成 pointerdown：
- *      先把弹层关掉，遮罩随之消失，后面的 click 落不到 summary 上，不会回弹。
- *   ② Esc 在酒馆里会被自家快捷键先截走，所以 keydown 同时挂 window + document。
- *   ③ 实测点头像关、点正文关、点空白关、Esc 关，四种都通过。
- *
- * 【发布 2.1.4（2026-11-10）· 两个回归】
- *   ① 头像框变黑：暗色主题里 .custom-nvn-avatar-img 的描边用的是 --halo2
- *      （暗色下是 rgba(0,0,0,.55)），于是整圈发黑。现在有头像的角色改用
- *      --rgb 画 1.5px 主题色细边 + 内发光（克蕾雅琥珀金 / 玛丽·安翠绿），
- *      NEW_CHARACTERS 里带 avatar 的角色也自动带上。
- *   ② 立绘打开后点哪都关不掉：模板里 <summary> 自己就带 .custom-nvn-avatar-img，
- *      而「抹掉旧版装饰」那条 `.custom-nvn-avatar-img:not(#…)::before{content:none}`
- *      把 `[open] summary::before` 的全屏透明遮罩一起打掉了（权重 (1,1,1) 压过 (0,3,1)）。
- *      现在遮罩选择器补 :not(#nvn-modern-boost) 提权到 (1,4,1)；
- *      另加 wirePopoverDismiss()：点空白 / 点大立绘 / Esc 都能关，别处样式再压掉也有兜底。
- * 【发布 2.1.3（2026-11-07）】
- *   修「user 行台词下方多出一个空尾巴（空引号加竖线）」：
- *   user 行的 display:flex 与空尾段隐藏规则同为 (0,3,0) 权重但排在后面，把 display:none 盖掉了；
- *   现在给隐藏规则加 div.custom-nvn-dialogue 前缀提高权重，并同时覆盖两种尾段文本类名。
- * 【发布 2.1.2（2026-11-07）】
- *   修「user 模式台词不靠右」：亮色主题的 .nvn-text 只写了 justify-content:flex-end，
- *   而 v2.1.0 已把 .nvn-text 改成 display:block，该属性失效；暗色主题当时补过
- *   text-align:right，亮色漏了。现在两边一致。
- * 【发布 2.1.1（2026-11-07）】
- *   1) 修「双语格式下台词下方多出一条竖线尾巴」：空 .nvn-text-tail 容器没被隐藏。
- *      根因是隐藏规则只认 .nvn-primary，而双语模板用的是 .nvn-quote-val。
- *   2) 新增 .nvn-ja-fallback 规则：供「纯中文」正则使用——日文默认隐藏，
- *      仅当对应中文为空时回退显示原文，避免纯日文台词变成空白。
- * 【发布 2.1.0（2026-11-06）】
- *   1) 补齐勇战/MGQ 角色立绘：151 张点击展开的大立绘（小头像保持原样）+ 优依/尤克夏/戴安娜/琪琪露/米娜/莉莉/菲玖/贞德 8 张大立绘。
- *   2) 修「右引号停在第一行行尾」：.custom-nvn-text 由 flex 改为 block，右引号跟随最后一个字。
- *   3) NEW_CHARACTERS 带 portrait 的角色自动放开弹层（基础 CSS 原本对非名单角色 pointer-events:none）。
- *
- * 【2026-11-09 · 现代世界观改造（第一步：外部图链只留两个人）】
- *   新坑是现代世界观，原来那套西幻 / 黑魂 / 摇篮 / 勇战的角色都用不上了。
- *     · 图床直链 origin.picgo.net：2126 条 → 50 条，只剩两个人的整套规则 ——
- *         克蕾雅：23 条头像规则（默认 + 22 种神态差分）+ 1 张大立绘 + 深色主题同名规则
- *         玛丽·安：小头像 + 深色主题同名规则（原与莉耶芙共用一张图，已拆开）
- *       这两套留给以后照着抄格式；换图只改 url(...) 里的地址即可。
- *     · 勇战 / MGQ 151 张大立绘、8 名大立绘角色、全体旧角色表情差分：整块删。
- *     · NEW_CHARACTERS 表清空（原 197 条），以后加人再往里写。
- *     · 深色主题里重抄一遍的「摇篮 / 爱丽丝系」空壳块：整块删。
- *     · apply() 里那段 12.6 万字符、只服务旧角色名单的内联 CSS：删（生成器已覆盖）。
- *
- * 【2026-11-09 · 第二步：名字名单 + 个性配色也收口到两个人】
- *   为什么上一步之后「莉莉娅」还在：外链删了，但各条规则里的旧角色名字名单没删。
- *   她仍被当成「有大立绘的角色」→ 给手型指针 + 放开头像弹层；可图已经没了，
- *   于是头像框空着、还能点、点开是一张裂图。现在把名单一起裁掉：
- *     · 6 组名单规则（非立绘 NPC 暗夜微光排除表 / 手型指针 / 弹层禁用 / 花朵名牌 /
- *       隐藏 fallback 文字框 / BS2 贴图定位），亮+暗各一份，全部裁到只剩
- *       克蕾雅、卢克蕾齐雅（她的别名）、玛丽·安。
- *       新角色因此一律落到「普通 NPC」默认样式：头像框有暗夜微光底纹 + 名字兜底，
- *       点不开、也不会出现裂图。
- *     · 译名首字色池（西/艾/安/阿… 那一大段莫兰迪自动配色）整段删 —— 那是给西幻
- *       译名准备的，现代世界观用不上。
- *     · 角色专属配色只留两条作格式参考：克蕾雅（琥珀金）、玛丽·安（翠草清绿）。
- *       其余（爱丽丝家族白金、摇篮、BS2、勇战那一堆）全删。没配色的角色走默认
- *       --main（#8896a5）。
- *     · 摇篮那一段配色、BS2 爱丽丝·利德尔短名绑定：删。
- *   结果：整份 CSS 里 [data-char] 只剩这三个名字，其余角色一律走默认。
- *
- * 【2026-11-09 · 第三步：外观改成现代版（无气泡 + 角色主色下划线）】
- *   奇幻那套外观（斜切金框、蔷薇纹、菱形端点、衬线字、暗夜微光底纹、渐变竖条）
- *   全部拆掉，按你选的「聊天气泡」方向重画，但把气泡框也去掉了：
- *     · 头像 100×125 尺寸不变，只换 12px 圆角 + 细描边 + 柔和投影；
- *     · 头像框底一根角色主色下划线（带辉光）；
- *     · 名字行 = 角色色圆点 + 名字（首字用角色色）+ 动作徽章（一根细下划线）；
- *     · 台词不再有任何框 / 竖条 / 引号装饰，只有极淡的「」；
- *     · 动作描写在文字宽度上压一根角色主色下划线（渐变收尾）；
- *     · 玩家行整行镜像靠右，主色换成冰蓝；
- *     · 字体由衬线换成思源黑体 / 微软雅黑。
- *   保留不动：立绘弹层、双语 ruby、尾段隐藏、日文兜底、克蕾雅 / 玛丽·安 的图与配色。
- *
- * 【2026-11-09 · 第四步：B 版排布 + 主题色文字 + ☀/☾ 亮暗切换】
- *   1) 头像框底那根横线去掉了（只剩动作描写那根）。
- *   2) 排布改成 B：整行内容垂直居中。头像固定 125 高，而 1 行台词只有 83 高，
- *      原来顶部对齐时底下会空出 42px；居中后空白上下对半分，长台词自动撑开。
- *   3) 神态徽章（慌张 / 脸红通常…）和动作描写从灰字改成角色主题色：
- *      color-mix(main 70%, --fx)，亮色主题再压深一档（56% / 58%）保对比度。
- *   4) 名字行最右加一个纯 CSS 画的 ☀ / ☾ 按钮（每条消息一个）：
- *      显示的是「点了会变成什么」——深色里显示太阳，浅色里显示月亮。
- *      点击 → setTheme() → 写 localStorage('nvn-dlg-mode') → 立刻换样式表；
- *      reconcile() 里 userTheme 优先于「按卡名猜主题」，所以两秒一次的自动
- *      重算不会把手动选择冲掉。关掉脚本时会把手上的按钮一起清掉。
- *
- * 【2026-11-09 · 第五步：跟卡里的旧版 v2.4.0 打架 → 隔离 + 加固】
- *   症状：导入后金框、金线、胶囊徽章又回来了，只有那个 ☀ 变成一个小灰方块。
- *   根因：这张卡自己还挂着一份「对白美化·CSS注入器 v2.4.0」（启用中，49 万字符），
- *        它用的是同一个 STYLE_ID = 'nvn-dialogue-theme-css'，每次 reconcile 都会
- *        querySelectorAll('#'+STYLE_ID) 然后 remove —— 把我们刚注入的样式整套删掉，
- *        再塞它自己那份奇幻 CSS。所以「我们的 JS 在跑（按钮被插进去了），但 CSS 没了」。
- *   三处加固：
- *     1) STYLE_ID 改成 nvn-dialogue-theme-modern，SLOT 也改名 → 两个脚本互不覆盖；
- *     2) 视觉层每个选择器补 :not(#nvn-modern-boost)，白送 1 个 ID 权重
- *        （旧版有一堆 (0,3,1) 的高权重规则，普通类选择器压不住）；
- *     3) 专门清掉旧版的装饰：.custom-nvn-content::before/::after 的上下金线、
- *        内容栏 1px 边框、name-plate / avatar-img / motion 上的蔷薇与内嵌细框。
- *   另外：台词的小括号「」也改成跟角色主题色走了（之前是死灰）。
- *   ⚠ 治本还是去「酒馆助手 → 脚本」把那张卡里的旧版 v2.4.0 停用或删掉：
- *     留着它还会每两秒重算一次 24 万字符 CSS，纯属白烧。
- *
- * 【2026-11-09 · 第六步：TauriTavern 上的两个 bug】
- *   ① 多出一对空「」：模板里第二段台词是 `<div class="nvn-text nvn-text-tail">`，
- *      酒馆改名后它同时带 `.custom-nvn-text`。上一轮为了压旧版脚本给所有选择器加了
- *      :not(#…) 权重，于是 `.custom-nvn-text { display:block !important }`（1,1,0）
- *      反过来压过了原来那条隐藏规则（0,3,1）→ 空尾段被撑开，只剩一对空引号。
- *      修法：① 再写一条同样带权重的隐藏规则；② 脚本 sweepEmptyTails() 用行内
- *      `display:none !important` 兜底——行内权重最高，且不依赖 :has()（老内核也能用）。
- *   ② 点 ☀ 没反应：原来靠内存变量 `current` 判断当前主题，宿主重渲染后可能对不上。
- *      现在改成直接读 `<style data-nvn-theme>`；click / pointerup 双通道（capture）+
- *      250ms 去重；顺手回收上一版脚本遗留、没有监听器的按钮；注入被吞就绕过 apply()
- *      硬塞一次；按钮补 pointer-events:auto。另留 __NVN_SET_THEME__ / __NVN_DIAG__ 后门。
- *
- * 【依赖】酒馆助手。关掉它对白会失去样式；此时可把同目录的
- *         「对白美化-自定义CSS版-中文与双语通用.css」整段粘进
- *         酒馆「用户设置 → 自定义CSS」。
- * ========================================================================= */
 (async function () {
   'use strict';
 
-  const VERSION  = '2.4.36';
+  const VERSION  = '2.5.00';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
@@ -1491,6 +1207,341 @@
       portrait: 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/yuanqi/nozomi/uniform.webp',
       big: true },
   ];
+
+  /* =========================================================================
+   * 紧凑角色构造器：由高饱和 main 自动推导 sub / rgb / motion，减少脚本体积
+   * codes: h高兴 a生气 s难过 p疑惑 u惊讶 g得意 t思考 k腹黑笑 y害羞 f皱眉 nb脸红通常
+   * ========================================================================= */
+  const ASSET_BASE = 'https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/';
+  const ACT_MAP = {
+    h: ['高兴', 'happy.webp'], a: ['生气', 'angry.webp'], s: ['难过', 'sad.webp'],
+    p: ['疑惑', 'puzzled.webp'], u: ['惊讶', 'surprised.webp'], g: ['得意', 'smug.webp'],
+    t: ['思考', 'thinking.webp'], k: ['腹黑笑', 'smirk.webp'], y: ['害羞', 'shy.webp'],
+    f: ['皱眉', 'frown.webp'], nb: ['脸红', 'normal-blush.webp'],
+  };
+  function _hexToRgb(hex) {
+    const h = hex.replace('#', '');
+    return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)].join(', ');
+  }
+  function _mixHex(hex, target, ratio) {
+    const h = hex.replace('#', '');
+    const c = [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+    const t = target === 'w' ? 255 : 0;
+    return '#' + c.map(function (v) { return Math.round(v + (t - v) * ratio).toString(16).padStart(2, '0'); }).join('');
+  }
+  function mkChar(chars, path, main, codes, hasBlush, portrait) {
+    const base = ASSET_BASE + path + '/';
+    const obj = {
+      chars: Array.isArray(chars) ? chars : [chars],
+      main: main,
+      sub: _mixHex(main, 'w', 0.42),
+      rgb: _hexToRgb(main),
+      motion: _mixHex(main, 'b', 0.10),
+      avatar: base + 'normal.webp',
+    };
+    if (hasBlush) obj.blush = base + 'blush.webp';
+    if (codes) {
+      const actions = {};
+      for (const code of codes.split(' ')) {
+        const item = ACT_MAP[code];
+        if (item) actions[item[0]] = base + item[1];
+      }
+      if (Object.keys(actions).length) obj.actions = actions;
+    }
+    if (portrait) { obj.portrait = base + portrait; obj.big = true; }
+    return obj;
+  }
+
+ /* ============================== 新增 24 部作品 ============================== */
+  NEW_CHARACTERS.push(
+    /* 9nine As */
+    mkChar('克莉丝涅娅', '9nine-as/kelisinieya', '#f2ce66', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar(['如月结那', '结那'], '9nine-as/ruyuejiena', '#92aae8', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar(['阿尔特西亚', '阿尔'], '9nine-as/aertexiya', '#9ec6f0', 'h a s p u g t k', 1, 'outfit1.webp'),
+
+    /* 放课后的灰姑娘 */
+    mkChar('宇佐川雪子', 'fangkehou/yuzuochuanxuezi', '#f49454', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('尤娜', 'fangkehou/youna', '#ef6c78', '', 0, 'uniform.webp'),
+    mkChar('早见美菜子', 'fangkehou/zaojianmeicaizi', '#7894cc', '', 0, ''),
+    mkChar('王城世菜', 'fangkehou/wangchengshicai', '#d4c2dc', 'h a s p u g t', 1, ''),
+    mkChar('王城茉莉爱', 'fangkehou/wangchengmoliai', '#e4ced8', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('田寄多乃实', 'fangkehou/tianjiduonaishi', '#b4a8b8', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('睦美', 'fangkehou/mumei', '#e4cc82', '', 0, ''),
+    mkChar('筑岛筑紫', 'fangkehou/zhudaozhuzi', '#f4a2c4', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('米莎亲', 'fangkehou/mishaqin', '#f6967a', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('长南阳佳', 'fangkehou/zhangnanyangjia', '#d8b698', 'h a s p u t', 1, 'uniform.webp'),
+
+    /* 廃村少女 */
+    mkChar('乌野燕', 'feicunshaonv/wuyeyan', '#dc9462', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('八云梓', 'feicunshaonv/bayunzi', '#ce8b66', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('刑部澪', 'feicunshaonv/xingbuling', '#9c7ce0', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('加贺美朱理', 'feicunshaonv/jiahemeizhuli', '#648ae0', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('古户由良良', 'feicunshaonv/guhuyouliangliang', '#aba0b4', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('楪爱香', 'feicunshaonv/yeaixiang', '#f28098', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('笼女', 'feicunshaonv/longnv', '#dfd0ba', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar(['艾玛·A·药师院', '艾玛'], 'feicunshaonv/aima-a-yaoshiyuan', '#f2d880', 'h a s p u g t k', 1, 'outfit1.webp'),
+
+    /* 廃村少女2 幽秘蛊惑的姬之匣 */
+    mkChar('御汐阳渚', 'feicunshaonv2/yuxiyangzhu', '#8c72e2', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('心珠', 'feicunshaonv2/xinzhu', '#cbb6ee', 'h a p u g t', 1, 'outfit1.webp'),
+    mkChar('新沼铃', 'feicunshaonv2/xinzhaoling', '#eb965e', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('都筑七七濑', 'feicunshaonv2/douzhuqiqilai', '#d48f68', 'h a s p u g k', 1, 'outfit1.webp'),
+    mkChar('龙灯八千世', 'feicunshaonv2/longdengbaqianshi', '#58c2d2', 'h a p u g t k', 1, 'outfit1.webp'),
+
+    /* 黄昏的禁忌之药 */
+    mkChar('南户朱音', 'huanghun/nanhuzhuyin', '#d69066', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('岩永皋月', 'huanghun/yanyonggaoyue', '#f08e4e', '', 0, 'outfit1.webp'),
+    mkChar('岩永翔子', 'huanghun/yanyongxiangzi', '#ec9e6c', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('春日伊吕波', 'huanghun/chunriyilvbo', '#60cc94', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('皆神沙久耶', 'huanghun/jieshenshajiuye', '#9e7ce2', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('稻垣美里', 'huanghun/daoyuanmeili', '#be84e8', '', 0, ''),
+    mkChar('银子', 'huanghun/yinzi', '#a2d6ea', 'h a s p u g k', 1, 'outfit1.webp'),
+    mkChar('高见沙智子', 'huanghun/gaojianshazhizi', '#f2cf66', 'h a s p u t', 1, 'outfit1.webp'),
+
+    /* 花之天使的夏日恋歌 */
+    mkChar('朱鹭坂七绪', 'huanotianshi/zhulubanqixu', '#987ae2', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('椿姬恋羽', 'huanotianshi/chunjilianyu', '#d89468', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('碧衣愁', 'huanotianshi/biyichou', '#dfa070', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('美鸠夏乃', 'huanotianshi/meijiuxianai', '#f49482', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('美鸠深春', 'huanotianshi/meijiushenchun', '#d86484', '', 0, 'outfit1.webp'),
+    mkChar(['阿德尔海特·冯·贝格施特拉瑟', '阿德尔海特'], 'huanotianshi/adeerhaite-feng-beigeshi-bc7c', '#f0c862', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('齐须莉玖', 'huanotianshi/qixulijiu', '#e292e6', 'h a s p u g t k', 1, 'outfit1.webp'),
+
+    /* 花与乙女的祝福 */
+    mkChar('佐上薰', 'huayuyinv/zuoshangxun', '#7cd2f2', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('名木城都', 'huayuyinv/mingmuchengdou', '#ee6296', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('天法院绫音', 'huayuyinv/tianfayuanlingyin', '#f4d668', 'h a s p u t', 0, 'uniform.webp'),
+    mkChar('宇佐美沙枝', 'huayuyinv/yuzuomeishazhi', '#e0ae82', '', 0, 'outfit1.webp'),
+    mkChar('宝生圣佳', 'huayuyinv/baoshengshengjia', '#5e82dc', 'h a s p u', 1, 'uniform.webp'),
+    mkChar('山内', 'huayuyinv/shannei', '#dfba78', '', 0, ''),
+    mkChar('山本真弥子', 'huayuyinv/shanbenzhenmizi', '#eb945e', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('月丘彰', 'huayuyinv/yueqiuzhang', '#df7e6c', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('月丘晶子', 'huayuyinv/yueqiuzhang', '#e88876', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('蓝那祈', 'huayuyinv/lannaqi', '#a67ce6', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('鹿岛志鹤', 'huayuyinv/ludaozhihe', '#eec264', 'h a s p u t', 1, 'uniform.webp'),
+
+    /* 景之海的艾佩莉娅 */
+    mkChar('Thinker', 'jingzhihai/thinker', '#b89c8a', '', 0, ''),
+    mkChar('一久远', 'jingzhihai/yijiuyuan', '#f2ce66', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('一空观', 'jingzhihai/yikongguan', '#c49e84', '', 0, ''),
+    mkChar('东真白', 'jingzhihai/dongzhenbai', '#868ae8', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('桐岛三羽', 'jingzhihai/tongdaosanyu', '#d4a886', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('桐岛零一', 'jingzhihai/tongdaolingyi', '#c4cf6e', '', 0, ''),
+    mkChar('正圆七海', 'jingzhihai/zhengyuanqihai', '#ec6292', '', 0, 'outfit1.webp'),
+    mkChar(['艾佩理雅', '艾佩莉娅'], 'jingzhihai/aipeiliya', '#8ed8ec', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('龙宫沙罗', 'jingzhihai/longgongshaluo', '#efc25e', '', 0, 'outfit1.webp'),
+
+    /* 金辉恋曲四重奏 */
+    mkChar(['伊罗艾', '伊罗艾·迪·卡巴列罗·伊斯塔'], 'jinhui/yiluoai', '#dec47c', '', 0, ''),
+    mkChar('僧间理亚', 'jinhui/sengjianliya', '#eeca68', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('加贺爱子', 'jinhui/jiaheaizi', '#ee9c68', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar(['卡米娜尔·路·普鲁提亚·索尔特雷吉·希斯雅', '卡米娜尔'], 'jinhui/kaminaer-lu-pulutiya-suo-4441', '#f2bad0', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('城崎绚华', 'jinhui/chengqixuanhua', '#a47ee4', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('城崎老爷子', 'jinhui/chengqilaoyezi', '#aab8c8', '', 0, ''),
+    mkChar('妃玲奈', 'jinhui/feilingnai', '#f2be52', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('市松千惠华', 'jinhui/shisongqianhuihua', '#7ae4c2', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar(['希尔维娅·路·库洛丝克劳恩·索尔特雷吉·希斯雅', '希尔维娅'], 'jinhui/xierweiya-lu-kuluosikela-c855', '#f4dc76', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('栗生茜', 'jinhui/lishengqian', '#ec6266', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar(['玛利亚·毕肖普', '玛利亚'], 'jinhui/maliya-bixiaopu', '#a6a2bc', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('缟投良', 'jinhui/gaotouliang', '#7c90c4', '', 0, ''),
+    mkChar('艾吉斯娜', 'jinhui/aijisina', '#78d4cc', '', 0, 'outfit1.webp'),
+    mkChar(['艾罗伊娜·蒂·卡巴列罗·易丝塔', '艾罗伊娜'], 'jinhui/ailuoyina-di-kabalieluo-bc93', '#e8d288', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('鹿苑寺菊千代', 'jinhui/luyuansijuqiandai', '#da9262', '', 0, ''),
+
+    /* 我的恋天使太废柴了好可怕 */
+    mkChar('乾依铃', 'lianzhishi/qianyiling', '#9c96ec', 'h a s p u', 1, 'uniform.webp'),
+    mkChar('佐久真诗', 'lianzhishi/zuojiuzhenshi', '#7884dc', 'h a s p u', 0, 'uniform.webp'),
+    mkChar('冲恒真空', 'lianzhishi/chonghengzhenkong', '#88daf4', 'h a p u g', 1, 'outfit1.webp'),
+    mkChar('宇城杏树', 'lianzhishi/yuchengxingshu', '#e6d8a2', '', 0, ''),
+    mkChar('峰越琴雏', 'lianzhishi/fengyueqinchu', '#d46280', 'h a s p u k', 1, 'outfit1.webp'),
+    mkChar('幸咲来琉', 'lianzhishi/xingxiaolailiu', '#c8b8f0', 'h a s p u k', 1, 'outfit1.webp'),
+    mkChar('恋见爱露', 'lianzhishi/lianjianailu', '#f278b4', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('绵贯绢', 'lianzhishi/mianguanjuan', '#bde678', 'h a s p u', 1, 'outfit1.webp'),
+    mkChar('西筱琳果', 'lianzhishi/xixiaolinguo', '#cc8c68', 'a s p u g t k', 1, 'uniform.webp'),
+
+    /* 她们的流仪 */
+    mkChar('兔月胡太郎', 'liuyi/tuyuehutailang', '#dfb288', '', 1, 'uniform.webp'),
+    mkChar('弓曳火乃香', 'liuyi/gongyehuonaixiang', '#ec6c9e', 'h a s p u', 1, 'outfit1.webp'),
+    mkChar('由希濑濑里', 'liuyi/youxilailaili', '#64beff', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('白银朱音', 'liuyi/baiyinzhuyin', '#f2c45a', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('白银鸟羽莉', 'liuyi/baiyinniaoyuli', '#f0dc74', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('秋名凉月', 'liuyi/qiumingliangyue', '#f49ec2', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('花叶千佐都', 'liuyi/huayeqianzuodou', '#94e29a', 'h a s p u t', 1, 'uniform.webp'),
+
+    /* 魔女的夜宴 */
+    mkChar('久岛佳苗', 'monvdeyeyan/jiudaojiamiao', '#d69066', '', 0, ''),
+    mkChar('保科太一', 'monvdeyeyan/baoketaiyi', '#9aa8b8', '', 0, ''),
+    mkChar('假屋和奏', 'monvdeyeyan/jiawuhezou', '#f0d684', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('因幡巡', 'monvdeyeyan/yinfanxun', '#f49a52', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('户隐憧子', 'monvdeyeyan/huyinchongzi', '#ca8868', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('椎叶䌷', 'monvdeyeyan/chuiyechou', '#d4a88a', 'h a s p u g t k nb', 0, 'uniform.webp'),
+    mkChar('海道秀明', 'monvdeyeyan/haidaoxiuming', '#aa96ce', '', 0, ''),
+    mkChar('相马七绪', 'monvdeyeyan/xiangmaqixu', '#f2889c', '', 0, 'outfit1.webp'),
+    mkChar('绫地宁宁', 'monvdeyeyan/lingdiningning', '#c4b2ee', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('赤城', 'monvdeyeyan/chicheng', '#86c6f0', '', 0, ''),
+    mkChar('越路美穗', 'monvdeyeyan/yuelumeisui', '#5cc288', '', 0, ''),
+
+    /* 千恋万花 */
+    mkChar('丛雨', 'qianlianwanhua/congyu', '#9ce89e', 'h a p u g t k', 1, 'uniform.webp'),
+    mkChar('常陆茉子', 'qianlianwanhua/changlumozi', '#72b6b0', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('朝武安晴', 'qianlianwanhua/chaowuanqing', '#688cd8', '', 0, ''),
+    mkChar('朝武芳乃', 'qianlianwanhua/chaowufangnai', '#b8d8ee', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('猪谷心子', 'qianlianwanhua/zhuguxinzi', '#68c88c', '', 0, ''),
+    mkChar(['蕾娜·列支敦瑙尔', '蕾娜'], 'qianlianwanhua/leina-liezhidunnaoer', '#f4d464', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('鞍马小春', 'qianlianwanhua/anmaxiaochun', '#f4869e', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('鞍马玄十郎', 'qianlianwanhua/anmaxuanshilang', '#a4b8cc', '', 0, ''),
+    mkChar('马庭芦花', 'qianlianwanhua/matingluhua', '#d4689c', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('驹川美津叶', 'qianlianwanhua/juchuanmeijinye', '#7a96c2', '', 0, ''),
+
+    /* 少女爱上姐姐2 */
+    mkChar('七七原薰子', 'shaoaijie2/qiqiyuanxunzi', '#9a7ee2', 'h a s p u t nb', 0, 'uniform.webp'),
+    mkChar('乌橘沙世子', 'shaoaijie2/wujushashizi', '#d6c284', '', 0, ''),
+    mkChar('冷泉淡雪', 'shaoaijie2/lengquandanxue', '#f2de88', 'h a s p u t k', 1, 'uniform.webp'),
+    mkChar(['凯莉·古兰瑟留斯', '凯莉'], 'shaoaijie2/kaili-gulanseliusi', '#e0ac80', '', 1, 'uniform.webp'),
+    mkChar('哘雅乐乃', 'shaoaijie2/xingyayuenai', '#9876de', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('妃宫千早', 'shaoaijie2/feigongqianzao', '#e2d6c4', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('宫藤阳向', 'shaoaijie2/gongtengyangxiang', '#da9668', '', 0, ''),
+    mkChar('度会史', 'shaoaijie2/duhuishi', '#8296c8', 'a p u nb', 0, 'uniform.webp'),
+    mkChar('御门妙子', 'shaoaijie2/yumenmiaozi', '#cca286', '', 0, ''),
+    mkChar('柏木优雨', 'shaoaijie2/baimuyouyu', '#ad82e4', 'h a s u t', 1, 'uniform.webp'),
+    mkChar('梶浦绯纱子', 'shaoaijie2/weipufeishazi', '#d4865e', '', 0, ''),
+    mkChar('皆濑初音', 'shaoaijie2/jielaichuyin', '#e4b890', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('真行寺茉清', 'shaoaijie2/zhenxingsimoqing', '#7484e2', '', 0, ''),
+    mkChar('石动塞', 'shaoaijie2/shidongsai', '#7488c8', '', 0, ''),
+    mkChar('神近香织理', 'shaoaijie2/shenjinxiangzhili', '#ded094', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('莳田圣', 'shaoaijie2/shitiansheng', '#efc462', '', 1, 'outfit1.webp'),
+
+    /* 少女世界的生存之道 */
+    mkChar('AI母亲', 'shaonvshijie/aimuqin', '#9ebcd0', '', 0, ''),
+    mkChar('佐伯瑠璃子', 'shaonvshijie/zuoboliulizi', '#f2ca62', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('姬乃咲', 'shaonvshijie/jinaixiao', '#f2adc8', '', 0, ''),
+    mkChar('姬乃灯里', 'shaonvshijie/jinaidengli', '#f490b6', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('守屋美玖', 'shaonvshijie/shouwumeijiu', '#86b4c8', 'h a s p t', 1, 'uniform.webp'),
+    mkChar('守屋西雷', 'shaonvshijie/shouwuxilei', '#b8a4dc', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('本多真由美', 'shaonvshijie/benduozhenyoumei', '#e2b678', '', 0, 'outfit1.webp'),
+    mkChar('片桐八重花', 'shaonvshijie/piantongbazhonghua', '#c69ee0', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('片桐结', 'shaonvshijie/piantongjie', '#d8bcc8', 'h a s p u g t k', 0, 'uniform.webp'),
+    mkChar('藤堂凛', 'shaonvshijie/tengtanglin', '#a4c6d2', 'h a s p u t k', 1, 'uniform.webp'),
+
+    /* 树莓立方体 */
+    mkChar('咏', 'shumei/yong', '#dfb084', 'h a s p u g', 1, 'outfit1.webp'),
+    mkChar('城田舞', 'shumei/chengtianwu', '#8286e4', '', 0, ''),
+    mkChar(['樱庭·维多利亚·琉莉', '琉莉'], 'shumei/yingting-weiduoliya-liul-9393', '#bcaee8', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('海道美琴', 'shumei/haidaomeiqin', '#cc8c64', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('狩野凑', 'shumei/shouyecou', '#ec6296', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('结月悠', 'shumei/jieyueyou', '#f4d264', 'h a p u g t k', 1, 'uniform.webp'),
+
+    /* 天津罪 */
+    mkChar('恋冢爱', 'tianjinzui/lianzhongai', '#e6d8b8', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('朝比奈响子', 'tianjinzui/chaobinaixiangzi', '#c98868', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('水无月萤', 'tianjinzui/shuiwuyueying', '#6ea6cc', 'h a s p u g t k', 0, 'uniform.webp'),
+    mkChar('浅川光一', 'tianjinzui/qianchuanguangyi', '#cc9470', '', 0, ''),
+    mkChar('浅川铃夏', 'tianjinzui/qianchuanlingxia', '#e09e68', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('织部心', 'tianjinzui/zhibuxin', '#d49262', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('织部杏月', 'tianjinzui/zhibuxingyue', '#8e82dc', 'h a s p u g t', 1, 'outfit1.webp'),
+
+    /* 不要践踏天使的羽毛 */
+    mkChar('十二次憩', 'tianshiyumao/shierciqi', '#a27ee2', 'h a s u g t k', 1, 'uniform.webp'),
+    mkChar('双见空', 'tianshiyumao/shuangjiankong', '#f2cf62', 'h s p u g t k', 1, 'uniform.webp'),
+    mkChar('双见菖蒲', 'tianshiyumao/shuangjianchangpu', '#7c82e4', 'h a s p u g t k', 1, 'uniform-sun.webp'),
+    mkChar('土御门阳华', 'tianshiyumao/tuyumenyanghua', '#e2aa7c', '', 0, ''),
+    mkChar('夏日光', 'tianshiyumao/xiariguang', '#9ad4f0', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('夏日照', 'tianshiyumao/xiarizhao', '#8cc2ec', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('夕星明', 'tianshiyumao/xixingming', '#dc5e78', '', 0, ''),
+    mkChar('夕星羽音', 'tianshiyumao/xixingyuyin', '#e496e2', 'h a s p u g t k', 0, 'uniform.webp'),
+    mkChar(['希思黎', '修女·希思黎'], 'tianshiyumao/xisili', '#f084b6', '', 0, ''),
+    mkChar(['特罗肯海特·冯·梅璐库雅', '特罗肯海特', '梅璐库雅'], 'tianshiyumao/teluokenhaite-feng-meilu-0060', '#c6c4d8', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('艾丽娅', 'tianshiyumao/ailiya', '#eed884', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('荷尔拜因', 'tianshiyumao/heerbaiyin', '#e8c466', '', 0, ''),
+    mkChar('鹰司', 'tianshiyumao/yingsi', '#f0c0cc', '', 0, 'uniform.webp'),
+    mkChar('黑涡摘', 'tianshiyumao/heiwozhai', '#f48ea4', '', 0, 'outfit1.webp'),
+
+    /* 特里诺兰 */
+    mkChar('七波馨', 'trino/qiboxin', '#a6b8ca', '', 0, ''),
+    mkChar('宫风夕梨', 'trino/gongfengxili', '#f49ac0', 'h a s p u g t k', 0, 'uniform.webp'),
+    mkChar('日比野绫花', 'trino/ribiyelinghua', '#e8a2ac', '', 1, 'uniform.webp'),
+    mkChar('白樱', 'trino/baiying', '#b6d4f2', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('百南美', 'trino/bainanmei', '#d6ac8e', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('紬木沙罗', 'trino/choumushaluo', '#b092dc', 'h a s u g t k', 1, 'uniform.webp'),
+    mkChar('花子F', 'trino/huazif', '#f0d680', 'h a s p u t', 1, 'uniform.webp'),
+
+    /* 向日葵的教会与长长的暑假 */
+    mkChar('夏咲咏', 'xiangrikui/xiaxiaoyong', '#e092e4', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar(['胧白·河马·金刚石', '胧白'], 'xiangrikui/longbai-hema-jingangshi', '#e6ce7e', 'h a s p t k', 1, 'outfit1.webp'),
+    mkChar('野野原雏樱', 'xiangrikui/yeyeyuanchuying', '#f0dce6', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('鲇濑月子', 'xiangrikui/nianlaiyuezi', '#b498de', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('鹭月流华', 'xiangrikui/luyueliuhua', '#6c8ae2', 'h a s p u g', 1, 'outfit1.webp'),
+
+    /* 幸运草的约定 */
+    mkChar('乃木坂久远', 'xingyuncao/naimubanjiuyuan', '#8ac8a6', '', 0, ''),
+    mkChar('加贺美光瑠', 'xingyuncao/jiahemeiguangliu', '#b6c4ee', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('加贺美碧瑠', 'xingyuncao/jiahemeibiliu', '#a2d8d6', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('结桥泉', 'xingyuncao/jieqiaoquan', '#f4ae54', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('西园寺', 'xingyuncao/xiyuansi', '#ebd284', '', 0, ''),
+    mkChar('西园寺瑞穗', 'xingyuncao/xiyuansiruisui', '#ee9a70', '', 0, 'outfit1.webp'),
+    mkChar('飞鸟凛', 'xingyuncao/feiniaolin', '#b89ce2', 'h a p u g k', 1, 'uniform.webp'),
+    mkChar('鹰仓义臣', 'xingyuncao/yingcangyichen', '#cba286', '', 0, ''),
+    mkChar('鹰仓杏璃', 'xingyuncao/yingcangxingli', '#8274e8', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('鹰仓杏铃', 'xingyuncao/yingcangxingling', '#f4d262', 'h a s p u g k', 1, 'uniform.webp'),
+    mkChar('龙胆燕', 'xingyuncao/longdanyan', '#f4849c', 'h a s p u g', 1, 'uniform.webp'),
+    mkChar('龙胆虎吉', 'xingyuncao/longdanhuji', '#f2a64e', '', 0, ''),
+
+    /* 樱之刻 · 新登场/不同名角色（直接常驻生效） */
+    mkChar('中村丽华', 'yingzhike/zhongcunlihua', '#b2cad4', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('坂本昭三', 'yingzhike/banbenzhaosan', '#c8a288', '', 0, ''),
+    mkChar('恩田放哉', 'yingzhike/entianfangzai', '#e6ce82', '', 0, ''),
+    mkChar('恩田雾乃', 'yingzhike/entianwunai', '#b8c8d6', '', 0, ''),
+    mkChar('本间心铃', 'yingzhike/benjianxinling', '#8b7de0', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('本间礼次郎', 'yingzhike/benjianlicilang', '#a8b6c8', '', 0, ''),
+    mkChar('村田清彦', 'yingzhike/cuntianqingyan', '#b0c4cc', '', 0, ''),
+    mkChar('片贝拓实', 'yingzhike/pianbeituoshi', '#e4b872', '', 0, ''),
+    mkChar(['马蒂·弗里曼', '马蒂'], 'yingzhike/madi-fuliman', '#f0ca66', '', 0, ''),
+    mkChar('鸟谷静流', 'yingzhike/niaogujingliu', '#68a6ec', 'h a s p u t k', 0, 'uniform.webp'),
+
+    /* 银色遥远 */
+    mkChar('名白椛', 'yinseyaoyuan/mingbaihua', '#dc9666', 'h a s p u g t', 1, 'uniform-hs.webp'),
+    mkChar('如月瑞羽', 'yinseyaoyuan/ruyueruiyu', '#64b4f0', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('新见雪月', 'yinseyaoyuan/xinjianxueyue', '#a27ce4', 'h a s p u k', 1, 'uniform-hs.webp'),
+    mkChar('桧崎玛丽亚', 'yinseyaoyuan/guiqimaliya', '#e6ce88', '', 0, ''),
+    mkChar('榊朱音', 'yinseyaoyuan/shenzhuyin', '#f05e64', '', 0, ''),
+    mkChar(['爱丽莎·阿申斯基', '爱丽莎'], 'yinseyaoyuan/ailisha-ashensiji', '#f49ac0', 'h a s p u g', 1, 'outfit1.webp'),
+    mkChar('苍井雏多', 'yinseyaoyuan/cangjingchuduo', '#f89248', 'h a s p u g', 1, 'uniform-hs.webp'),
+    mkChar('莉莉安', 'yinseyaoyuan/lilian', '#7e88d4', '', 0, ''),
+    mkChar('西园百百花', 'yinseyaoyuan/xiyuanbaibaihua', '#ce8a64', '', 0, ''),
+    mkChar(['贝斯莉·萝丝·迪兹莉', '贝斯莉'], 'yinseyaoyuan/beisili-luosi-dizili', '#f2ce64', 'h a s p u g k', 1, 'uniform-hs.webp'),
+    mkChar('阿久津怜士', 'yinseyaoyuan/ajiujinlianshi', '#92a4b6', '', 0, ''),
+
+    /* 智以类聚 */
+    mkChar('三宅康博', 'zhiyileiju/sanzhaikangbo', '#c88a66', '', 0, ''),
+    mkChar('冬篠宫和', 'zhiyileiju/dongxiaogonghe', '#f29c5c', '', 0, 'uniform.webp'),
+    mkChar('和久津智', 'zhiyileiju/hejiujinzhi', '#d89662', 'h a s p u t k', 1, 'outfit1.webp'),
+    mkChar('和久津真耶', 'zhiyileiju/hejiujinzhenye', '#c6a088', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('尹央辉', 'zhiyileiju/yinyanghui', '#58be98', '', 0, 'outfit1.webp'),
+    mkChar('才野原惠', 'zhiyileiju/caiyeyuanhui', '#a87ee6', '', 0, ''),
+    mkChar('白鞘伊代', 'zhiyileiju/baiqiaoyidai', '#f2cc62', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('皆元瑠衣', 'zhiyileiju/jieyuanliuyi', '#df667c', 'h a s p u g t', 1, 'outfit1.webp'),
+    mkChar('花城花鸡', 'zhiyileiju/huachenghuaji', '#e8d07e', 'h a s p u g t k', 1, 'uniform.webp'),
+    mkChar('茅场茜子', 'zhiyileiju/maochangqianzi', '#6088dc', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('蝉丸伊鹤', 'zhiyileiju/chanwanyihe', '#62c49c', '', 0, ''),
+    mkChar('鸣泷心和', 'zhiyileiju/minglongxinhe', '#f496bc', 'h a s p u g t', 1, 'uniform.webp')
+  );
+
+  /* =========================================================================
+   * 樱之刻 · 同名角色十年后覆盖表（仅当世界书启用 [樱之刻][角色]🌸xxx 时自动切换）
+   * ========================================================================= */
+  const SAKURA_TOKI_OVERRIDES = [
+    mkChar('冰川里奈', 'yingzhike/bingchuanlinai', '#a8c8ec', 'h a s p u t', 1, 'outfit1.webp'),
+    mkChar('冰川露莉莴', 'yingzhike/bingchuanluliwo', '#f4a0c4', 'h a s p u g t', 1, 'uniform.webp'),
+    mkChar('咲崎樱子', 'yingzhike/xiaoqiyingzi', '#ee82a8', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('夏目蓝', 'yingzhike/xiamulan', '#d6926a', 'h a s p u t k', 1, 'outfit1.webp'),
+    mkChar(['御樱禀', '御樱稟'], 'yingzhike/yuyingbing', '#ea6868', 'h a s p u t', 0, 'outfit1.webp'),
+    mkChar('恩田宁', 'yingzhike/entianning', '#ebd082', 'h a s p u', 0, 'outfit1.webp'),
+    mkChar('柊乃乃未', 'yingzhike/zhongnainaiwei', '#dda4bc', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('栗山奈津子', 'yingzhike/lishannaijinzi', '#bc92da', 'h a s p u t', 1, 'uniform.webp'),
+    mkChar('草薙健一郎', 'yingzhike/caotijianyilang', '#cca288', '', 0, ''),
+    mkChar('长山香奈', 'yingzhike/zhangshanxiangnai', '#dfae86', 'h a s p u g t k', 1, 'outfit1.webp'),
+    mkChar('鸟谷真琴', 'yingzhike/niaoguzhenqin', '#ec6ea2', 'h a s p u t k', 1, 'outfit1.webp'),
+  ];
   /* ↑ 2026-11-09 现代世界观新坑：原表里 197 条旧角色（西幻 / 勇战·MGQ / 黑魂系）已全部清空。
      以后加人照上面「★★★ 新增角色 ★★★」的示例往数组里追加一条就行：
        { chars: ['角色名', '角色名·全名'], main: '#c9a227', sub: '#fffdf5',
@@ -2427,12 +2478,13 @@
 [data-char="大藏里想奈"][data-action="惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/surprised.webp") !important;}
 [data-char="大藏里想奈"][data-action="脸红腹黑笑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/smirk-blush.webp") !important;}
 [data-char="大藏里想奈"][data-action="脸红高兴"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/happy-blush.webp") !important;}
+[data-char="大藏里想奈"][data-action="脸红生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/27/98989227d1bf15d11415c14031faf9c816a53624ffce4be5.png") !important;}
 [data-char="大藏里想奈"][data-action="脸红惊讶"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/surprised-blush.webp") !important;}
 [data-char="大藏里想奈"][data-action="脸红难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/sad-blush.webp") !important;}
 [data-char="大藏里想奈"][data-action="脸红通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal-blush.webp") !important;}
 [data-char="大藏里想奈"][data-action="脸红疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/puzzled-blush.webp") !important;}
 [data-char="大藏里想奈"][data-action="难过"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/sad.webp") !important;}
-[data-char="大藏里想奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/angry.webp") !important;}
+[data-char="大藏里想奈"][data-action="生气"] .custom-nvn-avatar-img { background-image: url("https://origin.picgo.net/2026/11/27/bc6177f421bce9e8bb8717a23be067cffdb96b9ec18db215.png") !important;}
 [data-char="大藏里想奈"][data-action="通常"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/normal.webp") !important;}
 [data-char="大藏里想奈"][data-action="疑惑"] .custom-nvn-avatar-img { background-image: url("https://fastly.jsdelivr.net/gh/jianchi89/galworld-assets@main/assets/jinyue/dazanglixiangnai/puzzled.webp") !important;}
 [data-char="大藏里想奈"] .custom-nvn-portrait-full {
@@ -4615,6 +4667,68 @@ div.custom-nvn-dialogue[data-char="草薙直绪"] .custom-nvn-avatar-img:not(#nv
     return out;
   }
 
+  /* 由 SAKURA_TOKI_OVERRIDES 生成十年后覆盖 CSS：
+     权重为 2 个 ID（#chat + :not(#nvn-toki-override)），稳压 CAST_CSS 与 NEW_CHARACTERS，
+     同时低于 AV_FB_STYLE_ID 的 3 个 ID，断链自动换源引擎照常生效。 */
+  function buildSakuraTokiCss() {
+    if (!SAKURA_TOKI_OVERRIDES.length) return '';
+    const B = '#chat .mes_text div.custom-nvn-dialogue[data-nvn-toki="1"]:is(';
+    const BOOST = '):not(#nvn-toki-override)';
+    let out = '\n\n/* ================= 樱之刻 · 同名角色十年后自动覆盖 ================= */\n';
+    for (const c of SAKURA_TOKI_OVERRIDES) {
+      if (!c || !Array.isArray(c.chars) || !c.chars.length) continue;
+      const sel = c.chars.map(function (n) {
+        const e = escCssStr(n);
+        return '[data-char="' + e + '"], [data-char^="' + e + '·"]';
+      }).join(', ');
+      const head = B + sel + BOOST;
+      const actions = (c.actions && typeof c.actions === 'object') ? c.actions : null;
+      const baseAvatar = c.avatar || '';
+      const hasPortrait = !!c.portrait;
+
+      out += head + ' {\n'
+           + '  --main: ' + c.main + ' !important;\n'
+           + '  --sub: ' + c.sub + ' !important;\n'
+           + '  --rgb: ' + c.rgb + ' !important;\n'
+           + '  --motion-color: ' + c.motion + ' !important;\n'
+           + '}\n';
+
+      if (baseAvatar || c.blush) {
+        out += head + ' .custom-nvn-avatar-img {\n';
+        if (baseAvatar) out += '  background-image: url("' + escCssStr(baseAvatar) + '") !important;\n';
+        if (c.blush) {
+          out += '  --nvn-blush: url("' + escCssStr(c.blush) + '") !important;\n'
+               + '  --nvn-blush-display: block !important;\n';
+        } else {
+          out += '  --nvn-blush-display: none !important;\n';
+        }
+        out += '  border: 1.5px solid rgba(var(--rgb), 0.78) !important;\n'
+             + '  box-shadow: 0 8px 22px var(--halo), inset 0 0 14px rgba(var(--rgb), 0.12) !important;\n'
+             + ((c.big || hasPortrait) ? '  cursor: pointer !important;\n' : '  cursor: default !important;\n')
+             + '}\n';
+        out += head + ' .custom-nvn-avatar-fallback-box { display: none !important; }\n';
+      }
+
+      if (actions) {
+        const entries = Object.entries(actions).filter(function (kv) { return kv[0] && kv[1]; });
+        entries.sort(function (a, b) { return a[0].length - b[0].length; });
+        for (const kv of entries) {
+          out += head + '[data-action*="' + escCssStr(kv[0]) + '"] .custom-nvn-avatar-img {\n'
+               + '  background-image: url("' + escCssStr(kv[1]) + '") !important;\n'
+               + '}\n';
+        }
+      }
+
+      if (hasPortrait) {
+        out += head + ' .custom-nvn-portrait-full {\n  content: url("' + escCssStr(c.portrait) + '") !important;\n}\n';
+        out += head + ' .custom-nvn-avatar-popover { pointer-events: auto !important; }\n';
+      } else {
+        out += head + ' .custom-nvn-avatar-popover { pointer-events: none !important; }\n';
+      }
+    }
+    return out;
+  }
+
   /* ---------------------------------------------------------------
    * 两份主题样式（由酒馆自己的 decodeStyleTags() 生成，选择器形如
    * .mes_text .custom-nvn-dialogue；属性选择器保持原样，酒馆只改 class）。
@@ -6329,7 +6443,8 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       const castIs = effectiveCastIs();
       cache[theme] = CSS[theme].split('__CAST_IS__').join(castIs)
         + CAST_CSS
-        + buildNewCharacterCss();
+        + buildNewCharacterCss()
+        + buildSakuraTokiCss();
     }
     return cache[theme];
   }
@@ -6615,6 +6730,12 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   font-weight: 500 !important;
 }
 
+/* ====== 月丘晶子：与双胞胎月丘彰共用立绘并水平镜像翻转 ====== */
+#chat div.custom-nvn-dialogue[data-char="月丘晶子"] .custom-nvn-avatar-img:not(#nvn-modern-boost),
+#chat div.custom-nvn-dialogue[data-char="月丘晶子"] .custom-nvn-portrait-full:not(#nvn-modern-boost) {
+  transform: scaleX(-1) !important;
+}
+
 /* ====== 7. 分离式脸红叠加层（data-action 含「脸红」时，自动叠上该角色的 --nvn-blush） ======
    素材 = 普通底图 + 200×250 透明脸红层；老角色没配 --nvn-blush 时变量为空 → display:none，不会重影。
    玩家头像脚本塞了行内 background-image 的行（[style*=background-image]）自动跳过。 */
@@ -6718,6 +6839,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       apply(t, false);
       if (!styleEl || !styleEl.isConnected) apply(t, true);
       injectToggles();
+      syncSakuraToki(false);
     } catch (_) {} finally {
       setTimeout(function () { isMutating = false; }, 0);
     }
@@ -6768,10 +6890,18 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
         ['CHAT_CHANGED',       'chat_changed'],
         ['CHARACTER_SELECTED', 'character_selected'],
         ['GROUP_UPDATED',      'group_updated'],
+        ['WORLDINFO_UPDATED',  'worldinfo_updated'],
       ];
       for (const p of pairs) {
         const name = (ET && ET[p[0]]) || p[1];
-        try { on(name, function () { schedule(150); }); } catch (_) {}
+        try {
+          on(name, function () {
+            if (p[1] === 'worldinfo_updated' || p[1] === 'chat_changed' || p[1] === 'character_selected') {
+              syncSakuraToki(true);
+            }
+            schedule(150);
+          });
+        } catch (_) {}
       }
     }
 
@@ -7056,6 +7186,145 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     }
   }
 
+  /* ---------------- 樱之刻世界书自动检测（[樱之刻][角色]🌸xxxx） ---------------- */
+  const activeTokiChars = new Set();
+  let lastTokiScanAt = 0;
+  let tokiScanning = false;
+
+  async function collectActiveWorldbookNames() {
+    const names = new Set();
+    const add = function (x) {
+      if (!x) return;
+      if (Array.isArray(x)) { for (const v of x) add(v); return; }
+      if (typeof x === 'string' && x.trim()) names.add(x.trim());
+    };
+    try {
+      const getCharWB = fn('getCharWorldbookNames');
+      if (getCharWB) {
+        const res = await getCharWB('current');
+        if (res) { add(res.primary); add(res.additional); }
+      }
+    } catch (_) {}
+    try {
+      const getChatWB = fn('getChatWorldbookName');
+      if (getChatWB) add(await getChatWB('current'));
+    } catch (_) {}
+    try {
+      const getGlobalWB = fn('getGlobalWorldbookNames');
+      if (getGlobalWB) add(await getGlobalWB());
+    } catch (_) {}
+    /* 兼容旧版酒馆助手 API */
+    try {
+      const f1 = fn('getCurrentCharPrimaryLorebook'); if (f1) add(await f1());
+      const f2 = fn('getCharLorebooks'); if (f2) { const r = await f2(); if (r) { add(r.primary); add(r.additional); } }
+      const f3 = fn('getGlobalLorebooks'); if (f3) add(await f3());
+    } catch (_) {}
+    /* 兜底直接读酒馆上下文 */
+    try {
+      const ctx = HW.SillyTavern && HW.SillyTavern.getContext && HW.SillyTavern.getContext();
+      if (ctx) {
+        const ch = (ctx.characterId !== undefined && ctx.characters) ? ctx.characters[ctx.characterId] : null;
+        add(ch && ch.data && ch.data.extensions && ch.data.extensions.world);
+        add(ctx.chatMetadata && ctx.chatMetadata.world_info);
+      }
+      add(HW.selected_world_info);
+    } catch (_) {}
+    return Array.from(names);
+  }
+
+  async function readWorldbookEntries(bookName) {
+    try {
+      const f = fn('getWorldbook');
+      if (f) { const list = await f(bookName); if (Array.isArray(list)) return list; }
+    } catch (_) {}
+    try {
+      const f = fn('getLorebookEntries');
+      if (f) { const list = await f(bookName); if (Array.isArray(list)) return list; }
+    } catch (_) {}
+    try {
+      const hdr = (HW.getRequestHeaders && HW.getRequestHeaders()) || { 'Content-Type': 'application/json' };
+      const r = await (HW.fetch || fetch)('/api/worldinfo/get', {
+        method: 'POST', headers: hdr, body: JSON.stringify({ name: bookName }),
+      });
+      if (r && r.ok) {
+        const data = await r.json();
+        if (data && data.entries) return Object.values(data.entries);
+      }
+    } catch (_) {}
+    return [];
+  }
+
+  function isTokiChar(dc) {
+    if (!dc || !activeTokiChars.size) return false;
+    if (activeTokiChars.has(dc)) return true;
+    for (const n of activeTokiChars) {
+      if (dc.indexOf(n + '·') === 0) return true;
+    }
+    return false;
+  }
+
+  function applyTokiMarks(rows) {
+    try {
+      const changed = [];
+      for (const row of rows) {
+        const dc = String(row.getAttribute('data-char') || '');
+        const want = isTokiChar(dc);
+        const had = row.getAttribute('data-nvn-toki') === '1';
+        if (want === had) continue;
+        if (want) row.setAttribute('data-nvn-toki', '1');
+        else row.removeAttribute('data-nvn-toki');
+        /* 清理断链检测旧缓存，防止把新立绘换回旧图 */
+        for (const av of row.querySelectorAll('.custom-nvn-avatar-img')) {
+          av.removeAttribute('data-nvn-src');
+          av.removeAttribute('data-nvn-blush-src');
+          av.removeAttribute('data-nvn-fb');
+          av.removeAttribute('data-nvn-blush-fb');
+        }
+        changed.push(row);
+      }
+      if (changed.length) markAvatars(changed);
+    } catch (_) {}
+  }
+
+  async function syncSakuraToki(force) {
+    if (!alive || tokiScanning) return;
+    const now = Date.now();
+    if (!force && now - lastTokiScanAt < 2500) return;
+    tokiScanning = true;
+    lastTokiScanAt = now;
+    try {
+      const books = await collectActiveWorldbookNames();
+      const nextSet = new Set();
+      for (const book of books) {
+        const entries = await readWorldbookEntries(book);
+        for (const e of entries) {
+          if (!e) continue;
+          const enabled = (typeof e.enabled === 'boolean') ? e.enabled : !e.disable;
+          if (!enabled) continue;
+          const title = String(e.name || e.comment || '');
+          if (title.indexOf('[樱之刻]') === -1 || title.indexOf('[角色]') === -1) continue;
+          const m = title.match(/\[樱之刻\]\s*\[角色\]\s*🌸?\s*([^\s（(·•—\-|/]+)/);
+          const extracted = m ? m[1] : '';
+          for (const c of SAKURA_TOKI_OVERRIDES) {
+            const hit = c.chars.some(function (n) {
+              return extracted === n || title.indexOf('🌸' + n) !== -1 || title.indexOf(']' + n) !== -1;
+            });
+            if (hit) { for (const n of c.chars) nextSet.add(n); }
+          }
+        }
+      }
+      let diff = nextSet.size !== activeTokiChars.size;
+      if (!diff) { for (const n of nextSet) { if (!activeTokiChars.has(n)) { diff = true; break; } } }
+      if (diff) {
+        activeTokiChars.clear();
+        for (const n of nextSet) activeTokiChars.add(n);
+        applyTokiMarks(Array.from(HD.querySelectorAll('.custom-nvn-dialogue')));
+      }
+    } catch (_) {} finally {
+      tokiScanning = false;
+    }
+  }
+
   /* ---------------- 增量 DOM 处理函数 ---------------- */
   function markAvatars(rows) {
     try {
@@ -7328,6 +7597,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
       }
 
       sweepEmptyTails(newRows);
+      applyTokiMarks(newRows);
       markAvatars(newRows);
       markUserRows(newRows);
       fillPlayerNames(newRows);
@@ -7421,6 +7691,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
     apply(userTheme || 'dark', true);
     injectToggles();
+    syncSakuraToki(true);
     wireObserver();
     wireEvents();
     wireGlobalToggleClick();
