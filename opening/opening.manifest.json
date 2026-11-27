@@ -3,8 +3,8 @@
   "script": "opening.js",
   "abi": 1,
   "version": "3.50.0",
-  "sha256": "7629c3e8289d7af1c81c1951ad8dc2ddb5d1d0193be31495a61a0f22861d7f73",
+  "sha256": "4fc3ad285c07cd9b275acf70ced837036bd46d9e295547ee5112dc5515ec96cd",
   "size": 1008913,
   "note": "GALWORLD 开局前端 v3.50.0（本地版内嵌同一份代码）",
-  "updatedAt": "2026-11-27T09:07:29Z"
+  "updatedAt": "2026-11-27T09:41:32Z"
 }
