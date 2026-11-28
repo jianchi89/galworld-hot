@@ -6599,20 +6599,21 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   opacity: .85 !important;
 }
 
-/* ====== 5. 玩家行（user模式）：完美镜像对齐 + 动作 // 在最右侧 ====== */
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) {
+/* ====== 5. 玩家行（user模式）：纯 CSS 锁死右侧镜像对齐，流式零闪烁 ====== */
+__USER_ROW__ {
   --main: #7fc4ff;
   --sub: #cfe4ff;
   --rgb: 127, 196, 255;
   --motion-color: #a9cfff;
+  display: grid !important;
   grid-template-columns: minmax(0, 1fr) 112px !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-avatar-side {
+__USER_ROW__ .custom-nvn-avatar-side {
   display: block !important;
   grid-column: 2 !important;
   grid-row: 1 !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-content:not(#nvn-modern-boost) {
+__USER_ROW__ .custom-nvn-content {
   grid-column: 1 !important;
   grid-row: 1 !important;
   padding: 10px 12px 0 0 !important;
@@ -6620,8 +6621,13 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   border-right: 0 !important;
   text-align: right !important;
 }
+__USER_ROW__ .custom-nvn-text,
+__USER_ROW__ .custom-nvn-text .custom-nvn-primary {
+  display: block !important;
+  text-align: right !important;
+}
 /* 覆盖旧版 grid 与 order: 0/1/2，统一使用 row-reverse 镜像排列：从右到左依次为 名字 -> 神态 -> 太阳 -> 横线 */
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-name-plate:not(#nvn-modern-boost) {
+__USER_ROW__ .custom-nvn-name-plate {
   display: flex !important;
   flex-direction: row-reverse !important;
   justify-content: flex-start !important;
@@ -6631,14 +6637,14 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   margin: 0 0 6px !important;
   padding: 0 !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-name-plate > * {
+__USER_ROW__ .custom-nvn-name-plate > * {
   order: 0 !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-action:not(#nvn-modern-boost) {
+__USER_ROW__ .custom-nvn-action {
   margin-left: 0 !important;
   margin-right: 8px !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-rule {
+__USER_ROW__ .custom-nvn-rule {
   flex: 1 1 auto !important;
   min-width: 0 !important;
   width: auto !important;
@@ -6650,18 +6656,18 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   margin-left: 0 !important;
   margin-right: 8px !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-rule-line {
+__USER_ROW__ .custom-nvn-rule-line {
   flex: 0 0 auto !important;
   width: var(--nvn-line-first-w, 100%) !important;
   height: 1px !important;
   background: linear-gradient(270deg, rgba(var(--rgb), .55), rgba(var(--rgb), .08)) !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-rose-crest,
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-name-plate::before {
+__USER_ROW__ .custom-nvn-rose-crest,
+__USER_ROW__ .custom-nvn-name-plate::before {
   display: none !important;
   content: none !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-name-plate:not(:has(.custom-nvn-rule))::after {
+__USER_ROW__ .custom-nvn-name-plate:not(:has(.custom-nvn-rule))::after {
   content: "" !important;
   display: block !important;
   flex: 1 1 auto !important;
@@ -6679,12 +6685,25 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   opacity: .85 !important;
 }
 
-/* user 模式的动作描写：隐藏左侧 //，在最右侧显示 // */
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-motion:not(#nvn-modern-boost)::before {
+/* user 模式的动作描写：纯 CSS 锁死右对齐并去框，隐藏左侧 //，在最右侧显示 // */
+__USER_ROW__ .custom-nvn-motion {
+  text-align: right !important;
+  width: 100% !important;
+  align-self: stretch !important;
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+}
+__USER_ROW__ .custom-nvn-motion::before {
   content: none !important;
   display: none !important;
 }
-#chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) .custom-nvn-motion:not(:empty):not(#nvn-modern-boost)::after {
+__USER_ROW__ .custom-nvn-motion:not(:empty)::after {
   content: "//" !important;
   display: inline !important;
   margin-left: 4px !important;
@@ -6704,7 +6723,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   display: none !important;
 }
 @media (max-width: 560px) {
-  #chat :is([is_user="true"] .custom-nvn-dialogue, .custom-nvn-dialogue:is([data-player^="user"], [data-player="玩家"], [data-player="true"], [data-nvn-user="1"])) {
+  __USER_ROW__ {
     grid-template-columns: minmax(0, 1fr) 75px !important;
   }
   #chat .custom-nvn-name-initial:not(#nvn-modern-boost),
@@ -6764,9 +6783,33 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 }
 `;
 
+  let lastPlayerName = '';
+  function userRowSel() {
+    const parts = [
+      '[is_user="true"] .custom-nvn-dialogue',
+      '.custom-nvn-dialogue[data-player^="user" i]',
+      '.custom-nvn-dialogue[data-player="玩家"]',
+      '.custom-nvn-dialogue[data-player="true" i]',
+      '.custom-nvn-dialogue[data-nvn-user="1"]',
+      '.custom-nvn-dialogue[data-char="user" i]',
+      '.custom-nvn-dialogue[data-char="玩家"]',
+    ];
+    const pn = playerName();
+    lastPlayerName = pn;
+    if (pn) {
+      const e = escCssStr(pn);
+      parts.push('.custom-nvn-dialogue[data-char="' + e + '"]');
+      parts.push('.custom-nvn-dialogue[data-char^="' + e + '·"]');
+    }
+    return '#chat:not(#nvn-modern-boost) :is(' + parts.join(', ') + ')';
+  }
+
   function pageCss(theme) {
     const d = D_LAYOUT_CSS[theme] || D_LAYOUT_CSS.dark;
-    return fullCss(theme) + LAYOUT_PATCH_CSS + d.split('__CAST_IS__').join(effectiveCastIs()) + STREAM_FIX_CSS;
+    return fullCss(theme)
+      + LAYOUT_PATCH_CSS
+      + d.split('__CAST_IS__').join(effectiveCastIs())
+      + STREAM_FIX_CSS.split('__USER_ROW__').join(userRowSel());
   }
 
   function apply(theme, force) {
@@ -6817,6 +6860,11 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
   function ensureStyleOnly() {
     try {
+      const curPn = playerName();
+      if (curPn !== lastPlayerName) {
+        apply(userTheme || current || 'dark', true);
+        return;
+      }
       if (styleEl && styleEl.isConnected) return;
       const t = userTheme || current || 'dark';
       apply(t, true);
@@ -6839,7 +6887,7 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
     isMutating = true;
     try {
       const t = userTheme || current || 'dark';
-      apply(t, false);
+      apply(t, playerName() !== lastPlayerName);
       if (!styleEl || !styleEl.isConnected) apply(t, true);
       injectToggles();
       syncSakuraToki(false);
@@ -7426,10 +7474,14 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
 
   function markUserRows(rows) {
     try {
+      const pName = playerName();
       for (const row of rows) {
         const mes = row.closest('.mes');
-        const dp = String(row.getAttribute('data-player') || '');
-        const isUser = dp === 'user' || dp === '玩家' || dp === 'true'
+        const dp = String(row.getAttribute('data-player') || '').trim().toLowerCase();
+        const dc = String(row.getAttribute('data-char') || '').trim();
+        const isUser = dp.indexOf('user') === 0 || dp === '玩家' || dp === 'true'
+          || dc.toLowerCase() === 'user' || dc === '玩家'
+          || (pName && (dc === pName || dc.indexOf(pName + '·') === 0))
           || (mes && mes.getAttribute('is_user') === 'true');
         if (isUser) {
           row.setAttribute('data-nvn-user', '1');
