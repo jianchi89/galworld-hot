@@ -1,7 +1,7 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.5.20';
+  const VERSION  = '2.5.21';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
@@ -6621,10 +6621,15 @@ __USER_ROW__ .custom-nvn-content {
   border-right: 0 !important;
   text-align: right !important;
 }
-__USER_ROW__ .custom-nvn-text,
-__USER_ROW__ .custom-nvn-text .custom-nvn-primary {
-  display: block !important;
+__USER_ROW__ .custom-nvn-text {
   text-align: right !important;
+}
+__USER_ROW__ .custom-nvn-text .custom-nvn-primary {
+  display: inline !important;
+}
+__USER_ROW__ .custom-nvn-quote-mark.custom-right::before {
+  position: static !important;
+  left: auto !important;
 }
 /* 覆盖旧版 grid 与 order: 0/1/2，统一使用 row-reverse 镜像排列：从右到左依次为 名字 -> 神态 -> 太阳 -> 横线 */
 __USER_ROW__ .custom-nvn-name-plate {
