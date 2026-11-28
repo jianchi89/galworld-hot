@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "abi": 1,
-  "version": "2.5.10",
+  "version": "2.5.11",
   "script": "dialogue.js",
   "sha256": "34eec1584d17b631f5da3b8c5b1c9237a28215ef9ec7751240a5ed933b1d7a01",
   "updatedAt": "2026-11-28T09:36:52Z",
-  "engine": "2.5.10"
+  "engine": "2.5.11"
 }
