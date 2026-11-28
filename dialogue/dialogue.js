@@ -1,7 +1,7 @@
 (async function () {
   'use strict';
 
-  const VERSION  = '2.5.00';
+  const VERSION  = '2.5.10';
   /* 【2.4.23】图全部改为 GitHub 图库绝对链接；新增 10 部作品 81 人；脸红改为独立叠加层。 */
   /* ⚠ 卡里还挂着「对白美化·CSS注入器 v2.4.0」时，它也用 nvn-dialogue-theme-css 这个 id，
    两边会互相删掉对方的 <style>（谁后跑谁赢，两秒一换）。所以这里改名，互不干扰。 */
@@ -1435,6 +1435,7 @@
     mkChar('恋冢爱', 'tianjinzui/lianzhongai', '#e6d8b8', 'h a s p u g t k', 1, 'uniform.webp'),
     mkChar('朝比奈响子', 'tianjinzui/chaobinaixiangzi', '#c98868', 'h a s p u g t', 1, 'uniform.webp'),
     mkChar('水无月萤', 'tianjinzui/shuiwuyueying', '#6ea6cc', 'h a s p u g t k', 0, 'uniform.webp'),
+    mkChar('黑萤', 'tianjinzui/shuiwuyueying', '#d93848', 'h a s p u g t k', 0, 'uniform.webp'),
     mkChar('浅川光一', 'tianjinzui/qianchuanguangyi', '#cc9470', '', 0, ''),
     mkChar('浅川铃夏', 'tianjinzui/qianchuanlingxia', '#e09e68', 'h a s p u g t', 1, 'outfit1.webp'),
     mkChar('织部心', 'tianjinzui/zhibuxin', '#d49262', 'h a s p u g t k', 1, 'uniform.webp'),
@@ -6730,9 +6731,11 @@ div.custom-nvn-dialogue[data-mode^="bilingual"] .custom-nvn-motion {
   font-weight: 500 !important;
 }
 
-/* ====== 月丘晶子：与双胞胎月丘彰共用立绘并水平镜像翻转 ====== */
+/* ====== 月丘晶子 / 黑萤：共用立绘并水平镜像翻转 ====== */
 #chat div.custom-nvn-dialogue[data-char="月丘晶子"] .custom-nvn-avatar-img:not(#nvn-modern-boost),
-#chat div.custom-nvn-dialogue[data-char="月丘晶子"] .custom-nvn-portrait-full:not(#nvn-modern-boost) {
+#chat div.custom-nvn-dialogue[data-char="月丘晶子"] .custom-nvn-portrait-full:not(#nvn-modern-boost),
+#chat div.custom-nvn-dialogue[data-char="黑萤"] .custom-nvn-avatar-img:not(#nvn-modern-boost),
+#chat div.custom-nvn-dialogue[data-char="黑萤"] .custom-nvn-portrait-full:not(#nvn-modern-boost) {
   transform: scaleX(-1) !important;
 }
 
